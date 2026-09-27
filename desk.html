@@ -104,6 +104,12 @@
     .sources-list { display:flex; flex-wrap:wrap; gap:8px; }
     .sources-list a { display:inline-flex; align-items:center; gap:6px; padding:9px 11px; border:1px solid var(--line); color:var(--blue); background:var(--paper-soft); font-size:12px; font-weight:700; text-decoration:none; overflow-wrap:anywhere; }
     .sources-list a::after { content:"↗"; font-size:10px; }
+    .brief-actions { display:flex; align-items:center; justify-content:flex-end; padding:0 clamp(22px,4vw,42px) 34px; }
+    .clubhouse-button { display:inline-flex; align-items:center; gap:10px; min-height:46px; padding:11px 16px; color:#fff; background:var(--navy-deep); border-top:4px solid var(--red); font-size:13px; font-weight:800; text-decoration:none; box-shadow:0 6px 18px rgba(16,42,76,.16); }
+    .clubhouse-button::before { content:"★"; color:var(--gold); font-size:14px; }
+    .clubhouse-button::after { content:"↗"; color:#fff; font-size:11px; }
+    .clubhouse-button:hover { background:var(--blue); }
+    .clubhouse-button:focus-visible { outline:3px solid rgba(181,31,54,.35); outline-offset:3px; }
     .topic-submit { padding:clamp(52px,7vw,82px) 0 0; }
     .topic-submit-frame { overflow:hidden; background:var(--card); border:1px solid var(--line); border-top:5px solid var(--blue); box-shadow:0 8px 28px rgba(16,42,76,.07); }
     .topic-form { display:grid; grid-template-columns:1fr 1fr; gap:24px 28px; padding:clamp(26px,5vw,46px); }
@@ -182,6 +188,8 @@
       .brief-section + .brief-section { border-left:0; border-top:1px solid var(--line); }
       .sources-list { display:grid; }
       .sources-list a { width:100%; justify-content:space-between; }
+      .brief-actions { justify-content:stretch; }
+      .clubhouse-button { width:100%; justify-content:center; }
       .topic-form { grid-template-columns:1fr; gap:20px; }
       .topic-field-wide,.topic-form-actions { grid-column:1; }
       .topic-form-actions { align-items:stretch; flex-direction:column; }
@@ -301,6 +309,9 @@
                   <li><a href="https://thedregsreport.com/2026/09/13/aoc-and-pressley-demand-federal-lynching-probe-despite-most-cited-deaths-being-ruled-suicides/" target="_blank" rel="noopener noreferrer">The Dregs Report</a></li>
                 </ul>
               </section>
+              <div class="brief-actions">
+                <a class="clubhouse-button" href="https://www.clubhouse.com/house/president-trump-crvth0bjblsu?chs=y3eIerRALr%3AgoLibaop8mvl5wtuSFC9F4BRrVY9r5FOU4Ig6HNHVaw&amp;utm_medium=ch_general_house" target="_blank" rel="noopener noreferrer">Trump House on Clubhouse</a>
+              </div>
             </div>
           </article>
         </div>
