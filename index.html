@@ -143,11 +143,17 @@
       font-size: clamp(18px, 2vw, 23px);
       line-height: 1.55;
     }
+    .channel-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
     .clubhouse-link {
       display: inline-flex;
       align-items: center;
       gap: 12px;
-      margin-top: 28px;
+      margin-top: 0;
       padding: 14px 18px;
       color: var(--paper);
       background: var(--navy);
@@ -365,7 +371,9 @@
     .story-package[data-open="true"] .story-chevron { transform: rotate(90deg); }
     .story-card-action {
       display: flex;
+      flex-wrap: wrap;
       justify-content: flex-end;
+      gap: 10px;
       padding: 0 clamp(20px, 4vw, 38px) 24px;
     }
     .story-clubhouse-link {
@@ -548,8 +556,9 @@
       .section-heading, .brief-grid { grid-template-columns: 1fr; }
       .section-heading { gap: 15px; }
       .story-trigger { grid-template-columns: minmax(0, 1fr) 18px; gap: 12px; padding: 21px 18px; }
+      .channel-links, .story-card-action { flex-direction: column; }
       .story-card-action { justify-content: stretch; padding: 0 18px 21px; }
-      .story-clubhouse-link { justify-content: space-between; width: 100%; }
+      .channel-links .clubhouse-link, .story-clubhouse-link { justify-content: space-between; width: 100%; }
       .brief-section + .brief-section { border-left: 0; border-top: 1px solid var(--line); }
       .timeline-list li { grid-template-columns: 82px 1fr; gap: 12px; }
       .source-list { display: grid; }
@@ -580,7 +589,10 @@
         <div class="signal">Listener room</div>
         <h1 id="main-title">The story. The facts. The record.</h1>
         <p class="lede">Follow the stories shaping America through concise briefs that separate the claim, the verified facts, the timeline, and the source record.</p>
-        <a class="clubhouse-link" href="https://www.clubhouse.com/house/president-trump-crvth0bjblsu?chs=y3eIerRALr%3AgoLibaop8mvl5wtuSFC9F4BRrVY9r5FOU4Ig6HNHVaw&amp;utm_medium=ch_general_house" target="_blank" rel="noopener noreferrer">Trump House on Clubhouse</a>
+        <div class="channel-links" aria-label="Trump House channels">
+          <a class="clubhouse-link" href="https://www.clubhouse.com/house/president-trump-crvth0bjblsu?chs=y3eIerRALr%3AgoLibaop8mvl5wtuSFC9F4BRrVY9r5FOU4Ig6HNHVaw&amp;utm_medium=ch_general_house" target="_blank" rel="noopener noreferrer">Trump House on Clubhouse</a>
+          <a class="clubhouse-link" href="https://t.me/+3V_USlpsmigzN2Yx" target="_blank" rel="noopener noreferrer">Trump House on Telegram</a>
+        </div>
       </div>
       <aside class="status-card" aria-label="Room status">
         <div class="status-label">Current status</div>
@@ -612,8 +624,9 @@
           </span>
           <span class="story-chevron" aria-hidden="true">›</span>
         </button>
-        <div class="story-card-action">
+        <div class="story-card-action" aria-label="Trump House channels">
           <a class="clubhouse-link story-clubhouse-link" href="https://www.clubhouse.com/house/president-trump-crvth0bjblsu?chs=y3eIerRALr%3AgoLibaop8mvl5wtuSFC9F4BRrVY9r5FOU4Ig6HNHVaw&amp;utm_medium=ch_general_house" target="_blank" rel="noopener noreferrer">Trump House on Clubhouse</a>
+          <a class="clubhouse-link story-clubhouse-link" href="https://t.me/+3V_USlpsmigzN2Yx" target="_blank" rel="noopener noreferrer">Trump House on Telegram</a>
         </div>
         <div class="story-body">
           <section class="story-copy" aria-label="The story">
