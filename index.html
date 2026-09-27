@@ -363,6 +363,16 @@
       transition: transform .2s ease;
     }
     .story-package[data-open="true"] .story-chevron { transform: rotate(90deg); }
+    .story-card-action {
+      display: flex;
+      justify-content: flex-end;
+      padding: 0 clamp(20px, 4vw, 38px) 24px;
+    }
+    .story-clubhouse-link {
+      margin-top: 0;
+      padding: 11px 15px;
+      font-size: 13px;
+    }
     .story-body {
       display: none;
       border-top: 1px solid var(--line);
@@ -538,6 +548,8 @@
       .section-heading, .brief-grid { grid-template-columns: 1fr; }
       .section-heading { gap: 15px; }
       .story-trigger { grid-template-columns: minmax(0, 1fr) 18px; gap: 12px; padding: 21px 18px; }
+      .story-card-action { justify-content: stretch; padding: 0 18px 21px; }
+      .story-clubhouse-link { justify-content: space-between; width: 100%; }
       .brief-section + .brief-section { border-left: 0; border-top: 1px solid var(--line); }
       .timeline-list li { grid-template-columns: 82px 1fr; gap: 12px; }
       .source-list { display: grid; }
@@ -600,6 +612,9 @@
           </span>
           <span class="story-chevron" aria-hidden="true">›</span>
         </button>
+        <div class="story-card-action">
+          <a class="clubhouse-link story-clubhouse-link" href="https://www.clubhouse.com/house/president-trump-crvth0bjblsu?chs=y3eIerRALr%3AgoLibaop8mvl5wtuSFC9F4BRrVY9r5FOU4Ig6HNHVaw&amp;utm_medium=ch_general_house" target="_blank" rel="noopener noreferrer">Trump House on Clubhouse</a>
+        </div>
         <div class="story-body">
           <section class="story-copy" aria-label="The story">
             <h3>The story</h3>
