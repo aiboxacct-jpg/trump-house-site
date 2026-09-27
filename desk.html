@@ -159,6 +159,32 @@
     .live-topic-button[aria-pressed="true"] { border-color:var(--red); background:var(--red); color:#fff; }
     .live-topic-button:focus-visible { outline:3px solid rgba(31,93,156,.3); outline-offset:2px; }
     .live-manager-status { min-height:20px; margin:13px 0 0!important; color:var(--muted); font-size:12px; font-weight:700; }
+    .research-helper { margin-bottom:18px; overflow:hidden; background:var(--host); color:var(--host-text); border-top:5px solid var(--blue); box-shadow:0 8px 28px rgba(16,42,76,.12); }
+    .research-helper-head { display:flex; align-items:flex-start; justify-content:space-between; gap:24px; padding:25px clamp(22px,4vw,34px) 20px; border-bottom:1px solid #38536f; }
+    .research-helper-head h3 { margin:0; color:#fff; font-family:"Libre Baskerville",Georgia,serif; font-size:24px; }
+    .research-helper-head p { max-width:660px; margin:8px 0 0; color:#c9d6e4; font-size:13px; line-height:1.6; }
+    .research-helper-scope { flex:none; padding:7px 9px; color:var(--gold); border:1px solid #6f849b; font-size:10px; font-weight:800; letter-spacing:.07em; text-transform:uppercase; }
+    .research-suggestions { display:flex; flex-wrap:wrap; gap:8px; padding:17px clamp(22px,4vw,34px) 0; }
+    .research-suggestion { min-height:38px; border:1px solid #6f849b; background:transparent; color:#e5edf6; padding:8px 11px; font-size:12px; font-weight:700; text-align:left; cursor:pointer; }
+    .research-suggestion:hover { border-color:var(--gold); color:#fff; }
+    .research-suggestion:focus-visible { outline:3px solid rgba(239,198,111,.35); outline-offset:2px; }
+    .research-chat-log { display:grid; gap:12px; max-height:420px; overflow-y:auto; padding:20px clamp(22px,4vw,34px); scroll-behavior:smooth; }
+    .research-message { max-width:min(760px,92%); padding:13px 15px; font-size:14px; line-height:1.65; }
+    .research-message.helper { justify-self:start; color:#e1eaf3; background:#153554; border-left:4px solid var(--gold); }
+    .research-message.host { justify-self:end; color:#142238; background:#f4f7fb; border-left:4px solid var(--red); }
+    .research-message-label { display:block; margin-bottom:4px; color:var(--gold); font-size:10px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; }
+    .research-message.host .research-message-label { color:var(--red-deep); }
+    .research-message p { margin:0; }
+    .research-message-sources { display:flex; flex-wrap:wrap; gap:7px; margin-top:10px; }
+    .research-message-sources a { color:#fff; border-bottom:1px solid #8aa2ba; font-size:11px; font-weight:700; text-decoration:none; }
+    .research-message-sources a::after { content:" ↗"; color:var(--gold); }
+    .research-form { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:10px; padding:18px clamp(22px,4vw,34px) 24px; border-top:1px solid #38536f; }
+    .research-form label { grid-column:1/-1; color:#d7e2ed; font-size:12px; font-weight:800; }
+    .research-form input { min-width:0; min-height:49px; border:1px solid #738ba5; border-radius:0; background:#fff; color:#101828; padding:12px 14px; outline:none; }
+    .research-form input:focus { border-color:var(--gold); box-shadow:0 0 0 3px rgba(216,170,72,.2); }
+    .research-form button { min-height:49px; border:0; background:var(--red); color:#fff; padding:12px 20px; font-weight:800; cursor:pointer; }
+    .research-form button:hover { background:var(--red-deep); }
+    .research-form button:focus-visible { outline:3px solid rgba(239,198,111,.35); outline-offset:2px; }
     .host-notes { display:grid; gap:13px; }
     .host-empty { padding:clamp(28px,5vw,44px); background:var(--host); color:var(--host-text); border-top:5px solid var(--red); text-align:center; }
     .host-empty strong { display:block; color:#fff; font-family:"Libre Baskerville",Georgia,serif; font-size:clamp(20px,3vw,27px); }
@@ -201,6 +227,14 @@
       .live-manager-head { align-items:flex-start; flex-direction:column; gap:7px; }
       .live-topic-buttons { display:grid; grid-template-columns:1fr; }
       .live-topic-button { width:100%; text-align:left; }
+      .research-helper-head { flex-direction:column; gap:14px; }
+      .research-helper-scope { align-self:flex-start; }
+      .research-suggestions { display:grid; }
+      .research-suggestion { width:100%; }
+      .research-chat-log { max-height:480px; }
+      .research-message { max-width:96%; }
+      .research-form { grid-template-columns:1fr; }
+      .research-form button { width:100%; }
       footer { flex-direction:column; }
     }
     @media (prefers-color-scheme:dark) {
@@ -369,6 +403,35 @@
           </div>
           <p class="live-manager-status" id="live-manager-status" role="status" aria-live="polite">The Tasia Fortune Case is now marked LIVE.</p>
         </section>
+
+        <section class="research-helper" aria-labelledby="research-helper-title">
+          <div class="research-helper-head">
+            <div>
+              <h3 id="research-helper-title">Research helper</h3>
+              <p>Ask about the verified facts, timeline, and sources already in the current brief. If the brief does not cover it, the desk will say so.</p>
+            </div>
+            <span class="research-helper-scope">Current briefs only</span>
+          </div>
+          <div class="research-suggestions" aria-label="Suggested questions">
+            <button class="research-suggestion" type="button" data-research-question="What happened to Tasia Fortune?">What happened?</button>
+            <button class="research-suggestion" type="button" data-research-question="Why was the scene called staged?">Why “staged”?</button>
+            <button class="research-suggestion" type="button" data-research-question="Who has been arrested?">Who was arrested?</button>
+            <button class="research-suggestion" type="button" data-research-question="What did AOC and Pressley say?">AOC and Pressley</button>
+            <button class="research-suggestion" type="button" data-research-question="What happens next in court?">What happens next?</button>
+          </div>
+          <div class="research-chat-log" id="research-chat-log" role="log" aria-live="polite" aria-label="Research helper conversation">
+            <div class="research-message helper">
+              <span class="research-message-label">Research helper</span>
+              <p>I’m ready. Ask me a question about The Tasia Fortune Case.</p>
+            </div>
+          </div>
+          <form class="research-form" id="research-form">
+            <label for="research-question">Ask the current brief</label>
+            <input id="research-question" type="text" autocomplete="off" placeholder="Ask about the case, timeline, arrests, or sources" required />
+            <button type="submit">Ask</button>
+          </form>
+        </section>
+
         <div class="host-notes">
           <div class="host-empty" role="status">
             <strong>No host talking points yet.</strong>
@@ -399,7 +462,143 @@
       var liveTopicButtons = Array.from(document.querySelectorAll('.live-topic-button'));
       var liveBadges = Array.from(document.querySelectorAll('.live-badge'));
       var liveManagerStatus = document.getElementById('live-manager-status');
+      var researchForm = document.getElementById('research-form');
+      var researchQuestion = document.getElementById('research-question');
+      var researchChatLog = document.getElementById('research-chat-log');
+      var researchSuggestions = Array.from(document.querySelectorAll('.research-suggestion'));
       var passHash = '3be19140bc6cdbbb9a7eb51135c76ad6de661858531e5ed5a9daded0b99f2a5c';
+
+      /* ================================================================
+         RESEARCH HELPER KNOWLEDGE BASE
+         Add a new object here when a verified story package joins the queue.
+         Keep answers limited to that package's facts, timeline, and source URLs.
+         "questions" are canned examples; "keywords" drive topic matching.
+         ================================================================ */
+      var researchKnowledgeBase = [
+        {
+          id: 'tasia-overview',
+          questions: ['what happened to tasia fortune', 'give me the case overview', 'who was tasia fortune'],
+          keywords: ['tasia fortune', 'what happened', 'case overview', 'found hanging', 'west jackson'],
+          answer: 'Tasia Fortune, 29, a mother of four, was found hanging from a tree behind a vacant home in West Jackson on August 3, 2026. The medical examiner ruled her death a homicide. Jackson police Det. Samuel Dukes testified on September 25 that she had been killed before her body was hung and that the scene was staged.',
+          sources: [
+            { label: 'People', url: 'https://people.com/third-suspect-arrested-in-connection-to-death-of-miss-mom-tasia-fortune-12141288' },
+            { label: 'Clarion Ledger · investigation update', url: 'https://www.clarionledger.com/story/news/local/2026/09/25/tasia-fortune-death-investigation-update-in-jackson-ms-police-say-no-hanging/91920457007/' }
+          ]
+        },
+        {
+          id: 'tasia-staged-scene',
+          questions: ['why was the scene called staged', 'was this a lynching', 'what did police mean by staged'],
+          keywords: ['staged', 'lynching', 'hung', 'hanging', 'scene', 'before her body was hung'],
+          answer: 'Det. Samuel Dukes testified that Fortune was killed before her body was hung from the tree, making the hanging a staged scene. The brief also notes that the Associated Press corrected wording that had called it a “staged lynching”: police said the scene was staged but did not say the staging was intended to mimic a lynching.',
+          sources: [
+            { label: 'USA Today', url: 'https://www.usatoday.com/story/news/nation/2026/09/26/tasia-fortune-hanging-case-staged-new-details/91960988007/' },
+            { label: 'Clarion Ledger · investigation update', url: 'https://www.clarionledger.com/story/news/local/2026/09/25/tasia-fortune-death-investigation-update-in-jackson-ms-police-say-no-hanging/91920457007/' }
+          ]
+        },
+        {
+          id: 'tasia-arrests',
+          questions: ['who has been arrested', 'who are the suspects', 'who was charged'],
+          keywords: ['arrest', 'arrested', 'suspect', 'charged', 'ratliff', 'lloyd', 'clark'],
+          answer: 'Three men have been arrested on murder charges: Jarques “Jock” Ratliff, 51; Earnest Lloyd Jr., 25; and Eric Clark, 45. Ratliff and Lloyd pleaded not guilty and were denied bond. Clark turned himself in on September 25 and had an initial appearance scheduled for September 28.',
+          sources: [
+            { label: 'People', url: 'https://people.com/third-suspect-arrested-in-connection-to-death-of-miss-mom-tasia-fortune-12141288' },
+            { label: 'Clarion Ledger · third arrest', url: 'https://www.clarionledger.com/story/news/2026/09/25/third-person-arrested-in-tasia-fortune-hanging-death-in-jackson-mississippi/91919854007/' }
+          ]
+        },
+        {
+          id: 'tasia-motive',
+          questions: ['what was the motive', 'why did police say she was killed', 'what was the drug dispute'],
+          keywords: ['motive', 'why killed', 'drug dispute', 'narcotics', 'drugs', 'missing illegal narcotics'],
+          answer: 'Dukes testified that Fortune was killed in a drug dispute and that “missing illegal narcotics” were central to the crime. The current brief does not provide a more specific motive beyond that testimony.',
+          sources: [
+            { label: 'Clarion Ledger · investigation update', url: 'https://www.clarionledger.com/story/news/local/2026/09/25/tasia-fortune-death-investigation-update-in-jackson-ms-police-say-no-hanging/91920457007/' },
+            { label: 'WVLT', url: 'https://www.wvlt.tv/2026/09/25/tasia-fortunes-hanging-was-staged-after-her-death-drug-dispute-mississippi-police-say/' }
+          ]
+        },
+        {
+          id: 'tasia-evidence',
+          questions: ['what evidence was described', 'what was used to hang her', 'what did the medical examiner find'],
+          keywords: ['evidence', 'cable', 'cord', 'medical examiner', 'fought', 'fight', 'two to three days'],
+          answer: 'The medical examiner ruled the death a homicide. A court affidavit says a black cable cord was used to hang Fortune. Dukes testified that she was likely dead for two to three days before she was found and that she fought hard with her attackers.',
+          sources: [
+            { label: 'People', url: 'https://people.com/third-suspect-arrested-in-connection-to-death-of-miss-mom-tasia-fortune-12141288' },
+            { label: 'LA Post', url: 'https://www.lapost.com/content/tasia-fortune-s-hanging-was-staged-after-her-death-in-a-drug-dispute-mississippi-police-say' }
+          ]
+        },
+        {
+          id: 'tasia-political-response',
+          questions: ['what did aoc and pressley say', 'what was in the congressional letter', 'who asked for a federal probe'],
+          keywords: ['aoc', 'pressley', 'democrats', 'letter', 'federal probe', 'congress', 'racial terror', 'emmett till'],
+          answer: 'Rep. Ayanna Pressley sent a September 8 letter to Attorney General Todd Blanche and FBI Director Kash Patel, co-signed by roughly 57–60 Democrats, asking for a federal probe into what it called modern-day lynchings and invoking the Emmett Till Antilynching Act. AOC and Pressley posted the letter on X on September 10, using the phrases “widespread modern-day lynchings” and “racial terror.”',
+          sources: [
+            { label: 'The Dregs Report', url: 'https://thedregsreport.com/2026/09/13/aoc-and-pressley-demand-federal-lynching-probe-despite-most-cited-deaths-being-ruled-suicides/' },
+            { label: 'Washington Examiner · opinion', url: 'https://www.washingtonexaminer.com/opinion/columnists/4740227/there-is-no-lynching-epidemic/' }
+          ]
+        },
+        {
+          id: 'tasia-ten-deaths',
+          questions: ['what about the ten hanging deaths', 'how many cases were homicides', 'were the other deaths suicides'],
+          keywords: ['10 deaths', 'ten deaths', 'other deaths', 'all ten', 'suicides', 'other cases', 'homicide cases'],
+          answer: 'Of the 10 hanging deaths cited in the congressional letter, the brief says only Fortune’s is an active homicide investigation. One North Carolina case remains open as suspicious; the rest were ruled suicides.',
+          sources: [
+            { label: 'The Dregs Report', url: 'https://thedregsreport.com/2026/09/13/aoc-and-pressley-demand-federal-lynching-probe-despite-most-cited-deaths-being-ruled-suicides/' },
+            { label: 'Washington Examiner · opinion', url: 'https://www.washingtonexaminer.com/opinion/columnists/4740227/there-is-no-lynching-epidemic/' }
+          ]
+        },
+        {
+          id: 'tasia-court',
+          questions: ['what happens next in court', 'when is the next hearing', 'what is the court schedule'],
+          keywords: ['court', 'hearing', 'grand jury', 'what happens next', 'next hearing', 'september 28', 'september 30', 'plea', 'bond'],
+          answer: 'Clark’s initial appearance was scheduled for September 28. The hearing on whether Ratliff’s case goes to a grand jury was scheduled to resume September 30 at 2 p.m., with portions closed to the public. These are scheduled dates in the September 26 brief, not live court-status updates.',
+          sources: [
+            { label: 'Clarion Ledger · third arrest', url: 'https://www.clarionledger.com/story/news/2026/09/25/third-person-arrested-in-tasia-fortune-hanging-death-in-jackson-mississippi/91919854007/' },
+            { label: 'USA Today', url: 'https://www.usatoday.com/story/news/nation/2026/09/26/tasia-fortune-hanging-case-staged-new-details/91960988007/' }
+          ]
+        },
+        {
+          id: 'tasia-timeline',
+          questions: ['give me the timeline', 'when did this happen', 'what are the key dates'],
+          keywords: ['timeline', 'key dates', 'when did', 'august 3', 'september 8', 'september 10', 'september 11', 'september 22', 'september 25'],
+          answer: 'Key dates in the brief: Fortune was found August 3; Pressley sent the federal-probe letter September 8; AOC and Pressley posted it September 10; Ratliff was arrested September 11; Lloyd was arrested September 22; and on September 25 Dukes testified that the scene was staged, Clark turned himself in, and Ratliff’s hearing was recessed.',
+          sources: [
+            { label: 'USA Today', url: 'https://www.usatoday.com/story/news/nation/2026/09/26/tasia-fortune-hanging-case-staged-new-details/91960988007/' },
+            { label: 'People', url: 'https://people.com/third-suspect-arrested-in-connection-to-death-of-miss-mom-tasia-fortune-12141288' }
+          ]
+        },
+        {
+          id: 'tasia-family',
+          questions: ['what did her mother say', 'what did christy spivey say', 'how did the family respond'],
+          keywords: ['mother', 'christy', 'spivey', 'family', 'my daughter', 'fought for her life'],
+          answer: 'Fortune’s mother, Christy Spivey, said she knew her daughter died before the hanging, “but that step brought all the attention to it.” She also said: “What bothered me was they said Tasia fought for her life. I know she did. I know my daughter.”',
+          sources: [
+            { label: 'People', url: 'https://people.com/third-suspect-arrested-in-connection-to-death-of-miss-mom-tasia-fortune-12141288' }
+          ]
+        },
+        {
+          id: 'tasia-police',
+          questions: ['what did police say', 'what did the police chief say', 'is the investigation finished'],
+          keywords: ['police', 'chief', 'brackney', 'jpd', 'investigation finished', 'held accountable'],
+          answer: 'Jackson Police Chief RaShall Brackney said on September 25 that the Robbery-Homicide Division “will continue its investigation until all individuals believed to be involved are held accountable.”',
+          sources: [
+            { label: 'Clarion Ledger · third arrest', url: 'https://www.clarionledger.com/story/news/2026/09/25/third-person-arrested-in-tasia-fortune-hanging-death-in-jackson-mississippi/91919854007/' }
+          ]
+        },
+        {
+          id: 'tasia-sources',
+          questions: ['show me the sources', 'where can i read more', 'what reporting supports the brief'],
+          keywords: ['source', 'sources', 'links', 'read more', 'reporting', 'citation', 'citations'],
+          answer: 'The current brief links to the reporting below. Open any source to review the underlying coverage.',
+          sources: [
+            { label: 'People', url: 'https://people.com/third-suspect-arrested-in-connection-to-death-of-miss-mom-tasia-fortune-12141288' },
+            { label: 'Clarion Ledger · third arrest', url: 'https://www.clarionledger.com/story/news/2026/09/25/third-person-arrested-in-tasia-fortune-hanging-death-in-jackson-mississippi/91919854007/' },
+            { label: 'Clarion Ledger · investigation update', url: 'https://www.clarionledger.com/story/news/local/2026/09/25/tasia-fortune-death-investigation-update-in-jackson-ms-police-say-no-hanging/91920457007/' },
+            { label: 'USA Today', url: 'https://www.usatoday.com/story/news/nation/2026/09/26/tasia-fortune-hanging-case-staged-new-details/91960988007/' },
+            { label: 'LA Post', url: 'https://www.lapost.com/content/tasia-fortune-s-hanging-was-staged-after-her-death-in-a-drug-dispute-mississippi-police-say' },
+            { label: 'WVLT', url: 'https://www.wvlt.tv/2026/09/25/tasia-fortunes-hanging-was-staged-after-her-death-drug-dispute-mississippi-police-say/' }
+          ]
+        }
+      ];
+      /* ======================= END KNOWLEDGE BASE ======================= */
 
       document.querySelectorAll('.story-trigger').forEach(function (button) {
         button.addEventListener('click', function () {
@@ -465,6 +664,100 @@
         }).finally(function () {
           topicSubmitButton.disabled = false;
           topicSubmitButton.textContent = 'Send to the queue';
+        });
+      });
+
+      function normalizeResearchText(value) {
+        return value.toLowerCase().replace(/[’‘]/g, "'").replace(/[^a-z0-9'\s]/g, ' ').replace(/\s+/g, ' ').trim();
+      }
+
+      function matchResearchEntry(question) {
+        var normalized = normalizeResearchText(question);
+        var stopWords = ['what', 'when', 'where', 'which', 'who', 'why', 'how', 'was', 'were', 'did', 'does', 'the', 'this', 'that', 'about', 'tell', 'give', 'show', 'have', 'has', 'with', 'from'];
+        var queryTokens = normalized.split(' ').filter(function (token) {
+          return token.length > 2 && stopWords.indexOf(token) === -1;
+        });
+        var best = null;
+        var bestScore = 0;
+
+        researchKnowledgeBase.forEach(function (entry) {
+          var score = 0;
+          entry.questions.forEach(function (cannedQuestion) {
+            var canned = normalizeResearchText(cannedQuestion);
+            if (normalized === canned) score += 30;
+            else if (normalized.length > 8 && (normalized.indexOf(canned) !== -1 || canned.indexOf(normalized) !== -1)) score += 14;
+            var cannedTokens = canned.split(' ');
+            queryTokens.forEach(function (token) {
+              if (cannedTokens.indexOf(token) !== -1) score += 1;
+            });
+          });
+          entry.keywords.forEach(function (keyword) {
+            var normalizedKeyword = normalizeResearchText(keyword);
+            if (normalized.indexOf(normalizedKeyword) !== -1) {
+              score += 5 + (normalizedKeyword.split(' ').length * 2);
+            }
+          });
+          if (score > bestScore) {
+            best = entry;
+            bestScore = score;
+          }
+        });
+
+        return bestScore >= 5 ? best : null;
+      }
+
+      function appendResearchMessage(kind, text, sources) {
+        var message = document.createElement('div');
+        message.className = 'research-message ' + kind;
+        var label = document.createElement('span');
+        label.className = 'research-message-label';
+        label.textContent = kind === 'host' ? 'You' : 'Research helper';
+        var body = document.createElement('p');
+        body.textContent = text;
+        message.appendChild(label);
+        message.appendChild(body);
+
+        if (sources && sources.length) {
+          var links = document.createElement('div');
+          links.className = 'research-message-sources';
+          sources.forEach(function (source) {
+            var link = document.createElement('a');
+            link.href = source.url;
+            link.target = '_blank';
+            link.rel = 'noopener noreferrer';
+            link.textContent = source.label;
+            links.appendChild(link);
+          });
+          message.appendChild(links);
+        }
+
+        researchChatLog.appendChild(message);
+        researchChatLog.scrollTop = researchChatLog.scrollHeight;
+      }
+
+      function askResearchHelper(question) {
+        var cleanQuestion = question.trim();
+        if (!cleanQuestion) return;
+        appendResearchMessage('host', cleanQuestion);
+        var entry = matchResearchEntry(cleanQuestion);
+        if (entry) {
+          appendResearchMessage('helper', entry.answer, entry.sources);
+        } else {
+          appendResearchMessage('helper', "That isn’t covered in the current briefs yet. Try asking about the Tasia Fortune case, its timeline, arrests, court dates, political response, or source links.");
+        }
+      }
+
+      researchForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+        askResearchHelper(researchQuestion.value);
+        researchQuestion.value = '';
+        researchQuestion.focus();
+      });
+
+      researchSuggestions.forEach(function (button) {
+        button.addEventListener('click', function () {
+          askResearchHelper(button.getAttribute('data-research-question'));
+          researchQuestion.focus();
         });
       });
 
