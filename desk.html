@@ -101,8 +101,16 @@
     .story[data-open="true"] .chevron { transform:rotate(90deg); }
     .story-body { display:none; border-top:1px solid var(--line); }
     .story[data-open="true"] .story-body { display:block; }
-    .story-summary { padding:30px clamp(22px,4vw,42px); color:var(--ink); font-family:"Libre Baskerville",Georgia,serif; font-size:clamp(18px,2vw,22px); line-height:1.65; }
-    .story-summary p { margin:0; max-width:900px; }
+    .story-summary { padding:clamp(30px,5vw,48px) clamp(22px,5vw,56px); color:var(--ink); font-family:"Libre Baskerville",Georgia,serif; font-size:clamp(17px,1.8vw,20px); line-height:1.82; }
+    .story-summary > * { max-width:850px; }
+    .story-summary p { margin:0 0 1.25em; }
+    .story-summary p:last-child,.story-summary ul:last-child { margin-bottom:0; }
+    .story-lead { color:var(--navy); font-size:clamp(20px,2.2vw,25px); line-height:1.55; letter-spacing:-.012em; }
+    .story-summary-heading { margin:1.85em 0 .72em; padding-top:1.25em; border-top:1px solid var(--line); color:var(--red-deep); font-family:"Public Sans",sans-serif; font-size:12px; font-weight:800; letter-spacing:.1em; line-height:1.3; text-transform:uppercase; }
+    .pull-quote { display:block; margin:1.25em 0 1.45em; padding:1em 0 1em clamp(18px,3vw,28px); border-left:5px solid var(--red); color:var(--navy); font-size:clamp(21px,2.6vw,29px); font-weight:700; line-height:1.48; letter-spacing:-.015em; }
+    .stat-list { display:grid; gap:12px; margin:0 0 1.45em; padding:0; list-style:none; }
+    .stat-list li { padding:14px 16px 14px 19px; border-left:4px solid var(--blue); background:var(--paper-soft); font-family:"Public Sans",sans-serif; font-size:15px; line-height:1.65; }
+    .stat-list strong { color:var(--navy); font-size:1.08em; }
     .story-update { margin:0; padding:22px clamp(22px,4vw,42px); border-top:1px solid var(--line); background:var(--paper-soft); color:var(--muted); font-size:14px; line-height:1.65; }
     .story-update strong { color:var(--red); }
     .brief-grid { display:grid; grid-template-columns:1fr 1fr; border-top:1px solid var(--line); }
@@ -314,7 +322,14 @@
             </button>
             <div class="story-body" id="tasia-fortune-body">
               <div class="story-summary">
-                <p>On August 3, 2026, Tasia Fortune, 29, was found hanging from a tree behind a vacant home in West Jackson, Mississippi. The image — a Black woman hanging from a tree in Mississippi — immediately drew claims of a modern-day lynching. Rep. Ayanna Pressley led roughly 60 Democrats in a September 8 letter to the Attorney General and FBI demanding a federal probe into “modern-day lynchings,” citing 10 hanging deaths of Black Americans in 2026; AOC and Pressley posted it on X September 10. But investigators now say Fortune was killed in a drug dispute before her body was hung in a staged scene — and all three men charged with her murder are Black. Of the 10 deaths cited in the letter, only Fortune’s is an active homicide case.</p>
+                <p class="story-lead"><strong>On August 3, 2026, Tasia Fortune, 29, was found hanging from a tree behind a vacant home in West Jackson, Mississippi.</strong></p>
+                <h3 class="story-summary-heading">The reaction</h3>
+                <p>The image — a Black woman hanging from a tree in Mississippi — immediately drew claims of a modern-day lynching. Rep. Ayanna Pressley led roughly 60 Democrats in a September 8 letter to the Attorney General and FBI demanding a federal probe into “modern-day lynchings,” citing 10 hanging deaths of Black Americans in 2026; AOC and Pressley posted it on X September 10.</p>
+                <h3 class="story-summary-heading">What investigators say</h3>
+                <p>But investigators now say Fortune was killed in a drug dispute before her body was hung in a staged scene — and all three men charged with her murder are Black.</p>
+                <ul class="stat-list" aria-label="Key case figure">
+                  <li><strong>Of the 10 deaths cited in the letter, only Fortune’s is an active homicide case.</strong></li>
+                </ul>
               </div>
               <div class="brief-grid">
                 <section class="brief-section">
@@ -385,7 +400,22 @@
             <div class="story-body" id="black-americans-white-oppression-body">
               <p class="story-update"><strong>Retrieval note:</strong> The exact text of @dom_lucre’s X post could not be independently retrieved — X blocks anonymous reads, and third-party mirrors only carry his older posts. Nothing below quotes words that can’t be seen; the post’s framing is as relayed by the host and cross-checked against Lucre’s long-documented public thesis.</p>
               <div class="story-summary">
-                <p>On September 25, 2026, at about 6:59 a.m. PDT, conservative X influencer @dom_lucre — Dom Lucre, an independent journalist who calls himself the “Breaker of Narratives,” formerly worked with BLEXIT, and worked alongside Candace Owens — posted asking whether Black Americans are being used to oppress White people. The question is consistent with Lucre’s years-long public thesis: Democrats and liberal institutions deploy racial narratives to divide Americans, DEI functions as anti-white discrimination, and, in his words on a recent viral post, “Democrats are the most racist people on the planet.” He has also posted content titled “Black people and Hispanics are being forced into a revolution against White people.” The post landed in the same news cycle as the collapse of Rep. Ayanna Pressley’s “modern-day lynchings” letter: on September 25, sworn testimony revealed that Tasia Fortune was murdered in a drug dispute and her hanging staged days after death, with three Black men charged — the case 59 House Democrats had presented as “racial terror.” AP-NORC polling from July 10–14, 2026, found about three in 10 U.S. adults say DEI increases discrimination against White people: 39% of White adults, 21% of Hispanic adults, and 13% of Black adults. Pew’s May 2025 survey found 45% of White adults say White people face at least some discrimination, compared with 24% of Black adults; conversely, 70% of Black adults say Black people face a lot of discrimination, compared with 28% of White adults. The policy backdrop includes Executive Orders 14151, 14173, and 14398, plus a September 2026 $25 million DOJ settlement with Accenture over alleged discriminatory employment practices. Bentley-Gallup’s September 2026 finding supplies the strongest counterweight: 71% say diverse workforces are more profitable.</p>
+                <p class="story-lead"><strong>On September 25, 2026, at about 6:59 a.m. PDT, conservative X influencer @dom_lucre — Dom Lucre, an independent journalist who calls himself the “Breaker of Narratives,” formerly worked with BLEXIT, and worked alongside Candace Owens — posted asking whether Black Americans are being used to oppress White people.</strong></p>
+                <h3 class="story-summary-heading">The post</h3>
+                <p>The question is consistent with Lucre’s years-long public thesis: Democrats and liberal institutions deploy racial narratives to divide Americans, DEI functions as anti-white discrimination, and, in his words on a recent viral post, <span class="pull-quote">“Democrats are the most racist people on the planet.”</span></p>
+                <p>He has also posted content titled “Black people and Hispanics are being forced into a revolution against White people.”</p>
+                <h3 class="story-summary-heading">The context</h3>
+                <p>The post landed in the same news cycle as the collapse of Rep. Ayanna Pressley’s “modern-day lynchings” letter: on September 25, sworn testimony revealed that Tasia Fortune was murdered in a drug dispute and her hanging staged days after death, with three Black men charged — the case 59 House Democrats had presented as “racial terror.”</p>
+                <h3 class="story-summary-heading">The numbers</h3>
+                <ul class="stat-list" aria-label="Polling and policy figures">
+                  <li>AP-NORC polling from July 10–14, 2026, found about three in 10 U.S. adults say DEI increases discrimination against White people: <strong>39% of White adults, 21% of Hispanic adults, and 13% of Black adults.</strong></li>
+                  <li>Pew’s May 2025 survey found <strong>45% of White adults</strong> say White people face at least some discrimination, compared with <strong>24% of Black adults</strong>; conversely, <strong>70% of Black adults</strong> say Black people face a lot of discrimination, compared with <strong>28% of White adults.</strong></li>
+                </ul>
+                <h3 class="story-summary-heading">The policy backdrop</h3>
+                <p>The policy backdrop includes Executive Orders 14151, 14173, and 14398, plus a September 2026 <strong>$25 million</strong> DOJ settlement with Accenture over alleged discriminatory employment practices.</p>
+                <ul class="stat-list" aria-label="Key counterpoint">
+                  <li>Bentley-Gallup’s September 2026 finding supplies the strongest counterweight: <strong>71% say diverse workforces are more profitable.</strong></li>
+                </ul>
               </div>
               <div class="brief-grid">
                 <section class="brief-section">
