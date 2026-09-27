@@ -801,9 +801,6 @@
       if (!themeWasManuallyChanged) applyTheme(event.matches ? "dark" : "light");
     });
 
-    // Set this to one story id when the host marks a topic live; use null when no topic is live.
-    const liveStoryId = "tasia-fortune-case";
-
     // Public story packages: facts and chronology only, with direct source links.
     const storyPackages = [
       {
@@ -912,6 +909,13 @@
         ]
       }
     ];
+
+    // Keep exactly one LIVE badge on the newest dated brief. If dates tie, the later item wins.
+    const newestStory = storyPackages.reduce(function (latest, story) {
+      if (!latest) return story;
+      return (story.dateTime || "") >= (latest.dateTime || "") ? story : latest;
+    }, null);
+    const liveStoryId = newestStory ? newestStory.id : null;
 
     const storyList = document.getElementById("story-list");
     const storyTemplate = document.getElementById("story-template");

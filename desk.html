@@ -176,6 +176,7 @@
     .live-topic-button { min-height:42px; border:1px solid var(--line-strong); background:var(--paper); color:var(--navy); padding:9px 12px; font-size:12px; font-weight:750; cursor:pointer; }
     .live-topic-button:hover { border-color:var(--red); }
     .live-topic-button[aria-pressed="true"] { border-color:var(--red); background:var(--red); color:#fff; }
+    .live-topic-button:disabled { cursor:default; opacity:1; }
     .live-topic-button:focus-visible { outline:3px solid rgba(31,93,156,.3); outline-offset:2px; }
     .live-manager-status { min-height:20px; margin:13px 0 0!important; color:var(--muted); font-size:12px; font-weight:700; }
     .research-helper { margin-bottom:18px; overflow:hidden; background:var(--host); color:var(--host-text); border-top:5px solid var(--blue); box-shadow:var(--soft-shadow); }
@@ -305,7 +306,6 @@
               <span>
                 <span class="story-title-row">
                   <span class="story-title">The Tasia Fortune Case</span>
-                  <span class="live-badge" data-live-badge="tasia-fortune">● LIVE</span>
                 </span>
                 <span class="story-meta">Jackson, Mississippi · Homicide investigation</span>
               </span>
@@ -375,6 +375,7 @@
               <span>
                 <span class="story-title-row">
                   <span class="story-title">Are Black Americans being used to oppress White people?</span>
+                  <span class="live-badge" data-live-badge="black-americans-white-oppression">● LIVE</span>
                 </span>
                 <span class="story-meta">Race, DEI &amp; public opinion · September 25, 2026</span>
               </span>
@@ -515,12 +516,11 @@
       <div class="host-content" id="host-content">
         <header class="host-head"><div><p class="kicker">Host briefing room</p><h2>Talking points</h2><p>2 prepared segments · not shown in the public brief view</p></div><button class="lock-button" id="lock-button">Lock desk</button></header>
         <section class="live-manager" aria-labelledby="live-manager-title">
-          <div class="live-manager-head"><h3 id="live-manager-title">Topic on air</h3><p>Choose one brief to display its blinking LIVE badge.</p></div>
-          <div class="live-topic-buttons" role="group" aria-label="Choose the live story brief">
-            <button class="live-topic-button" type="button" data-live-target="none" aria-pressed="false">None live</button>
-            <button class="live-topic-button" type="button" data-live-target="tasia-fortune" aria-pressed="true">01 · The Tasia Fortune Case</button>
+          <div class="live-manager-head"><h3 id="live-manager-title">Topic on air</h3><p>The newest brief is marked LIVE automatically.</p></div>
+          <div class="live-topic-buttons" aria-label="Current live story brief">
+            <button class="live-topic-button" id="live-auto-topic" type="button" aria-pressed="true" disabled>02 · Are Black Americans being used to oppress White people?</button>
           </div>
-          <p class="live-manager-status" id="live-manager-status" role="status" aria-live="polite">The Tasia Fortune Case is now marked LIVE.</p>
+          <p class="live-manager-status" id="live-manager-status" role="status" aria-live="polite">Are Black Americans being used to oppress White people? is now marked LIVE.</p>
         </section>
 
         <section class="research-helper" aria-labelledby="research-helper-title">
@@ -604,8 +604,7 @@
       var topicForm = document.getElementById('topic-form');
       var topicSubmitButton = document.getElementById('topic-submit-button');
       var topicFormStatus = document.getElementById('topic-form-status');
-      var liveTopicButtons = Array.from(document.querySelectorAll('.live-topic-button'));
-      var liveBadges = Array.from(document.querySelectorAll('.live-badge'));
+      var liveAutoTopic = document.getElementById('live-auto-topic');
       var liveManagerStatus = document.getElementById('live-manager-status');
       var researchForm = document.getElementById('research-form');
       var researchQuestion = document.getElementById('research-question');
@@ -836,18 +835,39 @@
         });
       });
 
-      liveTopicButtons.forEach(function (button) {
-        button.addEventListener('click', function () {
-          var target = button.getAttribute('data-live-target');
-          liveBadges.forEach(function (badge) {
-            badge.hidden = badge.getAttribute('data-live-badge') !== target;
-          });
-          liveTopicButtons.forEach(function (option) {
-            option.setAttribute('aria-pressed', String(option === button));
-          });
-          liveManagerStatus.textContent = target === 'none' ? 'No topic is live.' : button.textContent.replace(/^\d+ · /, '') + ' is now marked LIVE.';
+      function syncLiveBadgeToNewestBrief() {
+        var stories = Array.from(document.querySelectorAll('.story-list > .story[data-story-id]'));
+        if (!stories.length) return;
+
+        var newestStory = stories[stories.length - 1];
+        var newestId = newestStory.getAttribute('data-story-id');
+        var newestTitle = newestStory.querySelector('.story-title').textContent.trim();
+        var newestTitleRow = newestStory.querySelector('.story-title-row');
+        var newestBadge = newestStory.querySelector('.live-badge');
+
+        if (!newestBadge) {
+          newestBadge = document.createElement('span');
+          newestBadge.className = 'live-badge';
+          newestBadge.textContent = '● LIVE';
+          newestTitleRow.appendChild(newestBadge);
+        }
+        newestBadge.setAttribute('data-live-badge', newestId);
+
+        document.querySelectorAll('.live-badge').forEach(function (badge) {
+          badge.hidden = badge !== newestBadge;
         });
-      });
+
+        if (liveAutoTopic) {
+          var storyNumber = newestStory.querySelector('.story-number').textContent.trim();
+          liveAutoTopic.textContent = storyNumber + ' · ' + newestTitle;
+          liveAutoTopic.setAttribute('data-live-target', newestId);
+        }
+        if (liveManagerStatus) {
+          liveManagerStatus.textContent = newestTitle + ' is now marked LIVE.';
+        }
+      }
+
+      syncLiveBadgeToNewestBrief();
 
       function showView(view) {
         var showHost = view === 'host';
