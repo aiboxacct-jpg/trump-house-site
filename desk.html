@@ -105,6 +105,7 @@
     .story-summary > * { max-width:850px; }
     .story-summary p { margin:0 0 1.25em; }
     .story-summary p:last-child,.story-summary ul:last-child { margin-bottom:0; }
+    .story-refreshed { color:var(--red-deep); font-family:"Public Sans",sans-serif; font-size:13px; font-weight:800; line-height:1.55; }
     .story-lead { color:var(--navy); font-size:clamp(20px,2.2vw,25px); line-height:1.55; letter-spacing:-.012em; }
     .story-summary-heading { margin:1.85em 0 .72em; padding-top:1.25em; border-top:1px solid var(--line); color:var(--red-deep); font-family:"Public Sans",sans-serif; font-size:12px; font-weight:800; letter-spacing:.1em; line-height:1.3; text-transform:uppercase; }
     .pull-quote { display:block; margin:1.25em 0 1.45em; padding:1em 0 1em clamp(18px,3vw,28px); border-left:5px solid var(--red); color:var(--navy); font-size:clamp(21px,2.6vw,29px); font-weight:700; line-height:1.48; letter-spacing:-.015em; }
@@ -129,8 +130,9 @@
     .sources-block { padding:28px clamp(22px,4vw,42px) 34px; border-top:1px solid var(--line); }
     .sources-block h3 { margin:0 0 15px; color:var(--navy); font-family:"Libre Baskerville",Georgia,serif; font-size:20px; }
     .sources-list { display:flex; flex-wrap:wrap; gap:8px; }
-    .sources-list a { display:inline-flex; align-items:center; gap:6px; padding:9px 11px; border:1px solid var(--line); color:var(--blue); background:var(--paper-soft); font-size:12px; font-weight:700; text-decoration:none; overflow-wrap:anywhere; }
+    .sources-list a,.sources-list span { display:inline-flex; align-items:center; gap:6px; padding:9px 11px; border:1px solid var(--line); color:var(--blue); background:var(--paper-soft); font-size:12px; font-weight:700; text-decoration:none; overflow-wrap:anywhere; }
     .sources-list a::after { content:"↗"; font-size:10px; }
+    .sources-list span { color:var(--muted); }
     .brief-actions { display:flex; align-items:center; justify-content:flex-end; padding:0 clamp(22px,4vw,42px) 34px; }
     .clubhouse-button { display:inline-flex; align-items:center; gap:10px; min-height:46px; padding:11px 16px; color:#fff; background:var(--navy-deep); border-top:4px solid var(--red); font-size:13px; font-weight:800; text-decoration:none; box-shadow:0 6px 18px rgba(16,42,76,.16); }
     .clubhouse-button::before { content:"★"; color:var(--gold); font-size:14px; }
@@ -243,7 +245,7 @@
       .brief-grid { grid-template-columns:1fr; }
       .brief-section + .brief-section { border-left:0; border-top:1px solid var(--line); }
       .sources-list { display:grid; }
-      .sources-list a { width:100%; justify-content:space-between; }
+      .sources-list a,.sources-list span { width:100%; justify-content:space-between; }
       .brief-actions { justify-content:stretch; }
       .clubhouse-button { width:100%; justify-content:center; }
       .topic-form { grid-template-columns:1fr; gap:20px; }
@@ -296,7 +298,7 @@
         </div>
         <aside class="rundown-card" aria-label="Rundown status">
           <span>Briefing status</span>
-          <strong>1 ready</strong>
+          <strong>2 ready</strong>
           <p>The newest research-ready story leads the queue.</p>
         </aside>
       </header>
@@ -308,13 +310,118 @@
         </div>
 
         <div class="story-list">
-          <article class="story" data-open="true" data-story-id="tasia-fortune">
-            <button class="story-trigger" type="button" aria-expanded="true" aria-controls="tasia-fortune-body">
+          <article class="story" data-open="true" data-story-id="nolan-wells">
+            <button class="story-trigger" type="button" aria-expanded="true" aria-controls="nolan-wells-body">
               <span class="story-number">01</span>
               <span>
                 <span class="story-title-row">
+                  <span class="story-title">Nolan Wells</span>
+                  <span class="live-badge" data-live-badge="nolan-wells">● LIVE</span>
+                </span>
+                <span class="story-meta">Ocean Springs, Mississippi · Cause and manner undetermined</span>
+              </span>
+              <span class="story-status">Research ready</span>
+              <span class="chevron" aria-hidden="true">›</span>
+            </button>
+            <div class="story-body" id="nolan-wells-body">
+              <div class="story-summary">
+                <p class="story-refreshed">Updated: September 27, 2026 · Refreshed with the weekend demonstration, the DA’s Snapchat explanation, and the debunked “final words” claim.</p>
+                <p class="story-lead"><strong>Nolan Xavier Wells, 18, disappeared during a July 4 boat trip to Horn Island; his body was found in the water two days later, and both autopsies leave his cause and manner of death undetermined.</strong></p>
+
+                <h3 class="story-summary-heading">What the record establishes</h3>
+                <p>A Jackson County grand jury unanimously returned a no true bill after hearing from 43 witnesses under 132 subpoenas. DA Angel Myers McIlrath said investigators found no credible evidence of criminal conduct and “not a scintilla of evidence” that Wells’ death was racially motivated.</p>
+                <p>The grand jury did not close the door forever. Its report says the matter should return if credible evidence later points to a non-accidental death.</p>
+                <blockquote class="pull-quote">“If credible evidence comes to light in the future that suggests Mr. Wells’ death was non-accidental, this matter should be represented to the Jackson County Grand Jury for further consideration.”</blockquote>
+
+                <h3 class="story-summary-heading">The unresolved medical gap</h3>
+                <p>The state examiner described the body as consistent with drowning, but neither the state chief medical examiner nor the family’s pathologist, Dr. Roger Mitchell Jr., certified drowning as the cause. Mitchell’s report says there was no water in Wells’ lungs, airway, or stomach and documents acute blunt-force injuries to the head and body before death.</p>
+                <p>Those injuries are real; what caused them and whether they prove foul play remain unknown. The state autopsy documented two scalp contusions, no skull fracture, and no fatal head injury.</p>
+                <blockquote class="pull-quote">“Elmore and I do not believe that Nolan simply and accidentally drowned, and nobody saw anything, and no one knows anything.” <small>— Christine Wonsley, Wells’ mother</small></blockquote>
+
+                <ul class="stat-list" aria-label="Key Nolan Wells case figures">
+                  <li><strong>23 grand jurors:</strong> 12 white, 5 Black, 2 Hispanic, 2 Native American, 1 Asian, and 1 listed as “other.”</li>
+                  <li><strong>132 subpoenas and 43 witnesses</strong> preceded the unanimous no true bill.</li>
+                  <li><strong>282 pages covering about 300 Snapchat messages</strong> were included in the phone extraction.</li>
+                </ul>
+
+                <h3 class="story-summary-heading">What changed this weekend</h3>
+                <p>On September 26, hundreds gathered at Government and State streets in Ocean Springs to honor Wells and demand transparency; members of the Black Hebrew Israelite group Israel United in Christ marched through the demonstration. Ocean Springs resident Jeron Lowery, who knew and had employed Wells, remembered him as a respectful young man.</p>
+                <p>The next day, reporting carried the DA’s explanation that other users had deleted or unsent their own Snapchat messages and that the activity did not show someone accessing Wells’ phone.</p>
+                <p>A viral “restored final words” recording is not Wells speaking from his phone. It is a 37-second Sea Tow distress call about a boat taking on water off Horn Island; a forensic expert said the enhanced audio could not be verified, and an attorney called it doctored.</p>
+                <p>The Chicago Crusader’s Inner City News has grouped Wells, Tasia Fortune, and a Maryland hanging-suicide under a “Lynchings By Suicide” frame. That framing is an interpretation, not a finding in the Wells case.</p>
+
+                <h3 class="story-summary-heading">A separate case — do not merge them</h3>
+                <p><strong>Wells was not hanged.</strong> De’Martravion “Trey” Reed, 21, was found hanging on the Delta State campus on September 15, 2025, and that death was ruled a suicide. Reed’s death is a separate case with different facts.</p>
+                <blockquote class="pull-quote">“We will not confuse the absence of an indictment with the presence of an answer.” <small>— Rev. Al Sharpton</small></blockquote>
+              </div>
+
+              <div class="brief-grid">
+                <section class="brief-section">
+                  <h3>Verified facts</h3>
+                  <ul class="facts">
+                    <li>Wells, an Ocean Springs resident and freshman wide receiver at Southwest Mississippi Community College, went to Horn Island with a large group on July 4 and was last seen around 3 p.m. His body was found off the island’s northwest shore on July 6.</li>
+                    <li>Both autopsies list cause and manner as undetermined. The state autopsy records two dark red-purple scalp contusions of roughly two inches, no water in the airways, and no skull fractures.</li>
+                    <li>Mitchell reported acute blunt-force injuries to the head and body before death, with trauma occurring within the first hours. He said the record does not establish whether Wells entered the water voluntarily or was forced and that the investigation should remain open and active.</li>
+                    <li>The grand jury unanimously returned a no true bill after 132 subpoenas and 43 witnesses. It expressly allowed re-presentation if credible new evidence points to a non-accidental death.</li>
+                    <li>The phone review produced 282 pages covering about 300 Snapchat messages. McIlrath says other users deleted or unsent their own messages; an attorney for three friends says they never possessed Wells’ phone.</li>
+                    <li>The Congressional Black Caucus requested an independent federal review on August 12. Crump renewed that request September 22 and 24; no DOJ response has been reported.</li>
+                    <li>Hundreds demonstrated in Ocean Springs on September 26. Members of the Black Hebrew Israelite group Israel United in Christ marched, and resident Jeron Lowery — who knew and had employed Wells — remembered him as a respectful young man.</li>
+                    <li>The viral “final words” tape is the Sea Tow distress call, not an audio recording from Wells’ phone.</li>
+                  </ul>
+                </section>
+                <section class="brief-section">
+                  <h3>Timeline</h3>
+                  <ol class="timeline">
+                    <li><time datetime="2026-07-04">July 4, 2026</time>Wells travels with a large group by boat to Horn Island; last seen around 3 p.m.; a boat reportedly takes on water.</li>
+                    <li><time datetime="2026-07-06">July 6</time>A park ranger finds Wells’ body in the water off Horn Island’s northwest shore.</li>
+                    <li><time datetime="2026-07-07">July 7</time>State autopsy records bruising on the back of the head and calls it “not a fatal injury.”</li>
+                    <li><time datetime="2026-07-16">July 16</time>GoFundMe reaches $320,000; Tyler Perry pays for the funeral; Colin Kaepernick funds the independent autopsy.</li>
+                    <li><time datetime="2026-07-20">July 20</time>Funeral held in Ocean Springs; Rev. Al Sharpton officiates.</li>
+                    <li><time datetime="2026-08-12">August 12</time>Congressional Black Caucus letter seeks an independent federal review.</li>
+                    <li><time datetime="2026-09-21">September 21–22</time>Grand jury unanimously returns a no true bill; McIlrath releases a video statement.</li>
+                    <li><time datetime="2026-09-22">September 22</time>Family and Crump push back; Crump renews the DOJ request; NAACP’s Kristen Clarke asks for the full file.</li>
+                    <li><time datetime="2026-09-24">September 24</time>Crump releases the full independent autopsy details and the 282-page Snapchat count.</li>
+                    <li><time datetime="2026-09-26">September 26 · New</time>Hundreds demonstrate in Ocean Springs; Israel United in Christ members march.</li>
+                    <li><time datetime="2026-09-27">September 27 · New</time>The DA’s Snapchat explanation is reported; Inner City News publishes its grouping.</li>
+                    <li><time>Upcoming</time>Crump’s team promises complete phone-app analysis “in the days ahead”; DOJ has not responded.</li>
+                  </ol>
+                </section>
+              </div>
+
+              <p class="caveat"><strong>Verified:</strong> the disappearance and recovery dates; the unanimous no true bill; the 132 subpoenas and 43 witnesses; both autopsies’ undetermined findings; the documented scalp contusions; Mitchell’s blunt-force findings; the phone-page count; the DA’s deletion explanation; the re-presentation clause; the September 26 demonstration; and the debunked tape. <strong>Disputed or unresolved:</strong> whether the injuries prove foul play, whether deleted messages conceal wrongdoing, whether race affected the death or its handling, and whether the file is effectively closed.</p>
+
+              <section class="sources-block">
+                <h3>Source record</h3>
+                <ul class="sources-list" aria-label="Sources named in the approved research brief">
+                  <li><span>Reuters</span></li>
+                  <li><span>Mississippi Free Press</span></li>
+                  <li><span>The Bull Post</span></li>
+                  <li><span>Christian Post</span></li>
+                  <li><span>The Shade Room</span></li>
+                  <li><span>Parade</span></li>
+                  <li><span>BR Weekly Press</span></li>
+                  <li><span>The Emancipator</span></li>
+                  <li><span>The Source</span></li>
+                  <li><span>Black Star News</span></li>
+                  <li><span>NewsOnMedia</span></li>
+                  <li><span>newstoter24-7</span></li>
+                  <li><span>YouTube · Sea Tow call</span></li>
+                  <li><span>zHipHop Cleveland</span></li>
+                  <li><span>USA Herald</span></li>
+                </ul>
+              </section>
+              <div class="brief-actions">
+                <a class="clubhouse-button" href="https://www.clubhouse.com/house/president-trump-crvth0bjblsu?chs=y3eIerRALr%3AgoLibaop8mvl5wtuSFC9F4BRrVY9r5FOU4Ig6HNHVaw&amp;utm_medium=ch_general_house" target="_blank" rel="noopener noreferrer">Trump House on Clubhouse</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="story" data-open="false" data-story-id="tasia-fortune">
+            <button class="story-trigger" type="button" aria-expanded="false" aria-controls="tasia-fortune-body">
+              <span class="story-number">02</span>
+              <span>
+                <span class="story-title-row">
                   <span class="story-title">The Tasia Fortune Case</span>
-                  <span class="live-badge" data-live-badge="tasia-fortune">● LIVE</span>
                 </span>
                 <span class="story-meta">Jackson, Mississippi · Homicide investigation</span>
               </span>
@@ -430,44 +537,57 @@
       </div>
 
       <div class="host-content" id="host-content">
-        <header class="host-head"><div><p class="kicker">Host briefing room</p><h2>Talking points</h2><p>1 prepared segment · not shown in the public brief view</p></div><button class="lock-button" id="lock-button">Lock desk</button></header>
+        <header class="host-head"><div><p class="kicker">Host briefing room</p><h2>Talking points</h2><p>2 prepared segments · not shown in the public brief view</p></div><button class="lock-button" id="lock-button">Lock desk</button></header>
         <section class="live-manager" aria-labelledby="live-manager-title">
           <div class="live-manager-head"><h3 id="live-manager-title">Topic on air</h3><p>The newest brief is marked LIVE automatically.</p></div>
           <div class="live-topic-buttons" aria-label="Current live story brief">
-            <button class="live-topic-button" id="live-auto-topic" type="button" aria-pressed="true" disabled>01 · The Tasia Fortune Case</button>
+            <button class="live-topic-button" id="live-auto-topic" type="button" aria-pressed="true" disabled>01 · Nolan Wells</button>
           </div>
-          <p class="live-manager-status" id="live-manager-status" role="status" aria-live="polite">The Tasia Fortune Case is now marked LIVE.</p>
+          <p class="live-manager-status" id="live-manager-status" role="status" aria-live="polite">Nolan Wells is now marked LIVE.</p>
         </section>
 
         <section class="research-helper" aria-labelledby="research-helper-title">
           <div class="research-helper-head">
             <div>
               <h3 id="research-helper-title">Research helper</h3>
-              <p>Ask about the verified facts, timeline, and sources in the current brief. If the brief does not cover it, the desk will say so.</p>
+              <p>Ask about verified facts, timelines, and sources in either queued brief. If the briefs do not cover it, the desk will say so.</p>
             </div>
-            <span class="research-helper-scope">Current brief only</span>
+            <span class="research-helper-scope">Queued briefs only</span>
           </div>
           <div class="research-suggestions" aria-label="Suggested questions">
-            <button class="research-suggestion" type="button" data-research-question="What happened to Tasia Fortune?">What happened?</button>
-            <button class="research-suggestion" type="button" data-research-question="Why was the scene called staged?">Why “staged”?</button>
-            <button class="research-suggestion" type="button" data-research-question="Who has been arrested?">Who was arrested?</button>
-            <button class="research-suggestion" type="button" data-research-question="What did AOC and Pressley say?">AOC and Pressley</button>
-            <button class="research-suggestion" type="button" data-research-question="What happens next in court?">What happens next?</button>
+            <button class="research-suggestion" type="button" data-research-question="What happened to Nolan Wells?">Nolan Wells overview</button>
+            <button class="research-suggestion" type="button" data-research-question="What did the Nolan Wells autopsies find?">Autopsy findings</button>
+            <button class="research-suggestion" type="button" data-research-question="Was the Nolan Wells final words tape real?">The viral tape</button>
+            <button class="research-suggestion" type="button" data-research-question="What did the DA say about Nolan Wells Snapchat messages?">Snapchat explanation</button>
+            <button class="research-suggestion" type="button" data-research-question="Was Nolan Wells hanged like Trey Reed?">Wells vs. Trey Reed</button>
           </div>
           <div class="research-chat-log" id="research-chat-log" role="log" aria-live="polite" aria-label="Research helper conversation">
             <div class="research-message helper">
               <span class="research-message-label">Research helper</span>
-              <p>I’m ready. Ask me about The Tasia Fortune Case, including its verified facts, timeline, court dates, or source links.</p>
+              <p>I’m ready. Ask me about Nolan Wells or The Tasia Fortune Case, including verified facts, timelines, disputes, or named sources.</p>
             </div>
           </div>
           <form class="research-form" id="research-form">
-            <label for="research-question">Ask the current brief</label>
-            <input id="research-question" type="text" autocomplete="off" placeholder="Ask about the case, its facts, timeline, or sources" required />
+            <label for="research-question">Ask the queued briefs</label>
+            <input id="research-question" type="text" autocomplete="off" placeholder="Ask about Nolan Wells or the Tasia Fortune case" required />
             <button type="submit">Ask</button>
           </form>
         </section>
 
         <div class="host-notes">
+          <article class="host-note" aria-labelledby="nolan-host-points-title">
+            <h3 id="nolan-host-points-title">Nolan Wells · Host talking points</h3>
+            <ol class="talking-list">
+              <li><span><strong>“Undetermined is not exoneration — and it’s not a murder finding either.”</strong> Both pathologists agree on exactly one thing: they do not know how Nolan Wells died. The grand jury found no crime; the family found no answers. Anyone on air who turns “undetermined” into a verdict in either direction is lying about what the documents say. The honest sentence is the shortest: nobody knows how he died.</span></li>
+              <li><span><strong>“The injuries are real, the cause is not.”</strong> Two dark red-purple contusions under the scalp, inflicted within hours of death — both autopsies document them, and nobody has explained them. That is the family’s strongest fact and the DA’s weakest moment. But “unexplained” is not “homicide”: the same reports found no skull fracture, no fatal injury, and no water in the airway. Hold both halves at once.</span></li>
+              <li><span><strong>“The DA’s most explosive claim got the least attention.”</strong> McIlrath says the family’s own lawyers told her office last month that their investigation found no evidence of crimes while publicly demanding the case stay open. If true, that is a devastating detail for the cover-up narrative. Ask it as a question on air: what did the family’s investigators find, and why has Crump not addressed it?</span></li>
+              <li><span><strong>“The ‘final words’ tape was fake — and that matters for credibility.”</strong> A viral clip sold as Nolan’s restored last words was actually a Sea Tow distress call about a sinking boat, and a forensic expert says the enhanced version cannot be verified. Every fake artifact that circulates makes the real unanswered questions easier to dismiss. Debunk it on air — it protects the legitimate questions.</span></li>
+              <li><span><strong>“The grand jury left the door open — use that.”</strong> The report itself says credible evidence of non-accidental death should be re-presented. That is not a cover-up document; it is an invitation. The pressure point is not the September verdict, but the pending full phone analysis and whether the DA keeps the file genuinely active.</span></li>
+              <li><span><strong>“Two cases, two standards — don’t merge them.”</strong> Wells drowned-or-didn’t in open water with undetermined autopsies; Trey Reed was found hanging on a college campus and ruled a suicide within days. The Crusader is now bundling them into one “Lynchings By Suicide” narrative. Conflating them is exactly the error we owned before — keep them surgically separate or lose the audience’s trust.</span></li>
+            </ol>
+            <p class="host-threads"><strong>Honesty guardrail:</strong> “We will not say Nolan Wells was murdered — no one has been charged, the grand jury found no crime, and both autopsies say undetermined. We will not say he simply drowned — neither pathologist would certify that either. What we’ll say is what’s on paper: an 18-year-old with unexplained head injuries, a phone with deleted messages, and a cause of death nobody can name. The family deserves the file opened, not a verdict invented.”</p>
+          </article>
+
           <article class="host-note" aria-labelledby="tasia-host-points-title">
             <h3 id="tasia-host-points-title">The Tasia Fortune Case · Host talking points</h3>
             <ol class="talking-list">
@@ -485,7 +605,7 @@
       </div>
     </section>
 
-    <footer><strong>Prepared from the source record available September 26, 2026.</strong><span>Open a source link for the underlying reporting and documents.</span></footer>
+    <footer><strong>Prepared from the source record available September 27, 2026.</strong><span>Open a linked source where available for the underlying reporting and documents.</span></footer>
   </main>
 
   <script>
@@ -553,6 +673,69 @@
          "questions" are canned examples; "keywords" drive topic matching.
          ================================================================ */
       var researchKnowledgeBase = [
+        {
+          id: 'nolan-overview',
+          questions: ['what happened to nolan wells', 'give me the nolan wells case overview', 'who was nolan wells'],
+          keywords: ['nolan wells', 'wells overview', 'horn island', 'what happened'],
+          answer: 'Nolan Xavier Wells, 18, disappeared during a July 4, 2026 boat trip with a large group to Horn Island. His body was found off the island’s northwest shore on July 6. A grand jury later returned a unanimous no true bill, while both the state and family autopsies left cause and manner of death undetermined.',
+          sources: []
+        },
+        {
+          id: 'nolan-autopsies',
+          questions: ['what did the nolan wells autopsies find', 'what injuries did nolan wells have', 'did nolan wells drown'],
+          keywords: ['nolan', 'autopsy', 'autopsies', 'injuries', 'contusions', 'drown', 'drowning', 'lungs', 'airway', 'undetermined'],
+          answer: 'Both autopsies list cause and manner as undetermined. The state report documented two dark red-purple scalp contusions, no skull fracture, and no fatal head injury. Dr. Roger Mitchell Jr. reported no water in the lungs, airway, or stomach and acute blunt-force injuries before death, but said the record does not establish whether Wells entered the water voluntarily or was forced.',
+          sources: []
+        },
+        {
+          id: 'nolan-grand-jury',
+          questions: ['what did the grand jury decide in the nolan wells case', 'is the nolan wells case closed', 'can the wells case return to a grand jury'],
+          keywords: ['nolan', 'grand jury', 'no true bill', '132 subpoenas', '43 witnesses', 're-presented', 'represented', 'case closed'],
+          answer: 'On September 21–22, a 23-member Jackson County grand jury unanimously returned a no true bill after 132 subpoenas and 43 witnesses. Its report says the matter should be presented again if credible evidence later suggests a non-accidental death. DA Angel Myers McIlrath said there was no credible evidence of criminal conduct.',
+          sources: []
+        },
+        {
+          id: 'nolan-snapchat',
+          questions: ['what did the da say about nolan wells snapchat messages', 'were nolan wells messages deleted', 'what did the phone extraction show'],
+          keywords: ['nolan', 'snapchat', 'messages', 'deleted', 'unsent', 'phone', '282 pages', '300'],
+          answer: 'The phone extraction covered about 300 Snapchat messages across 282 pages. McIlrath says other users deleted or unsent their own messages and that the activity does not show someone accessed Wells’ device. An attorney for three friends who were with Wells says they never had the phone; Crump’s team says a fuller app analysis is still coming.',
+          sources: []
+        },
+        {
+          id: 'nolan-viral-tape',
+          questions: ['was the nolan wells final words tape real', 'what was the sea tow call', 'was the restored recording fake'],
+          keywords: ['nolan', 'final words', 'viral tape', 'audio', 'recording', 'sea tow', 'distress call', 'doctored'],
+          answer: 'No. The viral audio was the 37-second Sea Tow distress call about a boat taking on water off Horn Island, released by Mississippi’s Department of Marine Resources — not a recording from Nolan’s phone. A forensic expert said the enhanced version could not be verified, and an attorney called it doctored.',
+          sources: []
+        },
+        {
+          id: 'nolan-demonstration',
+          questions: ['what happened at the nolan wells demonstration', 'what happened in ocean springs september 26', 'who marched for nolan wells'],
+          keywords: ['nolan', 'demonstration', 'protest', 'ocean springs', 'september 26', 'israel united in christ', 'hundreds'],
+          answer: 'On September 26, hundreds gathered at Government and State streets in Ocean Springs to honor Wells and demand transparency. Members of Israel United in Christ marched through the demonstration, and resident Jeron Lowery remembered Wells as a respectful young man.',
+          sources: []
+        },
+        {
+          id: 'nolan-trey-reed',
+          questions: ['was nolan wells hanged like trey reed', 'was nolan wells hanged', 'how is trey reed different from nolan wells'],
+          keywords: ['nolan', 'trey reed', 'hanged', 'hanging', 'delta state', 'separate case', 'lynchings by suicide'],
+          answer: 'Nolan Wells was not hanged. His body was found in water off Horn Island and both autopsies are undetermined. De’Martravion “Trey” Reed, 21, was found hanging on the Delta State campus on September 15, 2025, and that death was ruled a suicide. They are separate cases with different facts.',
+          sources: []
+        },
+        {
+          id: 'nolan-timeline',
+          questions: ['give me the nolan wells timeline', 'what are the key dates in the nolan wells case', 'when did nolan wells disappear'],
+          keywords: ['nolan', 'timeline', 'key dates', 'july 4', 'july 6', 'september 21', 'september 22', 'september 24', 'september 27'],
+          answer: 'Key dates: Wells disappeared July 4 and was found July 6; the CBC sought federal review August 12; the grand jury returned a no true bill September 21–22; Crump released the full independent autopsy details September 24; hundreds demonstrated September 26; and the DA’s Snapchat explanation was reported September 27. DOJ had not responded as of the September 27 refresh.',
+          sources: []
+        },
+        {
+          id: 'nolan-sources',
+          questions: ['show me the nolan wells sources', 'what reporting supports the nolan wells brief', 'where did the nolan wells facts come from'],
+          keywords: ['nolan', 'source', 'sources', 'reporting', 'citation', 'citations'],
+          answer: 'The approved brief names Reuters, Mississippi Free Press, The Bull Post, Christian Post, The Shade Room, Parade, BR Weekly Press, The Emancipator, The Source, Black Star News, NewsOnMedia, newstoter24-7, the released Sea Tow call on YouTube, zHipHop Cleveland, and USA Herald.',
+          sources: []
+        },
         {
           id: 'tasia-overview',
           questions: ['what happened to tasia fortune', 'give me the case overview', 'who was tasia fortune'],
@@ -691,7 +874,7 @@
         var stories = Array.from(document.querySelectorAll('.story-list > .story[data-story-id]'));
         if (!stories.length) return;
 
-        var newestStory = stories[stories.length - 1];
+        var newestStory = stories[0];
         var newestId = newestStory.getAttribute('data-story-id');
         var newestTitle = newestStory.querySelector('.story-title').textContent.trim();
         var newestTitleRow = newestStory.querySelector('.story-title-row');
@@ -842,7 +1025,7 @@
         if (entry) {
           appendResearchMessage('helper', entry.answer, entry.sources);
         } else {
-          appendResearchMessage('helper', "That isn’t covered in the current brief yet. Try asking about the Tasia Fortune case, its verified facts, court dates, timeline, or source links.");
+          appendResearchMessage('helper', "That isn’t covered in the queued briefs yet. Try asking about Nolan Wells or the Tasia Fortune case, including verified facts, key dates, disputes, or named sources.");
         }
       }
 
