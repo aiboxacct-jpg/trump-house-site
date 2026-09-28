@@ -729,13 +729,12 @@
         <p class="lede">Follow the stories shaping America through concise briefs that separate the claim, the verified facts, the timeline, and the source record.</p>
         <div class="channel-links" aria-label="Trump House channels">
           <a class="clubhouse-link" href="https://www.clubhouse.com/house/president-trump-crvth0bjblsu?chs=y3eIerRALr%3AgoLibaop8mvl5wtuSFC9F4BRrVY9r5FOU4Ig6HNHVaw&amp;utm_medium=ch_general_house" target="_blank" rel="noopener noreferrer">Trump House on Clubhouse</a>
-          <a class="clubhouse-link" href="https://t.me/+3V_USlpsmigzN2Yx" target="_blank" rel="noopener noreferrer">Trump House on Telegram</a>
         </div>
       </div>
       <aside class="status-card" aria-label="Room status">
         <div class="status-label">Current status</div>
-        <h2>One brief is live</h2>
-        <p>The Tasia Fortune case is now in the public queue with the full story, verified facts, timeline, and source record.</p>
+        <h2>Two briefs in the queue</h2>
+        <p>Nolan Wells is the newest public brief, with the September 27 update, verified facts, timeline, and source record.</p>
         <div class="divider" aria-hidden="true"><span></span><span></span><span></span></div>
       </aside>
     </section>
@@ -764,7 +763,6 @@
         </button>
         <div class="story-card-action" aria-label="Trump House channels">
           <a class="clubhouse-link story-clubhouse-link" href="https://www.clubhouse.com/house/president-trump-crvth0bjblsu?chs=y3eIerRALr%3AgoLibaop8mvl5wtuSFC9F4BRrVY9r5FOU4Ig6HNHVaw&amp;utm_medium=ch_general_house" target="_blank" rel="noopener noreferrer">Trump House on Clubhouse</a>
-          <a class="clubhouse-link story-clubhouse-link" href="https://t.me/+3V_USlpsmigzN2Yx" target="_blank" rel="noopener noreferrer">Trump House on Telegram</a>
         </div>
         <div class="story-body">
           <p class="story-note" hidden></p>
@@ -794,7 +792,7 @@
             </section>
           </div>
           <section class="brief-section sources" aria-label="Sources">
-            <h3>Sources</h3>
+            <h3>Source record</h3>
             <ul class="source-list"></ul>
           </section>
         </div>
@@ -852,6 +850,91 @@
 
     // Public story packages: facts and chronology only, with direct source links.
     const storyPackages = [
+      {
+        id: "nolan-wells",
+        kicker: "Ocean Springs, Mississippi · Cause and manner undetermined",
+        title: "Nolan Wells",
+        summary: "Wells disappeared during a July 4 boat trip to Horn Island. His body was found two days later, and both autopsies leave his cause and manner of death undetermined.",
+        date: "September 27, 2026",
+        dateTime: "2026-09-27",
+        story: "Nolan Xavier Wells, 18, disappeared during a July 4 boat trip to Horn Island; his body was found in the water two days later, and both autopsies leave his cause and manner of death undetermined.",
+        storyFormat: [
+          { kind: "lead", text: "Nolan Xavier Wells, 18, disappeared during a July 4 boat trip to Horn Island; his body was found in the water two days later, and both autopsies leave his cause and manner of death undetermined." },
+          { kind: "heading", text: "What the record establishes" },
+          { kind: "paragraph", text: "A Jackson County grand jury unanimously returned a no true bill after hearing from 43 witnesses under 132 subpoenas. DA Angel Myers McIlrath said investigators found no credible evidence of criminal conduct and “not a scintilla of evidence” that Wells’ death was racially motivated." },
+          { kind: "paragraph", text: "The grand jury did not close the door forever. Its report says the matter should return if credible evidence later points to a non-accidental death." },
+          { kind: "quote", text: "“If credible evidence comes to light in the future that suggests Mr. Wells’ death was non-accidental, this matter should be represented to the Jackson County Grand Jury for further consideration.”" },
+          { kind: "heading", text: "The unresolved medical gap" },
+          { kind: "paragraph", text: "The state examiner described the body as consistent with drowning, but neither the state chief medical examiner nor the family’s pathologist, Dr. Roger Mitchell Jr., certified drowning as the cause. Mitchell’s report says there was no water in Wells’ lungs, airway, or stomach and documents acute blunt-force injuries to the head and body before death." },
+          { kind: "paragraph", text: "Those injuries are real; what caused them and whether they prove foul play remain unknown. The state autopsy documented two scalp contusions, no skull fracture, and no fatal head injury." },
+          { kind: "quote", text: "“Elmore and I do not believe that Nolan simply and accidentally drowned, and nobody saw anything, and no one knows anything.” — Christine Wonsley, Wells’ mother" },
+          { kind: "stat", text: "23 grand jurors: 12 white, 5 Black, 2 Hispanic, 2 Native American, 1 Asian, and 1 listed as “other.”" },
+          { kind: "stat", text: "132 subpoenas and 43 witnesses preceded the unanimous no true bill." },
+          { kind: "stat", text: "282 pages covering about 300 Snapchat messages were included in the phone extraction." },
+          { kind: "heading", text: "What changed this weekend" },
+          { kind: "paragraph", text: "On September 26, hundreds gathered at Government and State streets in Ocean Springs to honor Wells and demand transparency; members of the Black Hebrew Israelite group Israel United in Christ marched through the demonstration. Ocean Springs resident Jeron Lowery, who knew and had employed Wells, remembered him as a respectful young man." },
+          { kind: "paragraph", text: "The next day, reporting carried the DA’s explanation that other users had deleted or unsent their own Snapchat messages and that the activity did not show someone accessing Wells’ phone." },
+          { kind: "paragraph", text: "A viral “restored final words” recording is not Wells speaking from his phone. It is a 37-second Sea Tow distress call about a boat taking on water off Horn Island; a forensic expert said the enhanced audio could not be verified, and an attorney called it doctored." },
+          { kind: "paragraph", text: "The Chicago Crusader’s Inner City News has grouped Wells, Tasia Fortune, and a Maryland hanging-suicide under a “Lynchings By Suicide” frame. That framing is an interpretation, not a finding in the Wells case." },
+          { kind: "heading", text: "A separate case — do not merge them" },
+          { kind: "emphasis", lead: "Wells was not hanged.", text: " De’Martravion “Trey” Reed, 21, was found hanging on the Delta State campus on September 15, 2025, and that death was ruled a suicide. Reed’s death is a separate case with different facts." },
+          { kind: "quote", text: "“We will not confuse the absence of an indictment with the presence of an answer.” — Rev. Al Sharpton" }
+        ],
+        update: {
+          text: "September 27, 2026 — refreshed with the weekend demonstration, the DA’s Snapchat explanation, and the debunked “final words” claim.",
+          label: "Weekend reporting",
+          url: "https://thesource.com/2026/09/27/nolan-wells-protesters-demand-answers-while-official-autopsy-showed-no-water-in-lungs/"
+        },
+        facts: [
+          "Wells, an Ocean Springs resident and freshman wide receiver at Southwest Mississippi Community College, went to Horn Island with a large group on July 4 and was last seen around 3 p.m. His body was found off the island’s northwest shore on July 6.",
+          "Both autopsies list cause and manner as undetermined. The state autopsy records two dark red-purple scalp contusions of roughly two inches, no water in the airways, and no skull fractures.",
+          "Mitchell reported acute blunt-force injuries to the head and body before death, with trauma occurring within the first hours. He said the record does not establish whether Wells entered the water voluntarily or was forced and that the investigation should remain open and active.",
+          "The grand jury unanimously returned a no true bill after 132 subpoenas and 43 witnesses. It expressly allowed re-presentation if credible new evidence points to a non-accidental death.",
+          "The phone review produced 282 pages covering about 300 Snapchat messages. McIlrath says other users deleted or unsent their own messages; an attorney for three friends says they never possessed Wells’ phone.",
+          "The Congressional Black Caucus requested an independent federal review on August 12. Crump renewed that request September 22 and 24; no DOJ response has been reported.",
+          "Hundreds demonstrated in Ocean Springs on September 26. Members of the Black Hebrew Israelite group Israel United in Christ marched, and resident Jeron Lowery — who knew and had employed Wells — remembered him as a respectful young man.",
+          "The viral “final words” tape is the Sea Tow distress call, not an audio recording from Wells’ phone."
+        ],
+        timeline: [
+          { date: "July 4, 2026", detail: "Wells travels with a large group by boat to Horn Island; last seen around 3 p.m.; a boat reportedly takes on water." },
+          { date: "July 6", detail: "A park ranger finds Wells’ body in the water off Horn Island’s northwest shore." },
+          { date: "July 7", detail: "State autopsy records bruising on the back of the head and calls it “not a fatal injury.”" },
+          { date: "July 16", detail: "GoFundMe reaches $320,000; Tyler Perry pays for the funeral; Colin Kaepernick funds the independent autopsy." },
+          { date: "July 20", detail: "Funeral held in Ocean Springs; Rev. Al Sharpton officiates." },
+          { date: "August 12", detail: "Congressional Black Caucus letter seeks an independent federal review." },
+          { date: "September 21–22", detail: "Grand jury unanimously returns a no true bill; McIlrath releases a video statement." },
+          { date: "September 22", detail: "Family and Crump push back; Crump renews the DOJ request; NAACP’s Kristen Clarke asks for the full file." },
+          { date: "September 24", detail: "Crump releases the full independent autopsy details and the 282-page Snapchat count." },
+          { date: "September 26 · New", detail: "Hundreds demonstrate in Ocean Springs; Israel United in Christ members march." },
+          { date: "September 27 · New", detail: "The DA’s Snapchat explanation is reported; Inner City News publishes its grouping." },
+          { date: "Upcoming", detail: "Crump’s team promises complete phone-app analysis “in the days ahead”; DOJ has not responded." }
+        ],
+        verifiedClaims: [
+          "The disappearance and recovery dates; the unanimous no true bill; the 132 subpoenas and 43 witnesses; both autopsies’ undetermined findings; the documented scalp contusions; Mitchell’s blunt-force findings; the phone-page count; the DA’s deletion explanation; the re-presentation clause; the September 26 demonstration; and the debunked tape."
+        ],
+        disputedClaims: [
+          "Whether the injuries prove foul play, whether deleted messages conceal wrongdoing, whether race affected the death or its handling, and whether the file is effectively closed."
+        ],
+        sources: [
+          { label: "Reuters", url: "https://www.reuters.com/legal/government/grand-jury-declines-indict-anyone-death-black-teen-nolan-wells-mississippi-2026-09-22/" },
+          { label: "Mississippi Free Press", url: "https://www.mississippifreepress.org/crump-releases-full-independent-autopsy-of-nolan-wells-says-questions-of-wells-death-remain/" },
+          { label: "Christian Post", url: "https://www.christianpost.com/news/insufficient-evidence-of-crime-found-in-death-of-nolan-wells.html" },
+          { label: "The Shade Room · grand jury", url: "https://theshaderoom.com/nolan-wells-death-grand-update-insufficient-friends-boat-mom-christine-wonsley/amp/" },
+          { label: "The Shade Room · autopsy and phone", url: "https://theshaderoom.com/ben-crump-nolan-wells-friends-lawsuit-deleted-messages-autopsy-results-shade-room/" },
+          { label: "Parade", url: "https://parade.com/news/nolan-wells-family-releases-autopsy-report-highlighting-unanswered-questions-and-head-trauma" },
+          { label: "BR Weekly Press", url: "https://www.brweeklypress.com/no-charges-in-nolan-wells-death-but-key-questions-remain/" },
+          { label: "The Emancipator", url: "https://theemancipator.org/2026/09/22/news/nolan-wells-legal-team-skeptical-about-a-mississippi-grand-jury-finding-no-evidence-of-racial-or-criminal-wrongdoing-in-his-death/" },
+          { label: "The Source", url: "https://thesource.com/2026/09/27/nolan-wells-protesters-demand-answers-while-official-autopsy-showed-no-water-in-lungs/" },
+          { label: "Black Star News · Sharpton", url: "https://blackstarnews.com/sharpton-on-mississippi-grand-jurys-decision-to-charge-no-one-in-nolan-wells-death-we-strongly-disagree-with-conclusion-that-there-was-no-criminal-wrongdoing/" },
+          { label: "Black Star News · federal review", url: "https://blackstarnews.com/congressional-black-caucus-to-attorney-general-todd-blanche-and-fbi-director-kash-patel-launch-federal-review-into-nolan-wells-death/" },
+          { label: "NewsOnMedia", url: "https://newsonmedia.com/hundreds-gather-in-mississippi-to-honor-nolan-wells-demand-transparency-as-investigation-continues/" },
+          { label: "newstoter24-7", url: "https://newstoter24-7.com/demonstration-for-nolan-wells-unites-the-ocean-springs-community" },
+          { label: "WLOX · Sea Tow call", url: "https://gray-wlbt-prod.gtv-cdn.com/2026/07/26/mdmr-releases-call-audio-boat-nolan-wells-case/" },
+          { label: "Inner City News", url: "https://theinnercitynews.com/rulings-leave-questions-lingering-in-nolan-wells-case/" },
+          { label: "Z 107.9 Cleveland", url: "https://zhiphopcleveland.com/6510723/grand-jury-declines-charges-in-nolan-wells-death-after-july-4-party/" },
+          { label: "USA Herald", url: "https://usaherald.com/nolan-wells-no-indictments-cause-of-death-undetermined/" }
+        ]
+      },
       {
         id: "tasia-fortune-case",
         kicker: "Jackson, Mississippi · Homicide investigation",
@@ -952,6 +1035,13 @@
             const strong = document.createElement("strong");
             strong.textContent = block.text;
             element.appendChild(strong);
+            container.appendChild(element);
+            return;
+          }
+          if (block.kind === "emphasis") {
+            const strong = document.createElement("strong");
+            strong.textContent = block.lead;
+            element.append(strong, document.createTextNode(block.text));
             container.appendChild(element);
             return;
           }
