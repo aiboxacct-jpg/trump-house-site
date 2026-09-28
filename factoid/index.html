@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Factoid Maker — Trump House</title>
+<meta name="description" content="Make a Trump House factoid card — type a fact, get a card and a shareable link.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Trump House">
+<meta property="og:title" content="Trump House Factoid Maker">
+<meta property="og:description" content="Type a fact, get a Trump House factoid card and a shareable link.">
+<meta property="og:url" content="https://trump.house/factoid/">
+<meta property="og:image" content="https://trump.house/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Trump House Factoid Maker">
+<meta name="twitter:description" content="Type a fact, get a Trump House factoid card and a shareable link.">
+<meta name="twitter:image" content="https://trump.house/og-image.png">
+<link rel="canonical" href="https://trump.house/factoid/">
+<style>
+  :root {
+    --navy: #102a4c;
+    --blue: #174e86;
+    --red: #b31f35;
+    --red-deep: #86172a;
+    --paper: #ffffff;
+    --paper-soft: #f5f7fa;
+    --ink: #111d2d;
+    --muted: #526071;
+    --line: #d7dee7;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh; color: var(--ink); background: var(--paper-soft);
+    font-family: "Public Sans", -apple-system, "Segoe UI", Arial, sans-serif;
+    display: flex; flex-direction: column; align-items: center;
+  }
+  header {
+    width: 100%; background: var(--navy); color: #fff;
+    padding: 18px 24px; display: flex; align-items: center; gap: 12px;
+    border-bottom: 5px solid var(--red);
+  }
+  header .brand { font-weight: 800; letter-spacing: .14em; font-size: 15px; }
+  header .sub { opacity: .75; font-size: 14px; }
+  header a { color: #fff; margin-left: auto; font-size: 14px; opacity: .85; }
+  main { width: 100%; max-width: 760px; padding: 28px 20px 60px; }
+  .maker label { display: block; font-weight: 700; font-size: 14px; margin: 18px 0 6px; }
+  .maker textarea, .maker input[type=text] {
+    width: 100%; font: inherit; padding: 12px 14px; border: 1px solid var(--line);
+    border-radius: 8px; background: #fff; color: var(--ink);
+  }
+  .maker textarea { min-height: 110px; resize: vertical; }
+  .btnrow { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 18px; }
+  button.action {
+    font: inherit; font-weight: 700; cursor: pointer; border: 0; border-radius: 8px;
+    padding: 12px 20px; background: var(--red); color: #fff;
+  }
+  button.action.secondary { background: var(--navy); }
+  button.action:disabled { opacity: .45; cursor: default; }
+  .hint { font-size: 13px; color: var(--muted); margin-top: 10px; }
+  /* The factoid card — same border treatment as the article cards */
+  .factoid-card {
+    background: #fff; border: 1px solid var(--line); border-top: 5px solid var(--red);
+    box-shadow: 0 9px 30px rgba(16,42,76,.08);
+    padding: clamp(24px, 5vw, 44px); margin: 26px auto 0; max-width: 640px;
+    text-align: center;
+  }
+  .factoid-card .kicker {
+    color: var(--navy); font-weight: 800; letter-spacing: .22em; font-size: 13px;
+    margin-bottom: 18px;
+  }
+  .factoid-card .fact {
+    font-size: clamp(22px, 4.6vw, 32px); line-height: 1.35; font-weight: 700;
+    margin: 0 0 16px; overflow-wrap: break-word;
+  }
+  .factoid-card .source { color: var(--muted); font-size: 15px; margin: 0; }
+  .factoid-card .foot {
+    margin-top: 22px; padding-top: 14px; border-top: 1px solid var(--line);
+    color: var(--muted); font-size: 13px; letter-spacing: .08em;
+  }
+  .shared-note { text-align: center; color: var(--muted); font-size: 14px; margin-top: 18px; }
+  .shared-note a { color: var(--blue); }
+  #copied { color: var(--blue); font-weight: 700; font-size: 14px; margin-left: 8px; }
+</style>
+</head>
+<body>
+<header>
+  <span class="brand">TRUMP HOUSE</span>
+  <span class="sub">Factoid Maker</span>
+  <a href="/">← trump.house</a>
+</header>
+<main>
+  <section class="maker" id="maker" hidden>
+    <label for="factInput">Factoid</label>
+    <textarea id="factInput" placeholder="Type or paste the fact…" maxlength="600"></textarea>
+    <label for="sourceInput">Source <span style="font-weight:400;color:var(--muted)">(optional)</span></label>
+    <input type="text" id="sourceInput" placeholder="e.g. WLOX, Sept 27" maxlength="160">
+    <div class="btnrow">
+      <button class="action" id="copyBtn" disabled>Copy share link</button>
+      <button class="action secondary" id="dlBtn" disabled>Download card image</button>
+      <span id="copied" hidden>Link copied</span>
+    </div>
+    <p class="hint">The link opens this card for anyone. The image downloads as a square PNG, ready to post.</p>
+  </section>
+
+  <section id="cardSection">
+    <div class="factoid-card" id="card">
+      <div class="kicker">TRUMP HOUSE</div>
+      <p class="fact" id="factText"></p>
+      <p class="source" id="sourceText" hidden></p>
+      <div class="foot">trump.house</div>
+    </div>
+    <p class="shared-note" id="makeOwn" hidden>Shared from Trump House · <a href="/factoid/">Make your own factoid card</a></p>
+  </section>
+</main>
+
+<script>
+(function () {
+  "use strict";
+  var factInput = document.getElementById("factInput");
+  var sourceInput = document.getElementById("sourceInput");
+  var copyBtn = document.getElementById("copyBtn");
+  var dlBtn = document.getElementById("dlBtn");
+  var copied = document.getElementById("copied");
+  var maker = document.getElementById("maker");
+  var makeOwn = document.getElementById("makeOwn");
+  var factText = document.getElementById("factText");
+  var sourceText = document.getElementById("sourceText");
+
+  function getParams() {
+    try { return new URLSearchParams(window.location.search); }
+    catch (e) { return null; }
+  }
+  function b64urlEncode(str) {
+    return btoa(unescape(encodeURIComponent(str)))
+      .replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+  }
+  function b64urlDecode(s) {
+    s = s.replace(/-/g, "+").replace(/_/g, "/");
+    while (s.length % 4) s += "=";
+    return decodeURIComponent(escape(atob(s)));
+  }
+  function readShared() {
+    var p = getParams();
+    if (!p) return null;
+    var f = p.get("f");
+    if (!f) return null;
+    try {
+      var obj = JSON.parse(b64urlDecode(f));
+      if (obj && typeof obj.t === "string" && obj.t.trim()) return obj;
+    } catch (e) { /* fall through */ }
+    return null;
+  }
+  function render(fact, source) {
+    factText.textContent = fact;
+    if (source && source.trim()) {
+      sourceText.textContent = "Source: " + source.trim();
+      sourceText.hidden = false;
+    } else {
+      sourceText.hidden = true;
+    }
+  }
+  function shareUrl() {
+    var obj = { t: factInput.value.trim() };
+    if (sourceInput.value.trim()) obj.s = sourceInput.value.trim();
+    return window.location.origin + "/factoid/?f=" + b64urlEncode(JSON.stringify(obj));
+  }
+  function syncButtons() {
+    var ok = factInput.value.trim().length > 0;
+    copyBtn.disabled = !ok;
+    dlBtn.disabled = !ok;
+  }
+
+  /* ---- canvas PNG export (1080x1080, matches the card) ---- */
+  function wrapLines(ctx, text, maxW) {
+    var words = text.split(/\s+/), lines = [], line = "";
+    words.forEach(function (w) {
+      var t = line ? line + " " + w : w;
+      if (ctx.measureText(t).width > maxW && line) { lines.push(line); line = w; }
+      else { line = t; }
+    });
+    if (line) lines.push(line);
+    return lines;
+  }
+  function drawCard() {
+    var S = 1080, c = document.createElement("canvas");
+    c.width = S; c.height = S;
+    var x = c.getContext("2d");
+    // paper
+    x.fillStyle = "#f5f7fa"; x.fillRect(0, 0, S, S);
+    // card
+    var m = 60, cw = S - m * 2, ch = S - m * 2;
+    x.fillStyle = "#ffffff"; x.fillRect(m, m, cw, ch);
+    x.strokeStyle = "#d7dee7"; x.lineWidth = 3; x.strokeRect(m, m, cw, ch);
+    // red top bar
+    x.fillStyle = "#b31f35"; x.fillRect(m, m, cw, 14);
+    x.textAlign = "center";
+    // kicker
+    x.fillStyle = "#102a4c";
+    x.font = "800 44px Arial, Helvetica, sans-serif";
+    var brand = "T R U M P  H O U S E";
+    x.fillText(brand, S / 2, m + 130);
+    // fact — shrink until it fits
+    var fact = factInput.value.trim();
+    var size = 72, lines = [];
+    while (size > 34) {
+      x.font = "700 " + size + "px Arial, Helvetica, sans-serif";
+      lines = wrapLines(x, fact, cw - 160);
+      var h = lines.length * size * 1.35;
+      if (h <= 560) break;
+      size -= 4;
+    }
+    x.fillStyle = "#111d2d";
+    var y = m + 250;
+    // vertically center the block in the available zone
+    var blockH = lines.length * size * 1.35;
+    y = m + 200 + Math.max(0, (600 - blockH) / 2);
+    lines.forEach(function (ln) { x.fillText(ln, S / 2, y); y += size * 1.35; });
+    y += 10;
+    // source
+    var src = sourceInput.value.trim();
+    if (src) {
+      x.fillStyle = "#526071";
+      x.font = "400 38px Arial, Helvetica, sans-serif";
+      var sl = wrapLines(x, "Source: " + src, cw - 160);
+      sl.slice(0, 2).forEach(function (ln) { x.fillText(ln, S / 2, y); y += 52; });
+    }
+    // footer
+    x.strokeStyle = "#d7dee7"; x.lineWidth = 2;
+    x.beginPath(); x.moveTo(m + 80, S - m - 110); x.lineTo(S - m - 80, S - m - 110); x.stroke();
+    x.fillStyle = "#526071";
+    x.font = "700 34px Arial, Helvetica, sans-serif";
+    x.fillText("trump.house", S / 2, S - m - 52);
+    return c;
+  }
+
+  copyBtn.addEventListener("click", function () {
+    var url = shareUrl();
+    function done() {
+      copied.hidden = false;
+      setTimeout(function () { copied.hidden = true; }, 1800);
+    }
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(done, function () { fallback(); });
+      } else { fallback(); }
+    } catch (e) { fallback(); }
+    function fallback() {
+      window.prompt("Copy this link:", url);
+    }
+  });
+
+  dlBtn.addEventListener("click", function () {
+    var c = drawCard();
+    if (c.toBlob) {
+      c.toBlob(function (blob) {
+        var a = document.createElement("a");
+        a.href = URL.createObjectURL(blob);
+        a.download = "trump-house-factoid.png";
+        document.body.appendChild(a); a.click();
+        setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500);
+      }, "image/png");
+    }
+  });
+
+  factInput.addEventListener("input", function () {
+    render(factInput.value, sourceInput.value); syncButtons();
+  });
+  sourceInput.addEventListener("input", function () {
+    render(factInput.value, sourceInput.value);
+  });
+
+  /* ---- boot: shared view vs maker view ---- */
+  var shared = readShared();
+  if (shared) {
+    maker.hidden = true;
+    makeOwn.hidden = false;
+    factInput.value = shared.t || "";
+    sourceInput.value = shared.s || "";
+    render(shared.t || "", shared.s || "");
+    document.title = "Factoid — Trump House";
+  } else {
+    maker.hidden = false;
+    render("", "");
+    factInput.focus();
+  }
+})();
+</script>
+</body>
+</html>
