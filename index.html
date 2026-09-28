@@ -472,6 +472,11 @@
     .story-summary-rich p {
       margin: 0 0 1.25em;
     }
+    .story-summary-rich a {
+      color: var(--blue);
+      font-weight: 700;
+      text-underline-offset: 3px;
+    }
     .story-summary-rich > :last-child { margin-bottom: 0; }
     .story-lead {
       color: var(--navy);
@@ -946,7 +951,15 @@
         storyFormat: [
           { kind: "lead", text: "On August 3, 2026, Tasia Fortune, 29, was found hanging from a tree behind a vacant home in West Jackson, Mississippi." },
           { kind: "heading", text: "The reaction" },
-          { kind: "paragraph", text: "The image — a Black woman hanging from a tree in Mississippi — immediately drew claims of a modern-day lynching. Rep. Ayanna Pressley led roughly 60 Democrats in a September 8 letter to the Attorney General and FBI demanding a federal probe into “modern-day lynchings,” citing 10 hanging deaths of Black Americans in 2026; AOC and Pressley posted it on X September 10." },
+          {
+            kind: "paragraph",
+            text: "The image — a Black woman hanging from a tree in Mississippi — immediately drew claims of a modern-day lynching. Rep. Ayanna Pressley led roughly 60 Democrats in a September 8 letter to the Attorney General and FBI demanding a federal probe into “modern-day lynchings,” citing 10 hanging deaths of Black Americans in 2026; AOC and Pressley posted it on X September 10.",
+            links: [
+              { text: "September 8 letter", url: "https://pressley.house.gov/2026/09/10/breaking-pressley-leads-nearly-60-lawmakers-demanding-investigation-into-black-people-found-hanging-invokes-legacy-of-lynching-in-america/" },
+              { text: "AOC", url: "https://x.com/RepAOC/status/2098170460013834536" },
+              { text: "Pressley", url: "https://x.com/reppressley/status/2098122677424640000" }
+            ]
+          },
           { kind: "quote", text: "“modern-day lynchings”" },
           { kind: "heading", text: "What investigators say" },
           { kind: "paragraph", text: "But investigators now say Fortune was killed in a drug dispute before her body was hung in a staged scene — and all three men charged with her murder are Black." },
@@ -986,7 +999,8 @@
           { label: "Los Angeles Post", url: "https://www.lapost.com/content/tasia-fortune-s-hanging-was-staged-after-her-death-in-a-drug-dispute-mississippi-police-say" },
           { label: "WVLT", url: "https://www.wvlt.tv/2026/09/25/tasia-fortunes-hanging-was-staged-after-her-death-drug-dispute-mississippi-police-say/" },
           { label: "Washington Examiner", url: "https://www.washingtonexaminer.com/opinion/columnists/4740227/there-is-no-lynching-epidemic/" },
-          { label: "The Dregs Report", url: "https://thedregsreport.com/2026/09/13/aoc-and-pressley-demand-federal-lynching-probe-despite-most-cited-deaths-being-ruled-suicides/" }
+          { label: "The Dregs Report", url: "https://thedregsreport.com/2026/09/13/aoc-and-pressley-demand-federal-lynching-probe-despite-most-cited-deaths-being-ruled-suicides/" },
+          { label: "Rep. Ayanna Pressley — September 8 letter", url: "https://pressley.house.gov/2026/09/10/breaking-pressley-leads-nearly-60-lawmakers-demanding-investigation-into-black-people-found-hanging-invokes-legacy-of-lynching-in-america/" }
         ]
       }
     ];
@@ -1046,7 +1060,24 @@
             return;
           }
         }
-        element.textContent = block.text;
+        if (block.links) {
+          let cursor = 0;
+          block.links.forEach(function (inlineLink) {
+            const start = block.text.indexOf(inlineLink.text, cursor);
+            if (start === -1) return;
+            element.appendChild(document.createTextNode(block.text.slice(cursor, start)));
+            const link = document.createElement("a");
+            link.href = inlineLink.url;
+            link.target = "_blank";
+            link.rel = "noopener noreferrer";
+            link.textContent = inlineLink.text;
+            element.appendChild(link);
+            cursor = start + inlineLink.text.length;
+          });
+          element.appendChild(document.createTextNode(block.text.slice(cursor)));
+        } else {
+          element.textContent = block.text;
+        }
         container.appendChild(element);
       });
     }
