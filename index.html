@@ -453,22 +453,71 @@
     }
     .story-note strong { color: var(--red-deep); }
     .story-copy {
-      padding: 30px clamp(20px, 4vw, 38px);
+      padding: clamp(32px, 5vw, 50px) clamp(20px, 4vw, 38px);
       border-bottom: 1px solid var(--line);
     }
-    .story-copy h3,
+    .story-copy > h3,
     .brief-section h3 {
       margin: 0 0 16px;
       color: var(--ink);
       font-size: 17px;
     }
-    .story-copy p {
+    .story-summary-rich {
       max-width: 900px;
-      margin: 0;
       color: var(--muted);
       font-family: "Libre Baskerville", Georgia, serif;
       font-size: clamp(17px, 2vw, 20px);
-      line-height: 1.72;
+      line-height: 1.82;
+    }
+    .story-summary-rich p {
+      margin: 0 0 1.25em;
+    }
+    .story-summary-rich > :last-child { margin-bottom: 0; }
+    .story-lead {
+      color: var(--navy);
+      font-size: clamp(20px, 2.3vw, 25px);
+      line-height: 1.58;
+      letter-spacing: -.012em;
+    }
+    .story-summary-heading {
+      margin: 1.85em 0 .72em;
+      padding-top: 1.25em;
+      border-top: 1px solid var(--line);
+      color: var(--red-deep);
+      font-family: "Public Sans", sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      line-height: 1.3;
+      text-transform: uppercase;
+    }
+    .pull-quote {
+      display: block;
+      margin: 1.25em 0 1.45em;
+      padding: 1em 0 1em clamp(18px, 3vw, 28px);
+      border-left: 5px solid var(--red);
+      color: var(--navy);
+      font-size: clamp(21px, 2.7vw, 29px);
+      font-weight: 700;
+      line-height: 1.48;
+      letter-spacing: -.015em;
+    }
+    .stat-list {
+      display: grid;
+      gap: 12px;
+      margin: 0 0 1.45em;
+      padding: 0;
+      list-style: none;
+    }
+    .stat-list li {
+      padding: 14px 16px 14px 19px;
+      color: var(--muted);
+      background: var(--paper-soft);
+      border-left: 4px solid var(--blue);
+      font-family: "Public Sans", sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.65;
     }
     .story-update {
       margin: 0;
@@ -721,7 +770,7 @@
           <p class="story-note" hidden></p>
           <section class="story-copy" aria-label="The story">
             <h3>The story</h3>
-            <p></p>
+            <div class="story-summary-rich"></div>
           </section>
           <p class="story-update" hidden></p>
           <div class="brief-grid">
@@ -811,6 +860,15 @@
         date: "September 26, 2026",
         dateTime: "2026-09-26",
         story: "On August 3, 2026, Tasia Fortune, 29, was found hanging from a tree behind a vacant home in West Jackson, Mississippi. The image — a Black woman hanging from a tree in Mississippi — immediately drew claims of a modern-day lynching. Rep. Ayanna Pressley led roughly 60 Democrats in a September 8 letter to the Attorney General and FBI demanding a federal probe into “modern-day lynchings,” citing 10 hanging deaths of Black Americans in 2026; AOC and Pressley posted it on X September 10. But investigators now say Fortune was killed in a drug dispute before her body was hung in a staged scene — and all three men charged with her murder are Black. Of the 10 deaths cited in the letter, only Fortune’s is an active homicide case.",
+        storyFormat: [
+          { kind: "lead", text: "On August 3, 2026, Tasia Fortune, 29, was found hanging from a tree behind a vacant home in West Jackson, Mississippi." },
+          { kind: "heading", text: "The reaction" },
+          { kind: "paragraph", text: "The image — a Black woman hanging from a tree in Mississippi — immediately drew claims of a modern-day lynching. Rep. Ayanna Pressley led roughly 60 Democrats in a September 8 letter to the Attorney General and FBI demanding a federal probe into “modern-day lynchings,” citing 10 hanging deaths of Black Americans in 2026; AOC and Pressley posted it on X September 10." },
+          { kind: "quote", text: "“modern-day lynchings”" },
+          { kind: "heading", text: "What investigators say" },
+          { kind: "paragraph", text: "But investigators now say Fortune was killed in a drug dispute before her body was hung in a staged scene — and all three men charged with her murder are Black." },
+          { kind: "stat", text: "Of the 10 deaths cited in the letter, only Fortune’s is an active homicide case." }
+        ],
         facts: [
           "Fortune, 29, mother of four, was found August 3 hanging from a tree at the 500 block of Road of Remembrance in West Jackson. The medical examiner ruled the death a homicide; Jackson police Det. Samuel Dukes testified September 25 that the scene and hanging were “staged.”",
           "Dukes said Fortune was likely dead two to three days before she was found, was killed in a drug dispute involving “missing illegal narcotics,” and fought hard with her attackers.",
@@ -857,6 +915,14 @@
         dateTime: "2026-09-27",
         retrievalNote: "The exact text of @dom_lucre’s X post could not be independently retrieved — X blocks anonymous reads. Nothing below quotes words that can’t be seen; the post’s framing is as relayed by the host and cross-checked against Lucre’s long-documented public thesis.",
         story: "On September 25, 2026, at about 6:59 a.m. PDT, conservative X influencer @dom_lucre — Dom Lucre, an independent journalist who calls himself the “Breaker of Narratives,” formerly worked with BLEXIT, and worked alongside Candace Owens — posted asking whether Black Americans are being used to oppress White people. The question is consistent with his years-long thesis that Democrats and liberal institutions deploy racial narratives to divide Americans and that DEI functions as anti-White discrimination. It landed the same day sworn testimony revealed that Tasia Fortune was murdered in a drug dispute and her hanging staged days after death, with three Black men charged — after 59 House Democrats had described the case as “racial terror.”",
+        storyFormat: [
+          { kind: "lead", text: "On September 25, 2026, at about 6:59 a.m. PDT, conservative X influencer @dom_lucre — Dom Lucre, an independent journalist who calls himself the “Breaker of Narratives,” formerly worked with BLEXIT, and worked alongside Candace Owens — posted asking whether Black Americans are being used to oppress White people." },
+          { kind: "quote", text: "“Democrats are the most racist people on the planet”" },
+          { kind: "heading", text: "The post" },
+          { kind: "paragraph", text: "The question is consistent with his years-long thesis that Democrats and liberal institutions deploy racial narratives to divide Americans and that DEI functions as anti-White discrimination." },
+          { kind: "heading", text: "The context" },
+          { kind: "stat", text: "It landed the same day sworn testimony revealed that Tasia Fortune was murdered in a drug dispute and her hanging staged days after death, with three Black men charged — after 59 House Democrats had described the case as “racial terror.”" }
+        ],
         facts: [
           "Lucre’s public identity and long-running thesis are documented; the exact text of this X post could not be independently retrieved because X blocks anonymous reads.",
           "AP-NORC polling conducted July 10–14, 2026 found about three in 10 U.S. adults say DEI increases discrimination against White people: 39% of White adults, 21% of Hispanic adults, and 13% of Black adults.",
@@ -928,6 +994,41 @@
       });
     }
 
+    function renderStory(container, story) {
+      const blocks = story.storyFormat || [{ kind: "paragraph", text: story.story }];
+      blocks.forEach(function (block) {
+        let element;
+        if (block.kind === "heading") {
+          element = document.createElement("h4");
+          element.className = "story-summary-heading";
+        } else if (block.kind === "quote") {
+          element = document.createElement("blockquote");
+          element.className = "pull-quote";
+        } else if (block.kind === "stat") {
+          element = document.createElement("ul");
+          element.className = "stat-list";
+          element.setAttribute("aria-label", "Key figure");
+          const item = document.createElement("li");
+          item.textContent = block.text;
+          element.appendChild(item);
+          container.appendChild(element);
+          return;
+        } else {
+          element = document.createElement("p");
+          if (block.kind === "lead") {
+            element.className = "story-lead";
+            const strong = document.createElement("strong");
+            strong.textContent = block.text;
+            element.appendChild(strong);
+            container.appendChild(element);
+            return;
+          }
+        }
+        element.textContent = block.text;
+        container.appendChild(element);
+      });
+    }
+
     if (storyPackages.length === 0) {
       const emptyState = document.createElement("div");
       const emptyTitle = document.createElement("strong");
@@ -959,7 +1060,7 @@
       fragment.querySelector(".story-summary").textContent = story.summary;
       date.textContent = story.date;
       date.dateTime = story.dateTime;
-      fragment.querySelector(".story-copy p").textContent = story.story;
+      renderStory(fragment.querySelector(".story-summary-rich"), story);
 
       if (story.retrievalNote) {
         const note = fragment.querySelector(".story-note");
