@@ -345,6 +345,13 @@
       border: 1px solid var(--line);
       box-shadow: 0 9px 30px rgba(16,42,76,.08);
     }
+    .story-header {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: start;
+      border-top: 5px solid var(--red);
+    }
+    .story-package[data-open="true"] .story-header { border-top-color: var(--blue); }
     .story-trigger {
       width: 100%;
       display: grid;
@@ -355,11 +362,9 @@
       color: var(--ink);
       background: transparent;
       border: 0;
-      border-top: 5px solid var(--red);
       text-align: left;
       cursor: pointer;
     }
-    .story-package[data-open="true"] .story-trigger { border-top-color: var(--blue); }
     .story-meta {
       display: flex;
       align-items: center;
@@ -686,6 +691,7 @@
       .status-card { padding: 24px; }
       .section-heading, .brief-grid, .claims-grid { grid-template-columns: 1fr; }
       .section-heading { gap: 15px; }
+      .story-header { grid-template-columns: 1fr; }
       .story-trigger { grid-template-columns: minmax(0, 1fr) 18px; gap: 12px; padding: 21px 18px; }
       .channel-links, .story-card-action { flex-direction: column; }
       .story-card-action { justify-content: stretch; padding: 0 18px 21px; }
@@ -754,18 +760,20 @@
 
     <template id="story-template">
       <article class="story-package" data-open="false">
-        <button class="story-trigger" type="button" aria-expanded="false">
-          <span>
-            <span class="story-meta">
-              <span class="story-kicker"></span>
-              <span class="live-badge" aria-label="Currently being discussed live" hidden>● LIVE</span>
+        <div class="story-header">
+          <button class="story-trigger" type="button" aria-expanded="false">
+            <span>
+              <span class="story-meta">
+                <span class="story-kicker"></span>
+                <span class="live-badge" aria-label="Currently being discussed live" hidden>● LIVE</span>
+              </span>
+              <strong class="story-title"></strong>
+              <span class="story-summary"></span>
+              <time class="story-date"></time>
             </span>
-            <strong class="story-title"></strong>
-            <span class="story-summary"></span>
-            <time class="story-date"></time>
-          </span>
-          <span class="story-chevron" aria-hidden="true">›</span>
-        </button>
+            <span class="story-chevron" aria-hidden="true">›</span>
+          </button>
+        </div>
         <div class="story-card-action" aria-label="Trump House channels">
           <a class="clubhouse-link story-clubhouse-link" href="https://www.clubhouse.com/house/president-trump-crvth0bjblsu?chs=y3eIerRALr%3AgoLibaop8mvl5wtuSFC9F4BRrVY9r5FOU4Ig6HNHVaw&amp;utm_medium=ch_general_house" target="_blank" rel="noopener noreferrer">Trump House on Clubhouse</a>
         </div>
@@ -1015,6 +1023,15 @@
     const storyList = document.getElementById("story-list");
     const storyTemplate = document.getElementById("story-template");
 
+    function setStoryOpen(article, trigger, open) {
+      article.setAttribute("data-open", String(open));
+      trigger.setAttribute("aria-expanded", String(open));
+    }
+
+    function setStoryFragment(storyId) {
+      history.replaceState(null, "", "#" + encodeURIComponent(storyId));
+    }
+
     function addTextItems(list, items) {
       items.forEach(function (item) {
         const li = document.createElement("li");
@@ -1168,10 +1185,35 @@
 
       trigger.addEventListener("click", function () {
         const open = article.getAttribute("data-open") === "true";
-        article.setAttribute("data-open", String(!open));
-        trigger.setAttribute("aria-expanded", String(!open));
+        setStoryOpen(article, trigger, !open);
+        if (!open) setStoryFragment(story.id);
       });
+
       storyList.appendChild(fragment);
+    });
+
+    function openStoryFromFragment(scrollIntoView) {
+      let storyId = window.location.hash.slice(1);
+      try {
+        storyId = decodeURIComponent(storyId);
+      } catch (error) {
+        return;
+      }
+      if (!storyPackages.some(function (story) { return story.id === storyId; })) return;
+      const article = document.getElementById(storyId);
+      if (!article) return;
+      const trigger = article.querySelector(".story-trigger");
+      setStoryOpen(article, trigger, true);
+      if (scrollIntoView) {
+        requestAnimationFrame(function () {
+          article.scrollIntoView({ block: "start" });
+        });
+      }
+    }
+
+    openStoryFromFragment(true);
+    window.addEventListener("hashchange", function () {
+      openStoryFromFragment(true);
     });
   </script>
   <script>
