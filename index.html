@@ -430,6 +430,49 @@
       transition: transform .2s ease;
     }
     .story-package[data-open="true"] .story-chevron { transform: rotate(90deg); }
+    .story-share {
+      align-self: start;
+      min-width: 66px;
+      margin: 52px clamp(20px, 4vw, 38px) 0 0;
+      padding: 8px 11px;
+      color: var(--blue);
+      background: var(--paper-soft);
+      border: 1px solid var(--line);
+      font: inherit;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.2;
+      cursor: pointer;
+    }
+    .story-share:hover { color: var(--red-deep); border-color: var(--red); }
+    .story-share:focus-visible,
+    .share-fallback input:focus-visible {
+      outline: 3px solid color-mix(in srgb, var(--blue) 35%, transparent);
+      outline-offset: 2px;
+    }
+    .share-fallback {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 10px;
+      align-items: center;
+      padding: 0 clamp(20px, 4vw, 38px) 22px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .share-fallback[hidden] { display: none; }
+    .share-fallback input {
+      min-width: 0;
+      width: 100%;
+      padding: 8px 10px;
+      color: var(--ink);
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 0;
+      font: inherit;
+      font-size: 12px;
+    }
     .story-card-action {
       display: flex;
       flex-wrap: wrap;
@@ -691,8 +734,10 @@
       .status-card { padding: 24px; }
       .section-heading, .brief-grid, .claims-grid { grid-template-columns: 1fr; }
       .section-heading { gap: 15px; }
-      .story-header { grid-template-columns: 1fr; }
-      .story-trigger { grid-template-columns: minmax(0, 1fr) 18px; gap: 12px; padding: 21px 18px; }
+      .story-header { grid-template-columns: minmax(0, 1fr) auto; }
+      .story-trigger { grid-template-columns: minmax(0, 1fr) 18px; gap: 12px; padding: 21px 10px 21px 18px; }
+      .story-share { min-width: 61px; margin: 49px 18px 0 0; padding: 8px 9px; }
+      .share-fallback { grid-template-columns: 1fr; gap: 7px; padding: 0 18px 21px; }
       .channel-links, .story-card-action { flex-direction: column; }
       .story-card-action { justify-content: stretch; padding: 0 18px 21px; }
       .channel-links .clubhouse-link, .story-clubhouse-link { justify-content: space-between; width: 100%; }
@@ -773,6 +818,11 @@
             </span>
             <span class="story-chevron" aria-hidden="true">›</span>
           </button>
+          <button class="story-share" type="button">Share</button>
+          <label class="share-fallback" hidden>
+            <span>Copy this link</span>
+            <input type="text" readonly aria-label="Share link" />
+          </label>
         </div>
         <div class="story-card-action" aria-label="Trump House channels">
           <a class="clubhouse-link story-clubhouse-link" href="https://www.clubhouse.com/house/president-trump-crvth0bjblsu?chs=y3eIerRALr%3AgoLibaop8mvl5wtuSFC9F4BRrVY9r5FOU4Ig6HNHVaw&amp;utm_medium=ch_general_house" target="_blank" rel="noopener noreferrer">Trump House on Clubhouse</a>
@@ -1032,6 +1082,49 @@
       history.replaceState(null, "", "#" + encodeURIComponent(storyId));
     }
 
+    async function shareStory(story, button, fallback, input) {
+      const originalLabel = "Share";
+      const shareUrl = "https://trump.house/#" + encodeURIComponent(story.id);
+      fallback.hidden = true;
+
+      try {
+        if (typeof navigator.share === "function") {
+          try {
+            await navigator.share({ title: story.title, url: shareUrl });
+            return;
+          } catch (error) {
+            if (error && error.name === "AbortError") return;
+          }
+        }
+      } catch (error) {
+        // Continue to the clipboard fallback when native sharing is blocked.
+      }
+
+      try {
+        if (navigator.clipboard && typeof navigator.clipboard.writeText === "function") {
+          await navigator.clipboard.writeText(shareUrl);
+          button.textContent = "Link copied";
+          window.clearTimeout(button._shareResetTimer);
+          button._shareResetTimer = window.setTimeout(function () {
+            button.textContent = originalLabel;
+          }, 1800);
+          return;
+        }
+      } catch (error) {
+        // Continue to the manual fallback when clipboard access is blocked.
+      }
+
+      try {
+        input.value = shareUrl;
+        fallback.hidden = false;
+        input.focus();
+        input.select();
+      } catch (error) {
+        // Keep the page and its expand/collapse controls working if focus is blocked.
+        fallback.hidden = false;
+      }
+    }
+
     function addTextItems(list, items) {
       items.forEach(function (item) {
         const li = document.createElement("li");
@@ -1118,6 +1211,9 @@
       const body = fragment.querySelector(".story-body");
       const title = fragment.querySelector(".story-title");
       const date = fragment.querySelector(".story-date");
+      const shareButton = fragment.querySelector(".story-share");
+      const shareFallback = fragment.querySelector(".share-fallback");
+      const shareInput = fragment.querySelector(".share-fallback input");
 
       article.id = story.id;
       title.id = story.id + "-title";
@@ -1127,6 +1223,7 @@
       fragment.querySelector(".story-kicker").textContent = story.kicker;
       fragment.querySelector(".live-badge").hidden = story.id !== liveStoryId;
       title.textContent = story.title;
+      shareButton.setAttribute("aria-label", "Share " + story.title);
       fragment.querySelector(".story-summary").textContent = story.summary;
       date.textContent = story.date;
       date.dateTime = story.dateTime;
@@ -1187,6 +1284,10 @@
         const open = article.getAttribute("data-open") === "true";
         setStoryOpen(article, trigger, !open);
         if (!open) setStoryFragment(story.id);
+      });
+
+      shareButton.addEventListener("click", function () {
+        shareStory(story, shareButton, shareFallback, shareInput);
       });
 
       storyList.appendChild(fragment);
