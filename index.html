@@ -287,6 +287,39 @@
     .divider span:nth-child(1) { width: 33%; background: var(--red); }
     .divider span:nth-child(2) { width: 16%; background: var(--paper-soft); border: 1px solid var(--line); }
     .divider span:nth-child(3) { flex: 1; background: var(--blue); }
+    .mast-side {
+      display: grid;
+      gap: 18px;
+    }
+    .video-card {
+      overflow: hidden;
+      margin: 0;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-top: 5px solid var(--red);
+      box-shadow: 0 9px 30px rgba(16,42,76,.08);
+    }
+    .video-player {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #000;
+    }
+    .video-player iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+    .video-caption {
+      margin: 0;
+      padding: 11px 14px 12px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.4;
+    }
 
     .story-queue {
       padding: clamp(46px, 7vw, 82px) 0;
@@ -797,12 +830,20 @@
           <a class="clubhouse-link" href="https://www.clubhouse.com/house/president-trump-crvth0bjblsu?chs=y3eIerRALr%3AgoLibaop8mvl5wtuSFC9F4BRrVY9r5FOU4Ig6HNHVaw&amp;utm_medium=ch_general_house" target="_blank" rel="noopener noreferrer">Trump House on Clubhouse</a>
         </div>
       </div>
-      <aside class="status-card" aria-label="Room status">
-        <div class="status-label">Current status</div>
-        <h2>Two briefs in the queue</h2>
-        <p>Nolan Wells is the newest public brief, with the September 27 update, verified facts, timeline, and source record.</p>
-        <div class="divider" aria-hidden="true"><span></span><span></span><span></span></div>
-      </aside>
+      <div class="mast-side">
+        <aside class="status-card" aria-label="Room status">
+          <div class="status-label">Current status</div>
+          <h2>Two briefs in the queue</h2>
+          <p>Nolan Wells is the newest public brief, with the September 27 update, verified facts, timeline, and source record.</p>
+          <div class="divider" aria-hidden="true"><span></span><span></span><span></span></div>
+        </aside>
+        <figure class="video-card">
+          <div class="video-player">
+            <iframe src="https://player.vimeo.com/video/1225257566?h=86e7cccdf6" title="Clubhouse Intro" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+          </div>
+          <figcaption class="video-caption">Clubhouse Intro</figcaption>
+        </figure>
+      </div>
     </section>
 
     <section class="story-queue" aria-labelledby="queue-title">
