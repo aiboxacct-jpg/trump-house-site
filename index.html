@@ -615,6 +615,174 @@
       font-weight: 700;
       line-height: 1.65;
     }
+    .boat-track,
+    .record-panel,
+    .comparison-panel,
+    .quotes-panel {
+      margin: 1.8em 0;
+      font-family: "Public Sans", sans-serif;
+    }
+    .boat-track {
+      padding: clamp(22px, 4vw, 34px);
+      color: var(--ink);
+      background: var(--paper-soft);
+      border-top: 5px solid var(--red);
+      border-bottom: 1px solid var(--line);
+    }
+    .record-panel,
+    .comparison-panel,
+    .quotes-panel {
+      padding-top: 1.5em;
+      border-top: 1px solid var(--line);
+    }
+    .boat-track h4,
+    .record-panel h4,
+    .comparison-panel h4,
+    .quotes-panel h4 {
+      margin: 0;
+      color: var(--navy);
+      font-family: "Libre Baskerville", Georgia, serif;
+      font-size: clamp(21px, 2.6vw, 28px);
+      line-height: 1.3;
+      letter-spacing: -.02em;
+    }
+    .track-intro,
+    .panel-intro {
+      margin: 9px 0 22px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+    .track-stops {
+      position: relative;
+      display: grid;
+      gap: 0;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .track-stops::before {
+      content: "";
+      position: absolute;
+      top: 13px;
+      bottom: 18px;
+      left: 14px;
+      width: 2px;
+      background: var(--line);
+    }
+    .track-stops li {
+      position: relative;
+      display: grid;
+      grid-template-columns: 30px 102px minmax(0, 1fr);
+      gap: 12px;
+      padding: 0 0 21px;
+    }
+    .track-stops li:last-child { padding-bottom: 0; }
+    .track-marker {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      width: 30px;
+      height: 30px;
+      place-items: center;
+      color: white;
+      background: var(--blue);
+      border: 3px solid var(--paper-soft);
+      border-radius: 50%;
+      font-size: 11px;
+      font-weight: 700;
+    }
+    .track-time {
+      padding-top: 5px;
+      color: var(--red-deep);
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+    .track-detail strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--ink);
+      font-size: 14px;
+      line-height: 1.4;
+    }
+    .track-detail span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+    .track-source {
+      margin: 22px 0 0;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+    .track-source a { color: var(--blue); font-weight: 700; text-underline-offset: 3px; }
+    .record-grid,
+    .comparison-grid,
+    .quotes-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .record-card,
+    .comparison-side,
+    .quote-card {
+      padding: 17px 18px;
+      background: var(--paper-soft);
+      border-top: 3px solid var(--blue);
+    }
+    .record-card.accent,
+    .comparison-side.family { border-top-color: var(--red); }
+    .record-card h5,
+    .comparison-side h5 {
+      margin: 0 0 7px;
+      color: var(--ink);
+      font-size: 14px;
+      line-height: 1.4;
+    }
+    .record-card p,
+    .comparison-side p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+    .comparison-row {
+      display: grid;
+      grid-column: 1 / -1;
+      grid-template-columns: 110px 1fr 1fr;
+      gap: 12px;
+      align-items: stretch;
+    }
+    .comparison-label {
+      padding: 17px 0;
+      color: var(--red-deep);
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.4;
+      text-transform: uppercase;
+    }
+    .quote-card {
+      margin: 0;
+      color: var(--ink);
+      font-family: "Libre Baskerville", Georgia, serif;
+      font-size: 14px;
+      line-height: 1.65;
+    }
+    .quote-card cite {
+      display: block;
+      margin-top: 9px;
+      color: var(--muted);
+      font-family: "Public Sans", sans-serif;
+      font-size: 11px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 1.45;
+    }
     .story-update {
       margin: 0;
       padding: 20px clamp(20px, 4vw, 38px);
@@ -788,6 +956,10 @@
       .channel-links .clubhouse-link, .story-clubhouse-link { justify-content: space-between; width: 100%; }
       .brief-section + .brief-section { border-left: 0; border-top: 1px solid var(--line); }
       .timeline-list li { grid-template-columns: 82px 1fr; gap: 12px; }
+      .track-stops li { grid-template-columns: 30px 76px minmax(0, 1fr); gap: 9px; }
+      .record-grid, .comparison-grid, .quotes-grid { grid-template-columns: 1fr; }
+      .comparison-row { grid-template-columns: 1fr; gap: 8px; }
+      .comparison-label { padding: 12px 0 0; }
       .source-list { display: grid; }
       .source-list a, .source-list span { width: 100%; justify-content: space-between; }
       .features { grid-template-columns: 1fr; gap: 32px; }
@@ -842,7 +1014,7 @@
         <aside class="status-card" aria-label="Room status">
           <div class="status-label">Current status</div>
           <h2>Two briefs in the queue</h2>
-          <p>Nolan Wells is the newest public brief, updated with the latest sourced reporting and a clear separation between established facts and unresolved claims.</p>
+          <p>Nolan Wells is the newest public brief, updated September 28 with the expanded record: boat track, expert comparison, friends’ response, and federal threat cases.</p>
           <div class="divider" aria-hidden="true"><span></span><span></span><span></span></div>
         </aside>
       </div>
@@ -970,12 +1142,30 @@
         id: "nolan-wells",
         kicker: "Ocean Springs, Mississippi · Cause and manner undetermined",
         title: "Nolan Wells",
-        summary: "Wells disappeared during a July 4 boat trip to Horn Island. His body was found two days later, and both autopsies leave his cause and manner of death undetermined.",
-        date: "September 27, 2026",
-        dateTime: "2026-09-27",
+        summary: "An expanded record of the July 4 boat track, competing expert interpretations, the cleared friends' response, and the separate federal threat cases.",
+        date: "September 28, 2026",
+        dateTime: "2026-09-28",
         story: "Nolan Xavier Wells, 18, disappeared during a July 4 boat trip to Horn Island; his body was found in the water two days later, and both autopsies leave his cause and manner of death undetermined.",
+        disclaimer: "Nolan Wells was 18. Nobody has been charged in his death. The friends named here were cleared by a Jackson County grand jury and are not accused of wrongdoing in this brief. Claims are attributed to the outlet or document they came from; where accounts conflict, both are shown. This is a record of reported facts and claims, not an opinion.",
         storyFormat: [
           { kind: "lead", text: "Nolan Xavier Wells, 18, disappeared during a July 4 boat trip to Horn Island; his body was found in the water two days later, and both autopsies leave his cause and manner of death undetermined." },
+          {
+            kind: "track",
+            title: "Follow the Triton — July 4, 2026",
+            intro: "Nine stops reconstructed from the Garmin GPSMAP track in MDMR Marine Patrol report MP2607-0016. All times are Central Time; narrative positions are approximate where the report does not give a coordinate.",
+            sourceUrl: "https://htv-prod-media.s3.amazonaws.com/files/mdmr-nolan-wells-report-6a67e5fa09702.pdf",
+            stops: [
+              { time: "9:56 AM", title: "Leaves the dock", detail: "The white 2000 Triton MI4088BU departs a private dock on El Camino Real Road for Horn Island with about seven people aboard." },
+              { time: "11:14 AM", title: "The west tip", detail: "The vessel anchors at 30°14.603′N, 088°46.427′W, among a gathering of roughly 300 people; GPS shows it stationary from about 11:15 AM to 4:30 PM." },
+              { time: "~4:00 PM", title: "Bilge-pump failure", detail: "A Sea Tow caller says the bilge pump stopped working, the boat is taking on water and everyone aboard is accounted for. The request is later canceled; Sea Tow does not respond." },
+              { time: "4:31 PM", title: "Leaves without Nolan", detail: "The Triton heads north at 0.06–4.2 knots for about 2.75 miles. Another friend's boat reportedly tows it. Nolan is not aboard; his phone is." },
+              { time: "5:25 PM", title: "Back up to speed", detail: "The track returns to normal operating speed, about 30–35 knots." },
+              { time: "5:44 PM", title: "Back at the dock", detail: "The vessel arrives again at El Camino Real Road." },
+              { time: "5:52–6:06 PM", title: "Fourteen minutes into Fort Bayou", detail: "The Triton heads east into Fort Bayou and returns. The purpose of this short trip has not been publicly explained." },
+              { time: "6:36 PM", title: "The loop", detail: "The boat travels southwest to Saint Martin Bayou, southeast to the Biloxi Bay Bridge, then north toward Fort Bayou Boat Launch." },
+              { time: "7:19 PM", title: "Fort Bayou Boat Launch", detail: "The vessel arrives at the launch, is trailered to Cardinal Lane by 7:47 PM and records its last GPS point at 7:59 PM. The family's phone examiner places Nolan's phone at a residence around 7:30 PM." }
+            ]
+          },
           { kind: "heading", text: "What the record establishes" },
           { kind: "paragraph", text: "A Jackson County grand jury unanimously returned a no true bill after hearing from 43 witnesses under 132 subpoenas. DA Angel Myers McIlrath said investigators found no credible evidence of criminal conduct and “not a scintilla of evidence” that Wells’ death was racially motivated." },
           { kind: "paragraph", text: "The grand jury did not close the door forever. Its report says the matter should return if credible evidence later points to a non-accidental death." },
@@ -983,6 +1173,18 @@
           { kind: "heading", text: "The unresolved medical gap" },
           { kind: "paragraph", text: "The state examiner described the body as consistent with drowning, but neither the state chief medical examiner nor the family’s pathologist, Dr. Roger Mitchell Jr., certified drowning as the cause. Mitchell’s report says there was no water in Wells’ lungs, airway, or stomach and documents acute blunt-force injuries to the head and body before death." },
           { kind: "paragraph", text: "Those injuries are real; what caused them and whether they prove foul play remain unknown. The state autopsy documented two scalp contusions, no skull fracture, and no fatal head injury." },
+          {
+            kind: "comparison",
+            title: "Same body. Same phone. Two readings.",
+            intro: "The state and the family's experts rely on much of the same physical and digital record but emphasize different conclusions and unanswered questions.",
+            rows: [
+              { label: "Cause", state: "Cause and manner undetermined; the position, condition, timing and location were consistent with drowning as a diagnosis of exclusion.", family: "Also undetermined; the family stresses the state report's finding of no water in the lungs, throat or stomach." },
+              { label: "Head bruises", state: "Two roughly two-inch scalp contusions, no fracture and no fatal injury; the grand-jury report connected the bruising to a witnessed slip around 3:30 PM.", family: "No white-blood-cell response indicated injury shortly before death; the family asks what caused the recent blunt-force trauma." },
+              { label: "Phone", state: "The grand jury reviewed a 261-page Snapchat report and 21-page device exam. The DA says deletions were user actions by other Snapchat users, not physical access to Nolan's phone.", family: "Andrew Garrett says the phone stayed on the boat, was last touched around 2:18 PM and contained 282 pages of recovered deleted Snapchat content; he could not say who deleted it or why." },
+              { label: "Leaving", state: "The grand jury found Nolan chose to stay on the island while the phones returned on the boats.", family: "His parents say staying behind was out of character; a reported secondhand sighting around 6 PM has not been confirmed by an official source." },
+              { label: "Next step", state: "The case can return to a grand jury if credible new evidence points to a non-accidental death.", family: "The CBC, NAACP and Ben Crump have asked DOJ and the FBI for an independent federal review; no public response has been reported." }
+            ]
+          },
           { kind: "quote", text: "“Elmore and I do not believe that Nolan simply and accidentally drowned, and nobody saw anything, and no one knows anything.” — Christine Wonsley, Wells’ mother" },
           { kind: "stat", text: "23 grand jurors: 12 white, 5 Black, 2 Hispanic, 2 Native American, 1 Asian, and 1 listed as “other.”" },
           { kind: "stat", text: "132 subpoenas and 43 witnesses preceded the unanimous no true bill." },
@@ -992,14 +1194,66 @@
           { kind: "paragraph", text: "The next day, reporting carried the DA’s explanation that other users had deleted or unsent their own Snapchat messages and that the activity did not show someone accessing Wells’ phone." },
           { kind: "paragraph", text: "A viral “restored final words” recording is not Wells speaking from his phone. It is a 37-second Sea Tow distress call about a boat taking on water off Horn Island; a forensic expert said the enhanced audio could not be verified, and an attorney called it doctored." },
           { kind: "paragraph", text: "The Chicago Crusader’s Inner City News has grouped Wells, Tasia Fortune, and a Maryland hanging-suicide under a “Lynchings By Suicide” frame. That framing is an interpretation, not a finding in the Wells case." },
+          {
+            kind: "recordPanel",
+            title: "The federal threat cases — a separate track",
+            intro: "These cases concern alleged threats to a witness's family and a judge connected to the Wells case. They are not charges in Nolan Wells' death.",
+            cards: [
+              { title: "Edward James Porter", text: "Porter, 32, of Berwyn, Illinois, is accused of threatening Bart Edmiston Jr.'s family. He pleaded not guilty; trial is set for October 5 in Gulfport before Judge Taylor McNeel." },
+              { title: "Joseph Alfredo Vasquez Dumarce", text: "Dumarce, 27, of Sacramento, is accused of sending a Facebook bomb threat to Chancery Judge Ashlee Cole. Trial is set for November 2 in Gulfport before Judge Sul Ozerden." },
+              { title: "Michelle Francine Edwards", text: "Edwards, of Cincinnati, is accused in a criminal complaint of making 21 threatening blocked-number calls to a chancery clerk's office and the Jackson County Sheriff's Office." },
+              { title: "Brandon Ephraim Washington", text: "Washington, of Jacksonville, Florida, is accused of threatening Bart Edmiston Jr. and his father. A publicly confirmed trial date was not identified in the reviewed record." }
+            ],
+            dates: [
+              "Around October 1 · Atlanta — tentative Crump news conference with Dr. Roger A. Mitchell Jr. on both autopsies.",
+              "October 5 · Gulfport — U.S. v. Edward James Porter trial.",
+              "November 2 · Gulfport — U.S. v. Joseph Alfredo Vasquez Dumarce trial."
+            ]
+          },
+          {
+            kind: "recordPanel",
+            title: "The friends' side",
+            intro: "The grand jury cleared the named friends. Their lawyers say public accusations damaged innocent people and are pursuing a separate defamation track.",
+            accent: true,
+            cards: [
+              { title: "Cleared by the grand jury", text: "Warren Hudson, Jax Pitalo, Morgan Seymour and the other friends named in the public record were not charged. The unanimous no true bill said allegations against the boats' occupants were not based in truth." },
+              { title: "Cease-and-desist notices", text: "Lawyers for Hudson, Pitalo and Seymour sent Sunny Hostin and ABC's The View a cease-and-desist on September 16 demanding a retraction and apology within 10 days. An intent-to-sue letter went to Rev. Al Sharpton on August 21." },
+              { title: "Defense fund", text: "Hudson, Pitalo and Seymour launched a GiveSendGo legal-defense fund that had passed $90,000 by August 3." },
+              { title: "What is filed", text: "As of September 27, no reported defamation suit had been filed. The public record described notices and threatened litigation, not a judgment." }
+            ]
+          },
           { kind: "heading", text: "A separate case — do not merge them" },
           { kind: "emphasis", lead: "Wells was not hanged.", text: " De’Martravion “Trey” Reed, 21, was found hanging on the Delta State campus on September 15, 2025, and that death was ruled a suicide. Reed’s death is a separate case with different facts." },
-          { kind: "quote", text: "“We will not confuse the absence of an indictment with the presence of an answer.” — Rev. Al Sharpton" }
+          { kind: "quote", text: "“We will not confuse the absence of an indictment with the presence of an answer.” — Rev. Al Sharpton" },
+          {
+            kind: "quotes",
+            title: "Key quotes from the record",
+            intro: "Seventeen attributed statements from the state record, the family, investigators, advocates and the friends' representatives.",
+            quotes: [
+              { text: "There is absolutely no evidence to support the allegations that Nolan's disappearance and death were racially motivated. Nolan's friends loved Nolan and Nolan loved them.", cite: "Grand Jury Report · September 21" },
+              { text: "The allegations against the occupants of the Triton, the Palm Beach, and the Tideline are not based in truth, and are solely the result of public clamor and private malice.", cite: "Grand Jury Report · September 21" },
+              { text: "Nolan chose to stay on the island that day, and there is not a scintilla of evidence to contradict that.", cite: "Grand Jury Report · September 21" },
+              { text: "There was bruising on the back of Mr. Wells' head, which was not a fatal injury.", cite: "Grand Jury Report · September 21" },
+              { text: "He saw Wells slip awkwardly off the side of a boat around the time of 3:30 p.m. on July 4, 2026, but could not say whether Mr. Wells struck his head during the fall.", cite: "A witness, as summarized in the Grand Jury Report" },
+              { text: "The Crump team knew better, but did not do better.", cite: "DA Angel Myers McIlrath · September 21" },
+              { text: "If the Crump team genuinely has new information or evidence that Nolan Wells was murdered they should stop playing games and immediately provide it to me.", cite: "DA Angel Myers McIlrath · September 24" },
+              { text: "The user action discussed by Mr. Garrett is from other Snapchat users, not someone physically accessing Nolan Wells' phone.", cite: "DA Angel Myers McIlrath · September 24" },
+              { text: "There were things that were deleted from the phone.", cite: "Andrew Garrett, Garrett Discovery · September 24" },
+              { text: "The grand jury left us with questions. Nolan's family deserves answers. What caused recent blunt force trauma to his head?", cite: "Ben Crump · September 22" },
+              { text: "Last night was a reminder that our son's life does not matter to those who hold positions that are supposed to serve and protect the public.", cite: "Christine Wonsley · September 22" },
+              { text: "There was never any evidence of a crime. Suggestions otherwise were always pure fabrications.", cite: "Bart Edmiston Jr., through attorney Russell Latino · September 22" },
+              { text: "You should apologize immediately to completely innocent young men Warren Hudson, Jax Pitalo, and Morgan Seymour.", cite: "Edward Andrew Paltzik, attorney for the friends · September 22" },
+              { text: "Hey we're at the west tip of Horn, and our bilge pump stopped working. We're sinking.", cite: "Sea Tow caller · around 4:00 PM, July 4" },
+              { text: "The world is watching, and Nolan Wells' family deserves a thorough accounting of what happened.", cite: "Derrick Johnson, NAACP · August 19" },
+              { text: "If it was your child, you would want the investigation to stay open and active.", cite: "Kristen Clarke, NAACP · September 22" },
+              { text: "No True Bill Does Not Resolve How Nolan Wells Died.", cite: "Ben Crump · September 21" }
+            ]
+          }
         ],
         update: {
-          text: "September 27, 2026 — refreshed with the weekend demonstration, the DA’s Snapchat explanation, and the debunked “final words” claim.",
-          label: "Weekend reporting",
-          url: "https://thesource.com/2026/09/27/nolan-wells-protesters-demand-answers-while-official-autopsy-showed-no-water-in-lungs/"
+          text: "September 28, 2026 — expanded with the nine-stop MDMR boat track, state-versus-family expert comparison, federal threat-case calendar, the cleared friends' response, and the full attributed quote record.",
+          label: "Story breakdown",
+          url: "https://overstimulated.live/marathon/docket/nolan"
         },
         facts: [
           "Wells, an Ocean Springs resident and freshman wide receiver at Southwest Mississippi Community College, went to Horn Island with a large group on July 4 and was last seen around 3 p.m. His body was found off the island’s northwest shore on July 6.",
@@ -1009,7 +1263,9 @@
           "The phone review produced 282 pages covering about 300 Snapchat messages. McIlrath says other users deleted or unsent their own messages; an attorney for three friends says they never possessed Wells’ phone.",
           "The Congressional Black Caucus requested an independent federal review on August 12. Crump renewed that request September 22 and 24; no DOJ response has been reported.",
           "Hundreds demonstrated in Ocean Springs on September 26. Members of the Black Hebrew Israelite group Israel United in Christ marched, and resident Jeron Lowery — who knew and had employed Wells — remembered him as a respectful young man.",
-          "The viral “final words” tape is the Sea Tow distress call, not an audio recording from Wells’ phone."
+          "The viral “final words” tape is the Sea Tow distress call, not an audio recording from Wells’ phone.",
+          "Four people — Edward James Porter, Joseph Alfredo Vasquez Dumarce, Michelle Francine Edwards, and Brandon Ephraim Washington — face allegations tied to threats against a witness's family, a judge, or public offices. Those are separate cases; none is charged in Wells' death.",
+          "The named friends were cleared by the grand jury. Their lawyers sent defamation notices to Sunny Hostin and ABC's The View on September 16 and to Rev. Al Sharpton on August 21; a GiveSendGo defense fund had raised more than $90,000 by August 3."
         ],
         timeline: [
           { date: "July 4, 2026", detail: "Wells travels with a large group by boat to Horn Island; last seen around 3 p.m.; a boat reportedly takes on water." },
@@ -1022,8 +1278,11 @@
           { date: "September 22", detail: "Family and Crump push back; Crump renews the DOJ request; NAACP’s Kristen Clarke asks for the full file." },
           { date: "September 24", detail: "Crump releases the full independent autopsy details and the 282-page Snapchat count." },
           { date: "September 26 · New", detail: "Hundreds demonstrate in Ocean Springs; Israel United in Christ members march." },
-          { date: "September 27 · New", detail: "The DA’s Snapchat explanation is reported; Inner City News publishes its grouping." },
-          { date: "Upcoming", detail: "Crump’s team promises complete phone-app analysis “in the days ahead”; DOJ has not responded." }
+          { date: "September 27", detail: "The DA’s Snapchat explanation is reported; Inner City News publishes its grouping." },
+          { date: "~October 1", detail: "Tentative Atlanta news conference: Crump and Dr. Roger A. Mitchell Jr. plan to walk through both autopsies." },
+          { date: "October 5", detail: "U.S. v. Edward James Porter threat-case trial is scheduled in Gulfport before Judge Taylor McNeel." },
+          { date: "November 2", detail: "U.S. v. Joseph Alfredo Vasquez Dumarce threat-case trial is scheduled in Gulfport before Judge Sul Ozerden." },
+          { date: "Open", detail: "DOJ has not publicly answered the requests for an independent federal review of Wells' death." }
         ],
         verifiedClaims: [
           "The disappearance and recovery dates; the unanimous no true bill; the 132 subpoenas and 43 witnesses; both autopsies’ undetermined findings; the documented scalp contusions; Mitchell’s blunt-force findings; the phone-page count; the DA’s deletion explanation; the re-presentation clause; the September 26 demonstration; and the debunked tape."
@@ -1032,6 +1291,8 @@
           "Whether the injuries prove foul play, whether deleted messages conceal wrongdoing, whether race affected the death or its handling, and whether the file is effectively closed."
         ],
         sources: [
+          { label: "MDMR Marine Patrol report MP2607-0016", url: "https://htv-prod-media.s3.amazonaws.com/files/mdmr-nolan-wells-report-6a67e5fa09702.pdf" },
+          { label: "Overstimulated Live · full story breakdown", url: "https://overstimulated.live/marathon/docket/nolan" },
           { label: "Reuters", url: "https://www.reuters.com/legal/government/grand-jury-declines-indict-anyone-death-black-teen-nolan-wells-mississippi-2026-09-22/" },
           { label: "Mississippi Free Press", url: "https://www.mississippifreepress.org/crump-releases-full-independent-autopsy-of-nolan-wells-says-questions-of-wells-death-remain/" },
           { label: "Christian Post", url: "https://www.christianpost.com/news/insufficient-evidence-of-crime-found-in-death-of-nolan-wells.html" },
@@ -1186,10 +1447,159 @@
       });
     }
 
+    function appendPanelHeading(section, block) {
+      const heading = document.createElement("h4");
+      const intro = document.createElement("p");
+      heading.textContent = block.title;
+      intro.className = "panel-intro";
+      intro.textContent = block.intro;
+      section.append(heading, intro);
+    }
+
+    function renderTrack(container, block) {
+      const section = document.createElement("section");
+      const heading = document.createElement("h4");
+      const intro = document.createElement("p");
+      const list = document.createElement("ol");
+      const source = document.createElement("p");
+      const sourceLink = document.createElement("a");
+      section.className = "boat-track";
+      section.setAttribute("aria-label", block.title);
+      heading.textContent = block.title;
+      intro.className = "track-intro";
+      intro.textContent = block.intro;
+      list.className = "track-stops";
+      block.stops.forEach(function (stop, index) {
+        const item = document.createElement("li");
+        const marker = document.createElement("span");
+        const time = document.createElement("time");
+        const detail = document.createElement("span");
+        const title = document.createElement("strong");
+        const copy = document.createElement("span");
+        marker.className = "track-marker";
+        marker.textContent = String(index + 1);
+        time.className = "track-time";
+        time.textContent = stop.time;
+        detail.className = "track-detail";
+        title.textContent = stop.title;
+        copy.textContent = stop.detail;
+        detail.append(title, copy);
+        item.append(marker, time, detail);
+        list.appendChild(item);
+      });
+      source.className = "track-source";
+      source.appendChild(document.createTextNode("Source: "));
+      sourceLink.href = block.sourceUrl;
+      sourceLink.target = "_blank";
+      sourceLink.rel = "noopener noreferrer";
+      sourceLink.textContent = "MDMR Marine Patrol report MP2607-0016";
+      source.append(sourceLink, document.createTextNode(" · The named friends were cleared by the grand jury; nobody has been charged in Wells' death."));
+      section.append(heading, intro, list, source);
+      container.appendChild(section);
+    }
+
+    function renderRecordPanel(container, block) {
+      const section = document.createElement("section");
+      const grid = document.createElement("div");
+      section.className = "record-panel";
+      section.setAttribute("aria-label", block.title);
+      appendPanelHeading(section, block);
+      grid.className = "record-grid";
+      block.cards.forEach(function (card) {
+        const article = document.createElement("article");
+        const heading = document.createElement("h5");
+        const copy = document.createElement("p");
+        article.className = "record-card" + (block.accent ? " accent" : "");
+        heading.textContent = card.title;
+        copy.textContent = card.text;
+        article.append(heading, copy);
+        grid.appendChild(article);
+      });
+      section.appendChild(grid);
+      if (block.dates) {
+        const dates = document.createElement("ul");
+        dates.className = "stat-list";
+        dates.setAttribute("aria-label", "Upcoming dates");
+        addTextItems(dates, block.dates);
+        section.appendChild(dates);
+      }
+      container.appendChild(section);
+    }
+
+    function renderComparison(container, block) {
+      const section = document.createElement("section");
+      const grid = document.createElement("div");
+      section.className = "comparison-panel";
+      section.setAttribute("aria-label", block.title);
+      appendPanelHeading(section, block);
+      grid.className = "comparison-grid";
+      block.rows.forEach(function (row) {
+        const wrap = document.createElement("div");
+        const label = document.createElement("div");
+        const state = document.createElement("article");
+        const family = document.createElement("article");
+        const stateTitle = document.createElement("h5");
+        const stateCopy = document.createElement("p");
+        const familyTitle = document.createElement("h5");
+        const familyCopy = document.createElement("p");
+        wrap.className = "comparison-row";
+        label.className = "comparison-label";
+        label.textContent = row.label;
+        state.className = "comparison-side state";
+        family.className = "comparison-side family";
+        stateTitle.textContent = "State & grand jury";
+        stateCopy.textContent = row.state;
+        familyTitle.textContent = "Family's team";
+        familyCopy.textContent = row.family;
+        state.append(stateTitle, stateCopy);
+        family.append(familyTitle, familyCopy);
+        wrap.append(label, state, family);
+        grid.appendChild(wrap);
+      });
+      section.appendChild(grid);
+      container.appendChild(section);
+    }
+
+    function renderQuotes(container, block) {
+      const section = document.createElement("section");
+      const grid = document.createElement("div");
+      section.className = "quotes-panel";
+      section.setAttribute("aria-label", block.title);
+      appendPanelHeading(section, block);
+      grid.className = "quotes-grid";
+      block.quotes.forEach(function (quote) {
+        const item = document.createElement("blockquote");
+        const cite = document.createElement("cite");
+        item.className = "quote-card";
+        item.appendChild(document.createTextNode("“" + quote.text + "”"));
+        cite.textContent = quote.cite;
+        item.appendChild(cite);
+        grid.appendChild(item);
+      });
+      section.appendChild(grid);
+      container.appendChild(section);
+    }
+
     function renderStory(container, story) {
       const blocks = story.storyFormat || [{ kind: "paragraph", text: story.story }];
       blocks.forEach(function (block) {
         let element;
+        if (block.kind === "track") {
+          renderTrack(container, block);
+          return;
+        }
+        if (block.kind === "recordPanel") {
+          renderRecordPanel(container, block);
+          return;
+        }
+        if (block.kind === "comparison") {
+          renderComparison(container, block);
+          return;
+        }
+        if (block.kind === "quotes") {
+          renderQuotes(container, block);
+          return;
+        }
         if (block.kind === "heading") {
           element = document.createElement("h4");
           element.className = "story-summary-heading";
@@ -1281,6 +1691,14 @@
       date.textContent = story.date;
       date.dateTime = story.dateTime;
       renderStory(fragment.querySelector(".story-summary-rich"), story);
+
+      if (story.disclaimer) {
+        const note = fragment.querySelector(".story-note");
+        const label = document.createElement("strong");
+        label.textContent = "Record note: ";
+        note.append(label, document.createTextNode(story.disclaimer));
+        note.hidden = false;
+      }
 
       if (story.retrievalNote) {
         const note = fragment.querySelector(".story-note");
