@@ -94,6 +94,12 @@
     .story-title { display:block; color:var(--navy); font-family:"Libre Baskerville",Georgia,serif; font-size:clamp(20px,2.8vw,28px); line-height:1.23; }
     .story-meta { display:block; margin-top:7px; color:var(--muted); font-size:12px; }
     .story-status { color:var(--success-text); background:var(--success-bg); border:1px solid var(--success-line); padding:6px 9px; font-size:10px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; white-space:nowrap; }
+    .story-teaser { display:block; max-width:760px; margin-top:8px; color:var(--muted); font-size:13px; line-height:1.55; }
+    .story-date { display:flex; align-items:center; flex-wrap:wrap; gap:8px 10px; margin-top:10px; color:var(--muted); font-size:12px; font-weight:650; }
+    .updated-badge { display:inline-flex; align-items:center; gap:6px; padding:5px 9px; color:#fff; background:var(--red); box-shadow:0 0 0 3px color-mix(in srgb,var(--red) 15%,transparent); font-size:10px; font-weight:800; letter-spacing:.08em; line-height:1.2; text-transform:uppercase; animation:update-blink 1.7s ease-in-out infinite; }
+    .updated-badge::before { content:""; width:6px; height:6px; border-radius:50%; background:currentColor; }
+    @keyframes update-blink { 0%,44%,100% { opacity:1; box-shadow:0 0 0 3px color-mix(in srgb,var(--red) 15%,transparent); } 56%,76% { opacity:.48; box-shadow:0 0 0 7px transparent; } }
+    :root[data-theme="dark"] .updated-badge { color:#240812; }
     .live-badge { display:inline-flex; align-items:center; border:1px solid var(--red); border-radius:999px; padding:5px 8px; color:var(--red-deep); background:var(--live-bg); font-size:10px; font-weight:800; letter-spacing:.08em; line-height:1; white-space:nowrap; animation:live-blink 1.25s steps(2,end) infinite; }
     .live-badge[hidden] { display:none; }
     @keyframes live-blink { 0%,44% { opacity:1; } 45%,100% { opacity:.3; } }
@@ -112,6 +118,39 @@
     .stat-list { display:grid; gap:12px; margin:0 0 1.45em; padding:0; list-style:none; }
     .stat-list li { padding:14px 16px 14px 19px; border-left:4px solid var(--blue); background:var(--paper-soft); font-family:"Public Sans",sans-serif; font-size:15px; line-height:1.65; }
     .stat-list strong { color:var(--navy); font-size:1.08em; }
+    .story-note { margin:0; padding:20px clamp(22px,5vw,56px); color:var(--ink); background:var(--paper-soft); border-bottom:1px solid var(--line); font-size:14px; line-height:1.65; }
+    .story-note strong { color:var(--red-deep); }
+    .boat-track,.record-panel,.comparison-panel,.quotes-panel { margin:1.8em 0; font-family:"Public Sans",sans-serif; }
+    .boat-track { padding:clamp(22px,4vw,34px); color:var(--ink); background:var(--paper-soft); border-top:5px solid var(--red); border-bottom:1px solid var(--line); }
+    .record-panel,.comparison-panel,.quotes-panel { padding-top:1.5em; border-top:1px solid var(--line); }
+    .boat-track h4,.record-panel h4,.comparison-panel h4,.quotes-panel h4 { margin:0; color:var(--navy); font-family:"Libre Baskerville",Georgia,serif; font-size:clamp(21px,2.6vw,28px); line-height:1.3; letter-spacing:-.02em; }
+    .track-intro,.panel-intro { margin:9px 0 22px!important; color:var(--muted); font-size:14px; line-height:1.65; }
+    .track-stops { position:relative; display:grid; gap:0; margin:0; padding:0; list-style:none; }
+    .track-stops::before { content:""; position:absolute; top:13px; bottom:18px; left:14px; width:2px; background:var(--line); }
+    .track-stops li { position:relative; display:grid; grid-template-columns:30px 102px minmax(0,1fr); gap:12px; padding:0 0 21px; }
+    .track-stops li:last-child { padding-bottom:0; }
+    .track-marker { position:relative; z-index:1; display:grid; width:30px; height:30px; place-items:center; color:#fff; background:var(--blue); border:3px solid var(--paper-soft); border-radius:50%; font-size:11px; font-weight:800; }
+    .track-time { padding-top:5px; color:var(--red-deep); font-size:12px; font-weight:800; line-height:1.35; }
+    .track-detail strong { display:block; margin-bottom:4px; color:var(--ink); font-size:14px; line-height:1.4; }
+    .track-detail span { display:block; color:var(--muted); font-size:13px; line-height:1.55; }
+    .track-source { margin:22px 0 0!important; padding-top:16px; border-top:1px solid var(--line); color:var(--muted); font-size:12px; line-height:1.6; }
+    .track-source a,.story-summary a { color:var(--blue); font-weight:700; text-underline-offset:3px; }
+    .record-grid,.comparison-grid,.quotes-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    .record-card,.comparison-side,.quote-card { padding:17px 18px; background:var(--paper-soft); border-top:3px solid var(--blue); }
+    .record-card.accent,.comparison-side.family { border-top-color:var(--red); }
+    .record-card h5,.comparison-side h5 { margin:0 0 7px; color:var(--ink); font-size:14px; line-height:1.4; }
+    .record-card p,.comparison-side p { margin:0; color:var(--muted); font-size:13px; line-height:1.6; }
+    .comparison-row { display:grid; grid-column:1/-1; grid-template-columns:110px 1fr 1fr; gap:12px; align-items:stretch; }
+    .comparison-label { padding:17px 0; color:var(--red-deep); font-size:12px; font-weight:800; line-height:1.4; text-transform:uppercase; }
+    .quote-card { margin:0; color:var(--ink); font-family:"Libre Baskerville",Georgia,serif; font-size:14px; line-height:1.65; }
+    .quote-card cite { display:block; margin-top:9px; color:var(--muted); font-family:"Public Sans",sans-serif; font-size:11px; font-style:normal; font-weight:700; line-height:1.45; }
+    .story-updates { padding:30px clamp(22px,4vw,42px) 34px; background:var(--paper-soft); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+    .story-updates > h3 { margin:0 0 20px; color:var(--ink); font-size:17px; }
+    .updates-groups { display:grid; grid-template-columns:1fr 1fr; gap:30px; }
+    .updates-group h4 { margin:0 0 10px; color:var(--red-deep); font-size:12px; font-weight:800; letter-spacing:.08em; line-height:1.35; text-transform:uppercase; }
+    .updates-list { margin:0; padding:0; list-style:none; }
+    .updates-list li { display:grid; grid-template-columns:minmax(118px,.36fr) 1fr; gap:14px; padding:12px 0; border-top:1px solid var(--line); color:var(--muted); font-size:14px; line-height:1.6; }
+    .updates-list time { color:var(--navy); font-weight:800; }
     .story-update { margin:0; padding:22px clamp(22px,4vw,42px); border-top:1px solid var(--line); background:var(--paper-soft); color:var(--muted); font-size:14px; line-height:1.65; }
     .story-update strong { color:var(--red); }
     .brief-grid { display:grid; grid-template-columns:1fr 1fr; border-top:1px solid var(--line); }
@@ -135,7 +174,7 @@
     .sources-list span { color:var(--muted); }
     .brief-actions { display:flex; align-items:center; justify-content:flex-end; padding:0 clamp(22px,4vw,42px) 34px; }
     .clubhouse-button { display:inline-flex; align-items:center; gap:10px; min-height:46px; padding:11px 16px; color:#fff; background:var(--navy-deep); border-top:4px solid var(--red); font-size:13px; font-weight:800; text-decoration:none; box-shadow:0 6px 18px rgba(16,42,76,.16); }
-    .clubhouse-button::before { content:"★"; color:var(--gold); font-size:14px; }
+    .clubhouse-button::before { content:""; display:none; }
     .clubhouse-button::after { content:"↗"; color:#fff; font-size:11px; }
     .clubhouse-button:hover { background:var(--blue); }
     .clubhouse-button:focus-visible { outline:3px solid rgba(181,31,54,.35); outline-offset:3px; }
@@ -244,6 +283,12 @@
       .story-status { display:none; }
       .brief-grid { grid-template-columns:1fr; }
       .brief-section + .brief-section { border-left:0; border-top:1px solid var(--line); }
+      .track-stops li { grid-template-columns:30px 76px minmax(0,1fr); gap:9px; }
+      .record-grid,.comparison-grid,.quotes-grid,.updates-groups { grid-template-columns:1fr; }
+      .updates-groups { gap:22px; }
+      .updates-list li { grid-template-columns:104px minmax(0,1fr); gap:12px; }
+      .comparison-row { grid-template-columns:1fr; gap:8px; }
+      .comparison-label { padding:12px 0 0; }
       .sources-list { display:grid; }
       .sources-list a,.sources-list span { width:100%; justify-content:space-between; }
       .brief-actions { justify-content:stretch; }
@@ -270,7 +315,7 @@
       footer { flex-direction:column; }
     }
     :root[data-theme="dark"] .watermark { opacity:.035; filter:saturate(.35) brightness(.7); }
-    @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } .chevron { transition:none; } .live-badge { animation:none; } }
+    @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } .chevron { transition:none; } .live-badge,.updated-badge { animation:none; } }
   </style>
 </head>
 <body>
@@ -319,42 +364,110 @@
                   <span class="live-badge" data-live-badge="nolan-wells" hidden>● LIVE</span>
                 </span>
                 <span class="story-meta">Ocean Springs, Mississippi · Cause and manner undetermined</span>
+                <span class="story-teaser">An expanded record of the July 4 boat track, competing expert interpretations, the cleared friends&#39; response, and the separate federal threat cases.</span>
+                <span class="story-date">Published September 27, 2026 · Updated September 28, 2026 <span class="updated-badge" aria-label="This article has been updated">UPDATED</span></span>
               </span>
               <span class="story-status">Research ready</span>
               <span class="chevron" aria-hidden="true">›</span>
             </button>
             <div class="story-body" id="nolan-wells-body">
+              <p class="story-note"><strong>Record note:</strong> Nolan Wells was 18. Nobody has been charged in his death. The friends named here were cleared by a Jackson County grand jury and are not accused of wrongdoing in this brief. Claims are attributed to the outlet or document they came from; where accounts conflict, both are shown. This is a record of reported facts and claims, not an opinion.</p>
               <div class="story-summary">
-                <p class="story-refreshed">Updated: September 27, 2026 · Refreshed with the weekend demonstration, the DA’s Snapchat explanation, and the debunked “final words” claim.</p>
                 <p class="story-lead"><strong>Nolan Xavier Wells, 18, disappeared during a July 4 boat trip to Horn Island; his body was found in the water two days later, and both autopsies leave his cause and manner of death undetermined.</strong></p>
-
+                <section class="boat-track" aria-label="Follow the Triton — July 4, 2026">
+                  <h4>Follow the Triton — July 4, 2026</h4>
+                  <p class="track-intro">Nine stops reconstructed from the Garmin GPSMAP track in MDMR Marine Patrol report MP2607-0016. All times are Central Time; narrative positions are approximate where the report does not give a coordinate.</p>
+                  <ol class="track-stops">
+                    <li><span class="track-marker">1</span><time class="track-time">9:56 AM</time><span class="track-detail"><strong>Leaves the dock</strong><span>The white 2000 Triton MI4088BU departs a private dock on El Camino Real Road for Horn Island with about seven people aboard.</span></span></li>
+                    <li><span class="track-marker">2</span><time class="track-time">11:14 AM</time><span class="track-detail"><strong>The west tip</strong><span>The vessel anchors at 30°14.603′N, 088°46.427′W, among a gathering of roughly 300 people; GPS shows it stationary from about 11:15 AM to 4:30 PM.</span></span></li>
+                    <li><span class="track-marker">3</span><time class="track-time">~4:00 PM</time><span class="track-detail"><strong>Bilge-pump failure</strong><span>A Sea Tow caller says the bilge pump stopped working, the boat is taking on water and everyone aboard is accounted for. The request is later canceled; Sea Tow does not respond.</span></span></li>
+                    <li><span class="track-marker">4</span><time class="track-time">4:31 PM</time><span class="track-detail"><strong>Leaves without Nolan</strong><span>The Triton heads north at 0.06–4.2 knots for about 2.75 miles. Another friend&#39;s boat reportedly tows it. Nolan is not aboard; his phone is.</span></span></li>
+                    <li><span class="track-marker">5</span><time class="track-time">5:25 PM</time><span class="track-detail"><strong>Back up to speed</strong><span>The track returns to normal operating speed, about 30–35 knots.</span></span></li>
+                    <li><span class="track-marker">6</span><time class="track-time">5:44 PM</time><span class="track-detail"><strong>Back at the dock</strong><span>The vessel arrives again at El Camino Real Road.</span></span></li>
+                    <li><span class="track-marker">7</span><time class="track-time">5:52–6:06 PM</time><span class="track-detail"><strong>Fourteen minutes into Fort Bayou</strong><span>The Triton heads east into Fort Bayou and returns. The purpose of this short trip has not been publicly explained.</span></span></li>
+                    <li><span class="track-marker">8</span><time class="track-time">6:36 PM</time><span class="track-detail"><strong>The loop</strong><span>The boat travels southwest to Saint Martin Bayou, southeast to the Biloxi Bay Bridge, then north toward Fort Bayou Boat Launch.</span></span></li>
+                    <li><span class="track-marker">9</span><time class="track-time">7:19 PM</time><span class="track-detail"><strong>Fort Bayou Boat Launch</strong><span>The vessel arrives at the launch, is trailered to Cardinal Lane by 7:47 PM and records its last GPS point at 7:59 PM. The family&#39;s phone examiner places Nolan&#39;s phone at a residence around 7:30 PM.</span></span></li>
+                  </ol>
+                  <p class="track-source">Source: <a href="https://htv-prod-media.s3.amazonaws.com/files/mdmr-nolan-wells-report-6a67e5fa09702.pdf" target="_blank" rel="noopener noreferrer">MDMR Marine Patrol report MP2607-0016</a> · The named friends were cleared by the grand jury; nobody has been charged in Wells&#39; death.</p>
+                </section>
                 <h3 class="story-summary-heading">What the record establishes</h3>
                 <p>A Jackson County grand jury unanimously returned a no true bill after hearing from 43 witnesses under 132 subpoenas. DA Angel Myers McIlrath said investigators found no credible evidence of criminal conduct and “not a scintilla of evidence” that Wells’ death was racially motivated.</p>
                 <p>The grand jury did not close the door forever. Its report says the matter should return if credible evidence later points to a non-accidental death.</p>
                 <blockquote class="pull-quote">“If credible evidence comes to light in the future that suggests Mr. Wells’ death was non-accidental, this matter should be represented to the Jackson County Grand Jury for further consideration.”</blockquote>
-
                 <h3 class="story-summary-heading">The unresolved medical gap</h3>
                 <p>The state examiner described the body as consistent with drowning, but neither the state chief medical examiner nor the family’s pathologist, Dr. Roger Mitchell Jr., certified drowning as the cause. Mitchell’s report says there was no water in Wells’ lungs, airway, or stomach and documents acute blunt-force injuries to the head and body before death.</p>
                 <p>Those injuries are real; what caused them and whether they prove foul play remain unknown. The state autopsy documented two scalp contusions, no skull fracture, and no fatal head injury.</p>
-                <blockquote class="pull-quote">“Elmore and I do not believe that Nolan simply and accidentally drowned, and nobody saw anything, and no one knows anything.” <small>— Christine Wonsley, Wells’ mother</small></blockquote>
-
-                <ul class="stat-list" aria-label="Key Nolan Wells case figures">
-                  <li><strong>23 grand jurors:</strong> 12 white, 5 Black, 2 Hispanic, 2 Native American, 1 Asian, and 1 listed as “other.”</li>
-                  <li><strong>132 subpoenas and 43 witnesses</strong> preceded the unanimous no true bill.</li>
-                  <li><strong>282 pages covering about 300 Snapchat messages</strong> were included in the phone extraction.</li>
-                </ul>
-
+                <section class="comparison-panel" aria-label="Same body. Same phone. Two readings.">
+                  <h4>Same body. Same phone. Two readings.</h4><p class="panel-intro">The state and the family&#39;s experts rely on much of the same physical and digital record but emphasize different conclusions and unanswered questions.</p>
+                  <div class="comparison-grid">
+                    <div class="comparison-row"><div class="comparison-label">Cause</div><article class="comparison-side state"><h5>State &amp; grand jury</h5><p>Cause and manner undetermined; the position, condition, timing and location were consistent with drowning as a diagnosis of exclusion.</p></article><article class="comparison-side family"><h5>Family&#39;s team</h5><p>Also undetermined; the family stresses the state report&#39;s finding of no water in the lungs, throat or stomach.</p></article></div>
+                    <div class="comparison-row"><div class="comparison-label">Head bruises</div><article class="comparison-side state"><h5>State &amp; grand jury</h5><p>Two roughly two-inch scalp contusions, no fracture and no fatal injury; the grand-jury report connected the bruising to a witnessed slip around 3:30 PM.</p></article><article class="comparison-side family"><h5>Family&#39;s team</h5><p>No white-blood-cell response indicated injury shortly before death; the family asks what caused the recent blunt-force trauma.</p></article></div>
+                    <div class="comparison-row"><div class="comparison-label">Phone</div><article class="comparison-side state"><h5>State &amp; grand jury</h5><p>The grand jury reviewed a 261-page Snapchat report and 21-page device exam. The DA says deletions were user actions by other Snapchat users, not physical access to Nolan&#39;s phone.</p></article><article class="comparison-side family"><h5>Family&#39;s team</h5><p>Andrew Garrett says the phone stayed on the boat, was last touched around 2:18 PM and contained 282 pages of recovered deleted Snapchat content; he could not say who deleted it or why.</p></article></div>
+                    <div class="comparison-row"><div class="comparison-label">Leaving</div><article class="comparison-side state"><h5>State &amp; grand jury</h5><p>The grand jury found Nolan chose to stay on the island while the phones returned on the boats.</p></article><article class="comparison-side family"><h5>Family&#39;s team</h5><p>His parents say staying behind was out of character; a reported secondhand sighting around 6 PM has not been confirmed by an official source.</p></article></div>
+                    <div class="comparison-row"><div class="comparison-label">Next step</div><article class="comparison-side state"><h5>State &amp; grand jury</h5><p>The case can return to a grand jury if credible new evidence points to a non-accidental death.</p></article><article class="comparison-side family"><h5>Family&#39;s team</h5><p>The CBC, NAACP and Ben Crump have asked DOJ and the FBI for an independent federal review; no public response has been reported.</p></article></div>
+                  </div>
+                </section>
+                <blockquote class="pull-quote">“Elmore and I do not believe that Nolan simply and accidentally drowned, and nobody saw anything, and no one knows anything.” — Christine Wonsley, Wells’ mother</blockquote>
+                <ul class="stat-list" aria-label="Key figure"><li>23 grand jurors: 12 white, 5 Black, 2 Hispanic, 2 Native American, 1 Asian, and 1 listed as “other.”</li></ul>
+                <ul class="stat-list" aria-label="Key figure"><li>132 subpoenas and 43 witnesses preceded the unanimous no true bill.</li></ul>
+                <ul class="stat-list" aria-label="Key figure"><li>282 pages covering about 300 Snapchat messages were included in the phone extraction.</li></ul>
                 <h3 class="story-summary-heading">What changed this weekend</h3>
                 <p>On September 26, hundreds gathered at Government and State streets in Ocean Springs to honor Wells and demand transparency; members of the Black Hebrew Israelite group Israel United in Christ marched through the demonstration. Ocean Springs resident Jeron Lowery, who knew and had employed Wells, remembered him as a respectful young man.</p>
                 <p>The next day, reporting carried the DA’s explanation that other users had deleted or unsent their own Snapchat messages and that the activity did not show someone accessing Wells’ phone.</p>
                 <p>A viral “restored final words” recording is not Wells speaking from his phone. It is a 37-second Sea Tow distress call about a boat taking on water off Horn Island; a forensic expert said the enhanced audio could not be verified, and an attorney called it doctored.</p>
                 <p>The Chicago Crusader’s Inner City News has grouped Wells, Tasia Fortune, and a Maryland hanging-suicide under a “Lynchings By Suicide” frame. That framing is an interpretation, not a finding in the Wells case.</p>
-
+                <section class="record-panel" aria-label="The federal threat cases — a separate track">
+                  <h4>The federal threat cases — a separate track</h4><p class="panel-intro">These cases concern alleged threats to a witness&#39;s family and a judge connected to the Wells case. They are not charges in Nolan Wells&#39; death.</p>
+                  <div class="record-grid">
+                    <article class="record-card"><h5>Edward James Porter</h5><p>Porter, 32, of Berwyn, Illinois, is accused of threatening Bart Edmiston Jr.&#39;s family. He pleaded not guilty; trial is set for October 5 in Gulfport before Judge Taylor McNeel.</p></article>
+                    <article class="record-card"><h5>Joseph Alfredo Vasquez Dumarce</h5><p>Dumarce, 27, of Sacramento, is accused of sending a Facebook bomb threat to Chancery Judge Ashlee Cole. Trial is set for November 2 in Gulfport before Judge Sul Ozerden.</p></article>
+                    <article class="record-card"><h5>Michelle Francine Edwards</h5><p>Edwards, of Cincinnati, is accused in a criminal complaint of making 21 threatening blocked-number calls to a chancery clerk&#39;s office and the Jackson County Sheriff&#39;s Office.</p></article>
+                    <article class="record-card"><h5>Brandon Ephraim Washington</h5><p>Washington, of Jacksonville, Florida, is accused of threatening Bart Edmiston Jr. and his father. A publicly confirmed trial date was not identified in the reviewed record.</p></article>
+                  </div>
+                  <ul class="stat-list" aria-label="Upcoming dates"><li>Around October 1 · Atlanta — tentative Crump news conference with Dr. Roger A. Mitchell Jr. on both autopsies.</li><li>October 5 · Gulfport — U.S. v. Edward James Porter trial.</li><li>November 2 · Gulfport — U.S. v. Joseph Alfredo Vasquez Dumarce trial.</li></ul>
+                </section>
+                <section class="record-panel" aria-label="The friends&#39; side">
+                  <h4>The friends&#39; side</h4><p class="panel-intro">The grand jury cleared the named friends. Their lawyers say public accusations damaged innocent people and are pursuing a separate defamation track.</p>
+                  <div class="record-grid">
+                    <article class="record-card accent"><h5>Cleared by the grand jury</h5><p>Warren Hudson, Jax Pitalo, Morgan Seymour and the other friends named in the public record were not charged. The unanimous no true bill said allegations against the boats&#39; occupants were not based in truth.</p></article>
+                    <article class="record-card accent"><h5>Cease-and-desist notices</h5><p>Lawyers for Hudson, Pitalo and Seymour sent Sunny Hostin and ABC&#39;s The View a cease-and-desist on September 16 demanding a retraction and apology within 10 days. An intent-to-sue letter went to Rev. Al Sharpton on August 21.</p></article>
+                    <article class="record-card accent"><h5>Defense fund</h5><p>Hudson, Pitalo and Seymour launched a GiveSendGo legal-defense fund that had passed $90,000 by August 3.</p></article>
+                    <article class="record-card accent"><h5>What is filed</h5><p>As of September 27, no reported defamation suit had been filed. The public record described notices and threatened litigation, not a judgment.</p></article>
+                  </div>
+                </section>
                 <h3 class="story-summary-heading">A separate case — do not merge them</h3>
                 <p><strong>Wells was not hanged.</strong> De’Martravion “Trey” Reed, 21, was found hanging on the Delta State campus on September 15, 2025, and that death was ruled a suicide. Reed’s death is a separate case with different facts.</p>
-                <blockquote class="pull-quote">“We will not confuse the absence of an indictment with the presence of an answer.” <small>— Rev. Al Sharpton</small></blockquote>
+                <blockquote class="pull-quote">“We will not confuse the absence of an indictment with the presence of an answer.” — Rev. Al Sharpton</blockquote>
+                <section class="quotes-panel" aria-label="Key quotes from the record">
+                  <h4>Key quotes from the record</h4><p class="panel-intro">Seventeen attributed statements from the state record, the family, investigators, advocates and the friends&#39; representatives.</p>
+                  <div class="quotes-grid">
+                    <blockquote class="quote-card">“There is absolutely no evidence to support the allegations that Nolan&#39;s disappearance and death were racially motivated. Nolan&#39;s friends loved Nolan and Nolan loved them.”<cite>Grand Jury Report · September 21</cite></blockquote>
+                    <blockquote class="quote-card">“The allegations against the occupants of the Triton, the Palm Beach, and the Tideline are not based in truth, and are solely the result of public clamor and private malice.”<cite>Grand Jury Report · September 21</cite></blockquote>
+                    <blockquote class="quote-card">“Nolan chose to stay on the island that day, and there is not a scintilla of evidence to contradict that.”<cite>Grand Jury Report · September 21</cite></blockquote>
+                    <blockquote class="quote-card">“There was bruising on the back of Mr. Wells&#39; head, which was not a fatal injury.”<cite>Grand Jury Report · September 21</cite></blockquote>
+                    <blockquote class="quote-card">“He saw Wells slip awkwardly off the side of a boat around the time of 3:30 p.m. on July 4, 2026, but could not say whether Mr. Wells struck his head during the fall.”<cite>A witness, as summarized in the Grand Jury Report</cite></blockquote>
+                    <blockquote class="quote-card">“The Crump team knew better, but did not do better.”<cite>DA Angel Myers McIlrath · September 21</cite></blockquote>
+                    <blockquote class="quote-card">“If the Crump team genuinely has new information or evidence that Nolan Wells was murdered they should stop playing games and immediately provide it to me.”<cite>DA Angel Myers McIlrath · September 24</cite></blockquote>
+                    <blockquote class="quote-card">“The user action discussed by Mr. Garrett is from other Snapchat users, not someone physically accessing Nolan Wells&#39; phone.”<cite>DA Angel Myers McIlrath · September 24</cite></blockquote>
+                    <blockquote class="quote-card">“There were things that were deleted from the phone.”<cite>Andrew Garrett, Garrett Discovery · September 24</cite></blockquote>
+                    <blockquote class="quote-card">“The grand jury left us with questions. Nolan&#39;s family deserves answers. What caused recent blunt force trauma to his head?”<cite>Ben Crump · September 22</cite></blockquote>
+                    <blockquote class="quote-card">“Last night was a reminder that our son&#39;s life does not matter to those who hold positions that are supposed to serve and protect the public.”<cite>Christine Wonsley · September 22</cite></blockquote>
+                    <blockquote class="quote-card">“There was never any evidence of a crime. Suggestions otherwise were always pure fabrications.”<cite>Bart Edmiston Jr., through attorney Russell Latino · September 22</cite></blockquote>
+                    <blockquote class="quote-card">“You should apologize immediately to completely innocent young men Warren Hudson, Jax Pitalo, and Morgan Seymour.”<cite>Edward Andrew Paltzik, attorney for the friends · September 22</cite></blockquote>
+                    <blockquote class="quote-card">“Hey we&#39;re at the west tip of Horn, and our bilge pump stopped working. We&#39;re sinking.”<cite>Sea Tow caller · around 4:00 PM, July 4</cite></blockquote>
+                    <blockquote class="quote-card">“The world is watching, and Nolan Wells&#39; family deserves a thorough accounting of what happened.”<cite>Derrick Johnson, NAACP · August 19</cite></blockquote>
+                    <blockquote class="quote-card">“If it was your child, you would want the investigation to stay open and active.”<cite>Kristen Clarke, NAACP · September 22</cite></blockquote>
+                    <blockquote class="quote-card">“No True Bill Does Not Resolve How Nolan Wells Died.”<cite>Ben Crump · September 21</cite></blockquote>
+                  </div>
+                </section>
               </div>
-
+              <section class="story-updates" aria-label="Updates">
+                <h3>Updates</h3>
+                <div class="updates-groups">
+                <section class="updates-group"><h4>Upcoming</h4><ol class="updates-list"><li><time datetime="2026-11-02">November 2, 2026</time><span>U.S. v. Joseph Alfredo Vasquez Dumarce threat-case trial is scheduled in Gulfport before Judge Sul Ozerden.</span></li><li><time datetime="2026-10-05">October 5, 2026</time><span>U.S. v. Edward James Porter threat-case trial is scheduled in Gulfport before Judge Taylor McNeel.</span></li><li><time datetime="2026-10-01">Around October 1, 2026</time><span>Tentative Atlanta news conference with Ben Crump and Dr. Roger A. Mitchell Jr. to walk through both autopsies.</span></li></ol></section>
+                <section class="updates-group"><h4>Recent</h4><ol class="updates-list"><li><time datetime="2026-09-28">September 28, 2026</time><span>This brief expanded with the nine-stop MDMR boat track, state-versus-family expert comparison, federal threat-case calendar, the cleared friends&#39; response, and the full attributed quote record.</span></li><li><time datetime="2026-09-16">September 16, 2026</time><span>Lawyers for Warren Hudson, Jax Pitalo and Morgan Seymour sent cease-and-desist notices to Sunny Hostin and ABC&#39;s The View, demanding a retraction and apology within 10 days.</span></li></ol></section>
+                </div>
+              </section>
               <div class="brief-grid">
                 <section class="brief-section">
                   <h3>Verified facts</h3>
@@ -367,51 +480,58 @@
                     <li>The Congressional Black Caucus requested an independent federal review on August 12. Crump renewed that request September 22 and 24; no DOJ response has been reported.</li>
                     <li>Hundreds demonstrated in Ocean Springs on September 26. Members of the Black Hebrew Israelite group Israel United in Christ marched, and resident Jeron Lowery — who knew and had employed Wells — remembered him as a respectful young man.</li>
                     <li>The viral “final words” tape is the Sea Tow distress call, not an audio recording from Wells’ phone.</li>
+                    <li>Four people — Edward James Porter, Joseph Alfredo Vasquez Dumarce, Michelle Francine Edwards, and Brandon Ephraim Washington — face allegations tied to threats against a witness&#39;s family, a judge, or public offices. Those are separate cases; none is charged in Wells&#39; death.</li>
+                    <li>The named friends were cleared by the grand jury. Their lawyers sent defamation notices to Sunny Hostin and ABC&#39;s The View on September 16 and to Rev. Al Sharpton on August 21; a GiveSendGo defense fund had raised more than $90,000 by August 3.</li>
                   </ul>
                 </section>
                 <section class="brief-section">
                   <h3>Timeline</h3>
                   <ol class="timeline">
-                    <li><time datetime="2026-07-04">July 4, 2026</time>Wells travels with a large group by boat to Horn Island; last seen around 3 p.m.; a boat reportedly takes on water.</li>
-                    <li><time datetime="2026-07-06">July 6</time>A park ranger finds Wells’ body in the water off Horn Island’s northwest shore.</li>
-                    <li><time datetime="2026-07-07">July 7</time>State autopsy records bruising on the back of the head and calls it “not a fatal injury.”</li>
-                    <li><time datetime="2026-07-16">July 16</time>GoFundMe reaches $320,000; Tyler Perry pays for the funeral; Colin Kaepernick funds the independent autopsy.</li>
-                    <li><time datetime="2026-07-20">July 20</time>Funeral held in Ocean Springs; Rev. Al Sharpton officiates.</li>
-                    <li><time datetime="2026-08-12">August 12</time>Congressional Black Caucus letter seeks an independent federal review.</li>
-                    <li><time datetime="2026-09-21">September 21–22</time>Grand jury unanimously returns a no true bill; McIlrath releases a video statement.</li>
-                    <li><time datetime="2026-09-22">September 22</time>Family and Crump push back; Crump renews the DOJ request; NAACP’s Kristen Clarke asks for the full file.</li>
-                    <li><time datetime="2026-09-24">September 24</time>Crump releases the full independent autopsy details and the 282-page Snapchat count.</li>
-                    <li><time datetime="2026-09-26">September 26 · New</time>Hundreds demonstrate in Ocean Springs; Israel United in Christ members march.</li>
-                    <li><time datetime="2026-09-27">September 27 · New</time>The DA’s Snapchat explanation is reported; Inner City News publishes its grouping.</li>
-                    <li><time>Upcoming</time>Crump’s team promises complete phone-app analysis “in the days ahead”; DOJ has not responded.</li>
+                    <li><time>July 4, 2026</time>Wells travels with a large group by boat to Horn Island; last seen around 3 p.m.; a boat reportedly takes on water.</li>
+                    <li><time>July 6</time>A park ranger finds Wells’ body in the water off Horn Island’s northwest shore.</li>
+                    <li><time>July 7</time>State autopsy records bruising on the back of the head and calls it “not a fatal injury.”</li>
+                    <li><time>July 16</time>GoFundMe reaches $320,000; Tyler Perry pays for the funeral; Colin Kaepernick funds the independent autopsy.</li>
+                    <li><time>July 20</time>Funeral held in Ocean Springs; Rev. Al Sharpton officiates.</li>
+                    <li><time>August 12</time>Congressional Black Caucus letter seeks an independent federal review.</li>
+                    <li><time>September 21–22</time>Grand jury unanimously returns a no true bill; McIlrath releases a video statement.</li>
+                    <li><time>September 22</time>Family and Crump push back; Crump renews the DOJ request; NAACP’s Kristen Clarke asks for the full file.</li>
+                    <li><time>September 24</time>Crump releases the full independent autopsy details and the 282-page Snapchat count.</li>
+                    <li><time>September 26 · New</time>Hundreds demonstrate in Ocean Springs; Israel United in Christ members march.</li>
+                    <li><time>September 27</time>The DA’s Snapchat explanation is reported; Inner City News publishes its grouping.</li>
+                    <li><time>~October 1</time>Tentative Atlanta news conference: Crump and Dr. Roger A. Mitchell Jr. plan to walk through both autopsies.</li>
+                    <li><time>October 5</time>U.S. v. Edward James Porter threat-case trial is scheduled in Gulfport before Judge Taylor McNeel.</li>
+                    <li><time>November 2</time>U.S. v. Joseph Alfredo Vasquez Dumarce threat-case trial is scheduled in Gulfport before Judge Sul Ozerden.</li>
+                    <li><time>Open</time>DOJ has not publicly answered the requests for an independent federal review of Wells&#39; death.</li>
                   </ol>
                 </section>
               </div>
-
-              <p class="caveat"><strong>Verified:</strong> the disappearance and recovery dates; the unanimous no true bill; the 132 subpoenas and 43 witnesses; both autopsies’ undetermined findings; the documented scalp contusions; Mitchell’s blunt-force findings; the phone-page count; the DA’s deletion explanation; the re-presentation clause; the September 26 demonstration; and the debunked tape. <strong>Disputed or unresolved:</strong> whether the injuries prove foul play, whether deleted messages conceal wrongdoing, whether race affected the death or its handling, and whether the file is effectively closed.</p>
-
+              <p class="caveat"><strong>Verified:</strong> The disappearance and recovery dates; the unanimous no true bill; the 132 subpoenas and 43 witnesses; both autopsies’ undetermined findings; the documented scalp contusions; Mitchell’s blunt-force findings; the phone-page count; the DA’s deletion explanation; the re-presentation clause; the September 26 demonstration; and the debunked tape. <strong>Disputed or unresolved:</strong> Whether the injuries prove foul play, whether deleted messages conceal wrongdoing, whether race affected the death or its handling, and whether the file is effectively closed.</p>
               <section class="sources-block">
-                <h3>Source record</h3>
-                <ul class="sources-list" aria-label="Sources named in the approved research brief">
-                  <li><span>Reuters</span></li>
-                  <li><span>Mississippi Free Press</span></li>
-                  <li><span>The Bull Post</span></li>
-                  <li><span>Christian Post</span></li>
-                  <li><span>The Shade Room</span></li>
-                  <li><span>Parade</span></li>
-                  <li><span>BR Weekly Press</span></li>
-                  <li><span>The Emancipator</span></li>
-                  <li><span>The Source</span></li>
-                  <li><span>Black Star News</span></li>
-                  <li><span>NewsOnMedia</span></li>
-                  <li><span>newstoter24-7</span></li>
-                  <li><span>YouTube · Sea Tow call</span></li>
-                  <li><span>zHipHop Cleveland</span></li>
-                  <li><span>USA Herald</span></li>
+                <h3>Source links</h3>
+                <ul class="sources-list">
+                  <li><a href="https://htv-prod-media.s3.amazonaws.com/files/mdmr-nolan-wells-report-6a67e5fa09702.pdf" target="_blank" rel="noopener noreferrer">MDMR Marine Patrol report MP2607-0016</a></li>
+                  <li><a href="https://overstimulated.live/marathon/docket/nolan" target="_blank" rel="noopener noreferrer">Overstimulated Live · full story breakdown</a></li>
+                  <li><a href="https://www.reuters.com/legal/government/grand-jury-declines-indict-anyone-death-black-teen-nolan-wells-mississippi-2026-09-22/" target="_blank" rel="noopener noreferrer">Reuters</a></li>
+                  <li><a href="https://www.mississippifreepress.org/crump-releases-full-independent-autopsy-of-nolan-wells-says-questions-of-wells-death-remain/" target="_blank" rel="noopener noreferrer">Mississippi Free Press</a></li>
+                  <li><a href="https://www.christianpost.com/news/insufficient-evidence-of-crime-found-in-death-of-nolan-wells.html" target="_blank" rel="noopener noreferrer">Christian Post</a></li>
+                  <li><a href="https://theshaderoom.com/nolan-wells-death-grand-update-insufficient-friends-boat-mom-christine-wonsley/amp/" target="_blank" rel="noopener noreferrer">The Shade Room · grand jury</a></li>
+                  <li><a href="https://theshaderoom.com/ben-crump-nolan-wells-friends-lawsuit-deleted-messages-autopsy-results-shade-room/" target="_blank" rel="noopener noreferrer">The Shade Room · autopsy and phone</a></li>
+                  <li><a href="https://parade.com/news/nolan-wells-family-releases-autopsy-report-highlighting-unanswered-questions-and-head-trauma" target="_blank" rel="noopener noreferrer">Parade</a></li>
+                  <li><a href="https://www.brweeklypress.com/no-charges-in-nolan-wells-death-but-key-questions-remain/" target="_blank" rel="noopener noreferrer">BR Weekly Press</a></li>
+                  <li><a href="https://theemancipator.org/2026/09/22/news/nolan-wells-legal-team-skeptical-about-a-mississippi-grand-jury-finding-no-evidence-of-racial-or-criminal-wrongdoing-in-his-death/" target="_blank" rel="noopener noreferrer">The Emancipator</a></li>
+                  <li><a href="https://thesource.com/2026/09/27/nolan-wells-protesters-demand-answers-while-official-autopsy-showed-no-water-in-lungs/" target="_blank" rel="noopener noreferrer">The Source</a></li>
+                  <li><a href="https://blackstarnews.com/sharpton-on-mississippi-grand-jurys-decision-to-charge-no-one-in-nolan-wells-death-we-strongly-disagree-with-conclusion-that-there-was-no-criminal-wrongdoing/" target="_blank" rel="noopener noreferrer">Black Star News · Sharpton</a></li>
+                  <li><a href="https://blackstarnews.com/congressional-black-caucus-to-attorney-general-todd-blanche-and-fbi-director-kash-patel-launch-federal-review-into-nolan-wells-death/" target="_blank" rel="noopener noreferrer">Black Star News · federal review</a></li>
+                  <li><a href="https://newsonmedia.com/hundreds-gather-in-mississippi-to-honor-nolan-wells-demand-transparency-as-investigation-continues/" target="_blank" rel="noopener noreferrer">NewsOnMedia</a></li>
+                  <li><a href="https://newstoter24-7.com/demonstration-for-nolan-wells-unites-the-ocean-springs-community" target="_blank" rel="noopener noreferrer">newstoter24-7</a></li>
+                  <li><a href="https://gray-wlbt-prod.gtv-cdn.com/2026/07/26/mdmr-releases-call-audio-boat-nolan-wells-case/" target="_blank" rel="noopener noreferrer">WLOX · Sea Tow call</a></li>
+                  <li><a href="https://theinnercitynews.com/rulings-leave-questions-lingering-in-nolan-wells-case/" target="_blank" rel="noopener noreferrer">Inner City News</a></li>
+                  <li><a href="https://zhiphopcleveland.com/6510723/grand-jury-declines-charges-in-nolan-wells-death-after-july-4-party/" target="_blank" rel="noopener noreferrer">Z 107.9 Cleveland</a></li>
+                  <li><a href="https://usaherald.com/nolan-wells-no-indictments-cause-of-death-undetermined/" target="_blank" rel="noopener noreferrer">USA Herald</a></li>
                 </ul>
               </section>
               <div class="brief-actions">
-                <a class="clubhouse-button" href="https://www.clubhouse.com/house/president-trump-crvth0bjblsu?chs=y3eIerRALr%3AgoLibaop8mvl5wtuSFC9F4BRrVY9r5FOU4Ig6HNHVaw&amp;utm_medium=ch_general_house" target="_blank" rel="noopener noreferrer">Trump House on Clubhouse</a>
+                <a class="clubhouse-button" href="https://trump.house/nolan-wells" target="_blank" rel="noopener noreferrer">Read Article</a>
               </div>
             </div>
           </article>
@@ -488,7 +608,7 @@
                 </ul>
               </section>
               <div class="brief-actions">
-                <a class="clubhouse-button" href="https://www.clubhouse.com/house/president-trump-crvth0bjblsu?chs=y3eIerRALr%3AgoLibaop8mvl5wtuSFC9F4BRrVY9r5FOU4Ig6HNHVaw&amp;utm_medium=ch_general_house" target="_blank" rel="noopener noreferrer">Trump House on Clubhouse</a>
+                <a class="clubhouse-button" href="https://trump.house/tasia-fortune-case" target="_blank" rel="noopener noreferrer">Read Article</a>
               </div>
             </div>
           </article>
@@ -606,7 +726,7 @@
       </div>
     </section>
 
-    <footer><strong>Prepared from the source record available September 27, 2026.</strong><span>Open a linked source where available for the underlying reporting and documents.</span></footer>
+    <footer><strong>Prepared from the source record available September 28, 2026.</strong><span>Open a linked source where available for the underlying reporting and documents.</span></footer>
   </main>
 
   <script>
