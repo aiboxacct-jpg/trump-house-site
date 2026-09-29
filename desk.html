@@ -316,7 +316,7 @@
               <span>
                 <span class="story-title-row">
                   <span class="story-title">Nolan Wells</span>
-                  <span class="live-badge" data-live-badge="nolan-wells">● LIVE</span>
+                  <span class="live-badge" data-live-badge="nolan-wells" hidden>● LIVE</span>
                 </span>
                 <span class="story-meta">Ocean Springs, Mississippi · Cause and manner undetermined</span>
               </span>
@@ -540,11 +540,11 @@
       <div class="host-content" id="host-content">
         <header class="host-head"><div><p class="kicker">Host briefing room</p><h2>Talking points</h2><p>2 prepared segments · not shown in the public brief view</p></div><button class="lock-button" id="lock-button">Lock desk</button></header>
         <section class="live-manager" aria-labelledby="live-manager-title">
-          <div class="live-manager-head"><h3 id="live-manager-title">Topic on air</h3><p>The newest brief is marked LIVE automatically.</p></div>
+          <div class="live-manager-head"><h3 id="live-manager-title">Topic on air</h3><p>The LIVE badge stays hidden until it is turned on.</p></div>
           <div class="live-topic-buttons" aria-label="Current live story brief">
-            <button class="live-topic-button" id="live-auto-topic" type="button" aria-pressed="true" disabled>01 · Nolan Wells</button>
+            <button class="live-topic-button" id="live-auto-topic" type="button" aria-pressed="false" disabled>01 · Nolan Wells</button>
           </div>
-          <p class="live-manager-status" id="live-manager-status" role="status" aria-live="polite">Nolan Wells is now marked LIVE.</p>
+          <p class="live-manager-status" id="live-manager-status" role="status" aria-live="polite">No topic is marked LIVE.</p>
         </section>
 
         <section class="research-helper" aria-labelledby="research-helper-title">
@@ -903,7 +903,7 @@
         }
       }
 
-      syncLiveBadgeToNewestBrief();
+      /* LIVE stays off until the host explicitly asks for it to be turned on. */
 
       function showView(view) {
         var showHost = view === 'host';

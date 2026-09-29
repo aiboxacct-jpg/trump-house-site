@@ -783,17 +783,49 @@
       font-weight: 700;
       line-height: 1.45;
     }
-    .story-update {
-      margin: 0;
-      padding: 20px clamp(20px, 4vw, 38px);
-      color: var(--muted);
+    .story-updates {
+      padding: 30px clamp(20px, 4vw, 38px) 34px;
       background: var(--paper-soft);
       border-bottom: 1px solid var(--line);
-      font-size: 14px;
-      line-height: 1.65;
     }
-    .story-update strong { color: var(--red); }
-    .story-update a { color: var(--blue); font-weight: 700; text-underline-offset: 3px; }
+    .story-updates > h3 {
+      margin: 0 0 20px;
+      color: var(--ink);
+      font-size: 17px;
+    }
+    .updates-groups {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+    }
+    .updates-group h4 {
+      margin: 0 0 10px;
+      color: var(--red-deep);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      line-height: 1.35;
+      text-transform: uppercase;
+    }
+    .updates-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .updates-list li {
+      display: grid;
+      grid-template-columns: minmax(118px, .36fr) 1fr;
+      gap: 14px;
+      padding: 12px 0;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    .updates-list time {
+      color: var(--navy);
+      font-weight: 700;
+    }
     .brief-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -957,7 +989,9 @@
       .brief-section + .brief-section { border-left: 0; border-top: 1px solid var(--line); }
       .timeline-list li { grid-template-columns: 82px 1fr; gap: 12px; }
       .track-stops li { grid-template-columns: 30px 76px minmax(0, 1fr); gap: 9px; }
-      .record-grid, .comparison-grid, .quotes-grid { grid-template-columns: 1fr; }
+      .record-grid, .comparison-grid, .quotes-grid, .updates-groups { grid-template-columns: 1fr; }
+      .updates-groups { gap: 22px; }
+      .updates-list li { grid-template-columns: 104px minmax(0, 1fr); gap: 12px; }
       .comparison-row { grid-template-columns: 1fr; gap: 8px; }
       .comparison-label { padding: 12px 0 0; }
       .source-list { display: grid; }
@@ -1058,7 +1092,10 @@
             <h3>The story</h3>
             <div class="story-summary-rich"></div>
           </section>
-          <p class="story-update" hidden></p>
+          <section class="story-updates" aria-label="Updates" hidden>
+            <h3>Updates</h3>
+            <div class="updates-groups"></div>
+          </section>
           <div class="brief-grid">
             <section class="brief-section" aria-label="Verified facts">
               <h3>Verified facts</h3>
@@ -1250,11 +1287,23 @@
             ]
           }
         ],
-        update: {
-          text: "September 28, 2026 — expanded with the nine-stop MDMR boat track, state-versus-family expert comparison, federal threat-case calendar, the cleared friends' response, and the full attributed quote record.",
-          label: "Story breakdown",
-          url: "https://overstimulated.live/marathon/docket/nolan"
-        },
+        updates: [
+          {
+            label: "Upcoming",
+            items: [
+              { date: "November 2, 2026", dateTime: "2026-11-02", text: "U.S. v. Joseph Alfredo Vasquez Dumarce threat-case trial is scheduled in Gulfport before Judge Sul Ozerden." },
+              { date: "October 5, 2026", dateTime: "2026-10-05", text: "U.S. v. Edward James Porter threat-case trial is scheduled in Gulfport before Judge Taylor McNeel." },
+              { date: "Around October 1, 2026", dateTime: "2026-10-01", text: "Tentative Atlanta news conference with Ben Crump and Dr. Roger A. Mitchell Jr. to walk through both autopsies." }
+            ]
+          },
+          {
+            label: "Recent",
+            items: [
+              { date: "September 28, 2026", dateTime: "2026-09-28", text: "This brief expanded with the nine-stop MDMR boat track, state-versus-family expert comparison, federal threat-case calendar, the cleared friends' response, and the full attributed quote record." },
+              { date: "September 16, 2026", dateTime: "2026-09-16", text: "Lawyers for Warren Hudson, Jax Pitalo and Morgan Seymour sent cease-and-desist notices to Sunny Hostin and ABC's The View, demanding a retraction and apology within 10 days." }
+            ]
+          }
+        ],
         facts: [
           "Wells, an Ocean Springs resident and freshman wide receiver at Southwest Mississippi Community College, went to Horn Island with a large group on July 4 and was last seen around 3 p.m. His body was found off the island’s northwest shore on July 6.",
           "Both autopsies list cause and manner as undetermined. The state autopsy records two dark red-purple scalp contusions of roughly two inches, no water in the airways, and no skull fractures.",
@@ -1377,12 +1426,8 @@
       }
     ];
 
-    // Keep exactly one LIVE badge on the newest dated brief. If dates tie, the later item wins.
-    const newestStory = storyPackages.reduce(function (latest, story) {
-      if (!latest) return story;
-      return (story.dateTime || "") >= (latest.dateTime || "") ? story : latest;
-    }, null);
-    const liveStoryId = newestStory ? newestStory.id : null;
+    // LIVE stays off until the host turns it on for an active room.
+    const liveStoryId = null;
 
     const storyList = document.getElementById("story-list");
     const storyTemplate = document.getElementById("story-template");
@@ -1708,17 +1753,30 @@
         note.hidden = false;
       }
 
-      if (story.update) {
-        const update = fragment.querySelector(".story-update");
-        const label = document.createElement("strong");
-        const link = document.createElement("a");
-        label.textContent = "Updated: ";
-        link.href = story.update.url;
-        link.target = "_blank";
-        link.rel = "noopener noreferrer";
-        link.textContent = story.update.label;
-        update.append(label, document.createTextNode(story.update.text + " "), link);
-        update.hidden = false;
+      if (story.updates && story.updates.length) {
+        const updates = fragment.querySelector(".story-updates");
+        const groups = fragment.querySelector(".updates-groups");
+        story.updates.forEach(function (updateGroup) {
+          const section = document.createElement("section");
+          const heading = document.createElement("h4");
+          const list = document.createElement("ol");
+          section.className = "updates-group";
+          heading.textContent = updateGroup.label;
+          list.className = "updates-list";
+          updateGroup.items.forEach(function (updateItem) {
+            const item = document.createElement("li");
+            const time = document.createElement("time");
+            const detail = document.createElement("span");
+            time.dateTime = updateItem.dateTime;
+            time.textContent = updateItem.date;
+            detail.textContent = updateItem.text;
+            item.append(time, detail);
+            list.appendChild(item);
+          });
+          section.append(heading, list);
+          groups.appendChild(section);
+        });
+        updates.hidden = false;
       }
 
       addTextItems(fragment.querySelector(".facts-list"), story.facts);
