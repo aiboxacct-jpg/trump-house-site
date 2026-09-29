@@ -32,6 +32,8 @@
       --line: #d7dee7;
       --card: rgba(255,255,255,.88);
       --shadow: 0 18px 50px rgba(16,42,76,.13);
+      --update-badge-bg: #b31f35;
+      --update-badge-ink: #ffffff;
     }
     @media (prefers-color-scheme: dark) {
       :root {
@@ -46,6 +48,8 @@
         --line: #2a3b50;
         --card: rgba(14,25,39,.9);
         --shadow: 0 18px 50px rgba(0,0,0,.28);
+        --update-badge-bg: #f07484;
+        --update-badge-ink: #240812;
       }
     }
     :root[data-theme="light"] {
@@ -61,6 +65,8 @@
       --line: #d7dee7;
       --card: rgba(255,255,255,.88);
       --shadow: 0 18px 50px rgba(16,42,76,.13);
+      --update-badge-bg: #b31f35;
+      --update-badge-ink: #ffffff;
     }
     :root[data-theme="dark"] {
       color-scheme: dark;
@@ -75,6 +81,8 @@
       --line: #2a3b50;
       --card: rgba(14,25,39,.9);
       --shadow: 0 18px 50px rgba(0,0,0,.28);
+      --update-badge-bg: #f07484;
+      --update-badge-ink: #240812;
     }
 
     * { box-sizing: border-box; }
@@ -460,11 +468,40 @@
       line-height: 1.6;
     }
     .story-date {
-      display: block;
-      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px 10px;
+      margin-top: 12px;
       color: var(--muted);
       font-size: 12px;
       font-weight: 600;
+    }
+    .updated-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 9px;
+      color: var(--update-badge-ink);
+      background: var(--update-badge-bg);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--red) 15%, transparent);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      line-height: 1.2;
+      text-transform: uppercase;
+      animation: update-blink 1.7s ease-in-out infinite;
+    }
+    .updated-badge::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      background: currentColor;
+      border-radius: 50%;
+    }
+    @keyframes update-blink {
+      0%, 44%, 100% { opacity: 1; box-shadow: 0 0 0 3px color-mix(in srgb, var(--red) 15%, transparent); }
+      56%, 76% { opacity: .48; box-shadow: 0 0 0 7px transparent; }
     }
     .story-chevron {
       color: var(--red);
@@ -1007,7 +1044,7 @@
     @media (prefers-reduced-motion: reduce) {
       .theme-toggle { transition: none; }
       *, *::before, *::after { scroll-behavior: auto !important; }
-      .live-badge { animation: none; }
+      .live-badge, .updated-badge { animation: none; }
     }
   </style>
   <script>
@@ -1073,7 +1110,7 @@
               </span>
               <strong class="story-title"></strong>
               <span class="story-summary"></span>
-              <time class="story-date"></time>
+              <span class="story-date"></span>
             </span>
             <span class="story-chevron" aria-hidden="true">›</span>
           </button>
@@ -1736,8 +1773,15 @@
       articleLink.href = "https://trump.house/" + story.id;
       articleLink.setAttribute("aria-label", "Read full article: " + story.title);
       fragment.querySelector(".story-summary").textContent = story.summary;
-      date.textContent = story.date;
-      date.dateTime = story.dateTime;
+      const dateParts = story.date.split(" · Updated ");
+      date.textContent = dateParts[0];
+      if (dateParts[1]) {
+        const updatedBadge = document.createElement("span");
+        updatedBadge.className = "updated-badge";
+        updatedBadge.textContent = "Updated " + dateParts[1];
+        updatedBadge.setAttribute("aria-label", "Article updated " + dateParts[1]);
+        date.appendChild(updatedBadge);
+      }
       renderStory(fragment.querySelector(".story-summary-rich"), story);
 
       if (story.disclaimer) {
