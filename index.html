@@ -1085,6 +1085,71 @@
       line-height: 1.2;
     }
 
+    .learning {
+      padding: clamp(46px, 7vw, 82px) 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .learning .section-heading {
+      grid-template-columns: 1fr;
+      margin-bottom: 24px;
+    }
+    .learning-card {
+      position: relative;
+      padding: clamp(28px, 5vw, 44px);
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-top: 5px solid var(--red);
+      box-shadow: 0 9px 30px rgba(16,42,76,.08);
+    }
+    .learning-card::before {
+      content: "";
+      position: absolute;
+      top: -5px;
+      right: 0;
+      width: 34%;
+      height: 5px;
+      background: var(--blue);
+    }
+    .learning-card h3 {
+      margin: 0 0 12px;
+      color: var(--navy);
+      font-family: "Libre Baskerville", Georgia, serif;
+      font-size: clamp(24px, 3vw, 34px);
+      line-height: 1.25;
+      letter-spacing: -.025em;
+    }
+    .learning-card p {
+      max-width: 830px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+    .learning-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 24px;
+      padding: 14px 18px;
+      color: var(--paper);
+      background: var(--navy);
+      border-bottom: 4px solid var(--red);
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.3;
+      text-decoration: none;
+    }
+    .learning-link::after {
+      content: "↗";
+      font-size: 14px;
+    }
+    .learning-link:hover,
+    .learning-link:focus-visible { background: var(--blue); }
+    .learning-link:focus-visible {
+      outline: 3px solid color-mix(in srgb, var(--blue) 35%, transparent);
+      outline-offset: 3px;
+    }
+
     .features {
       display: grid;
       grid-template-columns: 1.2fr 1fr 1fr;
@@ -1316,6 +1381,17 @@
         </div>
       </article>
     </template>
+
+    <section class="learning" aria-labelledby="learning-title">
+      <div class="section-heading">
+        <h2 id="learning-title">Learning</h2>
+      </div>
+      <article class="learning-card">
+        <h3>WallBuilders</h3>
+        <p>David Barton's organization presenting America's forgotten history and heroes, with an emphasis on the moral, religious, and constitutional foundation on which America was built.</p>
+        <a class="learning-link" href="https://wallbuilders.com" target="_blank" rel="noopener">Visit WallBuilders</a>
+      </article>
+    </section>
 
     <section class="features" aria-labelledby="expect-title">
       <div class="intro">
