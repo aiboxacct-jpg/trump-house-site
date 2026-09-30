@@ -329,6 +329,75 @@
       font-weight: 700;
       line-height: 1.4;
     }
+    .latest-news {
+      padding: 16px 18px 15px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--red);
+      box-shadow: 0 9px 30px rgba(16,42,76,.08);
+    }
+    .latest-news[hidden] { display: none; }
+    .latest-news-kicker {
+      margin: 0 0 6px;
+      color: var(--red-deep);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .11em;
+      text-transform: uppercase;
+    }
+    .latest-news-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .latest-news-item {
+      position: relative;
+      padding: 10px 0 11px 16px;
+      border-bottom: 1px solid var(--line);
+    }
+    .latest-news-item:last-child {
+      padding-bottom: 2px;
+      border-bottom: 0;
+    }
+    .latest-news-item::before {
+      content: "•";
+      position: absolute;
+      top: 8px;
+      left: 0;
+      color: var(--red);
+      font-size: 17px;
+      line-height: 1;
+    }
+    .latest-news-headline {
+      display: block;
+      max-width: 100%;
+      overflow: hidden;
+      color: var(--blue);
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.4;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .latest-news-headline:hover,
+    .latest-news-headline:focus-visible { color: var(--red-deep); }
+    .latest-news-headline:focus-visible {
+      outline: 2px solid color-mix(in srgb, var(--blue) 38%, transparent);
+      outline-offset: 3px;
+    }
+    .latest-news-summary {
+      margin: 5px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.55;
+    }
+    .latest-news-source {
+      font-size: 11px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
 
     .story-queue {
       padding: clamp(46px, 7vw, 82px) 0;
@@ -1384,6 +1453,10 @@
           <p>Do You Believe in the Theory of Evolution? is the newest public brief, published September 30: the scientific consensus, America's divided answers, and the classroom fight returning to legislatures and federal court.</p>
           <div class="divider" aria-hidden="true"><span></span><span></span><span></span></div>
         </aside>
+        <section class="latest-news" id="latest-news" aria-labelledby="latest-news-title" hidden>
+          <h2 class="latest-news-kicker" id="latest-news-title">Latest News</h2>
+          <ul class="latest-news-list" id="latest-news-list"></ul>
+        </section>
       </div>
     </section>
 
@@ -1517,6 +1590,41 @@
       if (!themeWasManuallyChanged) applyTheme(event.matches ? "dark" : "light");
     });
 
+    const latestNews = [
+      {
+        headline: "Candace Owens denies viral X claim alleging secret lesbian dating profiles",
+        summary: "An X user's Sept 28 thread alleged Owens ran lesbian dating profiles in 2007–08 and cheated on her husband in 2022, drawing 18M+ views. Owens denied it as 'the most deranged' of the made-up claims; none of the allegations are independently verified.",
+        url: "https://balleralert.com/candace-owens-denies-lesbian-dating-profile-claims/",
+        source: "Baller Alert"
+      }
+    ];
+
+    const latestNewsSection = document.getElementById("latest-news");
+    const latestNewsList = document.getElementById("latest-news-list");
+
+    latestNews.forEach(function (newsItem) {
+      const item = document.createElement("li");
+      const headline = document.createElement("a");
+      const summary = document.createElement("p");
+      const source = document.createElement("small");
+      item.className = "latest-news-item";
+      headline.className = "latest-news-headline";
+      headline.href = newsItem.url;
+      headline.target = "_blank";
+      headline.rel = "noopener noreferrer";
+      headline.title = newsItem.headline;
+      headline.textContent = newsItem.headline;
+      summary.className = "latest-news-summary";
+      summary.appendChild(document.createTextNode(newsItem.summary + " "));
+      source.className = "latest-news-source";
+      source.textContent = "— " + newsItem.source;
+      summary.appendChild(source);
+      item.append(headline, summary);
+      latestNewsList.appendChild(item);
+    });
+
+    latestNewsSection.hidden = latestNews.length === 0;
+
     // Public story packages: facts and chronology only, with direct source links.
     const storyPackages = [
       {
@@ -1545,10 +1653,10 @@
           { kind: "heading", text: "Accuracy note" },
           { kind: "paragraph", text: "The most recent Gallup figures above are cited via an Answers in Genesis summary (Sept 2026); polling on evolution is sensitive to question wording." },
           { kind: "heading", text: "Why the classroom keeps becoming the battleground" },
-          { kind: "paragraph", text: "For more than a century, the central legal question has shifted. The Scopes era criminalized teaching evolution. Later cases struck down bans and “balanced treatment” mandates. In 2005, Kitzmiller v. Dover found that intelligent design was a religious view, not science, and could not be presented as a scientific alternative in a public-school biology class." },
+          { kind: "paragraph", text: "For more than a century, the central legal question has shifted. The Scopes era criminalized teaching evolution. Later cases struck down bans and “balanced treatment” mandates. In 2005, Kitzmiller v. Dover found that intelligent design was a religious view, not science, and could not be presented as a scientific alternative in a public-school biology class.", links: [{ text: "Kitzmiller v. Dover", url: "https://en.wikipedia.org/wiki/Dover_v._Kitzmiller" }] },
           { kind: "quote", text: "The recurring argument is not whether schools teach biology, but whether law can require a religious alternative to be taught as science." },
           { kind: "heading", text: "The fight returns in 2026" },
-          { kind: "paragraph", text: "Oklahoma SB 1868 was filed in January, and similar measures surfaced in Colorado, Missouri, and Montana. In September, a federal courtroom in Atlanta again took up Cobb County's evolution disclaimer stickers — another dispute over whether singling out evolution for special skepticism crosses a constitutional line." },
+          { kind: "paragraph", text: "Oklahoma SB 1868 was filed in January, and similar measures surfaced in Colorado, Missouri, and Montana. In September, a federal courtroom in Atlanta again took up Cobb County's evolution disclaimer stickers — another dispute over whether singling out evolution for special skepticism crosses a constitutional line.", links: [{ text: "Oklahoma SB 1868", url: "https://www.oklegislature.gov/cf_pdf/2025-26%20int/sb/SB1868%20int.pdf" }, { text: "Colorado, Missouri, and Montana", url: "https://www.prosocial.world/posts/four-us-states-considering-laws-that-challenge-teaching-of-evolution" }, { text: "Cobb County's evolution disclaimer stickers", url: "https://www.law.com/article/almID/900005541157/" }] },
           {
             kind: "videos",
             title: "Videos",
@@ -1563,14 +1671,14 @@
         ],
         facts: [],
         timeline: [
-          { date: "1859", detail: "Charles Darwin publishes On the Origin of Species." },
-          { date: "1925", detail: "Scopes trial, Dayton, Tennessee: teaching evolution itself is the crime." },
-          { date: "1968", detail: "Epperson v. Arkansas: the Supreme Court voids bans on teaching evolution." },
-          { date: "1987", detail: "Edwards v. Aguillard: the Supreme Court kills “balanced treatment.”" },
-          { date: "2005", detail: "Kitzmiller v. Dover: intelligent design is ruled creationism in a lab coat, not science — “breathtaking inanity,” from a Republican churchgoing judge." },
+          { date: "1859", detail: "Charles Darwin publishes On the Origin of Species.", links: [{ text: "On the Origin of Species", url: "https://en.wikipedia.org/wiki/On_the_Origin_of_Species" }] },
+          { date: "1925", detail: "Scopes trial, Dayton, Tennessee: teaching evolution itself is the crime.", links: [{ text: "Scopes trial", url: "https://en.wikipedia.org/wiki/Scopes_trial" }] },
+          { date: "1968", detail: "Epperson v. Arkansas: the Supreme Court voids bans on teaching evolution.", links: [{ text: "Epperson v. Arkansas", url: "https://en.wikipedia.org/wiki/Epperson_v._Arkansas" }] },
+          { date: "1987", detail: "Edwards v. Aguillard: the Supreme Court kills “balanced treatment.”", links: [{ text: "Edwards v. Aguillard", url: "https://en.wikipedia.org/wiki/Edwards_v._Aguillard" }] },
+          { date: "2005", detail: "Kitzmiller v. Dover: intelligent design is ruled creationism in a lab coat, not science — “breathtaking inanity,” from a Republican churchgoing judge.", links: [{ text: "Kitzmiller v. Dover", url: "https://en.wikipedia.org/wiki/Dover_v._Kitzmiller" }] },
           { date: "2014", detail: "Bill Nye and Ken Ham debate at the Creation Museum; roughly 3 million people watch live." },
-          { date: "Jan 2026", detail: "Oklahoma SB 1868 is filed; similar bills surface in Colorado, Missouri, and Montana." },
-          { date: "Sept 2026", detail: "The Cobb County disclaimer-sticker case returns to federal court in Atlanta." }
+          { date: "Jan 2026", detail: "Oklahoma SB 1868 is filed; similar bills surface in Colorado, Missouri, and Montana.", links: [{ text: "Oklahoma SB 1868", url: "https://www.oklegislature.gov/cf_pdf/2025-26%20int/sb/SB1868%20int.pdf" }] },
+          { date: "Sept 2026", detail: "The Cobb County disclaimer-sticker case returns to federal court in Atlanta.", links: [{ text: "Cobb County disclaimer-sticker case", url: "https://www.law.com/article/almID/900005541157/" }] }
         ],
         sources: [
           { label: "Pew Research Center", url: "https://www.pewresearch.org/internet/2015/01/29/public-and-scientists-express-strikingly-different-views-about-science-related-issues/" },
@@ -1579,6 +1687,7 @@
           { label: "Wikipedia — Kitzmiller v. Dover", url: "https://en.wikipedia.org/wiki/Dover_v._Kitzmiller" },
           { label: "Freethinker", url: "https://freethinker.co.uk/2026/09/over-20-years-since-kitzmiller-v-dover-the-war-against-intelligent-design-goes-on/" },
           { label: "Oklahoma Senate", url: "https://oksenate.gov/press-releases/bullard-bill-pushes-back-evolution-only-school-curriculum" },
+          { label: "Oklahoma SB 1868 — bill text (as introduced)", url: "https://www.oklegislature.gov/cf_pdf/2025-26%20int/sb/SB1868%20int.pdf" },
           { label: "The Guardian via prosocial.world", url: "https://www.prosocial.world/posts/four-us-states-considering-laws-that-challenge-teaching-of-evolution" },
           { label: "Law.com", url: "https://www.law.com/article/almID/900005541157/" },
           { label: "KNKX/NPR — Bill Nye vs. Ken Ham debate", url: "https://www.knkx.org/2014-02-04/watch-the-creationism-vs-evolution-debate-bill-nye-and-ken-ham" },
@@ -2522,7 +2631,24 @@
         const time = document.createElement("time");
         const detail = document.createElement("span");
         time.textContent = event.date;
-        detail.textContent = event.detail;
+        if (event.links) {
+          let cursor = 0;
+          event.links.forEach(function (inlineLink) {
+            const start = event.detail.indexOf(inlineLink.text, cursor);
+            if (start === -1) return;
+            detail.appendChild(document.createTextNode(event.detail.slice(cursor, start)));
+            const link = document.createElement("a");
+            link.href = inlineLink.url;
+            link.target = "_blank";
+            link.rel = "noopener noreferrer";
+            link.textContent = inlineLink.text;
+            detail.appendChild(link);
+            cursor = start + inlineLink.text.length;
+          });
+          detail.appendChild(document.createTextNode(event.detail.slice(cursor)));
+        } else {
+          detail.textContent = event.detail;
+        }
         li.append(time, detail);
         timeline.appendChild(li);
       });
