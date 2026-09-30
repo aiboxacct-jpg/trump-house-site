@@ -593,6 +593,46 @@
       color: var(--ink);
       font-size: 17px;
     }
+    .story-document-link {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+      max-width: 100%;
+      margin: 0 0 26px;
+      padding: 15px 18px 14px;
+      color: #ffffff;
+      background: var(--navy);
+      border-bottom: 4px solid var(--red);
+      text-decoration: none;
+      transition: background-color .2s ease;
+    }
+    .story-document-link strong {
+      font-size: 15px;
+      line-height: 1.35;
+    }
+    .story-document-link strong::after {
+      content: " ↗";
+      font-size: 12px;
+    }
+    .story-document-link small {
+      color: rgba(255,255,255,.78);
+      font-size: 11px;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+    .story-document-link:hover,
+    .story-document-link:focus-visible { background: var(--blue); }
+    .story-document-link:focus-visible {
+      outline: 3px solid color-mix(in srgb, var(--blue) 35%, transparent);
+      outline-offset: 3px;
+    }
+    :root[data-theme="dark"] .story-document-link {
+      color: #08111d;
+    }
+    :root[data-theme="dark"] .story-document-link small {
+      color: rgba(8,17,29,.72);
+    }
     .story-summary-rich {
       max-width: 900px;
       color: var(--muted);
@@ -1025,6 +1065,25 @@
     }
     .source-list a::after { content: "↗"; font-size: 11px; }
     .source-list span { color: var(--muted); }
+    .source-list .source-primary {
+      flex: 1 0 100%;
+    }
+    .source-list .source-primary a {
+      color: var(--ink);
+      background: color-mix(in srgb, var(--blue) 9%, var(--paper));
+      border-color: color-mix(in srgb, var(--blue) 48%, var(--line));
+      border-left: 4px solid var(--red);
+    }
+    .source-list .source-primary a::before {
+      content: "PRIMARY SOURCE";
+      flex: 0 0 auto;
+      padding: 3px 6px;
+      color: var(--update-badge-ink);
+      background: var(--update-badge-bg);
+      font-size: 9px;
+      letter-spacing: .08em;
+      line-height: 1.2;
+    }
 
     .features {
       display: grid;
@@ -1319,6 +1378,11 @@
         story: "On September 29, 2026, Iran's Islamic Revolutionary Guard Corps — a US-designated terrorist organization — published a 25-page open letter addressed to \"the honorable people of the United States,\" urging Americans to reject President Trump and Republicans in the November 3 midterm elections.",
         showUpdates: true,
         updatesPlaceholder: "No updates yet — check back for developments.",
+        fullDocument: {
+          label: "Read the full 25-page letter",
+          attribution: "Full text via Tasnim News Agency (English)",
+          url: "https://www.tasnimnews.ir/en/news/2026/09/29/3709444/irgc-urges-american-people-to-distance-themselves-from-israel-s-occupation"
+        },
         storyFormat: [
           { kind: "lead", text: "On September 29, 2026, Iran's Islamic Revolutionary Guard Corps — a US-designated terrorist organization — published a 25-page open letter addressed to \"the honorable people of the United States,\" urging Americans to reject President Trump and Republicans in the November 3 midterm elections." },
           { kind: "heading", text: "What the letter says" },
@@ -1369,6 +1433,7 @@
           { date: "Nov 3", detail: "Midterms: El-Sayed faces Rogers, with House and Senate control on the line." }
         ],
         sources: [
+          { label: "Full text: IRGC open letter to the American people (Tasnim News Agency)", url: "https://www.tasnimnews.ir/en/news/2026/09/29/3709444/irgc-urges-american-people-to-distance-themselves-from-israel-s-occupation", primary: true },
           { label: "NY Post", url: "https://nypost.com/2026/09/29/world-news/iran-publishes-propaganda-letter-urging-us-voters-to-punish-trump-in-midterm-elections/" },
           { label: "Newsmax", url: "https://www.newsmax.com/politics/Irans-Revolutionary-Guard-Urges-US-Voters-to-Take-Back-Control-From-Trump/2026/09/29/id/1271146" },
           { label: "Jonathan Turley on X", url: "https://x.com/JonathanTurley/status/2105228542305083571" },
@@ -2074,6 +2139,20 @@
       }
       renderStory(fragment.querySelector(".story-summary-rich"), story);
 
+      if (story.fullDocument) {
+        const documentLink = document.createElement("a");
+        const documentLabel = document.createElement("strong");
+        const documentAttribution = document.createElement("small");
+        documentLink.className = "story-document-link";
+        documentLink.href = story.fullDocument.url;
+        documentLink.target = "_blank";
+        documentLink.rel = "noopener";
+        documentLabel.textContent = story.fullDocument.label;
+        documentAttribution.textContent = story.fullDocument.attribution;
+        documentLink.append(documentLabel, documentAttribution);
+        fragment.querySelector(".story-summary-rich").before(documentLink);
+      }
+
       if (story.disclaimer) {
         const note = fragment.querySelector(".story-note");
         const label = document.createElement("strong");
@@ -2181,12 +2260,14 @@
       const sources = fragment.querySelector(".source-list");
       story.sources.forEach(function (source) {
         const li = document.createElement("li");
+        if (source.primary) li.className = "source-primary";
         if (source.url) {
           const link = document.createElement("a");
           link.href = source.url;
           link.target = "_blank";
           link.rel = "noopener noreferrer";
           link.textContent = source.label;
+          if (source.primary) link.setAttribute("aria-label", "Primary source: " + source.label);
           li.appendChild(link);
         } else {
           const note = document.createElement("span");
