@@ -418,7 +418,7 @@
     .latest-news-source {
       font-size: 11px;
       font-weight: 700;
-      white-space: nowrap;
+      white-space: normal;
     }
     .latest-news-sources {
       margin: 6px 0 0;
@@ -696,6 +696,7 @@
       padding: clamp(32px, 5vw, 50px) clamp(20px, 4vw, 38px);
       border-bottom: 1px solid var(--line);
     }
+    .story-copy p { overflow-wrap: break-word; }
     .story-copy > h3,
     .brief-section h3 {
       margin: 0 0 16px;
@@ -1429,8 +1430,10 @@
       .story-card-action { justify-content: stretch; padding: 0 18px 21px; }
       .channel-links .clubhouse-link, .story-clubhouse-link { justify-content: space-between; width: 100%; }
       .brief-section + .brief-section { border-left: 0; border-top: 1px solid var(--line); }
-      .timeline-list li { grid-template-columns: 82px 1fr; gap: 12px; }
-      .track-stops li { grid-template-columns: 30px 76px minmax(0, 1fr); gap: 9px; }
+      .timeline-list li { grid-template-columns: 92px minmax(0, 1fr); gap: 12px; }
+      .timeline-list time { font-size: 11px; }
+      .track-stops li { grid-template-columns: 30px 84px minmax(0, 1fr); gap: 9px; }
+      .track-time { font-size: 11px; }
       .record-grid, .comparison-grid, .quotes-grid, .updates-groups, .story-video-grid { grid-template-columns: 1fr; }
       .story-video.featured { grid-column: auto; }
       .updates-groups { gap: 22px; }
