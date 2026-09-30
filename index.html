@@ -398,6 +398,24 @@
       font-weight: 700;
       white-space: nowrap;
     }
+    .latest-news-sources {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.5;
+    }
+    .latest-news-sources strong { font-weight: 700; }
+    .latest-news-sources a {
+      color: inherit;
+      font-weight: 600;
+      text-underline-offset: 2px;
+    }
+    .latest-news-sources a:hover,
+    .latest-news-sources a:focus-visible { color: var(--red-deep); }
+    .latest-news-sources a:focus-visible {
+      outline: 2px solid color-mix(in srgb, var(--blue) 38%, transparent);
+      outline-offset: 2px;
+    }
 
     .story-queue {
       padding: clamp(46px, 7vw, 82px) 0;
@@ -1371,7 +1389,8 @@
       .page { width: min(100% - 40px, 620px); padding-top: 88px; }
       .theme-toggle {
         top: max(16px, env(safe-area-inset-top));
-        right: max(18px, calc(env(safe-area-inset-right) + 12px));
+        right: auto;
+        left: min(calc(100vw - 64px), 326px);
       }
       .eagle { object-position: 35% center; opacity: .05; }
       .mast { grid-template-columns: 1fr; gap: 38px; min-height: auto; }
@@ -1595,7 +1614,12 @@
         headline: "Candace Owens denies viral X claim alleging secret lesbian dating profiles",
         summary: "An X user's Sept 28 thread alleged Owens ran lesbian dating profiles in 2007–08 and cheated on her husband in 2022, drawing 18M+ views. Owens denied it as 'the most deranged' of the made-up claims; none of the allegations are independently verified.",
         url: "https://balleralert.com/candace-owens-denies-lesbian-dating-profile-claims/",
-        source: "Baller Alert"
+        source: "Baller Alert",
+        sources: [
+          { label: "Baller Alert", url: "https://balleralert.com/candace-owens-denies-lesbian-dating-profile-claims/" },
+          { label: "X/@EsoShaggy", url: "https://x.com/EsoShaggy/status/2104587899375161840" },
+          { label: "Headline USA", url: "https://headlineusa.com/candace-owens-faces-explosive-new-allegations-about-sex-life/" }
+        ]
       }
     ];
 
@@ -1620,6 +1644,27 @@
       source.textContent = "— " + newsItem.source;
       summary.appendChild(source);
       item.append(headline, summary);
+
+      if (Array.isArray(newsItem.sources) && newsItem.sources.length > 0) {
+        const sourcesLine = document.createElement("p");
+        const sourcesLabel = document.createElement("strong");
+        sourcesLine.className = "latest-news-sources";
+        sourcesLabel.textContent = "Sources: ";
+        sourcesLine.appendChild(sourcesLabel);
+
+        newsItem.sources.forEach(function (newsSource, index) {
+          if (index > 0) sourcesLine.appendChild(document.createTextNode(" · "));
+          const sourceLink = document.createElement("a");
+          sourceLink.href = newsSource.url;
+          sourceLink.target = "_blank";
+          sourceLink.rel = "noopener noreferrer";
+          sourceLink.textContent = newsSource.label;
+          sourcesLine.appendChild(sourceLink);
+        });
+
+        item.appendChild(sourcesLine);
+      }
+
       latestNewsList.appendChild(item);
     });
 
