@@ -1084,6 +1084,80 @@
       letter-spacing: .08em;
       line-height: 1.2;
     }
+    .brief-grid.timeline-only { grid-template-columns: 1fr; }
+    .brief-grid.timeline-only .brief-section + .brief-section { border-left: 0; }
+    .story-videos {
+      margin-top: 2.25em;
+      padding-top: 1.5em;
+      border-top: 1px solid var(--line);
+      font-family: "Public Sans", sans-serif;
+    }
+    .story-videos > h4 {
+      margin: 0 0 9px;
+      color: var(--navy);
+      font-family: "Libre Baskerville", Georgia, serif;
+      font-size: clamp(23px, 3vw, 32px);
+      line-height: 1.25;
+    }
+    .story-videos-intro {
+      margin: 0 0 22px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+    .story-video-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+    .story-video {
+      overflow: hidden;
+      margin: 0;
+      background: var(--paper-soft);
+      border: 1px solid var(--line);
+    }
+    .story-video.featured {
+      grid-column: 1 / -1;
+      border-top: 5px solid var(--red);
+      box-shadow: 0 10px 28px rgba(16,42,76,.1);
+    }
+    .story-video-frame {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #000;
+    }
+    .story-video-frame iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+    .story-video figcaption { padding: 15px 16px 17px; }
+    .story-video-title {
+      display: block;
+      color: var(--ink);
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.45;
+    }
+    .story-video.featured .story-video-title {
+      color: var(--navy);
+      font-family: "Libre Baskerville", Georgia, serif;
+      font-size: clamp(18px, 2.2vw, 24px);
+    }
+    .story-video-source {
+      display: inline-block;
+      margin-top: 8px;
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.5;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+    }
+    .story-video-source::after { content: " ↗"; }
 
     .learning {
       padding: clamp(46px, 7vw, 82px) 0;
@@ -1247,7 +1321,8 @@
       .brief-section + .brief-section { border-left: 0; border-top: 1px solid var(--line); }
       .timeline-list li { grid-template-columns: 82px 1fr; gap: 12px; }
       .track-stops li { grid-template-columns: 30px 76px minmax(0, 1fr); gap: 9px; }
-      .record-grid, .comparison-grid, .quotes-grid, .updates-groups { grid-template-columns: 1fr; }
+      .record-grid, .comparison-grid, .quotes-grid, .updates-groups, .story-video-grid { grid-template-columns: 1fr; }
+      .story-video.featured { grid-column: auto; }
       .updates-groups { gap: 22px; }
       .updates-list li { grid-template-columns: 104px minmax(0, 1fr); gap: 12px; }
       .comparison-row { grid-template-columns: 1fr; gap: 8px; }
@@ -1305,8 +1380,8 @@
         </figure>
         <aside class="status-card" aria-label="Room status">
           <div class="status-label">Current status</div>
-          <h2>Three briefs in the queue</h2>
-          <p>IRGC to America: Vote Trump Out is the newest public brief, published September 30: Tehran urges Americans to reject Trump and the GOP in the November 3 midterms.</p>
+          <h2>Four briefs in the queue</h2>
+          <p>Do You Believe in the Theory of Evolution? is the newest public brief, published September 30: the scientific consensus, America's divided answers, and the classroom fight returning to legislatures and federal court.</p>
           <div class="divider" aria-hidden="true"><span></span><span></span><span></span></div>
         </aside>
       </div>
@@ -1444,6 +1519,74 @@
 
     // Public story packages: facts and chronology only, with direct source links.
     const storyPackages = [
+      {
+        id: "evolution-debate",
+        kicker: "Science · Faith · The classroom",
+        title: "Do You Believe in the Theory of Evolution?",
+        summary: "98% of scientists vs. ~1 in 3 Americans — and four states plus a federal courtroom are relitigating what kids learn",
+        date: "Published September 30, 2026",
+        dateTime: "2026-09-30",
+        story: "Scientific consensus on evolution is overwhelming. Public belief is far more divided, and the century-old fight over what belongs in science classrooms is active again in state legislatures and federal court.",
+        showUpdates: true,
+        updatesPlaceholder: "No updates yet — check back for developments.",
+        hideFacts: true,
+        storyFormat: [
+          { kind: "lead", text: "Scientific consensus on evolution is overwhelming. Public belief is far more divided, and the century-old fight over what belongs in science classrooms is active again in state legislatures and federal court." },
+          { kind: "heading", text: "The scientific consensus" },
+          { kind: "paragraph", text: "Among scientists, evolution is foundational biology rather than a live scientific controversy. Pew Research Center found near-unanimity among members of the American Association for the Advancement of Science, even as the broader public remained sharply split." },
+          { kind: "stat", text: "98% of AAAS scientists say life evolved." },
+          { kind: "quote", text: "The divide is not merely between science and faith; it is also about what Americans mean when they hear the word evolution." },
+          { kind: "heading", text: "What Americans say" },
+          { kind: "paragraph", text: "Americans do not divide into only two camps. Some reject human evolution, some accept it as guided by God, and some accept it without a divine role. The answer changes substantially with the wording of the question." },
+          { kind: "stat", text: "37% of Americans say God created humans in their present form within the last 10,000 years." },
+          { kind: "stat", text: "34% say humans evolved, with God guiding the process." },
+          { kind: "stat", text: "22% said humans evolved with no divine part in Gallup's 2019 poll — a record high." },
+          { kind: "stat", text: "Only 39% said they “believe in the theory of evolution” in 2009." },
+          { kind: "heading", text: "Accuracy note" },
+          { kind: "paragraph", text: "The most recent Gallup figures above are cited via an Answers in Genesis summary (Sept 2026); polling on evolution is sensitive to question wording." },
+          { kind: "heading", text: "Why the classroom keeps becoming the battleground" },
+          { kind: "paragraph", text: "For more than a century, the central legal question has shifted. The Scopes era criminalized teaching evolution. Later cases struck down bans and “balanced treatment” mandates. In 2005, Kitzmiller v. Dover found that intelligent design was a religious view, not science, and could not be presented as a scientific alternative in a public-school biology class." },
+          { kind: "quote", text: "The recurring argument is not whether schools teach biology, but whether law can require a religious alternative to be taught as science." },
+          { kind: "heading", text: "The fight returns in 2026" },
+          { kind: "paragraph", text: "Oklahoma SB 1868 was filed in January, and similar measures surfaced in Colorado, Missouri, and Montana. In September, a federal courtroom in Atlanta again took up Cobb County's evolution disclaimer stickers — another dispute over whether singling out evolution for special skepticism crosses a constitutional line." },
+          {
+            kind: "videos",
+            title: "Videos",
+            intro: "The landmark public debate, the Scopes trial, and the Dover intelligent-design case in full context.",
+            items: [
+              { title: "Bill Nye vs. Ken Ham — full 2014 debate", id: "z6kgvhG3AkI", featured: true, sourceLabel: "KNKX/NPR", sourceUrl: "https://www.knkx.org/2014-02-04/watch-the-creationism-vs-evolution-debate-bill-nye-and-ken-ham" },
+              { title: "This Man Was Tried in Tennessee for Teaching Evolution", id: "uWMkJ8IOHBU", sourceLabel: "YouTube", sourceUrl: "https://www.youtube.com/watch?v=uWMkJ8IOHBU" },
+              { title: "NOVA — Judgment Day: Intelligent Design on Trial", id: "8wOKuFu217E", sourceLabel: "YouTube", sourceUrl: "https://www.youtube.com/watch?v=8wOKuFu217E" },
+              { title: "Ken Ham's opening argument", id: "ASgkmqFPwyo", sourceLabel: "YouTube", sourceUrl: "https://www.youtube.com/watch?v=ASgkmqFPwyo" }
+            ]
+          }
+        ],
+        facts: [],
+        timeline: [
+          { date: "1859", detail: "Charles Darwin publishes On the Origin of Species." },
+          { date: "1925", detail: "Scopes trial, Dayton, Tennessee: teaching evolution itself is the crime." },
+          { date: "1968", detail: "Epperson v. Arkansas: the Supreme Court voids bans on teaching evolution." },
+          { date: "1987", detail: "Edwards v. Aguillard: the Supreme Court kills “balanced treatment.”" },
+          { date: "2005", detail: "Kitzmiller v. Dover: intelligent design is ruled creationism in a lab coat, not science — “breathtaking inanity,” from a Republican churchgoing judge." },
+          { date: "2014", detail: "Bill Nye and Ken Ham debate at the Creation Museum; roughly 3 million people watch live." },
+          { date: "Jan 2026", detail: "Oklahoma SB 1868 is filed; similar bills surface in Colorado, Missouri, and Montana." },
+          { date: "Sept 2026", detail: "The Cobb County disclaimer-sticker case returns to federal court in Atlanta." }
+        ],
+        sources: [
+          { label: "Pew Research Center", url: "https://www.pewresearch.org/internet/2015/01/29/public-and-scientists-express-strikingly-different-views-about-science-related-issues/" },
+          { label: "Answers in Genesis / Ken Ham", url: "https://answersingenesis.org/blogs/ken-ham/2026/09/16/37-percent-say-god-created-humans-present-form/" },
+          { label: "Gallup", url: "https://news.gallup.com/poll/114544/darwin-birthday-believeevolution.aspx" },
+          { label: "Wikipedia — Kitzmiller v. Dover", url: "https://en.wikipedia.org/wiki/Dover_v._Kitzmiller" },
+          { label: "Freethinker", url: "https://freethinker.co.uk/2026/09/over-20-years-since-kitzmiller-v-dover-the-war-against-intelligent-design-goes-on/" },
+          { label: "Oklahoma Senate", url: "https://oksenate.gov/press-releases/bullard-bill-pushes-back-evolution-only-school-curriculum" },
+          { label: "The Guardian via prosocial.world", url: "https://www.prosocial.world/posts/four-us-states-considering-laws-that-challenge-teaching-of-evolution" },
+          { label: "Law.com", url: "https://www.law.com/article/almID/900005541157/" },
+          { label: "KNKX/NPR — Bill Nye vs. Ken Ham debate", url: "https://www.knkx.org/2014-02-04/watch-the-creationism-vs-evolution-debate-bill-nye-and-ken-ham" },
+          { label: "YouTube — This Man Was Tried in Tennessee for Teaching Evolution", url: "https://www.youtube.com/watch?v=uWMkJ8IOHBU" },
+          { label: "YouTube — NOVA: Judgment Day", url: "https://www.youtube.com/watch?v=8wOKuFu217E" },
+          { label: "YouTube — Ken Ham opening argument", url: "https://www.youtube.com/watch?v=ASgkmqFPwyo" }
+        ]
+      },
       {
         id: "irgc-midterms-letter",
         kicker: "Tehran, Iran · Foreign election interference",
@@ -1855,7 +1998,7 @@
     ];
 
     // LIVE stays off until the host turns it on for an active room.
-    const liveStoryId = null;
+    const liveStoryId = "evolution-debate";
 
     const storyList = document.getElementById("story-list");
     const storyTemplate = document.getElementById("story-template");
@@ -2093,6 +2236,48 @@
       container.appendChild(section);
     }
 
+    function renderVideos(container, block) {
+      const section = document.createElement("section");
+      const heading = document.createElement("h4");
+      const intro = document.createElement("p");
+      const grid = document.createElement("div");
+      section.className = "story-videos";
+      section.setAttribute("aria-label", block.title);
+      heading.textContent = block.title;
+      intro.className = "story-videos-intro";
+      intro.textContent = block.intro;
+      grid.className = "story-video-grid";
+      block.items.forEach(function (video) {
+        const figure = document.createElement("figure");
+        const frame = document.createElement("div");
+        const iframe = document.createElement("iframe");
+        const caption = document.createElement("figcaption");
+        const title = document.createElement("strong");
+        const source = document.createElement("a");
+        figure.className = "story-video" + (video.featured ? " featured" : "");
+        frame.className = "story-video-frame";
+        iframe.src = "https://www.youtube.com/embed/" + encodeURIComponent(video.id);
+        iframe.title = video.title;
+        iframe.loading = "lazy";
+        iframe.referrerPolicy = "strict-origin-when-cross-origin";
+        iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+        iframe.setAttribute("allowfullscreen", "");
+        title.className = "story-video-title";
+        title.textContent = video.title;
+        source.className = "story-video-source";
+        source.href = video.sourceUrl;
+        source.target = "_blank";
+        source.rel = "noopener noreferrer";
+        source.textContent = video.sourceLabel;
+        frame.appendChild(iframe);
+        caption.append(title, source);
+        figure.append(frame, caption);
+        grid.appendChild(figure);
+      });
+      section.append(heading, intro, grid);
+      container.appendChild(section);
+    }
+
     function renderStory(container, story) {
       const blocks = story.storyFormat || [{ kind: "paragraph", text: story.story }];
       blocks.forEach(function (block) {
@@ -2111,6 +2296,10 @@
         }
         if (block.kind === "quotes") {
           renderQuotes(container, block);
+          return;
+        }
+        if (block.kind === "videos") {
+          renderVideos(container, block);
           return;
         }
         if (block.kind === "heading") {
@@ -2315,7 +2504,12 @@
         article.insertBefore(updates, article.querySelector(".story-card-action"));
       }
 
-      addTextItems(fragment.querySelector(".facts-list"), story.facts);
+      addTextItems(fragment.querySelector(".facts-list"), story.facts || []);
+      if (story.hideFacts) {
+        const briefGrid = fragment.querySelector(".brief-grid");
+        briefGrid.classList.add("timeline-only");
+        briefGrid.querySelector('[aria-label="Verified facts"]').hidden = true;
+      }
       if (story.verifiedClaims && story.disputedClaims) {
         const claimsGrid = fragment.querySelector(".claims-grid");
         addTextItems(fragment.querySelector(".verified-list"), story.verifiedClaims);

@@ -172,6 +172,21 @@
     .updates-list time { color:var(--navy); font-weight:800; }
     .story-update { margin:0; padding:22px clamp(22px,4vw,42px); border-top:1px solid var(--line); background:var(--paper-soft); color:var(--muted); font-size:14px; line-height:1.65; }
     .story-update strong { color:var(--red); }
+    .story-videos { margin:2.25em 0 0; padding-top:1.5em; border-top:1px solid var(--line); font-family:"Public Sans",sans-serif; }
+    .story-videos > h4 { margin:0 0 9px; color:var(--navy); font-family:"Libre Baskerville",Georgia,serif; font-size:clamp(23px,3vw,32px); line-height:1.25; }
+    .story-videos-intro { margin:0 0 22px!important; color:var(--muted); font-size:14px; line-height:1.65; }
+    .story-video-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; }
+    .story-video { overflow:hidden; margin:0; background:var(--paper-soft); border:1px solid var(--line); }
+    .story-video.featured { grid-column:1/-1; border-top:5px solid var(--red); box-shadow:0 10px 28px rgba(16,42,76,.1); }
+    .story-video-frame { position:relative; width:100%; aspect-ratio:16/9; background:#000; }
+    .story-video-frame iframe { position:absolute; inset:0; width:100%; height:100%; border:0; }
+    .story-video figcaption { padding:15px 16px 17px; }
+    .story-video-title { display:block; color:var(--ink); font-size:14px; font-weight:700; line-height:1.45; }
+    .story-video.featured .story-video-title { color:var(--navy); font-family:"Libre Baskerville",Georgia,serif; font-size:clamp(18px,2.2vw,24px); }
+    .story-video-source { display:inline-block; margin-top:8px; color:var(--blue); font-size:12px; font-weight:700; line-height:1.5; text-decoration-thickness:1px; text-underline-offset:3px; }
+    .story-video-source::after { content:" ↗"; }
+    .brief-grid.timeline-only { grid-template-columns:1fr; }
+    .brief-grid.timeline-only .brief-section + .brief-section { border-left:0; }
     .brief-grid { display:grid; grid-template-columns:1fr 1fr; border-top:1px solid var(--line); }
     .brief-section { padding:32px clamp(22px,4vw,42px); }
     .brief-section + .brief-section { border-left:1px solid var(--line); }
@@ -307,7 +322,8 @@
       .brief-grid { grid-template-columns:1fr; }
       .brief-section + .brief-section { border-left:0; border-top:1px solid var(--line); }
       .track-stops li { grid-template-columns:30px 76px minmax(0,1fr); gap:9px; }
-      .record-grid,.comparison-grid,.quotes-grid,.updates-groups { grid-template-columns:1fr; }
+      .record-grid,.comparison-grid,.quotes-grid,.updates-groups,.story-video-grid { grid-template-columns:1fr; }
+      .story-video.featured { grid-column:auto; }
       .updates-groups { gap:22px; }
       .updates-list li { grid-template-columns:104px minmax(0,1fr); gap:12px; }
       .primary-document { align-items:stretch; flex-direction:column; gap:10px; }
@@ -369,7 +385,7 @@
         </div>
         <aside class="rundown-card" aria-label="Rundown status">
           <span>Briefing status</span>
-          <strong>3 ready</strong>
+          <strong>4 ready</strong>
           <p>The newest research-ready story leads the queue.</p>
         </aside>
       </header>
@@ -381,9 +397,119 @@
         </div>
 
         <div class="story-list">
-          <article class="story" data-open="true" data-story-id="irgc-midterms-letter">
-            <button class="story-trigger" type="button" aria-expanded="true" aria-controls="irgc-midterms-letter-body">
+          <article class="story" data-open="true" data-story-id="evolution-debate">
+            <button class="story-trigger" type="button" aria-expanded="true" aria-controls="evolution-debate-body">
               <span class="story-number">01</span>
+              <span>
+                <span class="story-title-row">
+                  <span class="story-title">Do You Believe in the Theory of Evolution?</span>
+                  <span class="live-badge" data-live-badge="evolution-debate">● LIVE</span>
+                </span>
+                <span class="story-meta">Science · Faith · The classroom</span>
+                <span class="story-teaser">98% of scientists vs. ~1 in 3 Americans — and four states plus a federal courtroom are relitigating what kids learn.</span>
+                <span class="story-date">Published September 30, 2026</span>
+              </span>
+              <span class="story-status">Research ready</span>
+              <span class="chevron" aria-hidden="true">›</span>
+            </button>
+            <div class="story-body" id="evolution-debate-body">
+              <section class="story-updates" aria-label="Updates">
+                <h3>Updates</h3>
+                <p class="updates-empty">No updates yet — check back for developments.</p>
+              </section>
+
+              <div class="story-summary">
+                <p class="story-lead"><strong>Scientific consensus on evolution is overwhelming. Public belief is far more divided, and the century-old fight over what belongs in science classrooms is active again in state legislatures and federal court.</strong></p>
+
+                <h3 class="story-summary-heading">The scientific consensus</h3>
+                <p>Among scientists, evolution is foundational biology rather than a live scientific controversy. Pew Research Center found near-unanimity among members of the American Association for the Advancement of Science, even as the broader public remained sharply split.</p>
+                <ul class="stat-list" aria-label="Scientific consensus statistic">
+                  <li><strong>98% of AAAS scientists</strong> say humans and other living things have evolved over time.</li>
+                </ul>
+                <blockquote class="pull-quote">The divide is not merely between science and faith; it is also about what Americans mean when they hear the word evolution.</blockquote>
+
+                <h3 class="story-summary-heading">What Americans say</h3>
+                <p>Americans do not divide into only two camps. Some reject human evolution, some accept it as guided by God, and some accept it without a divine role. The answer changes substantially with the wording of the question.</p>
+                <ul class="stat-list" aria-label="American views on evolution">
+                  <li><strong>37% of Americans</strong> say God created humans in their present form within the last 10,000 years.</li>
+                  <li><strong>34%</strong> say humans evolved, with God guiding the process.</li>
+                  <li><strong>22%</strong> said humans evolved with no divine part in Gallup&#39;s 2019 poll — a record high.</li>
+                  <li><strong>Only 39%</strong> said they “believe in the theory of evolution” in 2009.</li>
+                </ul>
+
+                <h3 class="story-summary-heading">Accuracy note</h3>
+                <p>The most recent Gallup figures above are cited via an Answers in Genesis summary (September 2026); polling on evolution is sensitive to question wording.</p>
+
+                <h3 class="story-summary-heading">Why the classroom keeps becoming the battleground</h3>
+                <p>For more than a century, the central legal question has shifted. The Scopes era criminalized teaching evolution. Later cases struck down bans and “balanced treatment” mandates. In 2005, <em>Kitzmiller v. Dover</em> found that intelligent design was a religious view, not science, and could not be presented as a scientific alternative in a public-school biology class.</p>
+                <blockquote class="pull-quote">The recurring argument is not whether schools teach biology, but whether law can require a religious alternative to be taught as science.</blockquote>
+
+                <h3 class="story-summary-heading">The fight returns in 2026</h3>
+                <p>Oklahoma SB 1868 was filed in January, and similar measures surfaced in Colorado, Missouri, and Montana. In September, a federal courtroom in Atlanta again took up Cobb County&#39;s evolution disclaimer stickers — another dispute over whether singling out evolution for special skepticism crosses a constitutional line.</p>
+
+                <section class="story-videos" aria-labelledby="evolution-videos-title">
+                  <h4 id="evolution-videos-title">Videos</h4>
+                  <p class="story-videos-intro">The landmark public debate, the Scopes trial, and the Dover intelligent-design case in full context.</p>
+                  <div class="story-video-grid">
+                    <figure class="story-video featured">
+                      <div class="story-video-frame"><iframe src="https://www.youtube.com/embed/z6kgvhG3AkI" title="Bill Nye vs. Ken Ham — full 2014 debate" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
+                      <figcaption><span class="story-video-title">Bill Nye vs. Ken Ham — full 2014 debate</span><a class="story-video-source" href="https://www.knkx.org/2014-02-04/watch-the-creationism-vs-evolution-debate-bill-nye-and-ken-ham" target="_blank" rel="noopener noreferrer">Source: KNKX/NPR</a></figcaption>
+                    </figure>
+                    <figure class="story-video">
+                      <div class="story-video-frame"><iframe src="https://www.youtube.com/embed/uWMkJ8IOHBU" title="This Man Was Tried in Tennessee for Teaching Evolution" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
+                      <figcaption><span class="story-video-title">This Man Was Tried in Tennessee for Teaching Evolution</span><a class="story-video-source" href="https://www.youtube.com/watch?v=uWMkJ8IOHBU" target="_blank" rel="noopener noreferrer">Source: YouTube</a></figcaption>
+                    </figure>
+                    <figure class="story-video">
+                      <div class="story-video-frame"><iframe src="https://www.youtube.com/embed/8wOKuFu217E" title="NOVA — Judgment Day: Intelligent Design on Trial" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
+                      <figcaption><span class="story-video-title">NOVA — Judgment Day: Intelligent Design on Trial</span><a class="story-video-source" href="https://www.youtube.com/watch?v=8wOKuFu217E" target="_blank" rel="noopener noreferrer">Source: YouTube</a></figcaption>
+                    </figure>
+                    <figure class="story-video">
+                      <div class="story-video-frame"><iframe src="https://www.youtube.com/embed/ASgkmqFPwyo" title="Ken Ham&#39;s opening argument" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
+                      <figcaption><span class="story-video-title">Ken Ham&#39;s opening argument</span><a class="story-video-source" href="https://www.youtube.com/watch?v=ASgkmqFPwyo" target="_blank" rel="noopener noreferrer">Source: YouTube</a></figcaption>
+                    </figure>
+                  </div>
+                </section>
+              </div>
+
+              <div class="brief-grid timeline-only">
+                <section class="brief-section">
+                  <h3>Timeline</h3>
+                  <ol class="timeline">
+                    <li><time datetime="1859">1859</time>Charles Darwin publishes <em>On the Origin of Species</em>.</li>
+                    <li><time datetime="1925">1925</time>Scopes trial, Dayton, Tennessee: teaching evolution itself is the crime.</li>
+                    <li><time datetime="1968">1968</time><em>Epperson v. Arkansas</em>: the Supreme Court voids bans on teaching evolution.</li>
+                    <li><time datetime="1987">1987</time><em>Edwards v. Aguillard</em>: the Supreme Court kills “balanced treatment.”</li>
+                    <li><time datetime="2005">2005</time><em>Kitzmiller v. Dover</em>: intelligent design is ruled creationism in a lab coat, not science — “breathtaking inanity,” from a Republican churchgoing judge.</li>
+                    <li><time datetime="2014">2014</time>Bill Nye and Ken Ham debate at the Creation Museum; roughly 3 million people watch live.</li>
+                    <li><time datetime="2026-01">January 2026</time>Oklahoma SB 1868 is filed; similar bills surface in Colorado, Missouri, and Montana.</li>
+                    <li><time datetime="2026-09">September 2026</time>The Cobb County disclaimer-sticker case returns to federal court in Atlanta.</li>
+                  </ol>
+                </section>
+              </div>
+
+              <section class="sources-block">
+                <h3>Source links</h3>
+                <ul class="sources-list">
+                  <li><a href="https://www.pewresearch.org/internet/2015/01/29/public-and-scientists-express-strikingly-different-views-about-science-related-issues/" target="_blank" rel="noopener noreferrer">Pew Research Center</a></li>
+                  <li><a href="https://answersingenesis.org/blogs/ken-ham/2026/09/16/37-percent-say-god-created-humans-present-form/" target="_blank" rel="noopener noreferrer">Answers in Genesis / Ken Ham</a></li>
+                  <li><a href="https://news.gallup.com/poll/114544/darwin-birthday-believeevolution.aspx" target="_blank" rel="noopener noreferrer">Gallup</a></li>
+                  <li><a href="https://en.wikipedia.org/wiki/Dover_v._Kitzmiller" target="_blank" rel="noopener noreferrer">Wikipedia — Kitzmiller v. Dover</a></li>
+                  <li><a href="https://freethinker.co.uk/2026/09/over-20-years-since-kitzmiller-v-dover-the-war-against-intelligent-design-goes-on/" target="_blank" rel="noopener noreferrer">Freethinker</a></li>
+                  <li><a href="https://oksenate.gov/press-releases/bullard-bill-pushes-back-evolution-only-school-curriculum" target="_blank" rel="noopener noreferrer">Oklahoma Senate</a></li>
+                  <li><a href="https://www.prosocial.world/posts/four-us-states-considering-laws-that-challenge-teaching-of-evolution" target="_blank" rel="noopener noreferrer">The Guardian via prosocial.world</a></li>
+                  <li><a href="https://www.law.com/article/almID/900005541157/" target="_blank" rel="noopener noreferrer">Law.com</a></li>
+                  <li><a href="https://www.knkx.org/2014-02-04/watch-the-creationism-vs-evolution-debate-bill-nye-and-ken-ham" target="_blank" rel="noopener noreferrer">KNKX/NPR — Bill Nye vs. Ken Ham debate</a></li>
+                  <li><a href="https://www.youtube.com/watch?v=uWMkJ8IOHBU" target="_blank" rel="noopener noreferrer">YouTube — This Man Was Tried in Tennessee for Teaching Evolution</a></li>
+                  <li><a href="https://www.youtube.com/watch?v=8wOKuFu217E" target="_blank" rel="noopener noreferrer">YouTube — NOVA: Judgment Day</a></li>
+                  <li><a href="https://www.youtube.com/watch?v=ASgkmqFPwyo" target="_blank" rel="noopener noreferrer">YouTube — Ken Ham opening argument</a></li>
+                </ul>
+              </section>
+            </div>
+          </article>
+
+          <article class="story" data-open="false" data-story-id="irgc-midterms-letter">
+            <button class="story-trigger" type="button" aria-expanded="true" aria-controls="irgc-midterms-letter-body">
+              <span class="story-number">02</span>
               <span>
                 <span class="story-title-row">
                   <span class="story-title">IRGC to America: Vote Trump Out</span>
@@ -489,7 +615,7 @@
 
           <article class="story" data-open="false" data-story-id="nolan-wells">
             <button class="story-trigger" type="button" aria-expanded="false" aria-controls="nolan-wells-body">
-              <span class="story-number">02</span>
+              <span class="story-number">03</span>
               <span>
                 <span class="story-title-row">
                   <span class="story-title">Nolan Wells</span>
@@ -728,7 +854,7 @@
 
           <article class="story" data-open="false" data-story-id="tasia-fortune">
             <button class="story-trigger" type="button" aria-expanded="false" aria-controls="tasia-fortune-body">
-              <span class="story-number">03</span>
+              <span class="story-number">04</span>
               <span>
                 <span class="story-title-row">
                   <span class="story-title">The Tasia Fortune Case</span>
@@ -866,13 +992,13 @@
       </div>
 
       <div class="host-content" id="host-content">
-        <header class="host-head"><div><p class="kicker">Host briefing room</p><h2>Talking points</h2><p>3 prepared segments · not shown in the public brief view</p></div><button class="lock-button" id="lock-button">Lock desk</button></header>
+        <header class="host-head"><div><p class="kicker">Host briefing room</p><h2>Talking points</h2><p>4 prepared segments · not shown in the public brief view</p></div><button class="lock-button" id="lock-button">Lock desk</button></header>
         <section class="live-manager" aria-labelledby="live-manager-title">
           <div class="live-manager-head"><h3 id="live-manager-title">Topic on air</h3><p>The LIVE badge stays hidden until it is turned on.</p></div>
           <div class="live-topic-buttons" aria-label="Current live story brief">
-            <button class="live-topic-button" id="live-auto-topic" type="button" aria-pressed="false" disabled>01 · IRGC to America: Vote Trump Out</button>
+            <button class="live-topic-button" id="live-auto-topic" type="button" aria-pressed="true">01 · Do You Believe in the Theory of Evolution?</button>
           </div>
-          <p class="live-manager-status" id="live-manager-status" role="status" aria-live="polite">No topic is marked LIVE.</p>
+          <p class="live-manager-status" id="live-manager-status" role="status" aria-live="polite">Do You Believe in the Theory of Evolution? is now marked LIVE.</p>
         </section>
 
         <section class="research-helper" aria-labelledby="research-helper-title">
@@ -905,6 +1031,17 @@
         </section>
 
         <div class="host-notes">
+          <article class="host-note" aria-labelledby="evolution-host-points-title">
+            <h3 id="evolution-host-points-title">Do You Believe in the Theory of Evolution? · Host talking points</h3>
+            <ol class="talking-list">
+              <li>The gap is the show: 98% of scientists vs. a public where only ~1 in 3 think Darwin&#39;s theory is well-supported by evidence. Ask the room why — and watch it split along faith lines, not education lines.</li>
+              <li>Seven in 10 Americans see God&#39;s hand in human origins. This isn&#39;t a science-literacy story, it&#39;s a who-do-you-trust story — and that&#39;s a better room.</li>
+              <li>It&#39;s live right now: four states plus a federal courtroom in Atlanta are relitigating what kids learn about where they came from. “What should your kid be taught?” is the call-in angle.</li>
+              <li>Disarm the “activist judges” rebuttal in advance: the Dover judge was a Republican churchgoer who called the ID policy “breathtaking inanity.”</li>
+              <li>Make both sides answer the same question: “What evidence would change your mind?” — the answers will tell you everything about the room.</li>
+            </ol>
+          </article>
+
           <article class="host-note" aria-labelledby="irgc-host-points-title">
             <h3 id="irgc-host-points-title">IRGC to America: Vote Trump Out · Host talking points</h3>
             <ol class="talking-list">
