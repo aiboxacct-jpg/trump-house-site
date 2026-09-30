@@ -833,6 +833,12 @@
       color: var(--ink);
       font-size: 17px;
     }
+    .updates-placeholder {
+      margin: -4px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
     .featured-update {
       position: relative;
       margin-bottom: 28px;
@@ -1172,8 +1178,8 @@
         </figure>
         <aside class="status-card" aria-label="Room status">
           <div class="status-label">Current status</div>
-          <h2>Two briefs in the queue</h2>
-          <p>Nolan Wells is the newest public brief, updated September 30: unverified security-cam clip circulates, Tatum vs. Owens clash — plus the phone-evidence reversal.</p>
+          <h2>Three briefs in the queue</h2>
+          <p>IRGC to America: Vote Trump Out is the newest public brief, published September 30: Tehran urges Americans to reject Trump and the GOP in the November 3 midterms.</p>
           <div class="divider" aria-hidden="true"><span></span><span></span><span></span></div>
         </aside>
       </div>
@@ -1300,6 +1306,76 @@
 
     // Public story packages: facts and chronology only, with direct source links.
     const storyPackages = [
+      {
+        id: "irgc-midterms-letter",
+        kicker: "Tehran, Iran · Foreign election interference",
+        title: "IRGC to America: Vote Trump Out",
+        summary: "Iran's Revolutionary Guard published a 25-page open letter urging Americans to vote against Trump and the GOP in the Nov 3 midterms — as its preferred Michigan Senate candidate leads the polls.",
+        date: "Published September 30, 2026",
+        dateTime: "2026-09-30",
+        story: "On September 29, 2026, Iran's Islamic Revolutionary Guard Corps — a US-designated terrorist organization — published a 25-page open letter addressed to \"the honorable people of the United States,\" urging Americans to reject President Trump and Republicans in the November 3 midterm elections.",
+        showUpdates: true,
+        updatesPlaceholder: "No updates yet — check back for developments.",
+        storyFormat: [
+          { kind: "lead", text: "On September 29, 2026, Iran's Islamic Revolutionary Guard Corps — a US-designated terrorist organization — published a 25-page open letter addressed to \"the honorable people of the United States,\" urging Americans to reject President Trump and Republicans in the November 3 midterm elections." },
+          { kind: "heading", text: "What the letter says" },
+          { kind: "paragraph", text: "Addressed specifically to American scholars, students, and journalists, the letter urges voters to punish Trump and the GOP in the midterms, oppose US support for Israel, and “take back control.” It was published in English and Farsi." },
+          { kind: "paragraph", text: "IRGC spokesman Brig. Gen. Hossein Mohebbi held a press conference in Tehran alongside the release. He called Trump “an inveterate liar” motivated only by wealth and said Americans are “not knowledgeable about many developments” but would “think differently and take other decisions” if they were." },
+          { kind: "quote", text: "“an inveterate liar” — Brig. Gen. Hossein Mohebbi on President Trump" },
+          { kind: "stat", text: "25-page letter, released in English and Farsi." },
+          { kind: "heading", text: "The regime's claim — and the record" },
+          { kind: "paragraph", text: "The letter claims there is not “a single verifiable instance where the IRGC has committed an act of violence against civilians.” At the same time, the regime stands accused of killing 7,000 to 30,000 protesters in its January crackdown. The letter blames Trump and Israel for the war and claims high fuel prices are decimating the US economy." },
+          { kind: "stat", text: "7,000–30,000 protesters killed in the January crackdown, according to accusations against the regime cited by the New York Post." },
+          { kind: "heading", text: "The post that took off" },
+          { kind: "paragraph", text: "Legal scholar Jonathan Turley amplified the letter on September 30 at 2:29 AM, writing that the IRGC was encouraging Americans to vote against the GOP in the midterms." },
+          { kind: "quote", text: "“It is not a good sign when the IRGC shifts from ‘Death to America’ to ‘Vote Democratic.’ The IRGC is reportedly encouraging Americans to vote against the GOP in the midterms.” — Jonathan Turley" },
+          { kind: "stat", text: "Turley post at time of writing: about 436K views · 13.6K likes · 6.2K reposts." },
+          { kind: "heading", text: "Accuracy note" },
+          { kind: "paragraph", text: "The IRGC letter urges Americans to vote against Trump and the GOP; it does not literally name the Democratic Party. Turley's “Vote Democratic” framing is editorial extrapolation." },
+          { kind: "heading", text: "The Michigan race" },
+          { kind: "paragraph", text: "Abdul El-Sayed is the Democratic nominee for an open US Senate seat in Michigan, where Gary Peters is retiring. El-Sayed won the August 4 primary with 48.5% and faces Trump-endorsed Republican Mike Rogers on November 3." },
+          { kind: "stat", text: "Primary win: El-Sayed 48.5%." },
+          { kind: "paragraph", text: "At a September 23 University of Michigan “Students vs. Billionaires” town hall, Iranian-American student Iman Dashti said his cousin “was hunted in the streets of Iran by the IRGC because her hijab wasn't on right” and his uncle was sentenced to death and given 50 lashes. El-Sayed refused to directly condemn the IRGC or the regime, saying instead that the United States should not be “the world's policeman.”" },
+          { kind: "paragraph", text: "Dashti also pressed El-Sayed on leaked audio from a private campaign call one day after Ayatollah Ali Khamenei's death." },
+          { kind: "quote", text: "“There are a lot of people in Dearborn who are sad today, so, like, I just don't want to comment on Khamenei at all.” — Abdul El-Sayed, leaked campaign audio" },
+          { kind: "paragraph", text: "Khamenei was killed February 28, 2026, in joint US-Israeli airstrikes on Tehran at the start of the war; Iranian state media confirmed his death the next day. His son Mojtaba was appointed supreme leader on March 8." },
+          { kind: "paragraph", text: "Big Data Poll's September 25–27 survey of likely voters has El-Sayed leading Rogers, while Kalshi prices him as the favorite." },
+          { kind: "stat", text: "Michigan polling: El-Sayed 45.9% vs. Rogers 40.5%." },
+          { kind: "stat", text: "Kalshi: El-Sayed at 74 cents." }
+        ],
+        facts: [
+          "The IRGC published the 25-page letter in English and Farsi on September 29, addressing American scholars, students, and journalists and urging voters to punish Trump and Republicans, oppose US support for Israel, and “take back control.”",
+          "IRGC spokesman Brig. Gen. Hossein Mohebbi released the letter at a Tehran press conference, called Trump “an inveterate liar,” and said Americans would make different decisions if they knew more about world events.",
+          "The letter denies any verifiable IRGC violence against civilians, blames Trump and Israel for the war, and says high fuel prices are decimating the US economy. The regime stands accused of killing between 7,000 and 30,000 protesters in its January crackdown.",
+          "Jonathan Turley's September 30 post framed the letter as a shift from “Death to America” to “Vote Democratic” and had about 436K views, 13.6K likes, and 6.2K reposts at time of writing. The letter itself does not name the Democratic Party.",
+          "Abdul El-Sayed won Michigan's August 4 Democratic Senate primary with 48.5% and faces Trump-endorsed Republican Mike Rogers for the open seat created by Gary Peters' retirement.",
+          "At a September 23 University of Michigan town hall, Iman Dashti described alleged IRGC abuse of his relatives and asked El-Sayed to condemn the organization and Iran's regime. El-Sayed did not do so directly and argued the US should not be “the world's policeman.”",
+          "Dashti also confronted El-Sayed with leaked March audio in which the candidate declined to comment on Khamenei's death because people in Dearborn were mourning.",
+          "Khamenei was killed in joint US-Israeli airstrikes on Tehran on February 28; Iranian state media confirmed it March 1, and his son Mojtaba was appointed supreme leader March 8.",
+          "Big Data Poll's September 25–27 likely-voter survey puts El-Sayed at 45.9% and Rogers at 40.5%; Kalshi prices El-Sayed at 74 cents."
+        ],
+        timeline: [
+          { date: "Feb 28, 2026", detail: "US-Israel strikes kill Khamenei in Tehran; the war begins." },
+          { date: "March 1", detail: "El-Sayed says on leaked campaign audio that he will not comment on Khamenei's death, citing mourning in Dearborn." },
+          { date: "July 3", detail: "Funeral ceremonies for Khamenei begin in Tehran." },
+          { date: "Aug 4", detail: "El-Sayed wins Michigan's Democratic Senate primary with 48.5%." },
+          { date: "Sept 23", detail: "At a University of Michigan town hall, El-Sayed refuses to directly condemn the IRGC when confronted by Dashti." },
+          { date: "Sept 26", detail: "On the Ezra Klein show, El-Sayed says Netanyahu “walked into the Situation Room” and led the US into war with Iran; he calls Trump “a dupe.”" },
+          { date: "Sept 29", detail: "The IRGC publishes its 25-page letter to Americans and Mohebbi holds a press conference in Tehran." },
+          { date: "Sept 30 · 2:29 AM", detail: "Turley's post about the letter goes viral." },
+          { date: "Nov 3", detail: "Midterms: El-Sayed faces Rogers, with House and Senate control on the line." }
+        ],
+        sources: [
+          { label: "NY Post", url: "https://nypost.com/2026/09/29/world-news/iran-publishes-propaganda-letter-urging-us-voters-to-punish-trump-in-midterm-elections/" },
+          { label: "Newsmax", url: "https://www.newsmax.com/politics/Irans-Revolutionary-Guard-Urges-US-Voters-to-Take-Back-Control-From-Trump/2026/09/29/id/1271146" },
+          { label: "Jonathan Turley on X", url: "https://x.com/JonathanTurley/status/2105228542305083571" },
+          { label: "Wikipedia — 2026 Michigan Senate election", url: "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_Michigan" },
+          { label: "Algemeiner", url: "https://www.algemeiner.com/2026/09/25/el-sayed-refuses-stand-iranian-protesters-condemn-regimes-brutal-crackdown/" },
+          { label: "The Midwesterner (video)", url: "https://www.themidwesterner.news/2026/09/video-abdul-el-sayed-declines-to-directly-condemn-irans-irgc-when-confronted-by-michigan-student/" },
+          { label: "Reuters", url: "https://www.reuters.com/world/middle-east/irans-supreme-leader-ali-khamenei-killed-senior-israeli-official-says-2026-02-28/" },
+          { label: "Big Data Poll", url: "https://www.bigdatapoll.com/blog/wolverine-state-poll-el-sayed-leads-rogers-for-us-senate-in-michigan/" }
+        ]
+      },
       {
         id: "nolan-wells",
         kicker: "Ocean Springs, Mississippi · Cause and manner undetermined",
@@ -1973,7 +2049,7 @@
         note.hidden = false;
       }
 
-      if (story.featuredUpdate || (story.updates && story.updates.length)) {
+      if (story.showUpdates || story.featuredUpdate || (story.updates && story.updates.length)) {
         const updates = fragment.querySelector(".story-updates");
         const groups = fragment.querySelector(".updates-groups");
         if (story.featuredUpdate) {
@@ -1993,6 +2069,12 @@
           });
           featured.append(heading, detail, sources);
           groups.before(featured);
+        }
+        if (story.updatesPlaceholder) {
+          const placeholder = document.createElement("p");
+          placeholder.className = "updates-placeholder";
+          placeholder.textContent = story.updatesPlaceholder;
+          groups.before(placeholder);
         }
         if (story.priorityUpdates && story.priorityUpdates.length) {
           const priorityUpdates = document.createElement("div");
