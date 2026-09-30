@@ -570,6 +570,7 @@
       border-top: 1px solid var(--line);
     }
     .story-package[data-open="true"] .story-body { display: block; }
+    .story-package[data-open="false"] > .story-updates { display: none; }
     .story-note {
       margin: 0;
       padding: 20px clamp(20px, 4vw, 38px);
@@ -1126,7 +1127,7 @@
         <aside class="status-card" aria-label="Room status">
           <div class="status-label">Current status</div>
           <h2>Two briefs in the queue</h2>
-          <p>Nolan Wells is the newest public brief, updated September 28 with the expanded record: boat track, expert comparison, friends’ response, and federal threat cases.</p>
+          <p>Nolan Wells is the newest public brief, updated September 29: phone-evidence reversal — Crump's own expert walks back the deleted-messages claim, DA fires back.</p>
           <div class="divider" aria-hidden="true"><span></span><span></span><span></span></div>
         </aside>
       </div>
@@ -1886,6 +1887,9 @@
           groups.appendChild(section);
         });
         updates.hidden = false;
+        if (story.id === "nolan-wells") {
+          article.insertBefore(updates, article.querySelector(".story-card-action"));
+        }
       }
 
       addTextItems(fragment.querySelector(".facts-list"), story.facts);
