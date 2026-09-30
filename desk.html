@@ -146,6 +146,11 @@
     .quote-card cite { display:block; margin-top:9px; color:var(--muted); font-family:"Public Sans",sans-serif; font-size:11px; font-style:normal; font-weight:700; line-height:1.45; }
     .story-updates { padding:30px clamp(22px,4vw,42px) 34px; background:var(--paper-soft); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
     .story-updates > h3 { margin:0 0 20px; color:var(--ink); font-size:17px; }
+    .featured-update { margin:0 0 26px; padding:clamp(20px,3vw,28px); border-left:6px solid var(--red); border-top:1px solid color-mix(in srgb,var(--red) 42%,var(--line)); background:color-mix(in srgb,var(--red) 8%,var(--paper)); box-shadow:0 8px 22px rgba(16,42,76,.08); }
+    .featured-update h4 { margin:0 0 12px; color:var(--navy); font-family:"Libre Baskerville",Georgia,serif; font-size:clamp(18px,2.2vw,23px); line-height:1.45; }
+    .featured-update p { margin:0 0 13px; color:var(--ink); font-size:14px; line-height:1.72; }
+    .featured-update p:last-child { margin-bottom:0; }
+    .featured-update a { color:var(--blue); font-weight:800; text-underline-offset:3px; overflow-wrap:anywhere; }
     .updates-groups { display:grid; grid-template-columns:1fr 1fr; gap:30px; }
     .updates-group h4 { margin:0 0 10px; color:var(--red-deep); font-size:12px; font-weight:800; letter-spacing:.08em; line-height:1.35; text-transform:uppercase; }
     .updates-list { margin:0; padding:0; list-style:none; }
@@ -365,7 +370,7 @@
                 </span>
                 <span class="story-meta">Ocean Springs, Mississippi · Cause and manner undetermined</span>
                 <span class="story-teaser">An expanded record of the July 4 boat track, competing expert interpretations, the cleared friends&#39; response, and the separate federal threat cases.</span>
-                <span class="story-date">Published September 27, 2026 · Updated September 28, 2026 <span class="updated-badge" aria-label="This article has been updated">UPDATED</span></span>
+                <span class="story-date">Published September 27, 2026 · Updated September 29, 2026 <span class="updated-badge" aria-label="This article has been updated">UPDATED</span></span>
               </span>
               <span class="story-status">Research ready</span>
               <span class="chevron" aria-hidden="true">›</span>
@@ -463,6 +468,11 @@
               </div>
               <section class="story-updates" aria-label="Updates">
                 <h3>Updates</h3>
+                <article class="featured-update" aria-labelledby="nolan-update-2026-09-29">
+                  <h4 id="nolan-update-2026-09-29">September 29, 2026 — Phone-evidence reversal: Crump&#39;s own expert walks it back, DA fires back</h4>
+                  <p>Andrew Garrett (Garrett Discovery), the digital forensics expert on Ben Crump&#39;s own team who examined Nolan Wells&#39; phone, clarified he never meant to suggest someone else accessed the phone after Wells&#39; death. Garrett&#39;s clarification: Wells last unlocked his phone around 2:18 PM on July 4; it stayed locked until his parents received it at 3:14 AM on July 5. The “deleted” Snapchat messages were other senders remotely recalling/deleting their own messages; the “interactions” were screen wakes, not unlocks. His office confirmed to Mississippi Free Press this morning that his livestream statements were accurate. This walks back the September 24 press-conference framing, where Garrett said “things were deleted from the phone,” which fueled tampering suspicion. DA Angel Myers McIlrath (Jackson County) responded in a Thursday press release: Crump&#39;s team never provided the full digital download — only two emails with ~300 pages of selected findings. She says neither the state autopsy nor Dr. Roger Mitchell&#39;s independent autopsy found fatal injury, neither ruled out drowning, and: “The Crump team advised my office that they had no evidence of a crime against Nolan Wells.” McIlrath: “If the Crump team genuinely has new information or evidence that Nolan Wells was murdered they should stop playing games and immediately provide it to me.” Crump&#39;s team has not responded to Mississippi Free Press requests for comment (September 25 plus four follow-ups). Context: the September 21 grand jury returned no true bill, but there is no statute of limitations on homicide in Mississippi — credible new evidence could re-present the case.</p>
+                  <p><a href="https://www.mississippifreepress.org/crumps-expert-who-examined-nolan-wells-phone-clarifies-misinterpreted-claims-about-deleted-messages/" target="_blank" rel="noopener noreferrer">Mississippi Free Press — Examiner of Nolan Wells&#39; Phone Clarifies &#39;Deleted&#39; Messages</a></p>
+                </article>
                 <div class="updates-groups">
                 <section class="updates-group"><h4>Upcoming</h4><ol class="updates-list"><li><time datetime="2026-11-02">November 2, 2026</time><span>U.S. v. Joseph Alfredo Vasquez Dumarce threat-case trial is scheduled in Gulfport before Judge Sul Ozerden.</span></li><li><time datetime="2026-10-05">October 5, 2026</time><span>U.S. v. Edward James Porter threat-case trial is scheduled in Gulfport before Judge Taylor McNeel.</span></li><li><time datetime="2026-10-01">Around October 1, 2026</time><span>Tentative Atlanta news conference with Ben Crump and Dr. Roger A. Mitchell Jr. to walk through both autopsies.</span></li></ol></section>
                 <section class="updates-group"><h4>Recent</h4><ol class="updates-list"><li><time datetime="2026-09-28">September 28, 2026</time><span>This brief expanded with the nine-stop MDMR boat track, state-versus-family expert comparison, federal threat-case calendar, the cleared friends&#39; response, and the full attributed quote record.</span></li><li><time datetime="2026-09-16">September 16, 2026</time><span>Lawyers for Warren Hudson, Jax Pitalo and Morgan Seymour sent cease-and-desist notices to Sunny Hostin and ABC&#39;s The View, demanding a retraction and apology within 10 days.</span></li></ol></section>
@@ -695,6 +705,10 @@
           <article class="host-note" aria-labelledby="nolan-host-points-title">
             <h3 id="nolan-host-points-title">Nolan Wells · Host talking points</h3>
             <ol class="talking-list">
+              <li><span>The “deleted messages” bombshell just deflated — Crump&#39;s own expert says nobody else touched the phone.</span></li>
+              <li><span>DA vs. Crump credibility fight: she claims they privately told her office they had no evidence of a crime while publicly demanding answers.</span></li>
+              <li><span>Who controls the evidence: 300 selected pages vs. the full download.</span></li>
+              <li><span>The door isn&#39;t closed: no statute of limitations means this can come back.</span></li>
               <li><span><strong>“Undetermined is not exoneration — and it’s not a murder finding either.”</strong> Both pathologists agree on exactly one thing: they do not know how Nolan Wells died. The grand jury found no crime; the family found no answers. Anyone on air who turns “undetermined” into a verdict in either direction is lying about what the documents say. The honest sentence is the shortest: nobody knows how he died.</span></li>
               <li><span><strong>“The injuries are real, the cause is not.”</strong> Two dark red-purple contusions under the scalp, inflicted within hours of death — both autopsies document them, and nobody has explained them. That is the family’s strongest fact and the DA’s weakest moment. But “unexplained” is not “homicide”: the same reports found no skull fracture, no fatal injury, and no water in the airway. Hold both halves at once.</span></li>
               <li><span><strong>“The DA’s most explosive claim got the least attention.”</strong> McIlrath says the family’s own lawyers told her office last month that their investigation found no evidence of crimes while publicly demanding the case stay open. If true, that is a devastating detail for the cover-up narrative. Ask it as a question on air: what did the family’s investigators find, and why has Crump not addressed it?</span></li>

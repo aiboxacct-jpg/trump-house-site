@@ -830,6 +830,47 @@
       color: var(--ink);
       font-size: 17px;
     }
+    .featured-update {
+      position: relative;
+      margin-bottom: 28px;
+      padding: clamp(20px, 3vw, 28px);
+      color: var(--ink);
+      background: color-mix(in srgb, var(--blue) 8%, var(--paper));
+      border: 1px solid color-mix(in srgb, var(--blue) 36%, var(--line));
+      border-top: 5px solid var(--red);
+      box-shadow: 0 10px 26px color-mix(in srgb, var(--navy) 10%, transparent);
+    }
+    .featured-update::after {
+      content: "";
+      position: absolute;
+      top: -5px;
+      right: 0;
+      width: 34%;
+      height: 5px;
+      background: var(--blue);
+    }
+    .featured-update h4 {
+      margin: 0 0 12px;
+      color: var(--navy);
+      font-family: "Libre Baskerville", Georgia, serif;
+      font-size: clamp(18px, 2.2vw, 23px);
+      line-height: 1.4;
+    }
+    .featured-update p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.75;
+    }
+    .featured-update a {
+      display: inline-block;
+      margin-top: 16px;
+      color: var(--blue);
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.5;
+      text-underline-offset: 3px;
+    }
     .updates-groups {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -1217,8 +1258,8 @@
         kicker: "Ocean Springs, Mississippi · Cause and manner undetermined",
         title: "Nolan Wells",
         summary: "An expanded record of the July 4 boat track, competing expert interpretations, the cleared friends' response, and the separate federal threat cases.",
-        date: "Published September 27, 2026 · Updated September 28, 2026",
-        dateTime: "2026-09-28",
+        date: "Published September 27, 2026 · Updated September 29, 2026",
+        dateTime: "2026-09-29",
         story: "Nolan Xavier Wells, 18, disappeared during a July 4 boat trip to Horn Island; his body was found in the water two days later, and both autopsies leave his cause and manner of death undetermined.",
         disclaimer: "Nolan Wells was 18. Nobody has been charged in his death. The friends named here were cleared by a Jackson County grand jury and are not accused of wrongdoing in this brief. Claims are attributed to the outlet or document they came from; where accounts conflict, both are shown. This is a record of reported facts and claims, not an opinion.",
         storyFormat: [
@@ -1324,6 +1365,12 @@
             ]
           }
         ],
+        featuredUpdate: {
+          heading: "September 29, 2026 — Phone-evidence reversal: Crump's own expert walks it back, DA fires back",
+          text: "Andrew Garrett (Garrett Discovery), the digital forensics expert on Ben Crump's own team who examined Nolan Wells' phone, clarified he never meant to suggest someone else accessed the phone after Wells' death. Garrett's clarification: Wells last unlocked his phone around 2:18 PM on July 4; it stayed locked until his parents received it at 3:14 AM on July 5. The \"deleted\" Snapchat messages were other senders remotely recalling/deleting their own messages; the \"interactions\" were screen wakes, not unlocks. His office confirmed to Mississippi Free Press this morning that his livestream statements were accurate. This walks back the September 24 press-conference framing, where Garrett said \"things were deleted from the phone,\" which fueled tampering suspicion. DA Angel Myers McIlrath (Jackson County) responded in a Thursday press release: Crump's team never provided the full digital download — only two emails with ~300 pages of selected findings. She says neither the state autopsy nor Dr. Roger Mitchell's independent autopsy found fatal injury, neither ruled out drowning, and: \"The Crump team advised my office that they had no evidence of a crime against Nolan Wells.\" McIlrath: \"If the Crump team genuinely has new information or evidence that Nolan Wells was murdered they should stop playing games and immediately provide it to me.\" Crump's team has not responded to Mississippi Free Press requests for comment (September 25 plus four follow-ups). Context: the September 21 grand jury returned no true bill, but there is no statute of limitations on homicide in Mississippi — credible new evidence could re-present the case.",
+          sourceLabel: "Mississippi Free Press — Examiner of Nolan Wells' Phone Clarifies 'Deleted' Messages",
+          sourceUrl: "https://www.mississippifreepress.org/crumps-expert-who-examined-nolan-wells-phone-clarifies-misinterpreted-claims-about-deleted-messages/"
+        },
         updates: [
           {
             label: "Upcoming",
@@ -1800,10 +1847,25 @@
         note.hidden = false;
       }
 
-      if (story.updates && story.updates.length) {
+      if (story.featuredUpdate || (story.updates && story.updates.length)) {
         const updates = fragment.querySelector(".story-updates");
         const groups = fragment.querySelector(".updates-groups");
-        story.updates.forEach(function (updateGroup) {
+        if (story.featuredUpdate) {
+          const featured = document.createElement("article");
+          const heading = document.createElement("h4");
+          const detail = document.createElement("p");
+          const source = document.createElement("a");
+          featured.className = "featured-update";
+          heading.textContent = story.featuredUpdate.heading;
+          detail.textContent = story.featuredUpdate.text;
+          source.href = story.featuredUpdate.sourceUrl;
+          source.target = "_blank";
+          source.rel = "noopener noreferrer";
+          source.textContent = story.featuredUpdate.sourceLabel + " ↗";
+          featured.append(heading, detail, source);
+          groups.before(featured);
+        }
+        (story.updates || []).forEach(function (updateGroup) {
           const section = document.createElement("section");
           const heading = document.createElement("h4");
           const list = document.createElement("ol");
