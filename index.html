@@ -873,6 +873,42 @@
       line-height: 1.5;
       text-underline-offset: 3px;
     }
+    .update-sources {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px 18px;
+    }
+    .priority-updates {
+      display: grid;
+      margin: -8px 0 28px;
+      border-top: 1px solid var(--line);
+    }
+    .priority-update {
+      padding: 18px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .priority-update h4 {
+      margin: 0 0 8px;
+      color: var(--navy);
+      font-family: "Libre Baskerville", Georgia, serif;
+      font-size: 17px;
+      line-height: 1.45;
+    }
+    .priority-update p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+    .priority-update a {
+      display: inline-block;
+      margin-top: 10px;
+      color: var(--blue);
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.5;
+      text-underline-offset: 3px;
+    }
     .updates-groups {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -1373,6 +1409,32 @@
           sourceLabel: "Mississippi Free Press — Examiner of Nolan Wells' Phone Clarifies 'Deleted' Messages",
           sourceUrl: "https://www.mississippifreepress.org/crumps-expert-who-examined-nolan-wells-phone-clarifies-misinterpreted-claims-about-deleted-messages/"
         },
+        priorityUpdates: [
+          {
+            heading: "September 29, 2026 — Expert flags \"missing\" autopsy detail after grand jury no-bill",
+            text: "An expert flagged a \"missing\" autopsy detail following the grand jury's decision to decline charges; family counsel is calling for further investigation.",
+            sourceLabel: "FrontPageDetectives — Nolan Wells Case Takes New Turn",
+            sourceUrl: "https://www.frontpagedetectives.com/p/nolan-wells-case-takes-new-turn-as-expert-flags-missing-autopsy-detail-after-grand-jury-declines-charges"
+          },
+          {
+            heading: "September 28, 2026 — United Cajun Navy slams case rumors",
+            text: "The United Cajun Navy pushed back on viral rumors about the Wells case this weekend — no phone tampering, no blunt-force trauma claims.",
+            sourceLabel: "HallaBack — Nolan Wells Death: United Cajun Navy Slams Rumors in Case",
+            sourceUrl: "https://hallaback.com/nolan-wells-death-united-cajun-navy-slams-rumors-in-case-616492.html"
+          },
+          {
+            heading: "September 28, 2026 — Viral HBCU band image debunked as AI",
+            text: "Virginia State confirmed the viral image claiming its HBCU band honored Nolan Wells is AI-generated.",
+            sourceLabel: "HBCU Gameday — AI Image Falsely Claims Virginia State HBCU Band Honored Nolan Wells",
+            sourceUrl: "https://hbcugameday.com/2026/09/28/ai-image-falsely-claims-virginia-state-hbcu-band-honored-nolan-wells/"
+          },
+          {
+            heading: "September 28, 2026 — Nancy Grace 'Crime Stories' teaser draws ~51K engagements",
+            text: "A Nancy Grace 'Crime Stories' teaser reel featuring a witnesses-at-5-pm claim drew about 51,000 engagements.",
+            sourceLabel: "Instagram reel — Nancy Grace Crime Stories teaser",
+            sourceUrl: "https://www.instagram.com/reel/Dd14tnjphQZ/"
+          }
+        ],
         updates: [
           {
             label: "Upcoming",
@@ -1444,7 +1506,11 @@
           { label: "WLOX · Sea Tow call", url: "https://gray-wlbt-prod.gtv-cdn.com/2026/07/26/mdmr-releases-call-audio-boat-nolan-wells-case/" },
           { label: "Inner City News", url: "https://theinnercitynews.com/rulings-leave-questions-lingering-in-nolan-wells-case/" },
           { label: "Z 107.9 Cleveland", url: "https://zhiphopcleveland.com/6510723/grand-jury-declines-charges-in-nolan-wells-death-after-july-4-party/" },
-          { label: "USA Herald", url: "https://usaherald.com/nolan-wells-no-indictments-cause-of-death-undetermined/" }
+          { label: "USA Herald", url: "https://usaherald.com/nolan-wells-no-indictments-cause-of-death-undetermined/" },
+          { label: "FrontPageDetectives — Nolan Wells Case Takes New Turn", url: "https://www.frontpagedetectives.com/p/nolan-wells-case-takes-new-turn-as-expert-flags-missing-autopsy-detail-after-grand-jury-declines-charges" },
+          { label: "HallaBack — Nolan Wells Death: United Cajun Navy Slams Rumors in Case", url: "https://hallaback.com/nolan-wells-death-united-cajun-navy-slams-rumors-in-case-616492.html" },
+          { label: "HBCU Gameday — AI Image Falsely Claims Virginia State HBCU Band Honored Nolan Wells", url: "https://hbcugameday.com/2026/09/28/ai-image-falsely-claims-virginia-state-hbcu-band-honored-nolan-wells/" },
+          { label: "Instagram reel — Nancy Grace Crime Stories teaser", url: "https://www.instagram.com/reel/Dd14tnjphQZ/" }
         ]
       },
       {
@@ -1452,8 +1518,8 @@
         kicker: "Jackson, Mississippi · Homicide investigation",
         title: "The Tasia Fortune Case",
         summary: "Investigators say Fortune was killed in a drug dispute before her body was hung in a staged scene. Three men have been charged with murder.",
-        date: "September 26, 2026",
-        dateTime: "2026-09-26",
+        date: "Published September 26, 2026 · Updated September 29, 2026",
+        dateTime: "2026-09-29",
         story: "On August 3, 2026, Tasia Fortune, 29, was found hanging from a tree behind a vacant home in West Jackson, Mississippi. The image — a Black woman hanging from a tree in Mississippi — immediately drew claims of a modern-day lynching. Rep. Ayanna Pressley led roughly 60 Democrats in a September 8 letter to the Attorney General and FBI demanding a federal probe into “modern-day lynchings,” citing 10 hanging deaths of Black Americans in 2026; AOC and Pressley posted it on X September 10. But investigators now say Fortune was killed in a drug dispute before her body was hung in a staged scene — and all three men charged with her murder are Black. Of the 10 deaths cited in the letter, only Fortune’s is an active homicide case.",
         storyFormat: [
           { kind: "lead", text: "On August 3, 2026, Tasia Fortune, 29, was found hanging from a tree behind a vacant home in West Jackson, Mississippi." },
@@ -1472,6 +1538,14 @@
           { kind: "paragraph", text: "But investigators now say Fortune was killed in a drug dispute before her body was hung in a staged scene — and all three men charged with her murder are Black." },
           { kind: "stat", text: "Of the 10 deaths cited in the letter, only Fortune’s is an active homicide case." }
         ],
+        featuredUpdate: {
+          heading: "September 25, 2026 — Third suspect Eric Clark surrenders, charged with murder",
+          text: "Eric Clark (45) surrendered on September 25 and was charged with murder. Detective Dukes' testimony described a drug-dispute killing with a staged hanging; Tasia's mother Christy Spivey said she already knew her daughter died before being hanged. The Ratliff hearing resumes September 30.",
+          sourceLinks: [
+            { label: "Anchor News — Tasia Fortune Remembered as Mississippi Investigation Reveals Her Death Was Staged", url: "https://www.anchornews.click/article/tasia-fortune-remembered-as-mississippi-investigation-reveals-her-death-was-staged" },
+            { label: "ABC7 — 'drug case gone very wrong,' police chief says", url: "https://www.facebook.com/abc7news/posts/pfbid02dc8AD5nVVk4s1jniuDzgqc6ugdAUTK7Y5fwzd7kztyGe4cbl" }
+          ]
+        },
         facts: [
           "Fortune, 29, mother of four, was found August 3 hanging from a tree at the 500 block of Road of Remembrance in West Jackson. The medical examiner ruled the death a homicide; Jackson police Det. Samuel Dukes testified September 25 that the scene and hanging were “staged.”",
           "Dukes said Fortune was likely dead two to three days before she was found, was killed in a drug dispute involving “missing illegal narcotics,” and fought hard with her attackers.",
@@ -1507,7 +1581,9 @@
           { label: "WVLT", url: "https://www.wvlt.tv/2026/09/25/tasia-fortunes-hanging-was-staged-after-her-death-drug-dispute-mississippi-police-say/" },
           { label: "Washington Examiner", url: "https://www.washingtonexaminer.com/opinion/columnists/4740227/there-is-no-lynching-epidemic/" },
           { label: "The Dregs Report", url: "https://thedregsreport.com/2026/09/13/aoc-and-pressley-demand-federal-lynching-probe-despite-most-cited-deaths-being-ruled-suicides/" },
-          { label: "Rep. Ayanna Pressley — September 8 letter", url: "https://pressley.house.gov/2026/09/10/breaking-pressley-leads-nearly-60-lawmakers-demanding-investigation-into-black-people-found-hanging-invokes-legacy-of-lynching-in-america/" }
+          { label: "Rep. Ayanna Pressley — September 8 letter", url: "https://pressley.house.gov/2026/09/10/breaking-pressley-leads-nearly-60-lawmakers-demanding-investigation-into-black-people-found-hanging-invokes-legacy-of-lynching-in-america/" },
+          { label: "Anchor News — Tasia Fortune Remembered as Mississippi Investigation Reveals Her Death Was Staged", url: "https://www.anchornews.click/article/tasia-fortune-remembered-as-mississippi-investigation-reveals-her-death-was-staged" },
+          { label: "ABC7 — 'drug case gone very wrong,' police chief says", url: "https://www.facebook.com/abc7news/posts/pfbid02dc8AD5nVVk4s1jniuDzgqc6ugdAUTK7Y5fwzd7kztyGe4cbl" }
         ]
       }
     ];
@@ -1856,16 +1932,44 @@
           const featured = document.createElement("article");
           const heading = document.createElement("h4");
           const detail = document.createElement("p");
-          const source = document.createElement("a");
+          const sources = document.createElement("div");
           featured.className = "featured-update";
+          sources.className = "update-sources";
           heading.textContent = story.featuredUpdate.heading;
           detail.textContent = story.featuredUpdate.text;
-          source.href = story.featuredUpdate.sourceUrl;
-          source.target = "_blank";
-          source.rel = "noopener noreferrer";
-          source.textContent = story.featuredUpdate.sourceLabel + " ↗";
-          featured.append(heading, detail, source);
+          const featuredSources = story.featuredUpdate.sourceLinks || [
+            { label: story.featuredUpdate.sourceLabel, url: story.featuredUpdate.sourceUrl }
+          ];
+          featuredSources.forEach(function (featuredSource) {
+            const source = document.createElement("a");
+            source.href = featuredSource.url;
+            source.target = "_blank";
+            source.rel = "noopener noreferrer";
+            source.textContent = featuredSource.label + " ↗";
+            sources.appendChild(source);
+          });
+          featured.append(heading, detail, sources);
           groups.before(featured);
+        }
+        if (story.priorityUpdates && story.priorityUpdates.length) {
+          const priorityUpdates = document.createElement("div");
+          priorityUpdates.className = "priority-updates";
+          story.priorityUpdates.forEach(function (priorityUpdate) {
+            const entry = document.createElement("article");
+            const heading = document.createElement("h4");
+            const detail = document.createElement("p");
+            const source = document.createElement("a");
+            entry.className = "priority-update";
+            heading.textContent = priorityUpdate.heading;
+            detail.textContent = priorityUpdate.text;
+            source.href = priorityUpdate.sourceUrl;
+            source.target = "_blank";
+            source.rel = "noopener noreferrer";
+            source.textContent = priorityUpdate.sourceLabel + " ↗";
+            entry.append(heading, detail, source);
+            priorityUpdates.appendChild(entry);
+          });
+          groups.before(priorityUpdates);
         }
         (story.updates || []).forEach(function (updateGroup) {
           const section = document.createElement("section");
@@ -1888,9 +1992,7 @@
           groups.appendChild(section);
         });
         updates.hidden = false;
-        if (story.id === "nolan-wells") {
-          article.insertBefore(updates, article.querySelector(".story-card-action"));
-        }
+        article.insertBefore(updates, article.querySelector(".story-card-action"));
       }
 
       addTextItems(fragment.querySelector(".facts-list"), story.facts);
