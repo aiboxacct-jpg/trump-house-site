@@ -1982,48 +1982,7 @@
     latestNewsSection.hidden = latestNews.length === 0;
     latestNewsArchiveEmpty.hidden = latestNews.length > 3;
 
-    const mediaItems = [
-      {
-        id: 'matts-voice-clip-oct-1-2026',
-        title: "Matt's voice clip — Oct 1, 2026",
-        date: '2026-10-01',
-        kind: 'audio',
-        url: 'media/Matts_voice_clip_Oct1_2026.ogg',
-        description: 'A voice note from Matt.'
-      },
-      {
-        id: 'have-you-ever-seen-the-rain',
-        title: 'Have You Ever Seen the Rain — Darren Yamamoto',
-        date: '2026-10-01',
-        kind: 'audio',
-        url: 'media/HAVE_YOU_EVER_SEEN_THE_RAIN.mp3',
-        description: 'A musical tribute in memory of Beaver: Darren Yamamoto performs "Have You Ever Seen the Rain."'
-      },
-      {
-        id: 'beaver-buds-tribute',
-        title: 'Beaver — Six Years of Friendship',
-        date: '2026-09-30',
-        kind: 'audio',
-        url: 'media/Beaver_Support2.mp3',
-        description: 'A personal note from Pepe on Beaver — buds for five or six years on Clubhouse, and the one person on the app he agreed with politically more than anyone. He just wasn\'t as vocal about it.'
-      },
-      {
-        id: 'support-beaver-tribute',
-        title: 'In Memory of Beaver — Say Something Positive',
-        date: '2026-09-30',
-        kind: 'audio',
-        url: 'media/Support_Beaver.mp3',
-        description: 'From the Clubhouse room: friends share a word of kindness and favorite memories of Beaver, a beloved leader of the community. May he rest in peace.'
-      },
-      {
-        id: 'we-are-the-world-beaver-tribute',
-        title: 'We Are the World — for Beaver',
-        date: '2026-10-01',
-        kind: 'audio',
-        url: 'media/We_Are_The_World.mp3',
-        description: 'Peter sings \"We Are the World\" for the room.'
-      }
-    ];
+    const mediaItems = [];
     const mediaList = document.getElementById("media-list");
 
     function formatMediaDate(value) {
