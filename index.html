@@ -247,6 +247,34 @@
     .clubhouse-link:focus-visible {
       background: var(--blue);
     }
+    .live-on-air-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 22px;
+      color: #ffffff;
+      background: var(--red);
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: .04em;
+      line-height: 1.3;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+    .live-on-air-btn::before {
+      content: "\25CF";
+      font-size: 13px;
+      animation: live-blink 1.1s ease-in-out infinite;
+    }
+    .live-on-air-btn[hidden] { display: none; }
+    .live-on-air-btn:hover,
+    .live-on-air-btn:focus-visible {
+      background: color-mix(in srgb, var(--red) 82%, #000);
+    }
+    .live-on-air-btn:focus-visible {
+      outline: 3px solid color-mix(in srgb, var(--red) 45%, transparent);
+      outline-offset: 3px;
+    }
     .clubhouse-link:focus-visible {
       outline: 3px solid color-mix(in srgb, var(--blue) 35%, transparent);
       outline-offset: 3px;
@@ -1714,6 +1742,7 @@
         <p class="lede">Follow the stories shaping America through concise briefs that separate the claim, the verified facts, the timeline, and the source record.</p>
         <div class="channel-links" aria-label="Trump House channels">
           <a class="clubhouse-link" href="https://www.clubhouse.com/house/president-trump-crvth0bjblsu?chs=y3eIerRALr%3AgoLibaop8mvl5wtuSFC9F4BRrVY9r5FOU4Ig6HNHVaw&amp;utm_medium=ch_general_house" target="_blank" rel="noopener noreferrer">Trump House on Clubhouse</a>
+          <a class="live-on-air-btn" id="hero-live-btn" href="https://www.clubhouse.com/i/do-you-believe-in-theory-of-evolution/t4ft54kI" target="_blank" rel="noopener noreferrer" hidden>Live on Air NOW!</a>
         </div>
       </div>
       <div class="mast-side">
@@ -1783,7 +1812,6 @@
           </label>
         </div>
         <div class="story-card-action" aria-label="Trump House channels">
-          <a class="clubhouse-link story-clubhouse-link story-live-link" href="https://www.clubhouse.com/i/do-you-believe-in-theory-of-evolution/t4ft54kI" target="_blank" rel="noopener noreferrer" hidden>Listen on the Web</a>
           <a class="clubhouse-link story-clubhouse-link" target="_blank" rel="noopener noreferrer">Read Article</a>
         </div>
         <div class="story-body">
@@ -3637,8 +3665,11 @@
       }
     ];
 
-    // The Candace Owens article carries the current ON AIR badge; all other story badges stay off.
+    // ON AIR toggle: null = off (hero "Live on Air NOW!" button stays hidden).
+    // Set to a story id when Matt goes live — badge + hero button show together.
     const liveStoryId = null;
+    const heroLiveBtn = document.getElementById("hero-live-btn");
+    if (heroLiveBtn) heroLiveBtn.hidden = !liveStoryId;
 
     const storyList = document.getElementById("story-list");
     const storyTemplate = document.getElementById("story-template");
@@ -4074,9 +4105,6 @@
       trigger.setAttribute("aria-controls", body.id);
       fragment.querySelector(".story-kicker").textContent = story.kicker;
       fragment.querySelector(".live-badge-link").hidden = story.id !== liveStoryId;
-      const liveLink = fragment.querySelector(".story-live-link");
-      liveLink.hidden = story.id !== liveStoryId;
-      liveLink.setAttribute("aria-label", "Listen to the live Clubhouse show for: " + story.title);
       title.textContent = story.title;
       shareButton.setAttribute("aria-label", "Share " + story.title);
       articleLink.href = "https://trump.house/" + story.id;
