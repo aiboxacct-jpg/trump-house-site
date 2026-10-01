@@ -1096,6 +1096,9 @@
       font-size: 14px;
       line-height: 1.75;
     }
+    .featured-update > .story-video {
+      margin-top: 18px;
+    }
     .featured-update a {
       display: inline-block;
       margin-top: 16px;
@@ -1716,8 +1719,8 @@
       <div class="mast-side">
         <aside class="status-card" aria-label="Room status">
           <div class="status-label">Current status</div>
-          <h2>Six briefs in the queue</h2>
-          <p>Candace Owens Denies Viral Lesbian Dating Profile Claims is the newest public brief, published September 30: the viral unverified dating-profile allegations and her denial.</p>
+          <h2>Seven briefs in the queue</h2>
+          <p>She Survived Her Own Execution: The Botched Lethal Injection of Christa Pike is the newest public brief, published October 1: the failed execution, legal fight, and 1995 murder case.</p>
           <div class="divider" aria-hidden="true"><span></span><span></span><span></span></div>
         </aside>
         <section class="latest-news" id="latest-news" aria-labelledby="latest-news-title" hidden>
@@ -2130,6 +2133,171 @@
 
     // Public story packages: facts and chronology only, with direct source links.
     const storyPackages = [
+      {
+        id: "christa-pike-execution",
+        kicker: "Nashville, Tennessee · Botched execution",
+        title: "She Survived Her Own Execution: The Botched Lethal Injection of Christa Pike",
+        summary: "",
+        date: "Published October 1, 2026",
+        dateTime: "2026-10-01",
+        story: "Tennessee attempted to execute Christa Pike on September 30, 2026. After two doses of pentobarbital, Pike remained alive and was taken by ambulance to a hospital, prompting Governor Bill Lee to halt the state's remaining executions for the year and order an independent review.",
+        showUpdates: true,
+        featuredUpdate: {
+          date: "September 30, 2026",
+          dateTime: "2026-09-30",
+          heading: "Execution fails: Pike survives two doses of pentobarbital",
+          text: "On September 30, 2026, Tennessee attempted to execute Christa Pike, 50, by lethal injection at Riverbend Maximum Security Institution in Nashville. She survived TWO doses of pentobarbital — her lawyers said she had not lost consciousness, still had a heartbeat, and was “audibly snoring.” She was taken by ambulance to a nearby hospital; her condition is unknown. Tennessee's protocol calls for a secondary set of syringes “if the inmate is not deceased” after the first dose — it does not say what happens if she is alive after the second. Governor Bill Lee ordered a “comprehensive, third-party review” and halted the remaining scheduled executions for the rest of the year: “the people of Tennessee expect it to be done in a manner that is not only legal and constitutional, but is effective.” Robin Maher of the Death Penalty Information Center called what Pike experienced “singular and unparalleled.”",
+          video: {
+            title: "Witnesses speak after Christa Pike's botched execution attempt",
+            id: "AQC0m4hNvpQ",
+            sourceLabel: "Watch the witnesses presser on YouTube",
+            sourceUrl: "https://www.youtube.com/watch?v=AQC0m4hNvpQ"
+          },
+          sourceLinks: [
+            { label: "Watch the witnesses presser on YouTube", url: "https://www.youtube.com/watch?v=AQC0m4hNvpQ" },
+            { label: "NY Post — botched-execution report", url: "https://nypost.com/2026/09/30/us-news/christa-pike-still-alive-snoring-after-2-lethal-injections-as-chaos-envelops-tennessee-execution-lawyer/" }
+          ]
+        },
+        storyFormat: [
+          {
+            kind: "lead",
+            text: "The execution did not end in a death. After Tennessee administered two doses of pentobarbital, Christa Pike remained alive and was removed from Riverbend Maximum Security Institution by ambulance. Her condition is unknown, all remaining Tennessee executions this year are halted, and the state has ordered a third-party review."
+          },
+          { kind: "heading", text: "The legal whiplash" },
+          {
+            kind: "paragraph",
+            text: "The execution was set for 10 a.m. CDT on September 30. About an hour before it was to begin, the Sixth Circuit issued a stay. That evening, the U.S. Supreme Court lifted the stay 6–3, with Justices Sonia Sotomayor, Elena Kagan, and Ketanji Brown Jackson dissenting. Sotomayor called the intervention “stunning,” saying it short-circuited appellate review of challenges that were still pending.",
+            links: [
+              { text: "Sixth Circuit issued a stay", url: "https://www.tennessean.com/story/news/crime/2026/09/30/christa-pike-execution-watch-livestream-witnesses/91993142007/" },
+              { text: "U.S. Supreme Court lifted the stay 6–3", url: "https://nypost.com/2026/09/30/us-news/supreme-court-clears-the-way-for-christa-pikes-historic-execution-in-tennessee-to-move-forward/" }
+            ]
+          },
+          {
+            kind: "paragraph",
+            text: "Strapped to the gurney just before 7:30 p.m. CDT, Pike spoke in full sentences. WKRN's Tori Gessner heard her say, “My arm feels like it's about to bust. One spot is really throbbing.” Her final statement, reported by AP's Kim Chandler, was: “I'm at peace. I'm ready to be free... This is a happy day.” At 8:53 p.m., media witnesses were escorted out and Pike was taken to a hospital.",
+            links: [
+              { text: "WKRN's Tori Gessner", url: "https://www.cnn.com/2026/09/29/us/tennessee-christa-pike-execution?cid=external-feeds_iluminar_meta" },
+              { text: "AP's Kim Chandler", url: "https://www.usatoday.com/story/news/nation/2026/09/29/christa-pike-tennessee-execution-supreme-court-denial/92011697007/" }
+            ]
+          },
+          {
+            kind: "paragraph",
+            text: "Pike would have been the first woman executed in Tennessee in 206 years, since Eve Martin's hanging in 1820, and the 19th woman executed in the United States since 1976.",
+            links: [
+              { text: "first woman executed in Tennessee in 206 years", url: "https://www.primetimer.com/news/who-is-christa-pike-the-woman-set-to-become-tennessee-s-first-female-execution-in-over-two-centuries" }
+            ]
+          },
+          { kind: "heading", text: "The 1995 murder of Colleen Slemmer" },
+          {
+            kind: "paragraph",
+            text: "On January 12, 1995, Pike, then 18, her boyfriend Tadaryl Shipp, 17, and Shadolla Peterson, 18, lured 19-year-old Job Corps classmate Colleen Slemmer from the Knoxville Job Corps Center to the University of Tennessee's agricultural campus on the pretext of finding hidden drugs. The attack lasted 30 to 60 minutes. Slemmer was beaten, her head was slammed into concrete, her throat was repeatedly slashed with a box cutter, meat cleaver, and asphalt chunks, and a pentagram was carved into her chest while she was alive. Pike kept a piece of Slemmer's skull as a souvenir, showed it to students, and bragged. A UT grounds worker found Slemmer's body the next morning and initially mistook it for an animal. Prosecutors said the motive was jealousy: Pike believed Slemmer was a rival for Shipp's attention.",
+            links: [
+              { text: "On January 12, 1995", url: "https://en.wikipedia.org/wiki/Christa_Pike" },
+              { text: "kept a piece of Slemmer's skull as a souvenir", url: "https://legalclarity.org/christa-pike-interview-confession-trial-and-death-row/" }
+            ]
+          },
+          {
+            kind: "paragraph",
+            text: "In March 1996, Pike was convicted of first-degree murder and conspiracy and sentenced to death at 20, making her one of the youngest women sentenced to death in the post-Furman era. Shipp, who had been under 18, received life; Peterson received probation after testifying. The Tennessee Supreme Court unanimously upheld Pike's sentence on October 5, 1998. In 2001, Pike tried to strangle fellow inmate Patricia Jones with a shoestring and received an additional attempted-murder conviction.",
+            links: [
+              { text: "sentenced to death at 20", url: "https://en.wikipedia.org/wiki/Christa_Pike" },
+              { text: "tried to strangle fellow inmate Patricia Jones", url: "https://legalclarity.org/christa-pike-interview-confession-trial-and-death-row/" }
+            ]
+          },
+          { kind: "heading", text: "The clemency fight" },
+          {
+            kind: "paragraph",
+            text: "Pike's lawyers argued that repeated childhood rapes, PTSD, brain damage, and bipolar disorder were never presented to the jury; the state does not dispute the abuse or the PTSD diagnosis. A state attorney answered: “The standard is not a painless execution. Psychological harm alone is not a violation.” Amnesty International and more than 100 women's advocacy groups sought a reprieve.",
+            links: [
+              { text: "Pike's lawyers argued", url: "https://www.usatoday.com/story/news/nation/2026/09/24/christa-pike-execution-tennessee-colleen-slemmer/91717806007/" },
+              { text: "Amnesty International and more than 100 women's advocacy groups", url: "https://www.usatoday.com/story/news/nation/2026/09/29/christa-pike-tennessee-execution-supreme-court-denial/92011697007/" }
+            ]
+          },
+          {
+            kind: "paragraph",
+            text: "Slemmer's mother, May Martinez, had waited 31 years. “I just want Christa down so I can end it... There's not a day goes by that I don't think about Colleen,” she said. Martinez planned to hold Colleen's picture up at the execution.",
+            links: [
+              { text: "May Martinez", url: "https://www.usatoday.com/story/news/nation/2026/09/24/christa-pike-execution-tennessee-colleen-slemmer/91717806007/" }
+            ]
+          },
+          {
+            kind: "videos",
+            title: "Dead Woman Walking",
+            intro: "The documentary includes Pike's exclusive death-row interview.",
+            items: [
+              { title: "Dead Woman Walking — Christa Pike death-row interview", id: "SHCRGZDrMRM", featured: true, sourceLabel: "Watch on YouTube", sourceUrl: "https://www.youtube.com/watch?v=SHCRGZDrMRM" }
+            ]
+          }
+        ],
+        facts: [
+          {
+            text: "Tennessee attempted to execute Pike at Riverbend Maximum Security Institution on September 30, 2026. She survived two doses of pentobarbital, retained a heartbeat, and was described by her lawyers as “audibly snoring” before an ambulance took her to a hospital. Her condition has not been made public.",
+            links: [
+              { label: "NY Post", url: "https://nypost.com/2026/09/30/us-news/christa-pike-still-alive-snoring-after-2-lethal-injections-as-chaos-envelops-tennessee-execution-lawyer/" }
+            ]
+          },
+          {
+            text: "Tennessee's protocol provides a secondary set of syringes “if the inmate is not deceased” after the first dose, but does not say what happens if the person remains alive after the second. Governor Bill Lee halted the state's remaining scheduled executions for the year and ordered a “comprehensive, third-party review.”",
+            links: [
+              { label: "NY Post", url: "https://nypost.com/2026/09/30/us-news/christa-pike-still-alive-snoring-after-2-lethal-injections-as-chaos-envelops-tennessee-execution-lawyer/" }
+            ]
+          },
+          {
+            text: "The Sixth Circuit stayed the execution about an hour before its original 10 a.m. CDT start. The U.S. Supreme Court lifted the stay that evening by a 6–3 vote.",
+            links: [
+              { label: "Tennessean", url: "https://www.tennessean.com/story/news/crime/2026/09/30/christa-pike-execution-watch-livestream-witnesses/91993142007/" },
+              { label: "NY Post — SCOTUS", url: "https://nypost.com/2026/09/30/us-news/supreme-court-clears-the-way-for-christa-pikes-historic-execution-in-tennessee-to-move-forward/" }
+            ]
+          },
+          {
+            text: "Pike was convicted of first-degree murder and conspiracy in March 1996 for the January 12, 1995 murder of 19-year-old Colleen Slemmer and was sentenced to death at age 20. The Tennessee Supreme Court unanimously upheld the sentence on October 5, 1998.",
+            links: [
+              { label: "Wikipedia", url: "https://en.wikipedia.org/wiki/Christa_Pike" },
+              { label: "LegalClarity", url: "https://legalclarity.org/christa-pike-interview-confession-trial-and-death-row/" }
+            ]
+          },
+          {
+            text: "Pike's clemency team said severe childhood abuse, PTSD, brain damage, and bipolar disorder were not presented to the jury. Amnesty International and more than 100 women's advocacy groups also asked for a reprieve.",
+            links: [
+              { label: "USA Today — clemency", url: "https://www.usatoday.com/story/news/nation/2026/09/24/christa-pike-execution-tennessee-colleen-slemmer/91717806007/" },
+              { label: "USA Today — pre-execution", url: "https://www.usatoday.com/story/news/nation/2026/09/29/christa-pike-tennessee-execution-supreme-court-denial/92011697007/" }
+            ]
+          },
+          {
+            text: "Had the execution succeeded, Pike would have been Tennessee's first execution of a woman since Eve Martin was hanged in 1820 and the 19th execution of a woman in the United States since 1976.",
+            links: [
+              { label: "Primetimer", url: "https://www.primetimer.com/news/who-is-christa-pike-the-woman-set-to-become-tennessee-s-first-female-execution-in-over-two-centuries" }
+            ]
+          }
+        ],
+        timeline: [
+          { date: "Jan. 12, 1995", detail: "Colleen Slemmer is murdered after being lured from the Knoxville Job Corps Center to the University of Tennessee's agricultural campus." },
+          { date: "March 1996", detail: "Pike is convicted of first-degree murder and conspiracy and sentenced to death." },
+          { date: "Oct. 5, 1998", detail: "The Tennessee Supreme Court unanimously upholds Pike's conviction and death sentence." },
+          { date: "2001", detail: "Pike attacks fellow inmate Patricia Jones with a shoestring and is later convicted of attempted murder." },
+          { date: "Sept. 28, 2026", detail: "Governor Bill Lee denies clemency." },
+          { date: "Sept. 29", detail: "The U.S. Supreme Court denies an earlier stay request; Amnesty International and more than 100 advocacy groups make a reprieve plea." },
+          { date: "Sept. 30 · 10 AM", detail: "The Sixth Circuit stays the execution about an hour before the planned start." },
+          { date: "Sept. 30 · Evening", detail: "The U.S. Supreme Court lifts the stay 6–3." },
+          { date: "~7:30 PM CDT", detail: "Pike is strapped to the gurney and remains able to speak in full sentences." },
+          { date: "After two doses", detail: "Pike survives, with lawyers reporting that she retained a heartbeat and was “audibly snoring.”" },
+          { date: "8:53 PM", detail: "Media witnesses are escorted out; Pike is transported to a hospital." },
+          { date: "Later Sept. 30", detail: "Governor Lee halts Tennessee's remaining executions for the rest of the year and orders a third-party review." }
+        ],
+        sources: [
+          { label: "NY Post — botched-execution report", url: "https://nypost.com/2026/09/30/us-news/christa-pike-still-alive-snoring-after-2-lethal-injections-as-chaos-envelops-tennessee-execution-lawyer/" },
+          { label: "CNN", url: "https://www.cnn.com/2026/09/29/us/tennessee-christa-pike-execution?cid=external-feeds_iluminar_meta" },
+          { label: "Wikipedia — Christa Pike", url: "https://en.wikipedia.org/wiki/Christa_Pike" },
+          { label: "USA Today — clemency", url: "https://www.usatoday.com/story/news/nation/2026/09/24/christa-pike-execution-tennessee-colleen-slemmer/91717806007/" },
+          { label: "USA Today — pre-execution", url: "https://www.usatoday.com/story/news/nation/2026/09/29/christa-pike-tennessee-execution-supreme-court-denial/92011697007/" },
+          { label: "Tennessean", url: "https://www.tennessean.com/story/news/crime/2026/09/30/christa-pike-execution-watch-livestream-witnesses/91993142007/" },
+          { label: "NY Post — Supreme Court", url: "https://nypost.com/2026/09/30/us-news/supreme-court-clears-the-way-for-christa-pikes-historic-execution-in-tennessee-to-move-forward/" },
+          { label: "LegalClarity", url: "https://legalclarity.org/christa-pike-interview-confession-trial-and-death-row/" },
+          { label: "Primetimer", url: "https://www.primetimer.com/news/who-is-christa-pike-the-woman-set-to-become-tennessee-s-first-female-execution-in-over-two-centuries" },
+          { label: "YouTube — witnesses presser", url: "https://www.youtube.com/watch?v=AQC0m4hNvpQ" },
+          { label: "YouTube — Dead Woman Walking", url: "https://www.youtube.com/watch?v=SHCRGZDrMRM" }
+        ]
+      },
       {
         id: "candace-owens-allegations",
         kicker: "Viral claims · Denial · Unverified allegations",
@@ -3099,6 +3267,28 @@
       container.appendChild(section);
     }
 
+    function createStoryVideoFigure(video) {
+      const figure = document.createElement("figure");
+      const frame = document.createElement("div");
+      const iframe = document.createElement("iframe");
+      const caption = document.createElement("figcaption");
+      const title = document.createElement("strong");
+      figure.className = "story-video" + (video.featured ? " featured" : "");
+      frame.className = "story-video-frame";
+      iframe.src = "https://www.youtube.com/embed/" + encodeURIComponent(video.id);
+      iframe.title = video.title;
+      iframe.loading = "lazy";
+      iframe.referrerPolicy = "strict-origin-when-cross-origin";
+      iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+      iframe.setAttribute("allowfullscreen", "");
+      title.className = "story-video-title";
+      title.textContent = video.title;
+      frame.appendChild(iframe);
+      caption.appendChild(title);
+      figure.append(frame, caption);
+      return figure;
+    }
+
     function renderVideos(container, block) {
       const section = document.createElement("section");
       const heading = document.createElement("h4");
@@ -3362,7 +3552,11 @@
           featuredSources.forEach(function (featuredSource) {
             appendUpdateSource(sources, featuredSource);
           });
-          featured.append(heading, detail, sources);
+          featured.append(heading, detail);
+          if (story.featuredUpdate.video) {
+            featured.appendChild(createStoryVideoFigure(story.featuredUpdate.video));
+          }
+          featured.appendChild(sources);
           groups.before(featured);
         }
         if (story.updatesPlaceholder) {
