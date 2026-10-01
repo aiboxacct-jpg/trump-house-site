@@ -1978,7 +1978,16 @@
     latestNewsSection.hidden = latestNews.length === 0;
     latestNewsArchiveEmpty.hidden = latestNews.length > 3;
 
-    const mediaItems = [];
+    const mediaItems = [
+      {
+        id: 'support-beaver-tribute',
+        title: 'In Memory of Beaver — Say Something Positive',
+        date: '2026-09-30',
+        kind: 'audio',
+        url: 'media/Support_Beaver.mp3',
+        description: 'From the Clubhouse room: friends share a word of kindness and favorite memories of Beaver, a beloved leader of the community. May he rest in peace.'
+      }
+    ];
     const mediaList = document.getElementById("media-list");
 
     function formatMediaDate(value) {
