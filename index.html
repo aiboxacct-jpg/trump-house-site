@@ -883,6 +883,15 @@
       line-height: 1.3;
       text-transform: uppercase;
     }
+    .pull-quote-attr {
+      display: block;
+      margin: -0.9em 0 1.4em;
+      padding-left: clamp(18px, 3vw, 28px);
+      color: var(--ink-soft, #5b6472);
+      font-size: 13px;
+      font-style: normal;
+      letter-spacing: .04em;
+    }
     .pull-quote {
       display: block;
       margin: 1.25em 0 1.45em;
@@ -2242,7 +2251,19 @@
         topUpdates: [
           {
             heading: "September 28, 2026 \u2014 DA publishes full statement on the 2024 no-charges decision; reopens case for grand jury",
-            text: "Tompkins County DA Matthew Van Houten published a detailed written statement explaining why his office declined criminal charges in November 2024. According to the DA, Jane Doe\u2019s six-page sworn statement \u2014 with 20+ handwritten notations, signed under penalty of false statement \u2014 \u201cdid not allege that she was drugged against her will or gang raped\u201d and instead \u201cdescribed her participation in drug use and sexual conduct as voluntary, conscious, and consensual.\u201d The DA writes that neither Jane Doe nor her attorneys contacted his office in the nearly two years since; he reached out to her attorneys after the civil lawsuit was filed to address the discrepancy. His legal analysis concludes the statement, taken as true, could not sustain charges under NY Penal Law 130.05: no alleged forcible compulsion, no drug administered without consent, no alleged unconsciousness \u2014 and per the statement, each time she asked to stop, the conduct stopped. The DA called the fraternity members\u2019 behavior \u201cdisgusting and morally reprehensible\u201d but said prosecutions must rest on evidence. He has reopened the investigation and assigned a senior sex-crimes prosecutor to prepare the case for presentation to the Tompkins County grand jury, which can consider Jane Doe\u2019s testimony and the civil complaint\u2019s allegations.",
+            paragraphs: [
+              "Tompkins County DA Matthew Van Houten published a detailed written statement explaining why his office declined criminal charges in November 2024.",
+              "According to the DA, Jane Doe\u2019s six-page sworn statement \u2014 with 20+ handwritten notations, signed under penalty of false statement \u2014 \u201cdid not allege that she was drugged against her will or gang raped\u201d and instead \u201cdescribed her participation in drug use and sexual conduct as voluntary, conscious, and consensual.\u201d",
+              "The DA writes that neither Jane Doe nor her attorneys contacted his office in the nearly two years since; he reached out to her attorneys after the civil lawsuit was filed to address the discrepancy.",
+              "His legal analysis concludes the statement, taken as true, could not sustain charges under NY Penal Law 130.05: no alleged forcible compulsion, no drug administered without consent, no alleged unconsciousness \u2014 and per the statement, each time she asked to stop, the conduct stopped.",
+              "The DA called the fraternity members\u2019 behavior \u201cdisgusting and morally reprehensible\u201d but said prosecutions must rest on evidence.",
+              "He has reopened the investigation and assigned a senior sex-crimes prosecutor to prepare the case for presentation to the Tompkins County grand jury, which can consider Jane Doe\u2019s testimony and the civil complaint\u2019s allegations."
+            ],
+            pullQuote: {
+              text: "did not allege that she was drugged against her will or gang raped",
+              attribution: "DA Matthew Van Houten, Sept 28 statement",
+              afterParagraph: 3
+            },
             sourceLabel: "Tompkins County \u2014 DA statement (Sept 28, 2026)",
             sourceUrl: "https://www.tompkinscountyny.gov/News-articles/District-Attorney-statement-regarding-Jane-Doe-v.-Cornell-University-et-al"
           }
@@ -3790,6 +3811,27 @@
       }, { once: true });
     }
 
+    function appendUpdateBody(entry, update) {
+      var paras = (update.paragraphs && update.paragraphs.length) ? update.paragraphs : [update.text];
+      paras.forEach(function (para, idx) {
+        var p = document.createElement("p");
+        p.textContent = para;
+        entry.appendChild(p);
+        if (update.pullQuote && update.pullQuote.afterParagraph === idx) {
+          var quote = document.createElement("blockquote");
+          quote.className = "pull-quote";
+          quote.textContent = "\u201C" + update.pullQuote.text + "\u201D";
+          entry.appendChild(quote);
+          if (update.pullQuote.attribution) {
+            var cite = document.createElement("cite");
+            cite.className = "pull-quote-attr";
+            cite.textContent = "\u2014 " + update.pullQuote.attribution;
+            entry.appendChild(cite);
+          }
+        }
+      });
+    }
+
     function appendUpdateSource(container, sourceData) {
       const isInstagram = /^https:\/\/(?:www\.)?instagram\.com\/(?:reel|p)\//i.test(sourceData.url);
       const isTwitter = /^https:\/\/(?:www\.)?(?:x\.com|twitter\.com)\/[^/]+\/status\/\d+/i.test(sourceData.url);
@@ -4182,19 +4224,18 @@
           story.topUpdates.forEach(function (topUpdate) {
             const entry = document.createElement("article");
             const heading = document.createElement("h4");
-            const detail = document.createElement("p");
             const sources = document.createElement("div");
             entry.className = "priority-update";
             sources.className = "update-sources";
             heading.textContent = topUpdate.heading;
-            detail.textContent = topUpdate.text;
             const topSources = topUpdate.sourceLinks || [
               { label: topUpdate.sourceLabel, url: topUpdate.sourceUrl }
             ];
             topSources.forEach(function (topSource) {
               appendUpdateSource(sources, topSource);
             });
-            entry.append(heading, detail);
+            entry.appendChild(heading);
+            appendUpdateBody(entry, topUpdate);
             if (topUpdate.image) {
               const figure = document.createElement("figure");
               const image = document.createElement("img");
@@ -4219,7 +4260,6 @@
         if (story.featuredUpdate) {
           const featured = document.createElement("article");
           const heading = document.createElement("h4");
-          const detail = document.createElement("p");
           const sources = document.createElement("div");
           featured.className = "featured-update";
           sources.className = "update-sources";
@@ -4231,14 +4271,14 @@
             featured.appendChild(updateDate);
           }
           heading.textContent = story.featuredUpdate.heading;
-          detail.textContent = story.featuredUpdate.text;
           const featuredSources = story.featuredUpdate.sourceLinks || [
             { label: story.featuredUpdate.sourceLabel, url: story.featuredUpdate.sourceUrl }
           ];
           featuredSources.forEach(function (featuredSource) {
             appendUpdateSource(sources, featuredSource);
           });
-          featured.append(heading, detail);
+          featured.appendChild(heading);
+          appendUpdateBody(featured, story.featuredUpdate);
           if (story.featuredUpdate.video) {
             featured.appendChild(createStoryVideoFigure(story.featuredUpdate.video));
           }
