@@ -1637,7 +1637,7 @@
             <span>
               <span class="story-meta">
                 <span class="story-kicker"></span>
-                <a class="live-badge-link" href="https://www.clubhouse.com/i/do-you-believe-in-theory-of-evolution/t4ft54kI" target="_blank" rel="noopener" hidden onclick="event.stopPropagation()"><span class="live-badge" aria-label="Currently being discussed live">● LIVE</span></a>
+                <a class="live-badge-link" href="https://www.clubhouse.com/i/do-you-believe-in-theory-of-evolution/t4ft54kI" target="_blank" rel="noopener" hidden onclick="event.stopPropagation()"><span class="live-badge" aria-label="Currently being discussed live">● ON AIR on Clubhouse!</span></a>
               </span>
               <strong class="story-title"></strong>
               <span class="story-summary"></span>
@@ -2176,7 +2176,7 @@
         id: "nolan-wells",
         kicker: "Ocean Springs, Mississippi · Cause and manner undetermined",
         title: "Nolan Wells",
-        summary: "updated September 30: Nolan Wells' mother speaks, a 'NOLAN MATTERS' mall protest draws attention — plus the latest case developments",
+        summary: "updated September 30: courthouse protesters declare 'NOLAN WELLS DID NOT DROWN' as celebrities amplify the Blackout for Nolan campaign",
         date: "Published September 27, 2026 · Updated September 30, 2026",
         dateTime: "2026-09-30",
         story: "Nolan Xavier Wells, 18, disappeared during a July 4 boat trip to Horn Island; his body was found in the water two days later, and both autopsies leave his cause and manner of death undetermined.",
@@ -2281,6 +2281,23 @@
               { text: "The world is watching, and Nolan Wells' family deserves a thorough accounting of what happened.", cite: "Derrick Johnson, NAACP · August 19" },
               { text: "If it was your child, you would want the investigation to stay open and active.", cite: "Kristen Clarke, NAACP · September 22" },
               { text: "No True Bill Does Not Resolve How Nolan Wells Died.", cite: "Ben Crump · September 21" }
+            ]
+          }
+        ],
+        topUpdates: [
+          {
+            heading: "September 30, 2026 — 'NOLAN WELLS DID NOT DROWN' protest at Jackson County Courthouse",
+            text: "The Mississippi Rising Coalition's own reel documents its September 30 protest at the Jackson County Courthouse in Pascagoula, with Wells family members present. Protesters' signs demand that DA Angel Myers McIlrath and Sheriff Loyd resign; a banner reads \"NOLAN WELLS DID NOT DROWN.\"",
+            sourceLinks: [
+              { label: "Mississippi Rising Coalition (Instagram)", url: "https://www.instagram.com/reel/Dd6xS6kqBKG/" }
+            ]
+          },
+          {
+            heading: "September 30, 2026 — Celebrity wave joins the 'Blackout for Nolan' campaign",
+            text: "Verified celebrity posts amplified the campaign today, including Chelsea Handler, Jhené Aiko (~700K likes), Toya Johnson (49K likes), Montell Jordan, Atlanta Black Star, and Cocoabutter.",
+            sourceLinks: [
+              { label: "Jhené Aiko (Instagram)", url: "https://www.instagram.com/p/Dd670vaDwYX/" },
+              { label: "Chelsea Handler (Instagram)", url: "https://www.instagram.com/p/Dd6uiUnGtEo/" }
             ]
           }
         ],
@@ -2627,7 +2644,7 @@
     }
 
     function appendUpdateSource(container, sourceData) {
-      const isInstagram = /^https:\/\/(?:www\.)?instagram\.com\/reel\//i.test(sourceData.url);
+      const isInstagram = /^https:\/\/(?:www\.)?instagram\.com\/(?:reel|p)\//i.test(sourceData.url);
       const isTwitter = /^https:\/\/(?:www\.)?(?:x\.com|twitter\.com)\/[^/]+\/status\/\d+/i.test(sourceData.url);
       if (isInstagram) {
         const embed = document.createElement("blockquote");
@@ -2976,9 +2993,32 @@
         note.hidden = false;
       }
 
-      if (story.showUpdates || story.featuredUpdate || (story.updates && story.updates.length)) {
+      if (story.showUpdates || (story.topUpdates && story.topUpdates.length) || story.featuredUpdate || (story.updates && story.updates.length)) {
         const updates = fragment.querySelector(".story-updates");
         const groups = fragment.querySelector(".updates-groups");
+        if (story.topUpdates && story.topUpdates.length) {
+          const topUpdates = document.createElement("div");
+          topUpdates.className = "priority-updates";
+          story.topUpdates.forEach(function (topUpdate) {
+            const entry = document.createElement("article");
+            const heading = document.createElement("h4");
+            const detail = document.createElement("p");
+            const sources = document.createElement("div");
+            entry.className = "priority-update";
+            sources.className = "update-sources";
+            heading.textContent = topUpdate.heading;
+            detail.textContent = topUpdate.text;
+            const topSources = topUpdate.sourceLinks || [
+              { label: topUpdate.sourceLabel, url: topUpdate.sourceUrl }
+            ];
+            topSources.forEach(function (topSource) {
+              appendUpdateSource(sources, topSource);
+            });
+            entry.append(heading, detail, sources);
+            topUpdates.appendChild(entry);
+          });
+          groups.before(topUpdates);
+        }
         if (story.featuredUpdate) {
           const featured = document.createElement("article");
           const heading = document.createElement("h4");
