@@ -1980,6 +1980,14 @@
 
     const mediaItems = [
       {
+        id: 'have-you-ever-seen-the-rain',
+        title: 'Have You Ever Seen the Rain — Darren Yamamoto',
+        date: '2026-10-01',
+        kind: 'audio',
+        url: 'media/HAVE_YOU_EVER_SEEN_THE_RAIN.mp3',
+        description: 'A musical tribute in memory of Beaver: Darren Yamamoto performs "Have You Ever Seen the Rain."'
+      },
+      {
         id: 'beaver-buds-tribute',
         title: 'Beaver — Six Years of Friendship',
         date: '2026-09-30',
@@ -2126,11 +2134,19 @@
         id: "candace-owens-allegations",
         kicker: "Viral claims · Denial · Unverified allegations",
         title: "Candace Owens Denies Viral Lesbian Dating Profile Claims",
-        summary: "Candace Owens is denying viral, unverified allegations that she kept lesbian dating profiles in the late 2000s. No outlet has independently authenticated the alleged profiles, account records, or login data; Owens calls the claims “deranged.”",
-        date: "Published September 30, 2026",
+        summary: "Updated September 30, 2026 — Candace responds to @EsoShaggy's allegations (video)", 
+        date: "Published September 30, 2026 · Updated September 30, 2026",
         dateTime: "2026-09-30",
         story: "Candace Owens is denying viral allegations that she kept lesbian dating profiles in the late 2000s. The claims, published September 28, 2026 by Substack writer Geoffrey Edevane (@EsoShaggy) in a 12-chapter Mystery Machine News article, have not been independently authenticated by any outlet. Owens calls them “deranged.”",
         showUpdates: true,
+        featuredUpdate: {
+          date: "September 30, 2026",
+          dateTime: "2026-09-30",
+          heading: "Candace responds to @EsoShaggy's allegations (video)",
+          text: "On September 30, 2026, @EsoShaggy (Esoteric Shaggyism) posted a 15-minute clip of Candace Owens answering his allegations on her own show — his claims center on old 'Candamo429' YouTube and 'Cdotamber' Flickr accounts and email addresses he ties to them. In his caption, the poster claims Owens confirmed those accounts as hers while also accusing him of hacking them, accused him of being paid by Netanyahu, TPUSA, Bill Ackman and the Pentagon, and blamed him for the murder of Charlie Kirk — all of which the poster denies in the post. These are the poster's characterizations of the clip; the clip's audio was not independently transcribed. The post had ~213K views at the time of review.",
+          sourceLabel: "View the X post",
+          sourceUrl: "https://x.com/EsoShaggy/status/2105444483714138555"
+        },
         storyFormat: [
           { kind: "lead", text: "Candace Owens is denying viral allegations that she kept lesbian dating profiles in the late 2000s. The claims, published September 28, 2026 by Substack writer Geoffrey Edevane (@EsoShaggy) in a 12-chapter Mystery Machine News article, have not been independently authenticated by any outlet. Owens calls them “deranged.”" },
           {
@@ -3331,6 +3347,13 @@
           const sources = document.createElement("div");
           featured.className = "featured-update";
           sources.className = "update-sources";
+          if (story.featuredUpdate.date) {
+            const updateDate = document.createElement("time");
+            updateDate.className = "story-kicker";
+            updateDate.dateTime = story.featuredUpdate.dateTime || "";
+            updateDate.textContent = story.featuredUpdate.date;
+            featured.appendChild(updateDate);
+          }
           heading.textContent = story.featuredUpdate.heading;
           detail.textContent = story.featuredUpdate.text;
           const featuredSources = story.featuredUpdate.sourceLinks || [
