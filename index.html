@@ -610,6 +610,12 @@
       letter-spacing: .1em;
       text-transform: uppercase;
     }
+    .live-badge-link {
+      display: inline;
+      color: inherit;
+      text-decoration: none;
+    }
+    .live-badge-link[hidden] { display: none; }
     .live-badge {
       display: inline-flex;
       align-items: center;
@@ -1582,8 +1588,8 @@
       <div class="mast-side">
         <aside class="status-card" aria-label="Room status">
           <div class="status-label">Current status</div>
-          <h2>Five briefs in the queue</h2>
-          <p>South Carolina Mom Charged in 50-Stab Attack on Her Own Kids is the newest public brief, published September 30: the charges, the children's condition, and the reported timeline from the attack through the bond hearing.</p>
+          <h2>Six briefs in the queue</h2>
+          <p>Candace Owens Denies Viral Lesbian Dating Profile Claims is the newest public brief, published September 30: the viral unverified dating-profile allegations and her denial.</p>
           <div class="divider" aria-hidden="true"><span></span><span></span><span></span></div>
         </aside>
         <section class="latest-news" id="latest-news" aria-labelledby="latest-news-title" hidden>
@@ -1631,7 +1637,7 @@
             <span>
               <span class="story-meta">
                 <span class="story-kicker"></span>
-                <span class="live-badge" aria-label="Currently being discussed live" hidden>● LIVE</span>
+                <a class="live-badge-link" href="https://www.clubhouse.com/i/do-you-believe-in-theory-of-evolution/t4ft54kI" target="_blank" rel="noopener" hidden onclick="event.stopPropagation()"><span class="live-badge" aria-label="Currently being discussed live">● LIVE</span></a>
               </span>
               <strong class="story-title"></strong>
               <span class="story-summary"></span>
@@ -1839,6 +1845,98 @@
 
     // Public story packages: facts and chronology only, with direct source links.
     const storyPackages = [
+      {
+        id: "candace-owens-allegations",
+        kicker: "Viral claims · Denial · Unverified allegations",
+        title: "Candace Owens Denies Viral Lesbian Dating Profile Claims",
+        summary: "Candace Owens is denying viral, unverified allegations that she kept lesbian dating profiles in the late 2000s. No outlet has independently authenticated the alleged profiles, account records, or login data; Owens calls the claims “deranged.”",
+        date: "Published September 30, 2026",
+        dateTime: "2026-09-30",
+        story: "Candace Owens is denying viral allegations that she kept lesbian dating profiles in the late 2000s. The claims, published September 28, 2026 by Substack writer Geoffrey Edevane (@EsoShaggy) in a 12-chapter Mystery Machine News article, have not been independently authenticated by any outlet. Owens calls them “deranged.”",
+        showUpdates: true,
+        storyFormat: [
+          { kind: "lead", text: "Candace Owens is denying viral allegations that she kept lesbian dating profiles in the late 2000s. The claims, published September 28, 2026 by Substack writer Geoffrey Edevane (@EsoShaggy) in a 12-chapter Mystery Machine News article, have not been independently authenticated by any outlet. Owens calls them “deranged.”" },
+          {
+            kind: "videos",
+            title: "Videos",
+            intro: "Two commentary segments discussing the viral allegations and Owens' denial. The videos do not independently authenticate the alleged profiles, account records, or login data.",
+            items: [
+              { title: "Tom Bilyeu Show: The Candace Owens Leaks Are Insane (\"Fake and Gay\" Comes Back Around)", id: "2yZjnbX94z8", sourceLabel: "Watch on YouTube", sourceUrl: "https://www.youtube.com/watch?v=2yZjnbX94z8" },
+              { title: "Candace Owens LEAKS — Nick Fuentes GOES OFF", id: "L9qd525JBC0", sourceLabel: "Watch on YouTube", sourceUrl: "https://www.youtube.com/watch?v=L9qd525JBC0" }
+            ]
+          }
+        ],
+        facts: [
+          {
+            text: "On September 28, 2026, X account @EsoShaggy (Esoteric Shaggyism), identified as Substack writer Geoffrey Edevane, published a 12-chapter Mystery Machine News article alleging that Owens kept four lesbian dating profiles — three on Adult FriendFinder and one on Fling — created in 2007 or 2008. Edevane alleged links through the usernames Candamo429, Cdot429, CdotAmber, and CdotAmber429, which he described as combinations of Candace Amber Owens and an April 29 birthday, plus emails including a URI.edu address. The alleged attribution to Owens has not been independently authenticated.",
+            links: [
+              { label: "Mystery Machine News", url: "https://www.mysterymachinenews.com/p/the-deconstruction-of-candace-owens-realcandaceo-lesbian-exposed-history?triedRedirect=true" }
+            ]
+          },
+          {
+            text: "Edevane further alleged that an account named “collegefuck5” was last accessed on January 12, 2022, about two and a half years after Owens' 2019 marriage to George Farmer, and interpreted the alleged login as evidence of an affair with a woman. He also claimed that Milo Yiannopoulos said in leaked audio that he had a sex tape and, citing Raheem Kassam, alleged that Farmer is gay. The login, affair, recording, and claims about Farmer are all unverified.",
+            links: [
+              { label: "Mystery Machine News", url: "https://www.mysterymachinenews.com/p/the-deconstruction-of-candace-owens-realcandaceo-lesbian-exposed-history?triedRedirect=true" }
+            ]
+          },
+          {
+            text: "Edevane says he acted alone, without financial backers, and has offered $100,000 to anyone who can prove the alleged profiles are fake. The offer does not authenticate the profiles.",
+            links: [
+              { label: "Headline USA", url: "https://headlineusa.com/candace-owens-faces-explosive-new-allegations-about-sex-life/" }
+            ]
+          },
+          {
+            text: "The underlying data breaches are documented: a 2011 Fling breach involved more than 40 million accounts, and a 2016 Friend Finder Networks breach exposed about 170 million unique Adult FriendFinder email addresses, according to Headline USA's account citing Have I Been Pwned. Those breaches do not establish that any specific alleged profile belonged to Owens.",
+            links: [
+              { label: "Headline USA", url: "https://headlineusa.com/candace-owens-faces-explosive-new-allegations-about-sex-life/" }
+            ]
+          },
+          {
+            text: "Headline USA reported that it contacted Owens for comment and received no response. It also reported that she canceled her Monday show. Neither fact independently verifies the allegations.",
+            links: [
+              { label: "Headline USA", url: "https://headlineusa.com/candace-owens-faces-explosive-new-allegations-about-sex-life/" }
+            ]
+          },
+          {
+            text: "International Business Times UK reported that it could not independently authenticate the alleged profiles, account records, or login data.",
+            links: [
+              { label: "Headline USA", url: "https://headlineusa.com/candace-owens-faces-explosive-new-allegations-about-sex-life/" }
+            ]
+          },
+          {
+            text: "Owens denied the claims on X, writing, “of everything they've made up, this is the most deranged.” She said she had one boyfriend throughout college — the same person she dated in high school — and said a photo used on one alleged profile showed her with her aunt and uncle at her 2015 birthday dinner in New York City and had been taken from her personal Facebook page. She blamed Zionists and the “Epstein class” but offered no evidence for that attribution.",
+            links: [
+              { label: "Baller Alert", url: "https://balleralert.com/candace-owens-denies-lesbian-dating-profile-claims/" }
+            ]
+          },
+          {
+            text: "Context reported by Bored Panda includes Owens' 2019 marriage to George Farmer and their four children; her “Becoming Brigitte” series alleging that Brigitte Macron is a man; and the Macrons' Delaware defamation suit naming GeorgeTom, Inc., the operator of Owens' site. The same report cites Owens' 2017 post “LOL I'm not a lesbian,” her statement “It's a sin” about gay marriage in a July 2024 Don Lemon interview, and her January 2024 post calling gender dysphoria a mental disorder.",
+            links: [
+              { label: "Bored Panda", url: "https://www.boredpanda.com/candance-owens-might-be-secret-lesbian/" }
+            ]
+          },
+          {
+            text: "The unverified allegations produced a meme wave, including “BrokeBlack Mountain,” “Release Candace Owens lesbo files,” and recirculation of the “Why are you gay?” clip.",
+            links: [
+              { label: "Bored Panda", url: "https://www.boredpanda.com/candance-owens-might-be-secret-lesbian/" }
+            ]
+          }
+        ],
+        timeline: [
+          { date: "2007 / 2008", detail: "Alleged profiles said to have been created during Owens' University of Rhode Island era; the profiles' attribution to Owens remains unverified." },
+          { date: "2019", detail: "Owens marries George Farmer." },
+          { date: "January 12, 2022", detail: "Edevane alleges one account was accessed on this date; the account and login have not been independently authenticated." },
+          { date: "September 28, 2026", detail: "@EsoShaggy publishes the X thread and 12-chapter Mystery Machine News article containing the unverified allegations." },
+          { date: "September 28–29", detail: "Owens denies the claims and cancels her Monday show; the cancellation does not authenticate the allegations." },
+          { date: "September 29", detail: "International Business Times UK says it could not authenticate the alleged profiles, account records, or login data as memes spread online." }
+        ],
+        sources: [
+          { label: "Mystery Machine News (Substack)", url: "https://www.mysterymachinenews.com/p/the-deconstruction-of-candace-owens-realcandaceo-lesbian-exposed-history?triedRedirect=true" },
+          { label: "Headline USA", url: "https://headlineusa.com/candace-owens-faces-explosive-new-allegations-about-sex-life/" },
+          { label: "Baller Alert", url: "https://balleralert.com/candace-owens-denies-lesbian-dating-profile-claims/" },
+          { label: "Bored Panda", url: "https://www.boredpanda.com/candance-owens-might-be-secret-lesbian/" }
+        ]
+      },
       {
         id: "taylor-gosnell-case",
         kicker: "Cowpens, South Carolina · Attempted murder charges",
@@ -2428,7 +2526,7 @@
       }
     ];
 
-    // LIVE stays off until the host turns it on for an active room.
+    // The evolution debate is the current live room; all other story badges stay off.
     const liveStoryId = "evolution-debate";
 
     const storyList = document.getElementById("story-list");
@@ -2831,7 +2929,7 @@
       article.setAttribute("aria-labelledby", title.id);
       trigger.setAttribute("aria-controls", body.id);
       fragment.querySelector(".story-kicker").textContent = story.kicker;
-      fragment.querySelector(".live-badge").hidden = story.id !== liveStoryId;
+      fragment.querySelector(".live-badge-link").hidden = story.id !== liveStoryId;
       title.textContent = story.title;
       shareButton.setAttribute("aria-label", "Share " + story.title);
       articleLink.href = "https://trump.house/" + story.id;

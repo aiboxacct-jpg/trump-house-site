@@ -49,6 +49,12 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://trump.house/candace-owens-allegations</loc>
+    <lastmod>2026-09-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://trump.house/factoid/</loc>
     <lastmod>2026-09-27</lastmod>
     <changefreq>monthly</changefreq>
