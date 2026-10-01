@@ -313,47 +313,82 @@
       .utility { align-items:flex-start; flex-direction:column; gap:14px; }
       .view-switch { width:100%; }
       .view-button { flex:1; padding-inline:9px; }
-      .mast { grid-template-columns:1fr; gap:30px; padding-top:40px; }
+      .mast { grid-template-columns:minmax(0,1fr); gap:30px; padding-top:40px; }
+      .mast > * { min-width:0; }
       h1 { font-size:clamp(41px,14vw,62px); }
       .section-head { align-items:flex-start; flex-direction:column; gap:9px; }
       .section-head p { text-align:left; }
       .story-trigger { grid-template-columns:32px minmax(0,1fr) 18px; padding:18px 14px; }
       .story-status { display:none; }
-      .brief-grid { grid-template-columns:1fr; }
+      .brief-grid { grid-template-columns:minmax(0,1fr); }
       .brief-section + .brief-section { border-left:0; border-top:1px solid var(--line); }
       .track-stops li { grid-template-columns:30px 76px minmax(0,1fr); gap:9px; }
-      .record-grid,.comparison-grid,.quotes-grid,.updates-groups,.story-video-grid { grid-template-columns:1fr; }
+      .record-grid,.comparison-grid,.quotes-grid,.updates-groups,.story-video-grid { grid-template-columns:minmax(0,1fr); }
       .story-video.featured { grid-column:auto; }
       .updates-groups { gap:22px; }
       .updates-list li { grid-template-columns:104px minmax(0,1fr); gap:12px; }
       .primary-document { align-items:stretch; flex-direction:column; gap:10px; }
       .primary-document-link { width:100%; justify-content:center; text-align:center; }
       .primary-document-attribution { text-align:left; }
-      .comparison-row { grid-template-columns:1fr; gap:8px; }
+      .comparison-row { grid-template-columns:minmax(0,1fr); gap:8px; }
       .comparison-label { padding:12px 0 0; }
-      .sources-list { display:grid; }
+      .sources-list { display:grid; grid-template-columns:minmax(0,1fr); }
       .sources-list a,.sources-list span { width:100%; justify-content:space-between; }
       .brief-actions { justify-content:stretch; }
       .clubhouse-button { width:100%; justify-content:center; }
-      .topic-form { grid-template-columns:1fr; gap:20px; }
+      .topic-form { grid-template-columns:minmax(0,1fr); gap:20px; }
       .topic-field-wide,.topic-form-actions { grid-column:1; }
       .topic-form-actions { align-items:stretch; flex-direction:column; }
       .topic-submit-button { width:100%; }
       .topic-form-status { width:100%; }
-      .gate-form { grid-template-columns:1fr; }
+      .gate-form { grid-template-columns:minmax(0,1fr); }
       .gate-form button { width:100%; }
       .host-head { align-items:flex-start; flex-direction:column; }
       .live-manager-head { align-items:flex-start; flex-direction:column; gap:7px; }
-      .live-topic-buttons { display:grid; grid-template-columns:1fr; }
+      .live-topic-buttons { display:grid; grid-template-columns:minmax(0,1fr); }
       .live-topic-button { width:100%; text-align:left; }
       .research-helper-head { flex-direction:column; gap:14px; }
       .research-helper-scope { align-self:flex-start; }
-      .research-suggestions { display:grid; }
+      .research-suggestions { display:grid; grid-template-columns:minmax(0,1fr); }
       .research-suggestion { width:100%; }
-      .research-chat-log { max-height:480px; }
+      .research-chat-log { grid-template-columns:minmax(0,1fr); max-height:480px; }
       .research-message { max-width:96%; }
-      .research-form { grid-template-columns:1fr; }
+      .research-form { grid-template-columns:minmax(0,1fr); }
       .research-form button { width:100%; }
+      .story-list,
+      .stat-list,
+      .track-stops,
+      .direct-updates,
+      .facts,
+      .timeline,
+      .topic-field,
+      .host-notes,
+      .talking-list { grid-template-columns:minmax(0,1fr); }
+      .talking-list li { grid-template-columns:38px minmax(0,1fr); }
+      .story-list > *,
+      .stat-list > *,
+      .track-stops > *,
+      .direct-updates > *,
+      .facts > *,
+      .timeline > *,
+      .topic-field > *,
+      .host-notes > *,
+      .talking-list > *,
+      .talking-list li > *,
+      .brief-grid > *,
+      .record-grid > *,
+      .comparison-grid > *,
+      .quotes-grid > *,
+      .updates-groups > *,
+      .story-video-grid > *,
+      .comparison-row > *,
+      .sources-list > *,
+      .topic-form > *,
+      .gate-form > *,
+      .live-topic-buttons > *,
+      .research-suggestions > *,
+      .research-chat-log > *,
+      .research-form > * { min-width:0; }
       footer { flex-direction:column; }
     }
     :root[data-theme="dark"] .watermark { opacity:.035; filter:saturate(.35) brightness(.7); }
