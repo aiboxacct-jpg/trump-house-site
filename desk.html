@@ -97,6 +97,13 @@
     .story-status { color:var(--success-text); background:var(--success-bg); border:1px solid var(--success-line); padding:6px 9px; font-size:10px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; white-space:nowrap; }
     .story-teaser { display:block; max-width:760px; margin-top:8px; color:var(--muted); font-size:13px; line-height:1.55; }
     .story-date { display:flex; align-items:center; flex-wrap:wrap; gap:8px 10px; margin-top:10px; color:var(--muted); font-size:12px; font-weight:650; }
+    .story-share-row { display:flex; align-items:center; justify-content:flex-end; gap:12px; padding:0 22px 18px; }
+    .story-share { min-height:40px; border:1px solid var(--line-strong); background:var(--paper); color:var(--blue); padding:8px 13px; font-size:12px; font-weight:800; cursor:pointer; }
+    .story-share:hover { color:var(--red-deep); border-color:var(--red); }
+    .story-share:focus-visible,.share-fallback input:focus-visible { outline:3px solid color-mix(in srgb,var(--blue) 38%,transparent); outline-offset:2px; }
+    .share-fallback { display:flex; align-items:center; gap:8px; min-width:0; color:var(--muted); font-size:12px; font-weight:700; }
+    .share-fallback[hidden] { display:none; }
+    .share-fallback input { min-width:0; width:min(360px,52vw); border:1px solid var(--line-strong); background:var(--paper); color:var(--ink); padding:9px 10px; }
     .updated-badge { display:inline-flex; align-items:center; gap:6px; padding:5px 9px; color:#fff; background:var(--red); box-shadow:0 0 0 3px color-mix(in srgb,var(--red) 15%,transparent); font-size:10px; font-weight:800; letter-spacing:.08em; line-height:1.2; text-transform:uppercase; animation:update-blink 1.7s ease-in-out infinite; }
     .updated-badge::before { content:""; width:6px; height:6px; border-radius:50%; background:currentColor; }
     @keyframes update-blink { 0%,44%,100% { opacity:1; box-shadow:0 0 0 3px color-mix(in srgb,var(--red) 15%,transparent); } 56%,76% { opacity:.48; box-shadow:0 0 0 7px transparent; } }
@@ -135,7 +142,7 @@
     .track-detail strong { display:block; margin-bottom:4px; color:var(--ink); font-size:14px; line-height:1.4; }
     .track-detail span { display:block; color:var(--muted); font-size:13px; line-height:1.55; }
     .track-source { margin:22px 0 0!important; padding-top:16px; border-top:1px solid var(--line); color:var(--muted); font-size:12px; line-height:1.6; }
-    .track-source a,.story-summary a { color:var(--blue); font-weight:700; text-underline-offset:3px; }
+    .track-source a,.story-summary a,.facts a { color:var(--blue); font-weight:700; text-underline-offset:3px; overflow-wrap:anywhere; }
     .record-grid,.comparison-grid,.quotes-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
     .record-card,.comparison-side,.quote-card { padding:17px 18px; background:var(--paper-soft); border-top:3px solid var(--blue); }
     .record-card.accent,.comparison-side.family { border-top-color:var(--red); }
@@ -320,6 +327,10 @@
       .section-head p { text-align:left; }
       .story-trigger { grid-template-columns:32px minmax(0,1fr) 18px; padding:18px 14px; }
       .story-status { display:none; }
+      .story-share-row { align-items:stretch; flex-direction:column; padding:0 14px 16px; }
+      .story-share,.share-fallback { width:100%; }
+      .share-fallback { align-items:stretch; flex-direction:column; }
+      .share-fallback input { width:100%; }
       .brief-grid { grid-template-columns:minmax(0,1fr); }
       .brief-section + .brief-section { border-left:0; border-top:1px solid var(--line); }
       .track-stops li { grid-template-columns:30px 76px minmax(0,1fr); gap:9px; }
@@ -420,7 +431,7 @@
         </div>
         <aside class="rundown-card" aria-label="Rundown status">
           <span>Briefing status</span>
-          <strong>4 ready</strong>
+          <strong>5 ready</strong>
           <p>The newest research-ready story leads the queue.</p>
         </aside>
       </header>
@@ -432,9 +443,96 @@
         </div>
 
         <div class="story-list">
+          <article class="story" data-open="false" data-story-id="taylor-gosnell-case">
+            <header class="story-card-header">
+            <button class="story-trigger" type="button" aria-expanded="false" aria-controls="taylor-gosnell-case-body">
+              <span class="story-number">01</span>
+              <span>
+                <span class="story-title-row">
+                  <span class="story-title">South Carolina Mom Charged in 50-Stab Attack on Her Own Kids</span>
+                </span>
+                <span class="story-meta">Cowpens, South Carolina · Attempted murder charges</span>
+                <span class="story-teaser">Taylor Morgan Gosnell, 35, is charged with two counts of attempted murder after allegedly attacking her 6-year-old son and 3-year-old daughter roughly 50 times combined with a knife and a blunt object.</span>
+                <span class="story-date">Published September 30, 2026</span>
+              </span>
+              <span class="story-status">Research ready</span>
+              <span class="chevron" aria-hidden="true">›</span>
+            </button>
+            <div class="story-share-row">
+              <button class="story-share" type="button" data-share-url="https://trump.house/taylor-gosnell-case" aria-label="Share South Carolina Mom Charged in 50-Stab Attack on Her Own Kids">Share</button>
+              <label class="share-fallback" hidden>
+                <span>Copy this link</span>
+                <input type="text" value="https://trump.house/taylor-gosnell-case" readonly aria-label="Share link" />
+              </label>
+            </div>
+            </header>
+            <div class="story-body" id="taylor-gosnell-case-body">
+              <section class="story-updates" aria-label="Updates">
+                <h3>Updates</h3>
+              </section>
+
+              <div class="story-summary">
+                <p class="story-lead"><strong>Taylor Morgan Gosnell, 35, of Cowpens, Spartanburg County, South Carolina, is charged with two counts of attempted murder after allegedly stabbing her 6-year-old son and 3-year-old daughter roughly 50 times combined with a knife and a blunt object. The 6-year-old faces possible amputation of fingers or an arm. She was already out on bond on February 2024 child-endangerment charges.</strong></p>
+
+                <section class="story-videos" aria-labelledby="taylor-gosnell-videos-title">
+                  <h4 id="taylor-gosnell-videos-title">Videos</h4>
+                  <p class="story-videos-intro">Local television coverage of the charges, the children&#39;s condition, and the response in Cowpens.</p>
+                  <div class="story-video-grid">
+                    <figure class="story-video">
+                      <div class="story-video-frame"><iframe src="https://www.youtube.com/embed/J2NbNUGZPvs" title="Spartanburg County mother charged with attempted murder after 2 children found hurt" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
+                      <figcaption><span class="story-video-title">Spartanburg County mother charged with attempted murder after 2 children found hurt</span><a class="story-video-source" href="https://www.youtube.com/watch?v=J2NbNUGZPvs" target="_blank" rel="noopener noreferrer">Watch on YouTube</a></figcaption>
+                    </figure>
+                    <figure class="story-video">
+                      <div class="story-video-frame"><iframe src="https://www.youtube.com/embed/uq5L9qb5Ne8" title="WSPA 7 News — neighbor Cheryl Bryant interview" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
+                      <figcaption><span class="story-video-title">WSPA 7 News — neighbor Cheryl Bryant interview</span><a class="story-video-source" href="https://www.youtube.com/watch?v=uq5L9qb5Ne8" target="_blank" rel="noopener noreferrer">Watch on YouTube</a></figcaption>
+                    </figure>
+                  </div>
+                </section>
+              </div>
+
+              <div class="brief-grid">
+                <section class="brief-section">
+                  <h3>Verified facts</h3>
+                  <ul class="facts">
+                    <li>“Between the two children, we&#39;re estimating that there were approximately 50 stab wounds,” said Graham McLellan of the Spartanburg County Sheriff&#39;s Office. Prosecutors told the bond court that “some of the lacerations were so deep they cut to the bone.” <a href="https://nypost.com/2026/09/29/us-news/psycho-south-carolina-mom-stabs-her-two-kids-over-50-times-in-unhinged-attack-that-leaves-one-facing-amputation/" target="_blank" rel="noopener noreferrer">NY Post · Sept. 29</a></li>
+                    <li>Authorities described the 6-year-old&#39;s injuries as “very severe” and said he is “facing the possibility of amputation of fingers and possibly an arm.” <a href="https://nypost.com/2026/09/29/us-news/psycho-south-carolina-mom-stabs-her-two-kids-over-50-times-in-unhinged-attack-that-leaves-one-facing-amputation/" target="_blank" rel="noopener noreferrer">NY Post</a> · <a href="https://people.com/child-6-faces-amputation-after-mom-allegedly-attacked-him-other-child-with-knife-12146431" target="_blank" rel="noopener noreferrer">People</a></li>
+                    <li>The attack allegedly happened the night of September 25 into the early morning of September 26, “while it was still dark outside.” The children were found alone at about 2:30 p.m. September 26 during a welfare check, “covered in blood” and with “countless lacerations.” <a href="https://internewscast.com/news/mother-charged-with-attempted-murder-after-allegedly-attacking-children-with-knife/" target="_blank" rel="noopener noreferrer">Internewscast</a> · <a href="https://people.com/child-6-faces-amputation-after-mom-allegedly-attacked-him-other-child-with-knife-12146431" target="_blank" rel="noopener noreferrer">People</a></li>
+                    <li>The 6-year-old called his grandmother and said he was hungry. The grandmother and Gosnell&#39;s ex-boyfriend went to the home and called police. Authorities found blood throughout the house, with televisions and mirrors shattered. <a href="https://nypost.com/2026/09/29/us-news/psycho-south-carolina-mom-stabs-her-two-kids-over-50-times-in-unhinged-attack-that-leaves-one-facing-amputation/" target="_blank" rel="noopener noreferrer">NY Post</a></li>
+                    <li>Gosnell returned while deputies were at the scene, “speaking rapidly and in a distressing manner,” and said she was experiencing “visions.” Authorities said she tried to flee, was handcuffed to a stretcher, and was taken for a mental-health evaluation. <a href="https://people.com/child-6-faces-amputation-after-mom-allegedly-attacked-him-other-child-with-knife-12146431" target="_blank" rel="noopener noreferrer">People</a></li>
+                    <li>Both children were taken to Spartanburg Regional Medical Center, then Greenville Children&#39;s Hospital. They were stable and expected to recover but faced additional surgeries; they were placed in protective custody. <a href="https://nypost.com/2026/09/29/us-news/psycho-south-carolina-mom-stabs-her-two-kids-over-50-times-in-unhinged-attack-that-leaves-one-facing-amputation/" target="_blank" rel="noopener noreferrer">NY Post</a> · <a href="https://internewscast.com/news/mother-charged-with-attempted-murder-after-allegedly-attacking-children-with-knife/" target="_blank" rel="noopener noreferrer">Internewscast</a></li>
+                    <li>Gosnell was booked shortly before midnight September 26 and denied bond at a September 27 hearing. Deputies later added two counts of possession of a weapon during a violent crime, one for each weapon. <a href="https://www.wvlt.tv/2026/09/27/mother-charged-with-attempted-murder-after-allegedly-attacking-her-children-with-knife/" target="_blank" rel="noopener noreferrer">WVLT / WHNS</a></li>
+                    <li>Gosnell was already out on bond after being charged in February 2024 with two counts of unlawfully placing a child at risk of harm or willfully abandoning a child. Each charge carried a $5,000 bond and remained pending, according to court records cited by The State. The solicitor said she had no prior criminal convictions. November 12 was reported as her next court date, but that date is not independently confirmed. <a href="https://internewscast.com/news/mother-charged-with-attempted-murder-after-allegedly-attacking-children-with-knife/" target="_blank" rel="noopener noreferrer">Internewscast</a></li>
+                  </ul>
+                </section>
+                <section class="brief-section">
+                  <h3>Timeline</h3>
+                  <ol class="timeline">
+                    <li><time datetime="2024-02">February 2024</time>Charged with two counts of unlawfully placing a child at risk of harm or willfully abandoning a child; released on bond; charges still pending.</li>
+                    <li><time datetime="2026-09-25">Night of Sept. 25–26, 2026</time>Attack allegedly occurs at a home on the 1400 block of Bud Arthur Bridge Road in Cowpens, South Carolina.</li>
+                    <li><time datetime="2026-09-26T14:30">~2:30 PM · Sept. 26</time>A welfare check finds the children; Gosnell is detained and taken for a mental-health evaluation.</li>
+                    <li><time datetime="2026-09-26T23:59">Before midnight · Sept. 26</time>Gosnell is booked on two counts of attempted murder.</li>
+                    <li><time datetime="2026-09-27">September 27</time>Bond is denied; two additional weapons charges are added.</li>
+                    <li><time datetime="2026-11-12">November 12</time>Next court date — reported by one source, not confirmed.</li>
+                  </ol>
+                </section>
+              </div>
+
+              <section class="sources-block">
+                <h3>Source links</h3>
+                <ul class="sources-list">
+                  <li><a href="https://nypost.com/2026/09/29/us-news/psycho-south-carolina-mom-stabs-her-two-kids-over-50-times-in-unhinged-attack-that-leaves-one-facing-amputation/" target="_blank" rel="noopener noreferrer">NY Post · Sept. 29</a></li>
+                  <li><a href="https://people.com/child-6-faces-amputation-after-mom-allegedly-attacked-him-other-child-with-knife-12146431" target="_blank" rel="noopener noreferrer">People</a></li>
+                  <li><a href="https://www.wvlt.tv/2026/09/27/mother-charged-with-attempted-murder-after-allegedly-attacking-her-children-with-knife/" target="_blank" rel="noopener noreferrer">WVLT / WHNS</a></li>
+                  <li><a href="https://www.thesun.co.uk/news/40539172/mum-stabs-children-frenzied-attack-cops-find-youngsters-blood/" target="_blank" rel="noopener noreferrer">The Sun</a></li>
+                  <li><a href="https://internewscast.com/news/mother-charged-with-attempted-murder-after-allegedly-attacking-children-with-knife/" target="_blank" rel="noopener noreferrer">Internewscast</a></li>
+                </ul>
+              </section>
+            </div>
+          </article>
+
           <article class="story" data-open="true" data-story-id="evolution-debate">
             <button class="story-trigger" type="button" aria-expanded="true" aria-controls="evolution-debate-body">
-              <span class="story-number">01</span>
+              <span class="story-number">02</span>
               <span>
                 <span class="story-title-row">
                   <span class="story-title">Do You Believe in the Theory of Evolution?</span>
@@ -545,7 +643,7 @@
 
           <article class="story" data-open="false" data-story-id="irgc-midterms-letter">
             <button class="story-trigger" type="button" aria-expanded="true" aria-controls="irgc-midterms-letter-body">
-              <span class="story-number">02</span>
+              <span class="story-number">03</span>
               <span>
                 <span class="story-title-row">
                   <span class="story-title">IRGC to America: Vote Trump Out</span>
@@ -651,7 +749,7 @@
 
           <article class="story" data-open="false" data-story-id="nolan-wells">
             <button class="story-trigger" type="button" aria-expanded="false" aria-controls="nolan-wells-body">
-              <span class="story-number">03</span>
+              <span class="story-number">04</span>
               <span>
                 <span class="story-title-row">
                   <span class="story-title">Nolan Wells</span>
@@ -902,7 +1000,7 @@
 
           <article class="story" data-open="false" data-story-id="tasia-fortune">
             <button class="story-trigger" type="button" aria-expanded="false" aria-controls="tasia-fortune-body">
-              <span class="story-number">04</span>
+              <span class="story-number">05</span>
               <span>
                 <span class="story-title-row">
                   <span class="story-title">The Tasia Fortune Case</span>
@@ -1047,11 +1145,11 @@
       </div>
 
       <div class="host-content" id="host-content">
-        <header class="host-head"><div><p class="kicker">Host briefing room</p><h2>Talking points</h2><p>4 prepared segments · not shown in the public brief view</p></div><button class="lock-button" id="lock-button">Lock desk</button></header>
+        <header class="host-head"><div><p class="kicker">Host briefing room</p><h2>Talking points</h2><p>5 prepared segments · not shown in the public brief view</p></div><button class="lock-button" id="lock-button">Lock desk</button></header>
         <section class="live-manager" aria-labelledby="live-manager-title">
           <div class="live-manager-head"><h3 id="live-manager-title">Topic on air</h3><p>The LIVE badge stays hidden until it is turned on.</p></div>
           <div class="live-topic-buttons" aria-label="Current live story brief">
-            <button class="live-topic-button" id="live-auto-topic" type="button" aria-pressed="true">01 · Do You Believe in the Theory of Evolution?</button>
+            <button class="live-topic-button" id="live-auto-topic" type="button" aria-pressed="true">02 · Do You Believe in the Theory of Evolution?</button>
           </div>
           <p class="live-manager-status" id="live-manager-status" role="status" aria-live="polite">Do You Believe in the Theory of Evolution? is now marked LIVE.</p>
         </section>
@@ -1065,6 +1163,7 @@
             <span class="research-helper-scope">Queued briefs only</span>
           </div>
           <div class="research-suggestions" aria-label="Suggested questions">
+            <button class="research-suggestion" type="button" data-research-question="What happened in the Taylor Gosnell case?">Taylor Gosnell overview</button>
             <button class="research-suggestion" type="button" data-research-question="What does the IRGC letter say?">IRGC letter overview</button>
             <button class="research-suggestion" type="button" data-research-question="What happened to Nolan Wells?">Nolan Wells overview</button>
             <button class="research-suggestion" type="button" data-research-question="What did the Nolan Wells autopsies find?">Autopsy findings</button>
@@ -1075,17 +1174,28 @@
           <div class="research-chat-log" id="research-chat-log" role="log" aria-live="polite" aria-label="Research helper conversation">
             <div class="research-message helper">
               <span class="research-message-label">Research helper</span>
-              <p>I’m ready. Ask me about the IRGC letter, Nolan Wells, or The Tasia Fortune Case, including verified facts, timelines, disputes, or named sources.</p>
+              <p>I’m ready. Ask me about the Taylor Gosnell case, the IRGC letter, Nolan Wells, or The Tasia Fortune Case, including verified facts, timelines, disputes, or named sources.</p>
             </div>
           </div>
           <form class="research-form" id="research-form">
             <label for="research-question">Ask the queued briefs</label>
-            <input id="research-question" type="text" autocomplete="off" placeholder="Ask about the IRGC letter, Nolan Wells, or Tasia Fortune" required />
+            <input id="research-question" type="text" autocomplete="off" placeholder="Ask about Taylor Gosnell, the IRGC letter, Nolan Wells, or Tasia Fortune" required />
             <button type="submit">Ask</button>
           </form>
         </section>
 
         <div class="host-notes">
+          <article class="host-note" aria-labelledby="taylor-gosnell-host-points-title">
+            <h3 id="taylor-gosnell-host-points-title">South Carolina Mom Charged in 50-Stab Attack on Her Own Kids · Host talking points</h3>
+            <ol class="talking-list">
+              <li>The system had her: February 2024 child-endangerment charges still pending, out on bond — and the kids stayed with her. “No prior criminal history” (no convictions) vs. pending charges — the charged-but-not-convicted gap is where kids fall through.</li>
+              <li>The detail that breaks a room: a hungry 6-year-old&#39;s phone call is what exposed 50 stab wounds. Grandma + the ex-boyfriend were the safety net that worked.</li>
+              <li>“Visions,” rapid speech, fleeing the stretcher — mental-health crisis, criminal accountability, or both? Ask the room where the line is.</li>
+              <li>50 wounds, cut to the bone, possible amputation — charged with attempted murder. The law-and-order question practically asks itself.</li>
+              <li>Neighbor to WSPA: “I&#39;m just praying that [the children] are placed somewhere that they will be safe and taken care of” — the community&#39;s verdict on the system that left them there.</li>
+            </ol>
+          </article>
+
           <article class="host-note" aria-labelledby="evolution-host-points-title">
             <h3 id="evolution-host-points-title">Do You Believe in the Theory of Evolution? · Host talking points</h3>
             <ol class="talking-list">
@@ -1211,6 +1321,40 @@
          "questions" are canned examples; "keywords" drive topic matching.
          ================================================================ */
       var researchKnowledgeBase = [
+        {
+          id: 'taylor-gosnell-overview',
+          questions: ['what happened in the taylor gosnell case', 'give me the taylor gosnell case overview', 'who is taylor gosnell'],
+          keywords: ['taylor gosnell', 'gosnell case', 'cowpens', '50 stab wounds', 'children attacked'],
+          answer: 'Taylor Morgan Gosnell, 35, of Cowpens, South Carolina, is charged with two counts of attempted murder after allegedly stabbing her 6-year-old son and 3-year-old daughter roughly 50 times combined. The children were found during a September 26 welfare check; both were stable and expected to recover, though the 6-year-old faced possible amputation of fingers or an arm. Gosnell was denied bond September 27.',
+          sources: [
+            { label: 'NY Post · Sept. 29', url: 'https://nypost.com/2026/09/29/us-news/psycho-south-carolina-mom-stabs-her-two-kids-over-50-times-in-unhinged-attack-that-leaves-one-facing-amputation/' },
+            { label: 'People', url: 'https://people.com/child-6-faces-amputation-after-mom-allegedly-attacked-him-other-child-with-knife-12146431' },
+            { label: 'WVLT / WHNS', url: 'https://www.wvlt.tv/2026/09/27/mother-charged-with-attempted-murder-after-allegedly-attacking-her-children-with-knife/' }
+          ]
+        },
+        {
+          id: 'taylor-gosnell-timeline',
+          questions: ['give me the taylor gosnell timeline', 'what are the key dates in the taylor gosnell case', 'when did the attack happen'],
+          keywords: ['taylor', 'gosnell', 'timeline', 'key dates', 'september 25', 'september 26', 'september 27', 'november 12'],
+          answer: 'Key dates: Gosnell was charged with child endangerment in February 2024 and released on bond; the alleged attack occurred overnight September 25–26, 2026; the children were found around 2:30 p.m. September 26; Gosnell was booked before midnight; and bond was denied September 27. November 12 was reported by one source as the next court date, but it is not independently confirmed.',
+          sources: [
+            { label: 'Internewscast', url: 'https://internewscast.com/news/mother-charged-with-attempted-murder-after-allegedly-attacking-children-with-knife/' },
+            { label: 'WVLT / WHNS', url: 'https://www.wvlt.tv/2026/09/27/mother-charged-with-attempted-murder-after-allegedly-attacking-her-children-with-knife/' }
+          ]
+        },
+        {
+          id: 'taylor-gosnell-sources',
+          questions: ['show me the taylor gosnell sources', 'what reporting supports the taylor gosnell brief', 'where can i read more about taylor gosnell'],
+          keywords: ['taylor', 'gosnell', 'source', 'sources', 'reporting', 'read more'],
+          answer: 'The Taylor Gosnell brief links to reporting from the New York Post, People, WVLT/WHNS, The Sun, and Internewscast.',
+          sources: [
+            { label: 'NY Post · Sept. 29', url: 'https://nypost.com/2026/09/29/us-news/psycho-south-carolina-mom-stabs-her-two-kids-over-50-times-in-unhinged-attack-that-leaves-one-facing-amputation/' },
+            { label: 'People', url: 'https://people.com/child-6-faces-amputation-after-mom-allegedly-attacked-him-other-child-with-knife-12146431' },
+            { label: 'WVLT / WHNS', url: 'https://www.wvlt.tv/2026/09/27/mother-charged-with-attempted-murder-after-allegedly-attacking-her-children-with-knife/' },
+            { label: 'The Sun', url: 'https://www.thesun.co.uk/news/40539172/mum-stabs-children-frenzied-attack-cops-find-youngsters-blood/' },
+            { label: 'Internewscast', url: 'https://internewscast.com/news/mother-charged-with-attempted-murder-after-allegedly-attacking-children-with-knife/' }
+          ]
+        },
         {
           id: 'irgc-overview',
           questions: ['what does the irgc letter say', 'give me the irgc letter overview', 'what did iran tell american voters'],
@@ -1448,6 +1592,30 @@
         });
       });
 
+      document.querySelectorAll('.story-share').forEach(function (button) {
+        button.addEventListener('click', function () {
+          var row = button.closest('.story-share-row');
+          var fallback = row.querySelector('.share-fallback');
+          var input = fallback.querySelector('input');
+          var shareUrl = button.getAttribute('data-share-url');
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(shareUrl).then(function () {
+              button.textContent = 'Copied';
+              window.clearTimeout(button._shareResetTimer);
+              button._shareResetTimer = window.setTimeout(function () { button.textContent = 'Share'; }, 1800);
+            }).catch(function () {
+              fallback.hidden = false;
+              input.focus();
+              input.select();
+            });
+          } else {
+            fallback.hidden = false;
+            input.focus();
+            input.select();
+          }
+        });
+      });
+
       function syncLiveBadgeToNewestBrief() {
         var stories = Array.from(document.querySelectorAll('.story-list > .story[data-story-id]'));
         if (!stories.length) return;
@@ -1603,7 +1771,7 @@
         if (entry) {
           appendResearchMessage('helper', entry.answer, entry.sources);
         } else {
-          appendResearchMessage('helper', "That isn’t covered in the queued briefs yet. Try asking about the IRGC letter, Nolan Wells, or the Tasia Fortune case, including verified facts, key dates, disputes, or named sources.");
+          appendResearchMessage('helper', "That isn’t covered in the queued briefs yet. Try asking about the Taylor Gosnell case, the IRGC letter, Nolan Wells, or the Tasia Fortune case, including verified facts, key dates, disputes, or named sources.");
         }
       }
 

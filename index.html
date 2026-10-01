@@ -1135,6 +1135,17 @@
       font-size: 14px;
       line-height: 1.65;
     }
+    .facts-list a {
+      color: var(--blue);
+      font-weight: 700;
+      text-underline-offset: 3px;
+    }
+    .facts-list a:hover,
+    .facts-list a:focus-visible { color: var(--red-deep); }
+    .facts-list a:focus-visible {
+      outline: 2px solid color-mix(in srgb, var(--blue) 38%, transparent);
+      outline-offset: 2px;
+    }
     .facts-list li::before {
       content: "";
       position: absolute;
@@ -1502,8 +1513,8 @@
       <div class="mast-side">
         <aside class="status-card" aria-label="Room status">
           <div class="status-label">Current status</div>
-          <h2>Four briefs in the queue</h2>
-          <p>Do You Believe in the Theory of Evolution? is the newest public brief, published September 30: the scientific consensus, America's divided answers, and the classroom fight returning to legislatures and federal court.</p>
+          <h2>Five briefs in the queue</h2>
+          <p>South Carolina Mom Charged in 50-Stab Attack on Her Own Kids is the newest public brief, published September 30: the charges, the children's condition, and the reported timeline from the attack through the bond hearing.</p>
           <div class="divider" aria-hidden="true"><span></span><span></span><span></span></div>
         </aside>
         <section class="latest-news" id="latest-news" aria-labelledby="latest-news-title" hidden>
@@ -1731,6 +1742,96 @@
 
     // Public story packages: facts and chronology only, with direct source links.
     const storyPackages = [
+      {
+        id: "taylor-gosnell-case",
+        kicker: "Cowpens, South Carolina · Attempted murder charges",
+        title: "South Carolina Mom Charged in 50-Stab Attack on Her Own Kids",
+        summary: "Taylor Morgan Gosnell, 35, is charged with two counts of attempted murder after allegedly attacking her 6-year-old son and 3-year-old daughter roughly 50 times combined with a knife and a blunt object.",
+        date: "Published September 30, 2026",
+        dateTime: "2026-09-30",
+        story: "Taylor Morgan Gosnell, 35, of Cowpens, Spartanburg County, South Carolina, is charged with two counts of attempted murder after allegedly stabbing her 6-year-old son and 3-year-old daughter roughly 50 times combined with a knife and a blunt object. The 6-year-old faces possible amputation of fingers or an arm. She was already out on bond on February 2024 child-endangerment charges.",
+        showUpdates: true,
+        storyFormat: [
+          { kind: "lead", text: "Taylor Morgan Gosnell, 35, of Cowpens, Spartanburg County, South Carolina, is charged with two counts of attempted murder after allegedly stabbing her 6-year-old son and 3-year-old daughter roughly 50 times combined with a knife and a blunt object. The 6-year-old faces possible amputation of fingers or an arm. She was already out on bond on February 2024 child-endangerment charges." },
+          {
+            kind: "videos",
+            title: "Videos",
+            intro: "Local television coverage of the charges, the children's condition, and the response in Cowpens.",
+            items: [
+              { title: "Spartanburg County mother charged with attempted murder after 2 children found hurt", id: "J2NbNUGZPvs", sourceLabel: "Watch on YouTube", sourceUrl: "https://www.youtube.com/watch?v=J2NbNUGZPvs" },
+              { title: "WSPA 7 News — neighbor Cheryl Bryant interview", id: "uq5L9qb5Ne8", sourceLabel: "Watch on YouTube", sourceUrl: "https://www.youtube.com/watch?v=uq5L9qb5Ne8" }
+            ]
+          }
+        ],
+        facts: [
+          {
+            text: "“Between the two children, we're estimating that there were approximately 50 stab wounds,” said Graham McLellan of the Spartanburg County Sheriff's Office. Prosecutors told the bond court that “some of the lacerations were so deep they cut to the bone.”",
+            links: [
+              { label: "NY Post · Sept. 29", url: "https://nypost.com/2026/09/29/us-news/psycho-south-carolina-mom-stabs-her-two-kids-over-50-times-in-unhinged-attack-that-leaves-one-facing-amputation/" }
+            ]
+          },
+          {
+            text: "Authorities described the 6-year-old's injuries as “very severe” and said he is “facing the possibility of amputation of fingers and possibly an arm.”",
+            links: [
+              { label: "NY Post", url: "https://nypost.com/2026/09/29/us-news/psycho-south-carolina-mom-stabs-her-two-kids-over-50-times-in-unhinged-attack-that-leaves-one-facing-amputation/" },
+              { label: "People", url: "https://people.com/child-6-faces-amputation-after-mom-allegedly-attacked-him-other-child-with-knife-12146431" }
+            ]
+          },
+          {
+            text: "The attack allegedly happened the night of September 25 into the early morning of September 26, “while it was still dark outside.” The children were found alone at about 2:30 p.m. September 26 during a welfare check, “covered in blood” and with “countless lacerations.”",
+            links: [
+              { label: "Internewscast", url: "https://internewscast.com/news/mother-charged-with-attempted-murder-after-allegedly-attacking-children-with-knife/" },
+              { label: "People", url: "https://people.com/child-6-faces-amputation-after-mom-allegedly-attacked-him-other-child-with-knife-12146431" }
+            ]
+          },
+          {
+            text: "The 6-year-old called his grandmother and said he was hungry. The grandmother and Gosnell's ex-boyfriend went to the home and called police. Authorities found blood throughout the house, with televisions and mirrors shattered.",
+            links: [
+              { label: "NY Post", url: "https://nypost.com/2026/09/29/us-news/psycho-south-carolina-mom-stabs-her-two-kids-over-50-times-in-unhinged-attack-that-leaves-one-facing-amputation/" }
+            ]
+          },
+          {
+            text: "Gosnell returned while deputies were at the scene, “speaking rapidly and in a distressing manner,” and said she was experiencing “visions.” Authorities said she tried to flee, was handcuffed to a stretcher, and was taken for a mental-health evaluation.",
+            links: [
+              { label: "People", url: "https://people.com/child-6-faces-amputation-after-mom-allegedly-attacked-him-other-child-with-knife-12146431" }
+            ]
+          },
+          {
+            text: "Both children were taken to Spartanburg Regional Medical Center, then Greenville Children's Hospital. They were stable and expected to recover but faced additional surgeries; they were placed in protective custody.",
+            links: [
+              { label: "NY Post", url: "https://nypost.com/2026/09/29/us-news/psycho-south-carolina-mom-stabs-her-two-kids-over-50-times-in-unhinged-attack-that-leaves-one-facing-amputation/" },
+              { label: "Internewscast", url: "https://internewscast.com/news/mother-charged-with-attempted-murder-after-allegedly-attacking-children-with-knife/" }
+            ]
+          },
+          {
+            text: "Gosnell was booked shortly before midnight September 26 and denied bond at a September 27 hearing. Deputies later added two counts of possession of a weapon during a violent crime, one for each weapon.",
+            links: [
+              { label: "WVLT / WHNS", url: "https://www.wvlt.tv/2026/09/27/mother-charged-with-attempted-murder-after-allegedly-attacking-her-children-with-knife/" }
+            ]
+          },
+          {
+            text: "Gosnell was already out on bond after being charged in February 2024 with two counts of unlawfully placing a child at risk of harm or willfully abandoning a child. Each charge carried a $5,000 bond and remained pending, according to court records cited by The State. The solicitor said she had no prior criminal convictions. November 12 was reported as her next court date, but that date is not independently confirmed.",
+            links: [
+              { label: "Internewscast", url: "https://internewscast.com/news/mother-charged-with-attempted-murder-after-allegedly-attacking-children-with-knife/" }
+            ]
+          }
+        ],
+        timeline: [
+          { date: "February 2024", detail: "Charged with two counts of unlawfully placing a child at risk of harm or willfully abandoning a child; released on bond; charges still pending." },
+          { date: "Night of Sept. 25–26, 2026", detail: "Attack allegedly occurs at a home on the 1400 block of Bud Arthur Bridge Road in Cowpens, South Carolina." },
+          { date: "~2:30 PM · Sept. 26", detail: "A welfare check finds the children; Gosnell is detained and taken for a mental-health evaluation." },
+          { date: "Before midnight · Sept. 26", detail: "Gosnell is booked on two counts of attempted murder." },
+          { date: "September 27", detail: "Bond is denied; two additional weapons charges are added." },
+          { date: "November 12", detail: "Next court date — reported by one source, not confirmed." }
+        ],
+        sources: [
+          { label: "NY Post · Sept. 29", url: "https://nypost.com/2026/09/29/us-news/psycho-south-carolina-mom-stabs-her-two-kids-over-50-times-in-unhinged-attack-that-leaves-one-facing-amputation/" },
+          { label: "People", url: "https://people.com/child-6-faces-amputation-after-mom-allegedly-attacked-him-other-child-with-knife-12146431" },
+          { label: "WVLT / WHNS", url: "https://www.wvlt.tv/2026/09/27/mother-charged-with-attempted-murder-after-allegedly-attacking-her-children-with-knife/" },
+          { label: "The Sun", url: "https://www.thesun.co.uk/news/40539172/mum-stabs-children-frenzied-attack-cops-find-youngsters-blood/" },
+          { label: "Internewscast", url: "https://internewscast.com/news/mother-charged-with-attempted-murder-after-allegedly-attacking-children-with-knife/" }
+        ]
+      },
       {
         id: "evolution-debate",
         kicker: "Science · Faith · The classroom",
@@ -2291,7 +2392,20 @@
     function addTextItems(list, items) {
       items.forEach(function (item) {
         const li = document.createElement("li");
-        li.textContent = item;
+        if (typeof item === "string") {
+          li.textContent = item;
+        } else {
+          li.appendChild(document.createTextNode(item.text));
+          (item.links || []).forEach(function (sourceLink, index) {
+            li.appendChild(document.createTextNode(index === 0 ? " " : " · "));
+            const link = document.createElement("a");
+            link.href = sourceLink.url;
+            link.target = "_blank";
+            link.rel = "noopener noreferrer";
+            link.textContent = sourceLink.label;
+            li.appendChild(link);
+          });
+        }
         list.appendChild(li);
       });
     }
