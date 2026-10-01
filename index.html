@@ -164,6 +164,7 @@
       margin: 0 auto;
       padding: clamp(38px, 7vw, 88px) 0 52px;
     }
+    .page > [hidden] { display: none; }
     .mast {
       display: grid;
       grid-template-columns: minmax(0, 1.25fr) minmax(270px, .75fr);
@@ -437,6 +438,74 @@
     .latest-news-sources a:focus-visible {
       outline: 2px solid color-mix(in srgb, var(--blue) 38%, transparent);
       outline-offset: 2px;
+    }
+    .latest-news-more,
+    .news-archive-back,
+    .news-archive-empty a {
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.5;
+      text-underline-offset: 3px;
+    }
+    .latest-news-more {
+      display: inline-block;
+      margin-top: 12px;
+    }
+    .latest-news-more:hover,
+    .latest-news-more:focus-visible,
+    .news-archive-back:hover,
+    .news-archive-back:focus-visible,
+    .news-archive-empty a:hover,
+    .news-archive-empty a:focus-visible { color: var(--red-deep); }
+    .latest-news-more:focus-visible,
+    .news-archive-back:focus-visible,
+    .news-archive-empty a:focus-visible {
+      outline: 2px solid color-mix(in srgb, var(--blue) 38%, transparent);
+      outline-offset: 3px;
+    }
+    .news-archive {
+      padding: clamp(46px, 7vw, 82px) 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .news-archive[hidden] { display: none; }
+    .news-archive-back {
+      display: inline-block;
+      margin-bottom: 24px;
+    }
+    .news-archive-header {
+      margin-bottom: 28px;
+    }
+    .news-archive-header h2 {
+      margin: 0;
+      color: var(--navy);
+      font-family: "Libre Baskerville", Georgia, serif;
+      font-size: clamp(31px, 4.5vw, 50px);
+      line-height: 1.15;
+      letter-spacing: -.035em;
+    }
+    .news-archive-header p {
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.65;
+    }
+    .news-archive-feed {
+      padding: 18px clamp(18px, 3vw, 28px) 20px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--red);
+      box-shadow: 0 9px 30px rgba(16,42,76,.08);
+    }
+    .news-archive-empty {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.65;
+    }
+    .news-archive-empty a {
+      display: inline-block;
+      margin-top: 8px;
     }
 
     .story-queue {
@@ -1520,7 +1589,23 @@
         <section class="latest-news" id="latest-news" aria-labelledby="latest-news-title" hidden>
           <h2 class="latest-news-kicker" id="latest-news-title">Latest News</h2>
           <ul class="latest-news-list" id="latest-news-list"></ul>
+          <a class="latest-news-more" href="#latest-news-archive">More headlines →</a>
         </section>
+      </div>
+    </section>
+
+    <section class="news-archive" id="latest-news-archive" aria-labelledby="latest-news-archive-title" hidden>
+      <a class="news-archive-back" href="#latest-news">← Back to latest</a>
+      <header class="news-archive-header">
+        <h2 id="latest-news-archive-title">Latest News Archive</h2>
+        <p>Older headlines, newest first.</p>
+      </header>
+      <div class="news-archive-feed">
+        <ul class="latest-news-list" id="latest-news-archive-list"></ul>
+        <p class="news-archive-empty" id="latest-news-archive-empty" hidden>
+          No older headlines yet — check back soon.<br />
+          <a href="#latest-news">Back to the homepage feed</a>
+        </p>
       </div>
     </section>
 
@@ -1695,8 +1780,11 @@
 
     const latestNewsSection = document.getElementById("latest-news");
     const latestNewsList = document.getElementById("latest-news-list");
+    const latestNewsArchive = document.getElementById("latest-news-archive");
+    const latestNewsArchiveList = document.getElementById("latest-news-archive-list");
+    const latestNewsArchiveEmpty = document.getElementById("latest-news-archive-empty");
 
-    latestNews.forEach(function (newsItem) {
+    function createLatestNewsItem(newsItem) {
       const item = document.createElement("li");
       const headline = document.createElement("a");
       const summary = document.createElement("p");
@@ -1735,10 +1823,19 @@
         item.appendChild(sourcesLine);
       }
 
-      latestNewsList.appendChild(item);
+      return item;
+    }
+
+    latestNews.slice(0, 3).forEach(function (newsItem) {
+      latestNewsList.appendChild(createLatestNewsItem(newsItem));
+    });
+
+    latestNews.slice(3).forEach(function (newsItem) {
+      latestNewsArchiveList.appendChild(createLatestNewsItem(newsItem));
     });
 
     latestNewsSection.hidden = latestNews.length === 0;
+    latestNewsArchiveEmpty.hidden = latestNews.length > 3;
 
     // Public story packages: facts and chronology only, with direct source links.
     const storyPackages = [
@@ -2928,15 +3025,40 @@
       storyList.appendChild(fragment);
     });
 
-    function openStoryFromFragment(scrollIntoView) {
-      let storyId = window.location.hash.slice(1);
+    const homeViewSections = Array.from(document.querySelectorAll(".page > .mast, .page > .video-card, .page > .story-queue, .page > .learning, .page > .features, .page > .closing"));
+
+    function routeFromFragment(scrollIntoView) {
+      let routeId = window.location.hash.slice(1);
       try {
-        storyId = decodeURIComponent(storyId);
+        routeId = decodeURIComponent(routeId);
       } catch (error) {
+        routeId = "";
+      }
+
+      const viewingArchive = routeId === "latest-news-archive";
+      homeViewSections.forEach(function (section) {
+        section.hidden = viewingArchive;
+      });
+      latestNewsArchive.hidden = !viewingArchive;
+
+      if (viewingArchive) {
+        if (scrollIntoView) {
+          requestAnimationFrame(function () {
+            latestNewsArchive.scrollIntoView({ block: "start" });
+          });
+        }
         return;
       }
-      if (!storyPackages.some(function (story) { return story.id === storyId; })) return;
-      const article = document.getElementById(storyId);
+
+      if (routeId === "latest-news" && scrollIntoView) {
+        requestAnimationFrame(function () {
+          latestNewsSection.scrollIntoView({ block: "start" });
+        });
+        return;
+      }
+
+      if (!storyPackages.some(function (story) { return story.id === routeId; })) return;
+      const article = document.getElementById(routeId);
       if (!article) return;
       const trigger = article.querySelector(".story-trigger");
       setStoryOpen(article, trigger, true);
@@ -2947,9 +3069,9 @@
       }
     }
 
-    openStoryFromFragment(true);
+    routeFromFragment(true);
     window.addEventListener("hashchange", function () {
-      openStoryFromFragment(true);
+      routeFromFragment(true);
     });
   </script>
   <script async src="https://www.instagram.com/embed.js"></script>
