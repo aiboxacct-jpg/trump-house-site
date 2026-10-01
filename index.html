@@ -2222,10 +2222,11 @@
           },
           {
             kind: "videos",
-            title: "Dead Woman Walking",
-            intro: "The documentary includes Pike's exclusive death-row interview.",
+            title: "Video",
+            intro: "The documentary includes Pike's exclusive death-row interview; this viral X clip shows Pike at 18 when she was sentenced to death.",
             items: [
-              { title: "Dead Woman Walking — Christa Pike death-row interview", id: "SHCRGZDrMRM", featured: true, sourceLabel: "Watch on YouTube", sourceUrl: "https://www.youtube.com/watch?v=SHCRGZDrMRM" }
+              { title: "Dead Woman Walking — Christa Pike death-row interview", id: "SHCRGZDrMRM", featured: true, sourceLabel: "Watch on YouTube", sourceUrl: "https://www.youtube.com/watch?v=SHCRGZDrMRM" },
+              { platform: "x", title: "Christa Pike at 18, when she was sentenced to death", sourceLabel: "View on X", sourceUrl: "https://x.com/SamsaraSings/status/2105460090081841299", embedLabel: "View @SamsaraSings's post on X" }
             ]
           }
         ],
@@ -3303,18 +3304,30 @@
       block.items.forEach(function (video) {
         const figure = document.createElement("figure");
         const frame = document.createElement("div");
-        const iframe = document.createElement("iframe");
         const caption = document.createElement("figcaption");
         const title = document.createElement("strong");
         const source = document.createElement("a");
         figure.className = "story-video" + (video.featured ? " featured" : "");
         frame.className = "story-video-frame";
-        iframe.src = "https://www.youtube.com/embed/" + encodeURIComponent(video.id);
-        iframe.title = video.title;
-        iframe.loading = "lazy";
-        iframe.referrerPolicy = "strict-origin-when-cross-origin";
-        iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
-        iframe.setAttribute("allowfullscreen", "");
+        if (video.platform === "x") {
+          const embed = document.createElement("blockquote");
+          const embedLink = document.createElement("a");
+          embed.className = "twitter-tweet";
+          embedLink.href = video.sourceUrl;
+          embedLink.textContent = video.embedLabel || "View post on X";
+          embed.appendChild(embedLink);
+          frame.appendChild(embed);
+          loadTwitterEmbeds(frame);
+        } else {
+          const iframe = document.createElement("iframe");
+          iframe.src = "https://www.youtube.com/embed/" + encodeURIComponent(video.id);
+          iframe.title = video.title;
+          iframe.loading = "lazy";
+          iframe.referrerPolicy = "strict-origin-when-cross-origin";
+          iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+          iframe.setAttribute("allowfullscreen", "");
+          frame.appendChild(iframe);
+        }
         title.className = "story-video-title";
         title.textContent = video.title;
         source.className = "story-video-source";
@@ -3322,7 +3335,6 @@
         source.target = "_blank";
         source.rel = "noopener noreferrer";
         source.textContent = video.sourceLabel;
-        frame.appendChild(iframe);
         caption.append(title, source);
         figure.append(frame, caption);
         grid.appendChild(figure);
