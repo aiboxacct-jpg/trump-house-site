@@ -103,6 +103,9 @@
     .story-share-x { display:inline-flex; align-items:center; gap:8px; min-height:40px; background:var(--navy); color:var(--paper); border-bottom:4px solid var(--red); padding:11px 15px; font-size:13px; font-weight:800; text-decoration:none; white-space:nowrap; cursor:pointer; }
     .story-share-x:hover { background:var(--blue); }
     .story-share-x:focus-visible { outline:3px solid color-mix(in srgb,var(--blue) 38%,transparent); outline-offset:2px; }
+    /* Dark mode: keep Share on X navy with white text — never flip with theme vars. */
+    :root[data-theme="dark"] .story-share-x { color:#fff; background:#102a4c; border-bottom-color:#b51f36; }
+    :root[data-theme="dark"] .story-share-x:hover { background:#1f5d9c; }
     .story-share:focus-visible,.share-fallback input:focus-visible { outline:3px solid color-mix(in srgb,var(--blue) 38%,transparent); outline-offset:2px; }
     .share-fallback { display:flex; align-items:center; gap:8px; min-width:0; color:var(--muted); font-size:12px; font-weight:700; }
     .share-fallback[hidden] { display:none; }

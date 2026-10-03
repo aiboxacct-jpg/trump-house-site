@@ -785,6 +785,33 @@
       outline: 3px solid color-mix(in srgb, var(--blue) 35%, transparent);
       outline-offset: 2px;
     }
+    /* Dark mode: keep share/read buttons navy with white text — never flip with theme vars. */
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) .story-share-x,
+      :root:not([data-theme="light"]) .media-share-x,
+      :root:not([data-theme="light"]) .clubhouse-link {
+        color: #ffffff;
+        background: #102a4c;
+        border-bottom-color: #b31f35;
+      }
+      :root:not([data-theme="light"]) .story-share-x:hover,
+      :root:not([data-theme="light"]) .media-share-x:hover,
+      :root:not([data-theme="light"]) .clubhouse-link:hover {
+        background: #174e86;
+      }
+    }
+    :root[data-theme="dark"] .story-share-x,
+    :root[data-theme="dark"] .media-share-x,
+    :root[data-theme="dark"] .clubhouse-link {
+      color: #ffffff;
+      background: #102a4c;
+      border-bottom-color: #b31f35;
+    }
+    :root[data-theme="dark"] .story-share-x:hover,
+    :root[data-theme="dark"] .media-share-x:hover,
+    :root[data-theme="dark"] .clubhouse-link:hover {
+      background: #174e86;
+    }
     .story-share-x:focus-visible {
       outline: 3px solid color-mix(in srgb, var(--blue) 35%, transparent);
       outline-offset: 2px;
