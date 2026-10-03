@@ -100,6 +100,9 @@
     .story-share-row { display:flex; align-items:center; justify-content:flex-end; gap:12px; padding:0 22px 18px; }
     .story-share { min-height:40px; border:1px solid var(--line-strong); background:var(--paper); color:var(--blue); padding:8px 13px; font-size:12px; font-weight:800; cursor:pointer; }
     .story-share:hover { color:var(--red-deep); border-color:var(--red); }
+    .story-share-x { display:inline-flex; align-items:center; gap:6px; min-height:40px; border:1px solid var(--line-strong); background:var(--paper); color:var(--blue); padding:8px 13px; font-size:12px; font-weight:800; text-decoration:none; white-space:nowrap; cursor:pointer; }
+    .story-share-x:hover { color:var(--red-deep); border-color:var(--red); }
+    .story-share-x:focus-visible { outline:3px solid color-mix(in srgb,var(--blue) 38%,transparent); outline-offset:2px; }
     .story-share:focus-visible,.share-fallback input:focus-visible { outline:3px solid color-mix(in srgb,var(--blue) 38%,transparent); outline-offset:2px; }
     .share-fallback { display:flex; align-items:center; gap:8px; min-width:0; color:var(--muted); font-size:12px; font-weight:700; }
     .share-fallback[hidden] { display:none; }
@@ -339,7 +342,7 @@
       .story-trigger { grid-template-columns:32px minmax(0,1fr) 18px; padding:18px 14px; }
       .story-status { display:none; }
       .story-share-row { align-items:stretch; flex-direction:column; padding:0 14px 16px; }
-      .story-share,.share-fallback { width:100%; }
+      .story-share,.story-share-x,.share-fallback { width:100%; }
       .share-fallback { align-items:stretch; flex-direction:column; }
       .share-fallback input { width:100%; }
       .brief-grid { grid-template-columns:minmax(0,1fr); }
@@ -472,6 +475,7 @@
             </button>
             <div class="story-share-row">
               <button class="story-share" type="button" data-share-url="https://trump.house/cornell-chi-phi-case" aria-label="Share The Cornell 7: &quot;100% Confident I Was Raped!&quot;">Share</button>
+              <a class="story-share-x" target="_blank" rel="noopener" href="https://x.com/intent/post?text=The%20Cornell%207%3A%20%22100%25%20Confident%20I%20Was%20Raped%21%22&url=https%3A%2F%2Ftrump.house%2Fcornell-chi-phi-case" aria-label="Share on X: The Cornell 7: &quot;100% Confident I Was Raped!&quot;">𝕏 Share on X</a>
               <label class="share-fallback" hidden>
                 <span>Copy this link</span>
                 <input type="text" value="https://trump.house/cornell-chi-phi-case" readonly aria-label="Share link" />
@@ -629,6 +633,7 @@
             </button>
             <div class="story-share-row">
               <button class="story-share" type="button" data-share-url="https://trump.house/lindsay-clancy-case" aria-label="Share 11-to-1: The Mistrial, the Holdout Juror, and the Fight Over Lindsay Clancy's Retrial">Share</button>
+              <a class="story-share-x" target="_blank" rel="noopener" href="https://x.com/intent/post?text=11-to-1%3A%20The%20Mistrial%2C%20the%20Holdout%20Juror%2C%20and%20the%20Fight%20Over%20Lindsay%20Clancy%27s%20Retrial&url=https%3A%2F%2Ftrump.house%2Flindsay-clancy-case" aria-label="Share on X: 11-to-1: The Mistrial, the Holdout Juror, and the Fight Over Lindsay Clancy&#x27;s Retrial">𝕏 Share on X</a>
               <label class="share-fallback" hidden>
                 <span>Copy this link</span>
                 <input type="text" value="https://trump.house/lindsay-clancy-case" readonly aria-label="Share link" />
@@ -761,6 +766,7 @@
             </button>
             <div class="story-share-row">
               <button class="story-share" type="button" data-share-url="https://trump.house/born-gay-science" aria-label="Share Born This Way? What the Science Actually Says About Being Gay">Share</button>
+              <a class="story-share-x" target="_blank" rel="noopener" href="https://x.com/intent/post?text=Born%20This%20Way%3F%20What%20the%20Science%20Actually%20Says%20About%20Being%20Gay&url=https%3A%2F%2Ftrump.house%2Fborn-gay-science" aria-label="Share on X: Born This Way? What the Science Actually Says About Being Gay">𝕏 Share on X</a>
               <label class="share-fallback" hidden>
                 <span>Copy this link</span>
                 <input type="text" value="https://trump.house/born-gay-science" readonly aria-label="Share link" />
@@ -866,6 +872,7 @@
             </button>
             <div class="story-share-row">
               <button class="story-share" type="button" data-share-url="https://trump.house/christa-pike-execution" aria-label="Share She Survived Her Own Execution: The Botched Lethal Injection of Christa Pike">Share</button>
+              <a class="story-share-x" target="_blank" rel="noopener" href="https://x.com/intent/post?text=She%20Survived%20Her%20Own%20Execution%3A%20The%20Botched%20Lethal%20Injection%20of%20Christa%20Pike&url=https%3A%2F%2Ftrump.house%2Fchrista-pike-execution" aria-label="Share on X: She Survived Her Own Execution: The Botched Lethal Injection of Christa Pike">𝕏 Share on X</a>
               <label class="share-fallback" hidden>
                 <span>Copy this link</span>
                 <input type="text" value="https://trump.house/christa-pike-execution" readonly aria-label="Share link" />
@@ -975,6 +982,7 @@
             </button>
             <div class="story-share-row">
               <button class="story-share" type="button" data-share-url="https://trump.house/candace-owens-allegations" aria-label="Share Candace Owens Denies Viral Lesbian Dating Profile Claims">Share</button>
+              <a class="story-share-x" target="_blank" rel="noopener" href="https://x.com/intent/post?text=Candace%20Owens%20Denies%20Viral%20Lesbian%20Dating%20Profile%20Claims&url=https%3A%2F%2Ftrump.house%2Fcandace-owens-allegations" aria-label="Share on X: Candace Owens Denies Viral Lesbian Dating Profile Claims">𝕏 Share on X</a>
               <label class="share-fallback" hidden>
                 <span>Copy this link</span>
                 <input type="text" value="https://trump.house/candace-owens-allegations" readonly aria-label="Share link" />
@@ -1078,6 +1086,7 @@
             </button>
             <div class="story-share-row">
               <button class="story-share" type="button" data-share-url="https://trump.house/taylor-gosnell-case" aria-label="Share South Carolina Mom Charged in 50-Stab Attack on Her Own Kids">Share</button>
+              <a class="story-share-x" target="_blank" rel="noopener" href="https://x.com/intent/post?text=South%20Carolina%20Mom%20Charged%20in%2050-Stab%20Attack%20on%20Her%20Own%20Kids&url=https%3A%2F%2Ftrump.house%2Ftaylor-gosnell-case" aria-label="Share on X: South Carolina Mom Charged in 50-Stab Attack on Her Own Kids">𝕏 Share on X</a>
               <label class="share-fallback" hidden>
                 <span>Copy this link</span>
                 <input type="text" value="https://trump.house/taylor-gosnell-case" readonly aria-label="Share link" />

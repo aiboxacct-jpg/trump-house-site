@@ -246,6 +246,9 @@
     .telegram-link::after {
       content: "\27A4";
     }
+    .x-link::after {
+      content: "\1D54F";
+    }
     .clubhouse-link:hover,
     .clubhouse-link:focus-visible {
       background: var(--blue);
@@ -741,6 +744,28 @@
       cursor: pointer;
     }
     .story-share:hover { color: var(--red-deep); border-color: var(--red); }
+    .story-share-x {
+      align-self: start;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin: 8px clamp(20px, 4vw, 38px) 0 0;
+      padding: 8px 11px;
+      color: var(--blue);
+      background: var(--paper-soft);
+      border: 1px solid var(--line);
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.2;
+      text-decoration: none;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+    .story-share-x:hover { color: var(--red-deep); border-color: var(--red); }
+    .story-share-x:focus-visible {
+      outline: 3px solid color-mix(in srgb, var(--blue) 35%, transparent);
+      outline-offset: 2px;
+    }
     .story-share:focus-visible,
     .share-fallback input:focus-visible {
       outline: 3px solid color-mix(in srgb, var(--blue) 35%, transparent);
@@ -1701,6 +1726,7 @@
       .story-header { grid-template-columns: minmax(0, 1fr) auto; }
       .story-trigger { grid-template-columns: minmax(0, 1fr) 18px; gap: 12px; padding: 21px 10px 21px 18px; }
       .story-share { min-width: 61px; margin: 49px 18px 0 0; padding: 8px 9px; }
+      .story-share-x { margin: 8px 18px 0 0; padding: 8px 9px; }
       .share-fallback { gap: 7px; padding: 0 18px 21px; }
       .channel-links, .story-card-action { flex-direction: column; }
       .story-card-action { justify-content: stretch; padding: 0 18px 21px; }
@@ -1761,6 +1787,7 @@
         <div class="channel-links" aria-label="Trump House channels">
           <a class="clubhouse-link" href="https://www.clubhouse.com/house/president-trump-crvth0bjblsu?chs=y3eIerRALr%3AgoLibaop8mvl5wtuSFC9F4BRrVY9r5FOU4Ig6HNHVaw&amp;utm_medium=ch_general_house" target="_blank" rel="noopener noreferrer">Trump House on Clubhouse</a>
           <a class="clubhouse-link telegram-link" href="https://t.me/+3V_USlpsmigzN2Yx" target="_blank" rel="noopener noreferrer">Trump House on Telegram</a>
+          <a class="clubhouse-link x-link" href="https://x.com/TrumpHouseNews" target="_blank" rel="noopener">Trump House on X</a>
           <a class="live-on-air-btn" id="hero-live-btn" href="https://www.clubhouse.com/i/cornell-7-i-was-r___ped/lmFYO2UR" target="_blank" rel="noopener noreferrer" hidden>Live on Air NOW!</a>
         </div>
       </div>
@@ -1825,6 +1852,7 @@
             <span class="story-chevron" aria-hidden="true">›</span>
           </button>
           <button class="story-share" type="button">Share</button>
+          <a class="story-share-x" target="_blank" rel="noopener">𝕏 Share on X</a>
           <label class="share-fallback" hidden>
             <span>Copy this link</span>
             <input type="text" readonly aria-label="Share link" />
@@ -4292,6 +4320,7 @@
       const title = fragment.querySelector(".story-title");
       const date = fragment.querySelector(".story-date");
       const shareButton = fragment.querySelector(".story-share");
+      const xShareLink = fragment.querySelector(".story-share-x");
       const shareFallback = fragment.querySelector(".share-fallback");
       const shareInput = fragment.querySelector(".share-fallback input");
       const articleLink = fragment.querySelector(".story-clubhouse-link");
@@ -4305,6 +4334,8 @@
       fragment.querySelector(".live-badge-link").hidden = story.id !== liveStoryId;
       title.textContent = story.title;
       shareButton.setAttribute("aria-label", "Share " + story.title);
+      xShareLink.href = "https://x.com/intent/post?text=" + encodeURIComponent(story.title) + "&url=" + encodeURIComponent("https://trump.house/" + story.id);
+      xShareLink.setAttribute("aria-label", "Share on X: " + story.title);
       articleLink.href = "https://trump.house/" + story.id;
       articleLink.setAttribute("aria-label", "Read full article: " + story.title);
       fragment.querySelector(".story-summary").textContent = story.summary;
