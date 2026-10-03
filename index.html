@@ -750,20 +750,20 @@
       justify-self: end;
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
       margin: 8px clamp(20px, 4vw, 38px) 0 0;
-      padding: 8px 11px;
-      color: var(--blue);
-      background: var(--paper-soft);
-      border: 1px solid var(--line);
-      font-size: 12px;
+      padding: 11px 15px;
+      color: var(--paper);
+      background: var(--navy);
+      border-bottom: 4px solid var(--red);
+      font-size: 13px;
       font-weight: 700;
-      line-height: 1.2;
+      line-height: 1.3;
       text-decoration: none;
       white-space: nowrap;
       cursor: pointer;
     }
-    .story-share-x:hover { color: var(--red-deep); border-color: var(--red); }
+    .story-share-x:hover { background: var(--blue); }
     .story-share-x:focus-visible {
       outline: 3px solid color-mix(in srgb, var(--blue) 35%, transparent);
       outline-offset: 2px;
@@ -1728,7 +1728,7 @@
       .story-header { grid-template-columns: minmax(0, 1fr) auto; }
       .story-trigger { grid-template-columns: minmax(0, 1fr) 18px; gap: 12px; padding: 21px 10px 21px 18px; }
       .story-share { min-width: 61px; margin: 49px 18px 0 0; padding: 8px 9px; }
-      .story-share-x { margin: 8px 18px 0 0; padding: 8px 9px; }
+      .story-share-x { margin: 8px 18px 0 0; }
       .share-fallback { gap: 7px; padding: 0 18px 21px; }
       .channel-links, .story-card-action { flex-direction: column; }
       .story-card-action { justify-content: stretch; padding: 0 18px 21px; }
