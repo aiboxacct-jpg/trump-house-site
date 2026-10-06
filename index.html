@@ -1853,8 +1853,8 @@
       <div class="mast-side">
         <aside class="status-card" aria-label="Room status">
           <div class="status-label">Current status</div>
-          <h2>Twelve briefs in the queue</h2>
-          <p>&ldquo;We Probably Invented AI&rdquo;: The Clip, the Claim, and the Numbers is the newest public brief, published October 5: a viral podcast clip, a veteran&rsquo;s X post, the verified invention record, and the nuance the meme skips.</p>
+          <h2>Thirteen briefs in the queue</h2>
+          <p>&ldquo;Blue Laws&rdquo;: The Pickle Myth, the 1781 Hoax, and the Laws Still Busting People is the newest public brief, published October 5: the bouncing-pickle law never existed, but Alabama can still jail you for Sunday dominoes &mdash; and 13 states ban Sunday car sales.</p>
           <div class="divider" aria-hidden="true"><span></span><span></span><span></span></div>
         </aside>
         <section class="latest-news" id="latest-news" aria-labelledby="latest-news-title" hidden>
@@ -2685,6 +2685,189 @@
 
     // Public story packages: facts and chronology only, with direct source links.
     const storyPackages = [
+      {
+        id: "blue-laws",
+        kicker: "Law · History · Still on the books",
+        title: '"Blue Laws": The Pickle Myth, the 1781 Hoax, and the Laws Still Busting People',
+        summary: "Published October 5, 2026 \u2014 The bouncing-pickle law never existed. But Alabama can still jail you for Sunday dominoes, and 13 states ban Sunday car sales. The 1781 hoax, the debunked myths, and the blue laws still biting in 2026.",
+        date: "Published October 5, 2026",
+        dateTime: "2026-10-05",
+        story: "No kissing your child on the Sabbath, no donkeys in bathtubs \u2014 almost all of it was made up in 1781. The laws that are real will surprise you more.",
+        disclaimer: "Famous \u201cweird law\u201d claims are labeled myth vs. verified throughout; the verified statutes below are real laws still on the books. The YouTube donkey video is included for the legend \u2014 the law itself is unverified.",
+        showUpdates: true,
+        featuredUpdate: {
+          heading: "2025\u20132026 \u2014 Blue laws still biting: Paramus vs. American Dream",
+          text: "Paramus, New Jersey \u2014 a $6B+ retail borough \u2014 enforces a 1968 ordinance banning all Sunday work except essentials. In 2025, Paramus sued the American Dream mall over Sunday openings. Bergen County is the last of New Jersey\u2019s 21 counties still keeping its Sunday retail ban; voters rejected repeal 2-to-1 back in 1993, and the laws date to 1704.",
+          sourceLabel: "NorthJersey.com \u2014 Apr 2026",
+          sourceUrl: "https://www.northjersey.com/story/news/bergen/2026/04/10/bergen-county-nj-blue-laws-history/89554801007/"
+        },
+        priorityUpdates: [
+          {
+            heading: "2025 \u2014 Pennsylvania ends its Sunday hunting ban",
+            text: "Pennsylvania dropped its long-standing Sunday hunting ban in 2025 \u2014 one of the oldest blue-law relics to fall in recent years.",
+            sourceLabel: "Wikipedia \u2014 Blue laws in the United States",
+            sourceUrl: "http://en.wikipedia.org/wiki/Blue_laws_in_the_United_States"
+          },
+          {
+            heading: "2018 \u2014 Indiana repeals the last full Sunday alcohol ban",
+            text: "Indiana repealed the country\u2019s last full statewide ban on Sunday alcohol sales in 2018. Car dealers, by contrast, have lobbied to KEEP Sunday sales bans.",
+            sourceLabel: "LegalClarity \u2014 Sunday alcohol sales",
+            sourceUrl: "https://legalclarity.org/sunday-alcohol-sales-laws-blue-laws-and-modern-exceptions/"
+          }
+        ],
+        storyFormat: [
+          {
+            kind: "lead",
+            text: "You\u2019ve heard the list: pickles must bounce in Connecticut, it\u2019s illegal to get a fish drunk in Ohio, no donkeys in bathtubs in Arizona. Almost none of it is real \u2014 and the man who started it all was a Loyalist making it up from London in 1781. What\u2019s wild is how much of the real thing is still on the books \u2014 and still enforced."
+          },
+          { kind: "heading", text: "Where the name came from" },
+          {
+            kind: "paragraph",
+            text: "The term was popularized in 1781 by Rev. Samuel Peters\u2019 A General History of Connecticut. The old \u201cblue paper\u201d story doesn\u2019t hold \u2014 pale blue paper was standard for legal documents. The best theory: 18th-century slang, where \u201cblue\u201d meant rigidly moral (as in \u201cbluenose\u201d). The real colonial root runs deeper: Virginia\u2019s 1610 statutes made Sunday church attendance mandatory \u2014 death for the third violation.",
+            links: [
+              { text: "Britannica", url: "https://www.britannica.com/print/article/70275" },
+              { text: "Etymonline: blue", url: "https://www.etymonline.com/word/blue?ref=etymonline_crossreference" },
+              { text: "The obsolescence of blue laws", url: "https://www.thefreelibrary.com/THE+OBSOLESCENCE+OF+BLUE+LAWS+IN+THE+21ST+CENTURY.-a0724351415" }
+            ]
+          },
+          { kind: "heading", text: "The 1781 hoax" },
+          {
+            kind: "paragraph",
+            text: "Peters \u2014 an Anglican Loyalist who fled to London in 1774 \u2014 invented 45 fake \u201cblue laws\u201d for Connecticut: no kissing your child on the Sabbath, no dancing, no minced pies, no playing cards, hair cut \u201cround according to a cap,\u201d married couples imprisoned for living apart. Connecticut historians debunked the list in 1876 and call his book \u201cthe Lying History.\u201d Nearly every \u201cweird blue law\u201d listicle on the internet is still laundering Peters\u2019 fiction.",
+            links: [
+              { text: "Samuel Peters, bullshitter extraordinaire", url: "https://sites.smith.edu/fys169-f19/2019/11/25/samuel-peters-bullshitter-extraordinaire/" }
+            ]
+          },
+          { kind: "heading", text: "The famous myths \u2014 debunked" },
+          {
+            kind: "paragraph",
+            text: "Connecticut bouncing pickles: no such law. The origin is a 1948 rotten-pickle case, where an inspector used a 1-foot drop test. Ohio drunk fish: no statute. Oklahoma ugly faces at dogs: no statute. Arizona donkey in a bathtub: unverified legend \u2014 a great story with no law behind it. This is the debunk angle that is the story: the viral lists are Peters\u2019 1781 hoax wearing new clothes.",
+            links: [
+              { text: "The pickle myth", url: "https://www.Mashed.Com/2083431/connecticut-pickle-law-myth/" },
+              { text: "Ohio fish, explained", url: "https://enviroliteracy.org/animals/why-is-it-illegal-to-get-a-fish-drunk-in-ohio/" },
+              { text: "Oklahoma weird laws", url: "https://legalclarity.org/weird-laws-in-oklahoma-you-wont-believe-still-exist/" },
+              { text: "Arizona\u2019s weirdest laws", url: "https://www.legalreader.com/the-7-weirdest-laws-in-arizona/" }
+            ]
+          },
+          { kind: "heading", text: "Real \u2014 and still on the books" },
+          {
+            kind: "paragraph",
+            text: "Alabama: no dominoes, cards, racing, or hunting on Sunday \u2014 up to 3 months hard labor. North Carolina: bingo capped at 5 hours a session, prizes of $500 or less. Massachusetts: no dancing to the Star-Spangled Banner (1917 law, $100 fine). Minnesota: buying a car on Sunday can mean up to 90 days in jail. South Carolina: no tandem bungee jumping (1994). Mobile, Alabama banned silly string; Meriden, Connecticut bans selling silly string to unaccompanied minors.",
+            links: [
+              { text: "Alabama\u2019s weirdest enforced laws", url: "https://www.beaconjournal.com/story/news/2025/05/13/what-are-the-weirdest-laws-still-enforced-in-alabama-what-we-know/83596161007/" },
+              { text: "Carolina weird laws", url: "https://gvltoday.6amcity.com/weird-laws-sc-nc" },
+              { text: "Pickles, anthems, and car sales", url: "https://www.thefreelibrary.com/Is+that+really+a+law%3F+Why+pickles+must+bounce+in+Connecticut+and...-a0412684864" },
+              { text: "CT\u2019s amazingly weird laws", url: "https://i95rock.com/from-silly-string-to-pickles-ct-has-some-amazingly-weird-laws/" }
+            ]
+          },
+          { kind: "heading", text: "Still biting in 2026" },
+          {
+            kind: "paragraph",
+            text: "Thirteen states still ban Sunday car sales \u2014 Illinois\u2019s ban dates only to 1984, and car dealers actively lobby to KEEP the bans. Bergen County, New Jersey is the last of the state\u2019s 21 counties with a Sunday retail ban; voters rejected repeal 2-to-1 in 1993, and the statutes date to 1704. Paramus \u2014 a $6B+ retail borough \u2014 enforces a 1968 ordinance banning all Sunday work except essentials, and sued the American Dream mall in 2025 over Sunday openings. Indiana repealed the last full Sunday alcohol ban in 2018; Pennsylvania ended its Sunday hunting ban in 2025. The Supreme Court upheld Sunday closing laws in McGowan v. Maryland (1961) as a \u201cuniform day of rest.\u201d",
+            links: [
+              { text: "Jalopnik: 13-state car-sales bans", url: "https://www.jalopnik.com/2210294/bans-blue-laws-13-states-sunday-car-sales/" },
+              { text: "Bergen County blue laws", url: "https://www.northjersey.com/story/news/bergen/2026/04/10/bergen-county-nj-blue-laws-history/89554801007/" },
+              { text: "Sunday alcohol sales", url: "https://legalclarity.org/sunday-alcohol-sales-laws-blue-laws-and-modern-exceptions/" },
+              { text: "Blue laws in the U.S.", url: "http://en.wikipedia.org/wiki/Blue_laws_in_the_United_States" },
+              { text: "McGowan v. Maryland", url: "http://en.wikipedia.org/wiki/McGowan_v._Maryland" }
+            ]
+          },
+          {
+            kind: "videos",
+            title: "Video",
+            intro: "Blue-law deep dives \u2014 including the donkey legend, which remains an unverified story.",
+            items: [
+              { title: "Blue laws, explained", id: "LAxl76u8-tA", featured: true, sourceLabel: "Watch on YouTube", sourceUrl: "https://www.youtube.com/watch?v=LAxl76u8-tA" },
+              { title: "Weird laws: fact vs. fiction", id: "285lESk20AU", sourceLabel: "Watch on YouTube", sourceUrl: "https://www.youtube.com/watch?v=285lESk20AU" },
+              { title: "The donkey-in-the-bathtub legend (YouTube Short)", id: "mgy1yKTA8Rc", sourceLabel: "Watch on YouTube", sourceUrl: "https://www.youtube.com/shorts/mgy1yKTA8Rc" }
+            ]
+          }
+        ],
+        facts: [
+          {
+            text: "The term \u201cblue laws\u201d was popularized in 1781 by Rev. Samuel Peters\u2019 A General History of Connecticut. The blue-paper theory is debunked (pale blue paper was standard); the best theory is 18th-century slang \u201cblue\u201d = rigidly moral (\u201cbluenose\u201d). Real colonial root: Virginia 1610 \u2014 mandatory Sunday church, death for the third violation.",
+            links: [
+              { label: "Britannica", url: "https://www.britannica.com/print/article/70275" },
+              { label: "Etymonline: blue", url: "https://www.etymonline.com/word/blue?ref=etymonline_crossreference" },
+              { label: "The obsolescence of blue laws", url: "https://www.thefreelibrary.com/THE+OBSOLESCENCE+OF+BLUE+LAWS+IN+THE+21ST+CENTURY.-a0724351415" }
+            ]
+          },
+          {
+            text: "The 1781 hoax: Peters \u2014 an Anglican Loyalist who fled to London in 1774 \u2014 invented 45 fake Connecticut laws (no kissing your child on the Sabbath, no dancing/minced pies/cards, hair cut \u201cround according to a cap,\u201d married couples jailed for living apart). Debunked in 1876; CT historians call the book \u201cthe Lying History.\u201d",
+            links: [
+              { label: "Samuel Peters, bullshitter extraordinaire", url: "https://sites.smith.edu/fys169-f19/2019/11/25/samuel-peters-bullshitter-extraordinaire/" }
+            ]
+          },
+          {
+            text: "Debunked myths: Connecticut bouncing-pickle law \u2014 never existed (origin: a 1948 rotten-pickle case and a 1-foot drop test). Ohio drunk fish \u2014 no statute. Oklahoma ugly faces at dogs \u2014 no statute. Arizona donkey in a bathtub \u2014 unverified legend.",
+            links: [
+              { label: "The pickle myth", url: "https://www.Mashed.Com/2083431/connecticut-pickle-law-myth/" },
+              { label: "Ohio fish, explained", url: "https://enviroliteracy.org/animals/why-is-it-illegal-to-get-a-fish-drunk-in-ohio/" },
+              { label: "Oklahoma weird laws", url: "https://legalclarity.org/weird-laws-in-oklahoma-you-wont-believe-still-exist/" },
+              { label: "Arizona\u2019s weirdest laws", url: "https://www.legalreader.com/the-7-weirdest-laws-in-arizona/" }
+            ]
+          },
+          {
+            text: "Verified and real: Alabama \u2014 no dominoes/cards/racing/hunting on Sunday, up to 3 months hard labor. North Carolina \u2014 bingo capped at 5 hours, prizes \u2264 $500. Massachusetts \u2014 no dancing to the Star-Spangled Banner (1917, $100 fine). Minnesota \u2014 buying a car on Sunday, up to 90 days jail. South Carolina \u2014 no tandem bungee jumping (1994). Mobile AL \u2014 silly string banned. Meriden CT \u2014 no silly string sales to unaccompanied minors.",
+            links: [
+              { label: "Alabama\u2019s weirdest enforced laws", url: "https://www.beaconjournal.com/story/news/2025/05/13/what-are-the-weirdest-laws-still-enforced-in-alabama-what-we-know/83596161007/" },
+              { label: "Carolina weird laws", url: "https://gvltoday.6amcity.com/weird-laws-sc-nc" },
+              { label: "Pickles, anthems, and car sales", url: "https://www.thefreelibrary.com/Is+that+really+a+law%3F+Why+pickles+must+bounce+in+Connecticut+and...-a0412684864" },
+              { label: "CT\u2019s amazingly weird laws", url: "https://i95rock.com/from-silly-string-to-pickles-ct-has-some-amazingly-weird-laws/" }
+            ]
+          },
+          {
+            text: "Still biting in 2026: 13 states ban Sunday car sales (Illinois\u2019s only from 1984); dealers lobby to KEEP them. Bergen County NJ \u2014 last of 21 NJ counties with a Sunday retail ban, voters rejected repeal 2-to-1 in 1993, laws date to 1704. Paramus\u2019s 1968 ordinance bans all Sunday work except essentials ($6B+ retail borough); in 2025 Paramus sued American Dream mall over Sunday openings.",
+            links: [
+              { label: "Jalopnik: 13-state car-sales bans", url: "https://www.jalopnik.com/2210294/bans-blue-laws-13-states-sunday-car-sales/" },
+              { label: "Bergen County blue laws \u2014 Apr 2026", url: "https://www.northjersey.com/story/news/bergen/2026/04/10/bergen-county-nj-blue-laws-history/89554801007/" }
+            ]
+          },
+          {
+            text: "Recent repeals: Indiana repealed the last full Sunday alcohol ban in 2018; Pennsylvania ended its Sunday hunting ban in 2025. Legal bedrock: McGowan v. Maryland (1961) upheld Sunday closing laws as a \u201cuniform day of rest.\u201d",
+            links: [
+              { label: "Sunday alcohol sales", url: "https://legalclarity.org/sunday-alcohol-sales-laws-blue-laws-and-modern-exceptions/" },
+              { label: "Blue laws in the U.S.", url: "http://en.wikipedia.org/wiki/Blue_laws_in_the_United_States" },
+              { label: "McGowan v. Maryland", url: "http://en.wikipedia.org/wiki/McGowan_v._Maryland" }
+            ]
+          }
+        ],
+        timeline: [
+          { date: "1610", detail: "Virginia mandates Sunday church attendance \u2014 death for the third violation." },
+          { date: "1655", detail: "New Haven statutes \u2014 the real colonial blue-law codes." },
+          { date: "1781", detail: "Rev. Samuel Peters publishes A General History of Connecticut from London, inventing 45 fake laws." },
+          { date: "1876", detail: "Peters\u2019 list debunked; CT historians dub it \u201cthe Lying History.\u201d" },
+          { date: "1917", detail: "Massachusetts bans dancing to the Star-Spangled Banner ($100 fine)." },
+          { date: "1948", detail: "The Connecticut rotten-pickle case \u2014 the 1-foot drop test that later birthed the bouncing-pickle myth." },
+          { date: "1961", dateTime: "1961-01-01", detail: "McGowan v. Maryland: Supreme Court upholds Sunday closing laws as a \u201cuniform day of rest.\u201d" },
+          { date: "1984", detail: "Illinois enacts its Sunday car-sales ban." },
+          { date: "1993", detail: "Bergen County voters reject repealing the Sunday retail ban 2-to-1." },
+          { date: "2012", detail: "Hurricane Sandy prompts temporary blue-law suspensions." },
+          { date: "2018", dateTime: "2018-01-01", detail: "Indiana repeals the last full Sunday alcohol ban." },
+          { date: "2020", detail: "New York repeals its mask law." },
+          { date: "2025", dateTime: "2025-01-01", detail: "Pennsylvania ends its Sunday hunting ban; Paramus sues American Dream mall over Sunday openings." },
+          { date: "October 5, 2026", dateTime: "2026-10-05", detail: "Trump House brief published." }
+        ],
+        sources: [
+          { label: "Britannica \u2014 Blue laws", url: "https://www.britannica.com/print/article/70275" },
+          { label: "Etymonline \u2014 blue", url: "https://www.etymonline.com/word/blue?ref=etymonline_crossreference" },
+          { label: "The obsolescence of blue laws", url: "https://www.thefreelibrary.com/THE+OBSOLESCENCE+OF+BLUE+LAWS+IN+THE+21ST+CENTURY.-a0724351415" },
+          { label: "Samuel Peters, bullshitter extraordinaire", url: "https://sites.smith.edu/fys169-f19/2019/11/25/samuel-peters-bullshitter-extraordinaire/" },
+          { label: "The pickle myth", url: "https://www.Mashed.Com/2083431/connecticut-pickle-law-myth/" },
+          { label: "Ohio fish, explained", url: "https://enviroliteracy.org/animals/why-is-it-illegal-to-get-a-fish-drunk-in-ohio/" },
+          { label: "Oklahoma weird laws", url: "https://legalclarity.org/weird-laws-in-oklahoma-you-wont-believe-still-exist/" },
+          { label: "Arizona\u2019s weirdest laws", url: "https://www.legalreader.com/the-7-weirdest-laws-in-arizona/" },
+          { label: "Alabama\u2019s weirdest enforced laws", url: "https://www.beaconjournal.com/story/news/2025/05/13/what-are-the-weirdest-laws-still-enforced-in-alabama-what-we-know/83596161007/" },
+          { label: "Carolina weird laws", url: "https://gvltoday.6amcity.com/weird-laws-sc-nc" },
+          { label: "Pickles, anthems, and car sales", url: "https://www.thefreelibrary.com/Is+that+really+a+law%3F+Why+pickles+must+bounce+in+Connecticut+and...-a0412684864" },
+          { label: "CT\u2019s amazingly weird laws", url: "https://i95rock.com/from-silly-string-to-pickles-ct-has-some-amazingly-weird-laws/" },
+          { label: "Jalopnik: 13-state car-sales bans", url: "https://www.jalopnik.com/2210294/bans-blue-laws-13-states-sunday-car-sales/" },
+          { label: "Bergen County blue laws", url: "https://www.northjersey.com/story/news/bergen/2026/04/10/bergen-county-nj-blue-laws-history/89554801007/" },
+          { label: "Sunday alcohol sales", url: "https://legalclarity.org/sunday-alcohol-sales-laws-blue-laws-and-modern-exceptions/" },
+          { label: "Blue laws in the U.S.", url: "http://en.wikipedia.org/wiki/Blue_laws_in_the_United_States" },
+          { label: "McGowan v. Maryland", url: "http://en.wikipedia.org/wiki/McGowan_v._Maryland" }
+        ]
+      },
       {
         id: "black-invented-everything",
         kicker: "Cultural claim · Social media · The record",
