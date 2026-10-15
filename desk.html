@@ -2834,7 +2834,7 @@
           <div class="live-topic-buttons" aria-label="Current live story brief">
             <button class="live-topic-button" id="live-auto-topic" type="button" aria-pressed="false" data-live-target="" disabled>No story marked live</button>
           </div>
-          <p class="live-manager-status" id="live-manager-status" role="status" aria-live="polite">LIVE now: The Cornell 7: "100% Confident I Was Raped!"</p>
+          <p class="live-manager-status" id="live-manager-status" role="status" aria-live="polite">LIVE now: Raided at Dawn, 22 Days Out: The Feds at Ilhan Omar&#8217;s Door</p>
         </section>
 
         <section class="research-helper" aria-labelledby="research-helper-title">
@@ -3465,6 +3465,8 @@
       }
 
       /* LIVE stays off until the host explicitly asks for it to be turned on. */
+      /* ON AIR — turned on by Matt Oct 14 for the newest brief (ilhan-omar-home-search). */
+      syncLiveBadgeToNewestBrief();
 
       function showView(view) {
         var showHost = view === 'host';
