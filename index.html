@@ -1782,10 +1782,10 @@
       .features > *, .share-fallback > *, .story-list > *, .stat-list > *,
       .track-stops > *, .priority-updates > *, .source-list > * { min-width: 0; }
       .section-heading { gap: 15px; }
-      .story-header { grid-template-columns: minmax(0, 1fr) auto; }
+      .story-header { grid-template-columns: minmax(0, 1fr); }
       .story-trigger { grid-template-columns: minmax(0, 1fr) 18px; gap: 12px; padding: 21px 10px 21px 18px; }
-      .story-share { min-width: 61px; margin: 49px 18px 0 0; padding: 8px 9px; }
-      .story-share-x { margin: 8px 18px 0 0; }
+      .story-share { grid-column: 1; justify-self: end; min-width: 61px; margin: 0 18px 0 0; padding: 8px 9px; }
+      .story-share-x { grid-column: 1; justify-self: end; margin: 8px 18px 0 0; }
       .share-fallback { gap: 7px; padding: 0 18px 21px; }
       .channel-links, .story-card-action { flex-direction: column; }
       .story-card-action { justify-content: stretch; padding: 0 18px 21px; }
