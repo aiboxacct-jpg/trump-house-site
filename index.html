@@ -345,6 +345,36 @@
       border-top: 5px solid var(--red);
       box-shadow: 0 9px 30px rgba(16,42,76,.08);
     }
+    .video-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      width: 100%;
+      margin: 0;
+      padding: 13px 16px;
+      background: none;
+      border: 0;
+      color: var(--red-deep);
+      font: inherit;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .11em;
+      text-transform: uppercase;
+      text-align: left;
+      cursor: pointer;
+    }
+    .video-toggle:focus-visible {
+      outline: 2px solid color-mix(in srgb, var(--blue) 38%, transparent);
+      outline-offset: -2px;
+    }
+    .video-chevron {
+      flex: 0 0 auto;
+      font-size: 13px;
+      line-height: 1;
+    }
+    .video-toggle[aria-expanded="true"] .video-chevron { transform: rotate(180deg); }
+    .video-body[hidden] { display: none; }
     .video-player {
       position: relative;
       width: 100%;
@@ -2061,10 +2091,12 @@
     </section>
 
     <figure class="video-card">
-      <div class="video-player">
-        <iframe src="https://www.youtube.com/embed/hWWWixxnq6c" title="Clubhouse Intro" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+      <button class="video-toggle" id="video-toggle" type="button" aria-expanded="false" aria-controls="video-body"><span>Clubhouse Intro</span><span class="video-chevron" aria-hidden="true">▾</span></button>
+      <div class="video-body" id="video-body" hidden>
+        <div class="video-player">
+          <iframe src="https://www.youtube.com/embed/hWWWixxnq6c" title="Clubhouse Intro" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+        </div>
       </div>
-      <figcaption class="video-caption">Clubhouse Intro</figcaption>
     </figure>
 
     <section class="story-queue" aria-labelledby="queue-title">
@@ -3345,6 +3377,16 @@
         const expanded = latestNewsToggle.getAttribute("aria-expanded") === "true";
         latestNewsToggle.setAttribute("aria-expanded", String(!expanded));
         latestNewsBody.hidden = expanded;
+      });
+    }
+
+    const videoToggle = document.getElementById("video-toggle");
+    const videoBody = document.getElementById("video-body");
+    if (videoToggle && videoBody) {
+      videoToggle.addEventListener("click", function () {
+        const expanded = videoToggle.getAttribute("aria-expanded") === "true";
+        videoToggle.setAttribute("aria-expanded", String(!expanded));
+        videoBody.hidden = expanded;
       });
     }
 
