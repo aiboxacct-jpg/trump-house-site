@@ -1959,6 +1959,11 @@
       background: var(--card);
       border: 3px solid #3c3b6e;
       border-radius: 12px;
+      animation: flag-border-pulse 1.7s ease-in-out infinite;
+    }
+    @keyframes flag-border-pulse {
+      0%, 44%, 100% { border-color: #3c3b6e; box-shadow: 0 0 0 2px color-mix(in srgb, #3c3b6e 30%, transparent), 0 9px 30px rgba(16,42,76,.08); }
+      56%, 76% { border-color: #b22234; box-shadow: 0 0 0 3px color-mix(in srgb, #b22234 50%, transparent), 0 9px 30px rgba(16,42,76,.08); }
     }
     .race-tiles-frame::before {
       content: "";
@@ -2050,7 +2055,7 @@
     @media (prefers-reduced-motion: reduce) {
       .theme-toggle { transition: none; }
       *, *::before, *::after { scroll-behavior: auto !important; }
-      .live-badge, .updated-badge, .latest-news, .latest-news-kicker::before, .live-updates, .live-pill { animation: none; }
+      .live-badge, .updated-badge, .latest-news, .latest-news-kicker::before, .live-updates, .live-pill, .race-tiles-frame { animation: none; }
     }
   </style>
   <script>
