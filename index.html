@@ -1889,6 +1889,68 @@
       .closing span { text-align: left; }
     }
     :root[data-theme="dark"] .eagle { opacity: .035; filter: saturate(.35) brightness(.7); }
+    .live-updates { margin: 18px 0 4px; }
+    .race-tiles-title {
+      margin: 16px 0 8px;
+      color: var(--blue);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+    }
+    .race-tiles {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(225px, 1fr));
+      gap: 10px;
+    }
+    .race-tile {
+      padding: 11px 13px 12px;
+      background: color-mix(in srgb, var(--blue) 5%, transparent);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+    }
+    .race-tile-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .race-tile-name { font-size: 13px; font-weight: 700; color: var(--blue); }
+    .race-tile-when { font-size: 10.5px; color: var(--muted); white-space: nowrap; }
+    .race-cand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 0;
+    }
+    .cand-avatar {
+      flex: 0 0 auto;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+    }
+    .cand-avatar.dem { background: #2f6fd0; }
+    .cand-avatar.rep { background: #d43a2f; }
+    .cand-name { font-size: 13px; color: var(--blue); }
+    .race-cand.leader .cand-name { font-weight: 700; }
+    .cand-inc { font-size: 10px; font-style: normal; color: var(--muted); display: block; line-height: 1.1; }
+    .cand-pct { margin-left: auto; font-size: 14px; color: var(--muted); }
+    .race-cand.leader .cand-pct { font-size: 16px; font-weight: 700; color: var(--blue); }
+    .cand-lead {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: .07em;
+      color: var(--red-deep);
+      text-transform: uppercase;
+    }
+    .race-tiles-note { margin: 8px 0 0; font-size: 11px; color: var(--muted); }
     @media (prefers-reduced-motion: reduce) {
       .theme-toggle { transition: none; }
       *, *::before, *::after { scroll-behavior: auto !important; }
@@ -1933,16 +1995,20 @@
           <p>&ldquo;Blue Laws&rdquo;: The Pickle Myth, the 1781 Hoax, and the Laws Still Busting People is the newest public brief, published October 5: the bouncing-pickle law never existed, but Alabama can still jail you for Sunday dominoes &mdash; and 13 states ban Sunday car sales.</p>
           <div class="divider" aria-hidden="true"><span></span><span></span><span></span></div>
         </aside>
-        <section class="live-updates" id="midterms-live" aria-labelledby="midterms-live-title">
-          <h2 class="live-updates-kicker" id="midterms-live-title">Midterms Live Updates <span class="live-pill">Live</span></h2>
-          <ul class="live-updates-list" id="midterms-live-list"></ul>
-        </section>
         <section class="latest-news" id="latest-news" aria-labelledby="latest-news-title" hidden>
           <h2 class="latest-news-kicker" id="latest-news-title">Latest News</h2>
           <ul class="latest-news-list" id="latest-news-list"></ul>
           <a class="latest-news-more" href="#latest-news-archive">More headlines →</a>
         </section>
       </div>
+    </section>
+
+    <section class="live-updates" id="midterms-live" aria-labelledby="midterms-live-title">
+      <h2 class="live-updates-kicker" id="midterms-live-title">Midterms Live Updates <span class="live-pill">Live</span></h2>
+      <ul class="live-updates-list" id="midterms-live-list"></ul>
+      <h3 class="race-tiles-title">Who's leading — key Senate races</h3>
+      <div class="race-tiles" id="race-tiles"></div>
+      <p class="race-tiles-note">Final polling averages, Nov 2026 — polls, not results. Tiles refresh by relay as new averages land.</p>
     </section>
 
     <section class="news-archive" id="latest-news-archive" aria-labelledby="latest-news-archive-title" hidden>
@@ -2153,6 +2219,80 @@
       sourceLine.appendChild(sourceLink);
       item.append(time, headline, text, sourceLine);
       midtermsList.appendChild(item);
+    });
+
+    const raceTiles = [
+      { state: "Alaska — U.S. Senate", note: "DDHQ avg · last poll Nov 1", candidates: [
+        { name: "Mary Peltola", party: "D", pct: 49.2, incumbent: false, leader: true },
+        { name: "Dan Sullivan", party: "R", pct: 47.8, incumbent: true, leader: false }
+      ] },
+      { state: "South Carolina — U.S. Senate", note: "DDHQ avg · last poll Nov 1", candidates: [
+        { name: "Annie Andrews", party: "D", pct: 46.0, incumbent: false, leader: true },
+        { name: "Darline Graham", party: "R", pct: 45.9, incumbent: true, leader: false }
+      ] },
+      { state: "Ohio — U.S. Senate", note: "DDHQ avg · last poll Nov 1", candidates: [
+        { name: "Sherrod Brown", party: "D", pct: 48.5, incumbent: false, leader: true },
+        { name: "Jon Husted", party: "R", pct: 46.2, incumbent: true, leader: false }
+      ] },
+      { state: "Texas — U.S. Senate", note: "DDHQ avg · Nov 2", candidates: [
+        { name: "James Talarico", party: "D", pct: 49.4, incumbent: false, leader: true },
+        { name: "Ken Paxton", party: "R", pct: 46.0, incumbent: false, leader: false }
+      ] },
+      { state: "Iowa — U.S. Senate", note: "Polling avg · Nov 2", candidates: [
+        { name: "Ashley Hinson", party: "R", pct: 46.0, incumbent: false, leader: true },
+        { name: "Josh Turek", party: "D", pct: 45.9, incumbent: false, leader: false }
+      ] },
+      { state: "Maine — U.S. Senate", note: "Polling avg · Nov 3", candidates: [
+        { name: "Troy Jackson", party: "D", pct: 50.1, incumbent: false, leader: true },
+        { name: "Susan Collins", party: "R", pct: 46.5, incumbent: true, leader: false }
+      ] }
+    ];
+
+    const raceTilesEl = document.getElementById("race-tiles");
+    raceTiles.forEach(function (race) {
+      const tile = document.createElement("div");
+      tile.className = "race-tile";
+      const head = document.createElement("div");
+      head.className = "race-tile-head";
+      const rname = document.createElement("span");
+      rname.className = "race-tile-name";
+      rname.textContent = race.state;
+      const when = document.createElement("span");
+      when.className = "race-tile-when";
+      when.textContent = race.note;
+      head.append(rname, when);
+      tile.appendChild(head);
+      race.candidates.forEach(function (cand) {
+        const row = document.createElement("div");
+        row.className = "race-cand" + (cand.leader ? " leader" : "");
+        const avatar = document.createElement("span");
+        avatar.className = "cand-avatar " + (cand.party === "D" ? "dem" : "rep");
+        avatar.textContent = cand.name.split(" ").map(function (w) { return w[0]; }).join("").slice(0, 2);
+        const nameWrap = document.createElement("span");
+        const name = document.createElement("span");
+        name.className = "cand-name";
+        name.textContent = cand.name;
+        nameWrap.appendChild(name);
+        if (cand.incumbent) {
+          const inc = document.createElement("em");
+          inc.className = "cand-inc";
+          inc.textContent = "Incumbent";
+          nameWrap.appendChild(inc);
+        }
+        if (cand.leader) {
+          const lead = document.createElement("span");
+          lead.className = "cand-lead";
+          lead.textContent = "Leading";
+          nameWrap.appendChild(document.createTextNode(" "));
+          nameWrap.appendChild(lead);
+        }
+        const pct = document.createElement("span");
+        pct.className = "cand-pct";
+        pct.textContent = cand.pct.toFixed(1) + "%";
+        row.append(avatar, nameWrap, pct);
+        tile.appendChild(row);
+      });
+      raceTilesEl.appendChild(tile);
     });
 
     const latestNews = [
