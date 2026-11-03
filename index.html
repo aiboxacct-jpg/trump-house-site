@@ -473,6 +473,82 @@
       outline: 2px solid color-mix(in srgb, var(--blue) 38%, transparent);
       outline-offset: 2px;
     }
+    .live-updates {
+      padding: 16px 18px 15px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--red);
+      box-shadow: 0 9px 30px rgba(16,42,76,.08);
+      animation: latest-news-border-pulse 1.7s ease-in-out infinite;
+    }
+    .live-updates-kicker {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 0 0 6px;
+      color: var(--red-deep);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .11em;
+      text-transform: uppercase;
+    }
+    .live-pill {
+      background: var(--red);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .09em;
+      padding: 2px 8px;
+      border-radius: 999px;
+      animation: latest-news-dot-pulse 1.7s ease-in-out infinite;
+    }
+    .live-updates-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .live-update-item {
+      padding: 10px 0 11px;
+      border-bottom: 1px solid var(--line);
+    }
+    .live-update-item:last-child {
+      padding-bottom: 2px;
+      border-bottom: 0;
+    }
+    .live-update-time {
+      display: block;
+      margin-bottom: 2px;
+      color: var(--red-deep);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+    .live-update-headline {
+      display: block;
+      color: var(--blue);
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+    .live-update-text {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.55;
+    }
+    .live-update-source {
+      margin: 5px 0 0;
+      color: var(--muted);
+      font-size: 11px;
+    }
+    .live-update-source a {
+      color: inherit;
+      font-weight: 600;
+      text-underline-offset: 2px;
+    }
+    .live-update-source a:hover,
+    .live-update-source a:focus-visible { color: var(--red-deep); }
     .latest-news-more,
     .news-archive-back,
     .news-archive-empty a {
@@ -1816,7 +1892,7 @@
     @media (prefers-reduced-motion: reduce) {
       .theme-toggle { transition: none; }
       *, *::before, *::after { scroll-behavior: auto !important; }
-      .live-badge, .updated-badge, .latest-news, .latest-news-kicker::before { animation: none; }
+      .live-badge, .updated-badge, .latest-news, .latest-news-kicker::before, .live-updates, .live-pill { animation: none; }
     }
   </style>
   <script>
@@ -1857,6 +1933,10 @@
           <p>&ldquo;Blue Laws&rdquo;: The Pickle Myth, the 1781 Hoax, and the Laws Still Busting People is the newest public brief, published October 5: the bouncing-pickle law never existed, but Alabama can still jail you for Sunday dominoes &mdash; and 13 states ban Sunday car sales.</p>
           <div class="divider" aria-hidden="true"><span></span><span></span><span></span></div>
         </aside>
+        <section class="live-updates" id="midterms-live" aria-labelledby="midterms-live-title">
+          <h2 class="live-updates-kicker" id="midterms-live-title">Midterms Live Updates <span class="live-pill">Live</span></h2>
+          <ul class="live-updates-list" id="midterms-live-list"></ul>
+        </section>
         <section class="latest-news" id="latest-news" aria-labelledby="latest-news-title" hidden>
           <h2 class="latest-news-kicker" id="latest-news-title">Latest News</h2>
           <ul class="latest-news-list" id="latest-news-list"></ul>
@@ -2023,6 +2103,56 @@
 
     systemTheme.addEventListener("change", function (event) {
       if (!themeWasManuallyChanged) applyTheme(event.matches ? "dark" : "light");
+    });
+
+    const midtermsUpdates = [
+      {
+        time: "Tue Nov 3 · 9:51 AM PT",
+        headline: "U.S. votes in midterm elections seen as referendum on Trump's second term",
+        text: "Americans vote today, Nov 3, for control of Congress in elections widely seen as a referendum on Trump's second term. On Nov 2 the Supreme Court rejected a Justice Department emergency bid to force California to set aside roughly 20,000 mail ballots the administration claimed were cast by likely noncitizens.",
+        source: "Political.org",
+        url: "https://political.org/2026/11/03/us-votes-in-midterm-elections-seen-as-referendum-on-trumps-second-term-as-supreme-court-rejects-bid-to-set-aside-california-ballots/"
+      },
+      {
+        time: "Tue Nov 3 · 9:51 AM PT",
+        headline: "Trump says U.S. is cutting off aid to Israel by end of the year",
+        text: "On Election Day morning on Fox & Friends, Trump said the U.S. will end about $4 billion in annual aid to Israel by year-end, saying he reached an agreement with PM Netanyahu and that Israel “no longer needs it.”",
+        source: "USA Today",
+        url: "https://www.usatoday.com/story/news/politics/2026/11/03/trump-u-s-cutting-off-aid-to-israel/92583659007/"
+      },
+      {
+        time: "Tue Nov 3 · 9:51 AM PT",
+        headline: "Trump faces 'highest ever' Election Day gas prices",
+        text: "AAA put the national average at $4.14/gal on Election Day Nov 3 — the highest Election Day average on record back to 1994 — with polls showing voters heavily disapproving of Trump's handling of gas prices and inflation.",
+        source: "USA Today",
+        url: "https://www.usatoday.com/story/cars/shopping/2026/11/03/gas-prices-2026-midterm-election-day/92583294007/"
+      }
+    ];
+
+    const midtermsList = document.getElementById("midterms-live-list");
+    midtermsUpdates.forEach(function (update) {
+      const item = document.createElement("li");
+      const time = document.createElement("span");
+      const headline = document.createElement("span");
+      const text = document.createElement("p");
+      const sourceLine = document.createElement("p");
+      const sourceLink = document.createElement("a");
+      item.className = "live-update-item";
+      time.className = "live-update-time";
+      time.textContent = update.time;
+      headline.className = "live-update-headline";
+      headline.textContent = update.headline;
+      text.className = "live-update-text";
+      text.textContent = update.text;
+      sourceLine.className = "live-update-source";
+      sourceLine.appendChild(document.createTextNode("Source: "));
+      sourceLink.href = update.url;
+      sourceLink.target = "_blank";
+      sourceLink.rel = "noopener noreferrer";
+      sourceLink.textContent = update.source;
+      sourceLine.appendChild(sourceLink);
+      item.append(time, headline, text, sourceLine);
+      midtermsList.appendChild(item);
     });
 
     const latestNews = [
