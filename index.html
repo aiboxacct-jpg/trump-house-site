@@ -333,8 +333,10 @@
     .divider span:nth-child(3) { flex: 1; background: var(--blue); }
     .mast-side {
       display: grid;
+      grid-template-columns: minmax(0, 1fr);
       gap: 18px;
     }
+    .mast-side > * { min-width: 0; }
     .video-card {
       overflow: hidden;
       margin: 0;
@@ -406,6 +408,7 @@
       margin: 0;
       padding: 0;
       list-style: none;
+      min-width: 0;
     }
     .latest-news-item {
       position: relative;
