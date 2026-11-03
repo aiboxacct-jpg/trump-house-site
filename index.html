@@ -1952,6 +1952,40 @@
     }
     :root[data-theme="dark"] .eagle { opacity: .035; filter: saturate(.35) brightness(.7); }
     .live-updates { margin: 18px 0 4px; }
+    .race-tiles-frame {
+      position: relative;
+      margin-top: 16px;
+      padding: 32px 14px 28px;
+      background: var(--card);
+      border: 3px solid #3c3b6e;
+      border-radius: 12px;
+    }
+    .race-tiles-frame::before {
+      content: "";
+      position: absolute;
+      top: 7px;
+      left: 12px;
+      right: 12px;
+      height: 16px;
+      border-radius: 3px;
+      background-color: #3c3b6e;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3E%3Cpolygon points='8,1.6 10,6.1 14.9,6.4 11.3,9.7 12.4,14.4 8,11.8 3.6,14.4 4.7,9.7 1.1,6.4 6,6.1' fill='%23ffffff'/%3E%3C/svg%3E");
+      background-repeat: repeat-x;
+      background-size: 16px 16px;
+      background-position: center;
+    }
+    .race-tiles-frame::after {
+      content: "";
+      position: absolute;
+      bottom: 7px;
+      left: 12px;
+      right: 12px;
+      height: 12px;
+      border: 1px solid color-mix(in srgb, #b22234 30%, transparent);
+      border-radius: 3px;
+      background: repeating-linear-gradient(90deg, #b22234 0 14px, #ffffff 14px 28px);
+    }
+    .race-tiles-frame .race-tiles-title { margin-top: 0; }
     .race-tiles-title {
       margin: 16px 0 8px;
       color: var(--blue);
@@ -2070,9 +2104,11 @@
     <section class="live-updates" id="midterms-live" aria-labelledby="midterms-live-title">
       <h2 class="live-updates-kicker" id="midterms-live-title">Midterms Live Updates <span class="live-pill">Live</span></h2>
       <ul class="live-updates-list" id="midterms-live-list"></ul>
-      <h3 class="race-tiles-title">Who's leading — key Senate races</h3>
-      <div class="race-tiles" id="race-tiles"></div>
-      <p class="race-tiles-note">Final polling averages, Nov 2026 — polls, not results. Tiles refresh by relay as new averages land.</p>
+      <div class="race-tiles-frame">
+        <h3 class="race-tiles-title">Who's leading — key Senate races</h3>
+        <div class="race-tiles" id="race-tiles"></div>
+        <p class="race-tiles-note">Final polling averages, Nov 2026 — polls, not results. Tiles refresh by relay as new averages land.</p>
+      </div>
     </section>
 
     <section class="news-archive" id="latest-news-archive" aria-labelledby="latest-news-archive-title" hidden>
