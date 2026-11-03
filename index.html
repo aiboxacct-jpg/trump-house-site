@@ -396,6 +396,35 @@
       box-shadow: 0 0 0 3px color-mix(in srgb, var(--red) 12%, transparent);
       animation: latest-news-dot-pulse 1.7s ease-in-out infinite;
     }
+    .latest-news-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      flex: 1 1 auto;
+      min-width: 0;
+      margin: 0;
+      padding: 0;
+      background: none;
+      border: 0;
+      color: inherit;
+      font: inherit;
+      letter-spacing: inherit;
+      text-transform: inherit;
+      text-align: left;
+      cursor: pointer;
+    }
+    .latest-news-toggle:focus-visible {
+      outline: 2px solid color-mix(in srgb, var(--blue) 38%, transparent);
+      outline-offset: 3px;
+    }
+    .latest-news-chevron {
+      flex: 0 0 auto;
+      font-size: 13px;
+      line-height: 1;
+    }
+    .latest-news-toggle[aria-expanded="true"] .latest-news-chevron { transform: rotate(180deg); }
+    .latest-news-body[hidden] { display: none; }
     @keyframes latest-news-dot-pulse {
       0%, 44%, 100% { opacity: 1; transform: scale(1); }
       56%, 76% { opacity: .5; transform: scale(.78); }
@@ -1999,9 +2028,11 @@
           <div class="divider" aria-hidden="true"><span></span><span></span><span></span></div>
         </aside>
         <section class="latest-news" id="latest-news" aria-labelledby="latest-news-title" hidden>
-          <h2 class="latest-news-kicker" id="latest-news-title">Latest News</h2>
-          <ul class="latest-news-list" id="latest-news-list"></ul>
-          <a class="latest-news-more" href="#latest-news-archive">More headlines →</a>
+          <h2 class="latest-news-kicker" id="latest-news-title"><button class="latest-news-toggle" id="latest-news-toggle" type="button" aria-expanded="false" aria-controls="latest-news-body"><span>Latest News</span><span class="latest-news-chevron" aria-hidden="true">▾</span></button></h2>
+          <div class="latest-news-body" id="latest-news-body" hidden>
+            <ul class="latest-news-list" id="latest-news-list"></ul>
+            <a class="latest-news-more" href="#latest-news-archive">More headlines →</a>
+          </div>
         </section>
       </div>
     </section>
@@ -3306,6 +3337,16 @@
 
     latestNewsSection.hidden = latestNews.length === 0;
     latestNewsArchiveEmpty.hidden = latestNews.length > 3;
+
+    const latestNewsToggle = document.getElementById("latest-news-toggle");
+    const latestNewsBody = document.getElementById("latest-news-body");
+    if (latestNewsToggle && latestNewsBody) {
+      latestNewsToggle.addEventListener("click", function () {
+        const expanded = latestNewsToggle.getAttribute("aria-expanded") === "true";
+        latestNewsToggle.setAttribute("aria-expanded", String(!expanded));
+        latestNewsBody.hidden = expanded;
+      });
+    }
 
     const mediaItems = [
       {
