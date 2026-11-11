@@ -2106,6 +2106,7 @@
       </div>
     </section>
 
+    <!-- ELECTION SECTION OFF per Matt 2026-11-11. To restore: remove this comment wrapper and the two JS guards (midtermsList / raceTilesEl).
     <section class="live-updates" id="midterms-live" aria-labelledby="midterms-live-title">
       <h2 class="live-updates-kicker" id="midterms-live-title">Midterm Live Updates <span class="live-pill">Live</span></h2>
       <ul class="live-updates-list" id="midterms-live-list"></ul>
@@ -2115,6 +2116,7 @@
         <p class="race-tiles-note">Live reported results, Nov 3, 2026 — vote shares update as precincts report; 'Called' races are AP/DDHQ projections. Not final until certified.</p>
       </div>
     </section>
+    -->
 
     <section class="news-archive" id="latest-news-archive" aria-labelledby="latest-news-archive-title" hidden>
       <a class="news-archive-back" href="#latest-news">← Back to latest</a>
@@ -2303,7 +2305,7 @@
     ];
 
     const midtermsList = document.getElementById("midterms-live-list");
-    midtermsUpdates.forEach(function (update) {
+    if (midtermsList) midtermsUpdates.forEach(function (update) {
       const item = document.createElement("li");
       const time = document.createElement("span");
       const headline = document.createElement("span");
@@ -2356,7 +2358,7 @@
     ];
 
     const raceTilesEl = document.getElementById("race-tiles");
-    raceTiles.forEach(function (race) {
+    if (raceTilesEl) raceTiles.forEach(function (race) {
       const tile = document.createElement("div");
       tile.className = "race-tile";
       const head = document.createElement("div");
