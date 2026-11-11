@@ -455,6 +455,35 @@
     }
     .latest-news-toggle[aria-expanded="true"] .latest-news-chevron { transform: rotate(180deg); }
     .latest-news-body[hidden] { display: none; }
+    .status-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      width: 100%;
+      min-width: 0;
+      margin: 0;
+      padding: 0;
+      background: none;
+      border: 0;
+      color: inherit;
+      font: inherit;
+      letter-spacing: inherit;
+      text-transform: inherit;
+      text-align: left;
+      cursor: pointer;
+    }
+    .status-toggle:focus-visible {
+      outline: 2px solid color-mix(in srgb, var(--blue) 38%, transparent);
+      outline-offset: 3px;
+    }
+    .status-chevron {
+      flex: 0 0 auto;
+      font-size: 13px;
+      line-height: 1;
+    }
+    .status-toggle[aria-expanded="true"] .status-chevron { transform: rotate(180deg); }
+    .status-body[hidden] { display: none; }
     @keyframes latest-news-dot-pulse {
       0%, 44%, 100% { opacity: 1; transform: scale(1); }
       56%, 76% { opacity: .5; transform: scale(.78); }
@@ -2091,10 +2120,12 @@
       </div>
       <div class="mast-side">
         <aside class="status-card" aria-label="Room status">
-          <div class="status-label">Current status</div>
+          <div class="status-label"><button class="status-toggle" id="status-toggle" type="button" aria-expanded="false" aria-controls="status-body"><span>Current status</span><span class="status-chevron" aria-hidden="true">▾</span></button></div>
+          <div class="status-body" id="status-body" hidden>
           <h2>Twelve briefs in the queue</h2>
           <p>&ldquo;Blue Laws&rdquo;: The Pickle Myth, the 1781 Hoax, and the Laws Still Busting People is the newest public brief, published October 5: the bouncing-pickle law never existed, but Alabama can still jail you for Sunday dominoes &mdash; and 13 states ban Sunday car sales.</p>
           <div class="divider" aria-hidden="true"><span></span><span></span><span></span></div>
+          </div>
         </aside>
         <section class="latest-news" id="latest-news" aria-labelledby="latest-news-title" hidden>
           <h2 class="latest-news-kicker" id="latest-news-title"><button class="latest-news-toggle" id="latest-news-toggle" type="button" aria-expanded="false" aria-controls="latest-news-body"><span>Latest News</span><span class="latest-news-chevron" aria-hidden="true">▾</span></button></h2>
@@ -3520,6 +3551,16 @@
         const expanded = videoToggle.getAttribute("aria-expanded") === "true";
         videoToggle.setAttribute("aria-expanded", String(!expanded));
         videoBody.hidden = expanded;
+      });
+    }
+
+    const statusToggle = document.getElementById("status-toggle");
+    const statusBody = document.getElementById("status-body");
+    if (statusToggle && statusBody) {
+      statusToggle.addEventListener("click", function () {
+        const expanded = statusToggle.getAttribute("aria-expanded") === "true";
+        statusToggle.setAttribute("aria-expanded", String(!expanded));
+        statusBody.hidden = expanded;
       });
     }
 
