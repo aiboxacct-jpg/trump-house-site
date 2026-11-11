@@ -221,9 +221,17 @@
     }
     .channel-links {
       display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
+      flex-wrap: nowrap;
+      gap: 10px;
       margin-top: 28px;
+    }
+    .channel-links .clubhouse-link {
+      white-space: nowrap;
+      flex: 0 1 auto;
+      min-width: 0;
+      padding: 12px 13px;
+      font-size: 14px;
+      gap: 8px;
     }
     .clubhouse-link {
       display: inline-flex;
@@ -1921,6 +1929,10 @@
       text-align: right;
     }
 
+    @media (max-width: 1200px) {
+      .channel-links .clubhouse-link { padding: 10px 10px; font-size: 12px; gap: 6px; }
+      .channel-links .clubhouse-link::after { display: none; }
+    }
     @media (max-width: 760px) {
       body::before, body::after { width: 8px; }
       .page { width: min(100% - 40px, 620px); padding-top: 88px; }
@@ -1954,9 +1966,11 @@
       .story-share { grid-column: 1; justify-self: end; min-width: 61px; margin: 0 18px 0 0; padding: 8px 9px; }
       .story-share-x { grid-column: 1; justify-self: end; margin: 8px 18px 0 0; }
       .share-fallback { gap: 7px; padding: 0 18px 21px; }
-      .channel-links, .story-card-action { flex-direction: column; }
+      .story-card-action { flex-direction: column; }
       .story-card-action { justify-content: stretch; padding: 0 18px 21px; }
-      .channel-links .clubhouse-link, .story-clubhouse-link { justify-content: space-between; width: 100%; }
+      .story-clubhouse-link { justify-content: space-between; width: 100%; }
+      .channel-links { flex-direction: row; flex-wrap: nowrap; gap: 4px; width: calc(100% + 40px); margin-left: -20px; margin-right: -20px; padding: 0 8px; }
+      .channel-links .clubhouse-link { flex: 0 1 auto; min-width: 0; justify-content: center; width: auto; padding: 8px 5px; font-size: 10px; letter-spacing: -.02em; gap: 4px; }
       .brief-section + .brief-section { border-left: 0; border-top: 1px solid var(--line); }
       .timeline-list li { grid-template-columns: 92px minmax(0, 1fr); gap: 12px; }
       .timeline-list li > * { min-width: 0; }
@@ -2119,6 +2133,7 @@
         </div>
       </div>
       <div class="mast-side">
+        <!-- CURRENT STATUS CARD REMOVED per Matt 2026-11-11 (supersedes the collapsible added earlier that day). Restore: remove this comment wrapper.
         <aside class="status-card" aria-label="Room status">
           <div class="status-label"><button class="status-toggle" id="status-toggle" type="button" aria-expanded="false" aria-controls="status-body"><span>Current status</span><span class="status-chevron" aria-hidden="true">▾</span></button></div>
           <div class="status-body" id="status-body" hidden>
@@ -2127,6 +2142,7 @@
           <div class="divider" aria-hidden="true"><span></span><span></span><span></span></div>
           </div>
         </aside>
+        -->
         <section class="latest-news" id="latest-news" aria-labelledby="latest-news-title" hidden>
           <h2 class="latest-news-kicker" id="latest-news-title"><button class="latest-news-toggle" id="latest-news-toggle" type="button" aria-expanded="false" aria-controls="latest-news-body"><span>Latest News</span><span class="latest-news-chevron" aria-hidden="true">▾</span></button></h2>
           <div class="latest-news-body" id="latest-news-body" hidden>
