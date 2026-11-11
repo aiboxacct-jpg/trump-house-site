@@ -353,6 +353,47 @@
       border-top: 5px solid var(--red);
       box-shadow: 0 9px 30px rgba(16,42,76,.08);
     }
+    html { scroll-behavior: smooth; }
+    #clips, #donations, #opinion { scroll-margin-top: 20px; }
+    .media .video-card { margin-bottom: 24px; }
+    .page-menu {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px 14px;
+      padding: 14px 18px;
+      background: var(--navy);
+      border-bottom: 4px solid var(--red);
+    }
+    .page-menu a {
+      color: var(--paper);
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: .02em;
+      text-decoration: none;
+    }
+    .page-menu a:hover,
+    .page-menu a:focus-visible { text-decoration: underline; }
+    .page-menu a:focus-visible {
+      outline: 2px solid var(--paper);
+      outline-offset: 3px;
+    }
+    .page-menu-sep { color: var(--red); font-weight: 700; }
+    .simple-section {
+      padding: clamp(46px, 7vw, 82px) 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .simple-section .section-heading {
+      grid-template-columns: minmax(0, 1fr);
+      margin-bottom: 24px;
+    }
+    .simple-section p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.6;
+    }
     .video-toggle {
       display: flex;
       align-items: center;
@@ -2180,14 +2221,13 @@
       </div>
     </section>
 
-    <figure class="video-card">
-      <button class="video-toggle" id="video-toggle" type="button" aria-expanded="false" aria-controls="video-body"><span>Clubhouse Intro</span><span class="video-chevron" aria-hidden="true">▾</span></button>
-      <div class="video-body" id="video-body" hidden>
-        <div class="video-player">
-          <iframe src="https://www.youtube.com/embed/hWWWixxnq6c" title="Clubhouse Intro" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
-        </div>
-      </div>
-    </figure>
+    <nav class="page-menu" aria-label="Page sections">
+      <a href="#donations">Donations</a>
+      <span class="page-menu-sep" aria-hidden="true">|</span>
+      <a href="#clips">Trump House Clips</a>
+      <span class="page-menu-sep" aria-hidden="true">|</span>
+      <a href="#opinion">Opinion</a>
+    </nav>
 
     <section class="story-queue" aria-labelledby="queue-title">
       <div class="section-heading">
@@ -2264,7 +2304,29 @@
       <div class="section-heading">
         <h2 id="media-title">Trump House Clips</h2>
       </div>
+      <figure class="video-card">
+        <button class="video-toggle" id="video-toggle" type="button" aria-expanded="false" aria-controls="video-body"><span>Clubhouse Intro</span><span class="video-chevron" aria-hidden="true">▾</span></button>
+        <div class="video-body" id="video-body" hidden>
+        <div class="video-player">
+          <iframe src="https://www.youtube.com/embed/hWWWixxnq6c" title="Clubhouse Intro" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+        </div>
+        </div>
+      </figure>
       <div class="media-list" id="media-list"></div>
+    </section>
+
+    <section class="simple-section" id="donations" aria-labelledby="donations-title">
+      <div class="section-heading">
+        <h2 id="donations-title">Donations</h2>
+      </div>
+      <p>Coming soon.</p>
+    </section>
+
+    <section class="simple-section" id="opinion" aria-labelledby="opinion-title">
+      <div class="section-heading">
+        <h2 id="opinion-title">Opinion</h2>
+      </div>
+      <p>Coming soon.</p>
     </section>
 
     <section class="learning" aria-labelledby="learning-title">
